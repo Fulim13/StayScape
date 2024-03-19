@@ -102,7 +102,6 @@
     <Content Include="Dashboard.aspx" />
     <Content Include="Images\house-transparent.png" />
     <Content Include="Images\house.png" />
-    <Content Include="Property.aspx" />
     <Content Include="Review.aspx" />
     <Content Include="Voucher.aspx" />
     <Content Include="Web.config" />
@@ -169,13 +168,6 @@
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.rtl.css.map" />
     <Content Include="Content\bootstrap.rtl.min.css.map" />
-    <Compile Include="Property.aspx.cs">
-      <DependentUpon>Property.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Property.aspx.designer.cs">
-      <DependentUpon>Property.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Review.aspx.cs">
       <DependentUpon>Review.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
