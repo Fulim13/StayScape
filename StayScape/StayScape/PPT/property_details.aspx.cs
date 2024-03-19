@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace StayScape.Property
+namespace StayScape.PPT
 {
     public partial class property_details : System.Web.UI.Page
     {

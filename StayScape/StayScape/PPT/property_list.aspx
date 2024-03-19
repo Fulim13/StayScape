@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="property_details.aspx.cs" Inherits="StayScape.Property.property_details" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="property_list.aspx.cs" Inherits="StayScape.PPT.property_list" %>
 
 <!DOCTYPE html>
 
