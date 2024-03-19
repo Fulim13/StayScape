@@ -1,0 +1,11 @@
+{"devDependencies": {
+    "tailwindcss": "^3.4.1"
+  },
+  "scripts": {
+    "build:css": "tailwindcss build ./StayScape/StayScape/input.css -o ./StayScape/StayScape/dist/output.css",
+    "watch:css": "tailwindcss --watch -i ./StayScape/StayScape/input.css -o ./StayScape/StayScape/dist/output.css"
+  },
+    "dependencies": {
+      "bootstrap": "^5.3.3"
+  }
+}
