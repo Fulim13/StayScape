@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="property_test1.aspx.cs" Inherits="StayScape.property_test1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="property_details.aspx.cs" Inherits="StayScape.Property.property_details" %>
 
 <!DOCTYPE html>
 
@@ -13,4 +13,3 @@
     </form>
 </body>
 </html>
-

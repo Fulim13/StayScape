@@ -67,17 +67,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="property_test1.aspx" />
+    <Content Include="Property\property_details.aspx" />
+    <Content Include="Property\property_list.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="property_test1.aspx.cs">
-      <DependentUpon>property_test1.aspx</DependentUpon>
+    <Compile Include="Property\property_details.aspx.cs">
+      <DependentUpon>property_details.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="property_test1.aspx.designer.cs">
-      <DependentUpon>property_test1.aspx</DependentUpon>
+    <Compile Include="Property\property_details.aspx.designer.cs">
+      <DependentUpon>property_details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Property\property_list.aspx.cs">
+      <DependentUpon>property_list.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Property\property_list.aspx.designer.cs">
+      <DependentUpon>property_list.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

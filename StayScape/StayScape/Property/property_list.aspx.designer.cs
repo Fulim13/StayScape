@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace StayScape
+namespace StayScape.Property
 {
 
 
-    public partial class property_test1
+    public partial class property_list
     {
 
         /// <summary>
