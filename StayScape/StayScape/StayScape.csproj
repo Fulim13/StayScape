@@ -143,6 +143,7 @@
     </Compile>
     <Compile Include="Property\property_list.aspx.designer.cs">
       <DependentUpon>property_list.aspx</DependentUpon>
+ </Compile>
     <Compile Include="ratings.aspx.cs">
       <DependentUpon>ratings.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
