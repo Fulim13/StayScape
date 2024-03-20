@@ -67,8 +67,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="PPT\property_details.aspx" />
-    <Content Include="PPT\property_list.aspx" />
+    <Content Include="property_details.aspx" />
+    <Content Include="property_list.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -129,18 +129,18 @@
       <DependentUpon>Main.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PPT\property_details.aspx.cs">
+    <Compile Include="property_details.aspx.cs">
       <DependentUpon>property_details.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="PPT\property_details.aspx.designer.cs">
+    <Compile Include="property_details.aspx.designer.cs">
       <DependentUpon>property_details.aspx</DependentUpon>
     </Compile>
-    <Compile Include="PPT\property_list.aspx.cs">
+    <Compile Include="property_list.aspx.cs">
       <DependentUpon>property_list.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="PPT\property_list.aspx.designer.cs">
+    <Compile Include="property_list.aspx.designer.cs">
       <DependentUpon>property_list.aspx</DependentUpon>
     </Compile>
     <Compile Include="ratings.aspx.cs">
