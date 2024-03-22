@@ -5,7 +5,7 @@
 # Step to run our project
 1. Install dependency
 ```
-npm run i
+npm i
 ```
 2. Build tailwind css folder
 ```
