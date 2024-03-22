@@ -50,7 +50,7 @@
         <div class="property-card">
             <img src="property1.jpg" alt="Property 1" onclick="window.location.href='property_details.aspx';">
             <div class="property-info">
-                <h2>Property Name 1</h2>
+                <h2>Property Name 1(Example)</h2>
                 <p><strong>Price:</strong> $500,000</p>
                 <p><strong>Description:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                 <p><strong>Address:</strong> 123 Main Street, Cityville</p>
