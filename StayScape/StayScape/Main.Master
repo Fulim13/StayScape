@@ -177,22 +177,23 @@
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <%-- Separate line --%>
-                <div>
-                    <hr />
-                </div>
 
-                <!-- Content Place Holder-->
-                <main>
-                    <div class="py-6">
-                        <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-                            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                            </asp:ContentPlaceHolder>
-                        </div>
+                    <%-- Separate line --%>
+                    <div>
+                        <hr />
                     </div>
-                </main>
+
+                    <!-- Content Place Holder-->
+                    <main>
+                        <div class="py-6">
+                            <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+                                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                                </asp:ContentPlaceHolder>
+                            </div>
+                        </div>
+                    </main>
+                </div>
             </div>
         </div>
     </form>
