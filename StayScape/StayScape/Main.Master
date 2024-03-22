@@ -8,39 +8,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="./dist/output.css" rel="stylesheet" />
     <script>
-        function toggleDropdown() {
-            var dropdownMenu = document.getElementById("dropdown-menu");
-            dropdownMenu.classList.toggle("hidden");
-        }
+        function openSidebar(event) {
+            event.preventDefault()
 
-        function openSidebar() {
             const sidebar = document.querySelector("#sidebar");
             sidebar.classList.remove("hidden");
-            sidebar.classList.add("flex")
-            sidebar.classList.add("inset-y-0")
-            sidebar.classList.add("left-0")
-            sidebar.classList.add("z-40")
-            sidebar.classList.add("fixed")
-            sidebar.classList.add("w-64")
+            sidebar.classList.add("flex", "inset-y-0", "left-0", "z-40", "fixed", "w-64", "transition", "transform", "ease-in-out", "duration-300", "translate-x-0");
 
             const overlay = document.querySelector("#overlay");
             overlay.classList.remove("hidden");
+            overlay.classList.add("transition-opacity", "ease-linear", "duration-300", "opacity-100");
+
+            const btnClose = document.querySelector("#btn-close");
+            btnClose.classList.remove("hidden");
         }
 
-        function closeSidebar() {
-            var sidebar = document.querySelector("#sidebar");
-            sidebar.classList.add("hidden");
+        function closeSidebar(event) {
+            event.preventDefault();
 
-            const overlay = document.querySelector("#overlay");
-            overlay.classList.remove("hidden");
-        }
-
-        function closeSidebarWithOverlay() {
-            var sidebar = document.querySelector("#sidebar");
-            sidebar.classList.add("hidden");
+            const sidebar = document.querySelector("#sidebar");
+            sidebar.classList.remove("translate-x-0");
+            sidebar.classList.add("-translate-x-full");
 
             const overlay = document.querySelector("#overlay");
             overlay.classList.add("hidden");
+
+            const btnClose = document.querySelector("#btn-close");
+            btnClose.classList.add("hidden");
+        }
+
+        function closeSidebarWithOverlay() {
+            const sidebar = document.querySelector("#sidebar");
+            sidebar.classList.remove("translate-x-0");
+            sidebar.classList.add("-translate-x-full");
+
+            const overlay = document.querySelector("#overlay");
+            overlay.classList.remove("opacity-100");
+            overlay.classList.add("hidden");
+
+            const btnClose = document.querySelector("#btn-close");
+            btnClose.classList.add("hidden");
         }
     </script>
     <asp:ContentPlaceHolder ID="head" runat="server">
@@ -100,18 +107,20 @@
                         </div>
                     </div>
                     <%-- Close button on  sidebar for smaller screen--%>
-                    <button onclick="closeSidebar()" class="md:hidden text-white absolute top-0 right-0 mt-4 -mr-1 translate-x-full focus:outline-none">
-                        <svg class="h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
+                    <div id="btn-close" class="md:hidden text-white absolute top-0 right-0 mt-4 -mr-1 translate-x-full focus:outline-none">
+                        <button onclick="closeSidebar(event)" class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                            <svg class="h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
                 </div>
 
                 <%-- Top Navigation --%>
                 <div class="md:pl-64 flex flex-col flex-1">
                     <div class="flex-1 px-4 flex justify-between">
                         <%-- Hamburger Menu: Show only when screen is small --%>
-                        <button type="button" onclick="openSidebar()" class="block md:hidden text-white focus:outline-none">
+                        <button onclick="openSidebar(event)" class="block md:hidden text-white focus:outline-none">
                             <svg viewBox="0 0 100 80" width="20" height="20">
                                 <rect width="100" height="20"></rect>
                                 <rect y="30" width="100" height="20"></rect>
