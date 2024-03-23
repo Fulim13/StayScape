@@ -55,53 +55,7 @@
             btnClose.classList.add("hidden");
         }
 
-        function toggleLabels() {
-            const labelValue = document.querySelector('#lbl-value');
-            const labelPercentage = document.querySelector('#lbl-percentage');
-            const svgValueCheckCircle = document.querySelector('#value-check-circle');
-            const svgPercentageCheckCircle = document.querySelector('#percentage-check-circle');
-            const discountRate = document.querySelector('#discount-rate');
-            const discountValue = document.querySelector('#discount-value');
-            const capAt = document.querySelector('#cap-at');
-
-            // Check if svgValueCheckCircle is visible
-            const isVisible = !svgValueCheckCircle.classList.contains('invisible');
-
-            // Toggle visibility of labels
-            if (isVisible) {
-                // Percentage on
-                svgValueCheckCircle.classList.add('invisible');
-                labelValue.classList.remove('border-indigo-500', "ring-2","ring-indigo-500");
-               
-                svgPercentageCheckCircle.classList.remove('invisible');
-                labelPercentage.classList.add('border-indigo-500', "ring-2", "ring-indigo-500");
-
-                // hidden discount value column
-                discountValue.classList.add('hidden',"sm:hidden");
-
-                // hidden cap at column
-                capAt.classList.add('hidden', "sm:hidden");
-
-                //display disocunt rate column
-                discountRate.classList.remove('hidden',"sm:hidden");
-            } else {
-                // Value on
-                svgPercentageCheckCircle.classList.add('invisible');
-                labelPercentage.classList.remove('border-indigo-500', "ring-2", "ring-indigo-500");
-
-                svgValueCheckCircle.classList.remove('invisible');
-                labelValue.classList.add('border-indigo-500', "ring-2", "ring-indigo-500");
-
-                // hidden discount percentage column
-                discountRate.classList.add('hidden' ,"sm:hidden");
-
-                // display disoucnt value column
-                discountValue.classList.remove('hidden', "sm:hidden");
-
-                // display cap at column
-                capAt.classList.remove('hidden', "sm:hidden");
-            }
-        }
+        
     </script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>

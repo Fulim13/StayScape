@@ -87,6 +87,15 @@ namespace StayScape
         protected global::System.Web.UI.WebControls.RadioButton rbPhone;
 
         /// <summary>
+        /// hdnDiscountType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnDiscountType;
+
+        /// <summary>
         /// txtMinSpend control.
         /// </summary>
         /// <remarks>
@@ -96,15 +105,6 @@ namespace StayScape
         protected global::System.Web.UI.WebControls.TextBox txtMinSpend;
 
         /// <summary>
-        /// txtDiscountRate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDiscountRate;
-
-        /// <summary>
         /// txtDiscountValue control.
         /// </summary>
         /// <remarks>
@@ -112,6 +112,15 @@ namespace StayScape
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDiscountValue;
+
+        /// <summary>
+        /// txtDiscountRate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDiscountRate;
 
         /// <summary>
         /// txtCapAt control.

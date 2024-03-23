@@ -3,6 +3,62 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <script>
+        function toggleLabels() {
+            const labelValue = document.querySelector('#lbl-value');
+            const labelPercentage = document.querySelector('#lbl-percentage');
+            const svgValueCheckCircle = document.querySelector('#value-check-circle');
+            const svgPercentageCheckCircle = document.querySelector('#percentage-check-circle');
+            const discountRate = document.querySelector('#discount-rate');
+            const discountValue = document.querySelector('#discount-value');
+            const capAt = document.querySelector('#cap-at');
+            const hdnDiscountType = document.getElementById("<%= hdnDiscountType.ClientID %>");
+
+            // Check if svgValueCheckCircle is visible
+            const isVisible = !svgValueCheckCircle.classList.contains('invisible');
+
+            // Toggle visibility of labels
+            if (isVisible) {
+                // Percentage on
+                svgValueCheckCircle.classList.add('invisible');
+                labelValue.classList.remove('border-indigo-500', "ring-2", "ring-indigo-500");
+
+                svgPercentageCheckCircle.classList.remove('invisible');
+                labelPercentage.classList.add('border-indigo-500', "ring-2", "ring-indigo-500");
+
+                // hidden discount value column
+                discountValue.classList.add('hidden', "sm:hidden");
+
+                // display disocunt rate column
+                discountRate.classList.remove('hidden', "sm:hidden");
+
+                // display cap at column
+                capAt.classList.remove('hidden', "sm:hidden");
+
+                hdnDiscountType.value = "Percentage Discount Off";
+
+            } else {
+                // Value on
+                svgPercentageCheckCircle.classList.add('invisible');
+                labelPercentage.classList.remove('border-indigo-500', "ring-2", "ring-indigo-500");
+
+                svgValueCheckCircle.classList.remove('invisible');
+                labelValue.classList.add('border-indigo-500', "ring-2", "ring-indigo-500");
+
+                // hidden discount percentage column
+                discountRate.classList.add('hidden', "sm:hidden");
+
+                // hidden  cap at column
+                capAt.classList.add('hidden', "sm:hidden");
+
+                // display disoucnt value column
+                discountValue.classList.remove('hidden', "sm:hidden");
+
+                hdnDiscountType.value = "Money Value Off";
+            }
+        }
+        
+    </script>
     <div class="lg:mx-24 xl:mx-48 py-2">
         <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
             <div>
@@ -132,6 +188,8 @@
                             </label>
                         </div>
                     </div>
+                    <asp:HiddenField ID="hdnDiscountType" runat="server" Value="Money Value Off"/>
+
 
                     <%-- Min Spend --%>
                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
@@ -140,9 +198,20 @@
                             <asp:TextBox
                                 ID="txtMinSpend"
                                 runat="server"
-                                TextMode="Number"
-                                min="1"
                                 placeholder="Enter Min Spend"
+                                CssClass="py-2 px-3 block w-full border border-gray-300 shadow-sm text-md rounded-lg focus:outline-none focus:border-indigo-500 focus:ring-indigo-500">
+                            </asp:TextBox>
+                        </div>
+                    </div>
+
+                    <%-- Discount Value --%>
+                    <div id="discount-value" class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+                        <label for="username" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Discount Value (RM)</label>
+                        <div class="mt-1 sm:mt-0 sm:col-span-2">
+                            <asp:TextBox
+                                ID="txtDiscountValue"
+                                runat="server"
+                                placeholder="Enter Discount Value (RM)"
                                 CssClass="py-2 px-3 block w-full border border-gray-300 shadow-sm text-md rounded-lg focus:outline-none focus:border-indigo-500 focus:ring-indigo-500">
                             </asp:TextBox>
                         </div>
@@ -164,30 +233,13 @@
                         </div>
                     </div>
 
-                    <%-- Discount Value --%>
-                    <div id="discount-value" class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                        <label for="username" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Discount Value (RM)</label>
-                        <div class="mt-1 sm:mt-0 sm:col-span-2">
-                            <asp:TextBox
-                                ID="txtDiscountValue"
-                                runat="server"
-                                TextMode="Number"
-                                min="1"
-                                placeholder="Enter Discount Value (RM)"
-                                CssClass="py-2 px-3 block w-full border border-gray-300 shadow-sm text-md rounded-lg focus:outline-none focus:border-indigo-500 focus:ring-indigo-500">
-                            </asp:TextBox>
-                        </div>
-                    </div>
-
                     <%-- Cap At --%>
-                    <div id="cap-at" class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+                    <div id="cap-at" class="hidden sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5 sm:hidden">
                         <label for="username" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Cap At (RM)</label>
                         <div class="mt-1 sm:mt-0 sm:col-span-2">
                             <asp:TextBox
                                 ID="txtCapAt"
                                 runat="server"
-                                TextMode="Number"
-                                min="1"
                                 placeholder="Enter Cat At (RM)"
                                 CssClass="py-2 px-3 block w-full border border-gray-300 shadow-sm text-md rounded-lg focus:outline-none focus:border-indigo-500 focus:ring-indigo-500">
                             </asp:TextBox>

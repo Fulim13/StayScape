@@ -20,6 +20,8 @@
                      New Voucher
                 </asp:HyperLink>
             </div>
+            <asp:FileUpload ID="FileUpload1" runat="server" />
+            <asp:Button ID="btn_upload" runat="server" Text="Upload" OnClick="btnUpload_Click" />
         </div>
     </div>
 </asp:Content>
