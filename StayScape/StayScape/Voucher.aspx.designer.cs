@@ -15,6 +15,15 @@ namespace StayScape
     {
 
         /// <summary>
+        /// newVoucherSection control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel newVoucherSection;
+
+        /// <summary>
         /// AddVoucherLink control.
         /// </summary>
         /// <remarks>
@@ -40,5 +49,14 @@ namespace StayScape
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_upload;
+
+        /// <summary>
+        /// vouchersTable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel vouchersTable;
     }
 }

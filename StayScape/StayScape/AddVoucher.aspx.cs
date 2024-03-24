@@ -23,6 +23,11 @@ namespace StayScape
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
+            resetFields();
+        }
+
+        private void resetFields()
+        {
             // reset the form
             txtVoucherName.Text = "";
             txtVoucherCode.Text = "";
@@ -98,6 +103,8 @@ namespace StayScape
                 bool isBool = dbConnection.ExecuteNonQuery(sqlCommand, parameters);
                 dbConnection.closeConnection();
             }
+
+            resetFields();
 
         }
 

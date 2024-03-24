@@ -29,6 +29,19 @@ namespace StayScape
 
         }
 
+        public int ExecuteScalar(string query, SqlParameter[] parameters = null)
+        {
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            if (parameters != null)
+            {
+                command.Parameters.AddRange(parameters);
+            }
+
+            return (int)command.ExecuteScalar();
+        }
+
         public Boolean ExecuteNonQuery(string nonQuery, SqlParameter[] parameters = null)
         {
 
