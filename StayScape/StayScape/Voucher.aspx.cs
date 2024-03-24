@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualBasic.FileIO;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.SqlClient;
@@ -28,36 +27,10 @@ namespace StayScape
                 FileUpload1.SaveAs(filePath);
 
                 // Process the uploaded CSV file
-                ProcessCSV(filePath);
+                CSVReader.ProcessCSV(filePath, ProcessRow);
 
                 // Optionally, delete the uploaded file after processing
                 File.Delete(filePath);
-            }
-        }
-
-        private void ProcessCSV(string filePath)
-        {
-            using (TextFieldParser parser = new TextFieldParser(filePath))
-            {
-                parser.TextFieldType = FieldType.Delimited;
-                parser.SetDelimiters(",");
-
-                // Skip header row if present
-                if (!parser.EndOfData)
-                {
-                    parser.ReadLine(); // Skip header row
-                }
-
-                // Read and process each row of data
-                while (!parser.EndOfData)
-                {
-                    string[] fields = parser.ReadFields();
-                    if (fields != null)
-                    {
-                        // Process the fields (e.g., insert into database)
-                        ProcessRow(fields);
-                    }
-                }
             }
         }
 
