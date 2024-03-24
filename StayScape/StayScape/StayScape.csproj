@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Images\WorldviewGrandHotel.jpg" />
     <Content Include="property_details.aspx" />
     <Content Include="property_list.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
@@ -90,6 +91,7 @@
     <Content Include="ratings.aspx" />
     <Content Include="ratingsCSS.css" />
     <Content Include="Report.aspx" />
+    <Content Include="ReviewClient.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -178,6 +180,13 @@
     </Compile>
     <Compile Include="Review.aspx.designer.cs">
       <DependentUpon>Review.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReviewClient.aspx.cs">
+      <DependentUpon>ReviewClient.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReviewClient.aspx.designer.cs">
+      <DependentUpon>ReviewClient.aspx</DependentUpon>
     </Compile>
     <Compile Include="Voucher.aspx.cs">
       <DependentUpon>Voucher.aspx</DependentUpon>
