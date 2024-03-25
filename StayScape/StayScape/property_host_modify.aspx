@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="property_modify_host.aspx.cs" Inherits="StayScape.property_modify_host" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="property_host_modify.aspx.cs" Inherits="StayScape.property_host_modify" %>
 
 <!DOCTYPE html>
 

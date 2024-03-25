@@ -11,7 +11,7 @@ namespace StayScape
 {
 
 
-    public partial class property_insert_host
+    public partial class property_host_insert
     {
 
         /// <summary>
