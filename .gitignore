@@ -364,10 +364,4 @@ FodyWeavers.xsd
 
 # Tailwind - generated file
 StayScape/StayScape/dist/output.css
-/StayScape/StayScape/App_Data/StayScapeDB.mdf
-/StayScape/StayScape/App_Data/StayScapeDB.mdf
-/StayScape/StayScape/App_Data/StayScapeDB_log.ldf
-/StayScape/StayScape/App_Data/StayScapeDB.mdf
-/StayScape/StayScape/App_Data/StayScapeDB_log.ldf
-/StayScape/StayScape/App_Data/StayScapeDB.mdf
-/StayScape/StayScape/App_Data/StayScapeDB_log.ldf
+
