@@ -23,64 +23,30 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        h1 {
-            color: #333;
+      
+        .property-name {
+            font-size: 24px;
+            color: #007bff;
+            margin-bottom: 10px;
         }
-        .property-image {
-            max-width: 100%;
-            height: auto;
-            margin-bottom: 20px;
-        }
-        .property-info {
-            margin-bottom: 20px;
-        }
-        .property-info p {
-            margin: 5px 0;
-        }
-        .reserve-button {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-          #btnGoBack {
-            top: 10px;
-            right: 10px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-  }
-        .reserve-button:hover {
-            background-color: #0056b3;
-        }
-         #btnGoBack:hover {
-            background-color: #0056b3;
- }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Property Details(Example)</h1>
-        <img class="property-image" src="property_image.jpg" alt="Property Image">
-        <div class="property-info">
-            <p><strong>Property Name:</strong> Villa Sunshine</p>
-            <p><strong>Property Price:</strong> $500,000</p>
-            <p><strong>Property Description:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget metus id velit dignissim accumsan.</p>
-            <p><strong>Property Address:</strong> 123 Main Street, Cityville</p>
-            <p><strong>Total Bedrooms:</strong> 4</p>
-            <p><strong>Total Bathrooms:</strong> 3</p>
-            <p><strong>Created At:</strong> January 1, 2024 10:00 AM</p>
-            <p><strong>Last Update:</strong> March 20, 2024 3:30 PM</p>
+        <div class="property-details">
+            <% if (Property != null) { %>
+                <h2 class="property-name"><%= Property.PropertyName %></h2>
+                <p><strong>Price:</strong> $<%= Property.PropertyPrice %></p>
+                <p><strong>Description:</strong> <%= Property.PropertyDesc %></p>
+                <p><strong>Address:</strong> <%= Property.PropertyAddress %></p>
+                <p><strong>Total Bedrooms:</strong> <%= Property.TotalBedroom %></p>
+                <p><strong>Total Bathrooms:</strong> <%= Property.TotalBathroom %></p>
+                <p><strong>Created At:</strong> <%= Property.CreatedAt.ToString("yyyy-MM-dd HH:mm:ss") %></p>
+                <p><strong>Last Update:</strong> <%= Property.LastUpdate.ToString("yyyy-MM-dd HH:mm:ss") %></p>
+            <% } else { %>
+                <p>No property details available.</p>
+            <% } %>
         </div>
-        <button class="reserve-button">Reserve</button>
-       <asp:Button ID="btnGoBack" runat="server" Text="Back" OnClick="btnGoBack_Click" />
     </div>
 </body>
 </html>

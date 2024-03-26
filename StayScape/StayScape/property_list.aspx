@@ -2,8 +2,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,73 +13,64 @@
             font-family: Arial, sans-serif;
             background-color: #f2f2f2;
             margin: 0;
-            padding: 0;
+            padding: 20px;
         }
         .container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
         }
         .property-card {
             background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-        .property-card1 {
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .property-card img {
-            width: 100%;
-            height: auto;
-            cursor: pointer;
-        }
-        .property-info {
+            margin-bottom: 20px;
             padding: 20px;
         }
-        h2, p {
-            margin: 5px 0;
+        .property-name {
+            font-size: 24px;
+            color: #007bff;
+            margin-bottom: 10px;
         }
-        .property-info p {
+        .property-price {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .property-description {
             color: #555;
+            margin-bottom: 10px;
         }
-        .property-info p:first-child {
-            font-weight: bold;
+
+        .property-dates {
+            margin-bottom: 5px;
         }
+        .property-dates {
+            color: #777;
+        }
+        .view-details-link {
+        color: #007bff; 
+        text-decoration: none;
+    }
+
+    .view-details-link:hover {
+        color: #0056b3; 
+    }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="property-card">
-            <img src="property1.jpg" alt="Property 1" onclick="window.location.href='property_details.aspx';">
-            <div class="property-info">
-                <h2>Property Name 1(Example)</h2>
-                <p><strong>Price:</strong> $500,000</p>
-                <p><strong>Description:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <p><strong>Address:</strong> 123 Main Street, Cityville</p>
-                <p><strong>Bedrooms:</strong> 4</p>
-                <p><strong>Bathrooms:</strong> 3</p>
-                <p><strong>Created At:</strong> January 1, 2024 10:00 AM</p>
-                <p><strong>Last Update:</strong> March 20, 2024 3:30 PM</p>
+        <% foreach (var property in Properties) { %>
+            <div class="property-card">
+                <h2 class="property-name"><%= property.PropertyName %></h2>
+                <p class="property-price">Price: $<%= property.PropertyPrice %></p>
+                <p class="property-description">Description: <%= property.PropertyDesc %></p>
+                <p class="property-dates">
+                    Created At: <%= property.CreatedAt.ToString("yyyy-MM-dd HH:mm:ss") %><br>
+                    Last Update: <%= property.LastUpdate.ToString("yyyy-MM-dd HH:mm:ss") %>
+                </p>
+               <a href="property_details.aspx?propertyID=<%= property.PropertyID %>" class="view-details-link">View Details</a>
             </div>
-        </div>
-        <div class="property-card1">
-            <img src="property2.jpg" alt="Property 1" onclick="window.location.href='property_details.aspx';">
-            <div class="property-info">
-                <h2>Property Name 2(Example)</h2>
-                <p><strong>Price:</strong> $500,000</p>
-                <p><strong>Description:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <p><strong>Address:</strong> 123 Main Street, Cityville</p>
-                <p><strong>Bedrooms:</strong> 4</p>
-                <p><strong>Bathrooms:</strong> 3</p>
-                <p><strong>Created At:</strong> January 1, 2024 10:00 AM</p>
-                <p><strong>Last Update:</strong> March 20, 2024 3:30 PM</p>
-        </div>
-    </div>
+        <% } %>
     </div>
 </body>
 </html>
