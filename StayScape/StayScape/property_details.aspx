@@ -46,7 +46,7 @@
             border-radius: 5px;
             cursor: pointer;
         }
-          .back-button {
+          #btnGoBack {
             top: 10px;
             right: 10px;
             background-color: #007bff;
@@ -60,7 +60,7 @@
         .reserve-button:hover {
             background-color: #0056b3;
         }
-         .back-button:hover {
+         #btnGoBack:hover {
             background-color: #0056b3;
  }
     </style>
@@ -80,7 +80,7 @@
             <p><strong>Last Update:</strong> March 20, 2024 3:30 PM</p>
         </div>
         <button class="reserve-button">Reserve</button>
-       <button class="back-button"  onclick="window.location.href='property_list.aspx';">Back</button>
+       <asp:Button ID="btnGoBack" runat="server" Text="Back" OnClick="btnGoBack_Click" />
     </div>
 </body>
 </html>

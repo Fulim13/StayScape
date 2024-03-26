@@ -60,7 +60,6 @@
         <asp:Label ID="lblMessage" runat="server" ForeColor="Green"></asp:Label>
         <form id="propertyForm" runat="server" enctype="multipart/form-data">
            
-
             <label for="propertyName">Property Name:</label>
             <input type="text" id="propertyName" name="propertyName" runat="server" required>
 

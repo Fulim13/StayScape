@@ -13,5 +13,10 @@ namespace StayScape.PPT
         {
 
         }
+
+        protected void btnGoBack_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("property_list.aspx");
+        }
     }
 }
