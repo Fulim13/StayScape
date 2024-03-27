@@ -92,6 +92,7 @@
     <Content Include="ratingsCSS.css" />
     <Content Include="Report.aspx" />
     <Content Include="ReviewClient.aspx" />
+    <Content Include="ReviewForm.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -187,6 +188,13 @@
     </Compile>
     <Compile Include="ReviewClient.aspx.designer.cs">
       <DependentUpon>ReviewClient.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReviewForm.aspx.cs">
+      <DependentUpon>ReviewForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReviewForm.aspx.designer.cs">
+      <DependentUpon>ReviewForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="Voucher.aspx.cs">
       <DependentUpon>Voucher.aspx</DependentUpon>
