@@ -11,7 +11,7 @@ namespace StayScape
 {
 
 
-    public partial class property_host_delete
+    public partial class property_host
     {
     }
 }

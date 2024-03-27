@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="property_details.aspx" />
+    <Content Include="property_host.aspx" />
     <Content Include="property_host_delete.aspx" />
     <Content Include="property_host_insert.aspx" />
     <Content Include="property_host_modify.aspx" />
@@ -135,6 +136,13 @@
     </Compile>
     <Compile Include="property_details.aspx.designer.cs">
       <DependentUpon>property_details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="property_host.aspx.cs">
+      <DependentUpon>property_host.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="property_host.aspx.designer.cs">
+      <DependentUpon>property_host.aspx</DependentUpon>
     </Compile>
     <Compile Include="property_host_delete.aspx.cs">
       <DependentUpon>property_host_delete.aspx</DependentUpon>

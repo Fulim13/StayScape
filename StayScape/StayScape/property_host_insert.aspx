@@ -1,10 +1,13 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="property_host_insert.aspx.cs" Inherits="StayScape.property_host_insert" %>
-<!DOCTYPE html>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="property_host_insert.aspx.cs" Inherits="StayScape.property_host_insert" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Property Host</title>
+    <title>Insert Property</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -15,71 +18,72 @@
         .container {
             max-width: 600px;
             margin: 0 auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        h1 {
-            color: #333;
+        .form-group {
+            margin-bottom: 20px;
         }
         label {
             display: block;
-            margin-bottom: 10px;
+            font-weight: bold;
+            margin-bottom: 5px;
         }
-        input[type="text"],
-        input[type="number"],
-        textarea {
+        input[type="text"], input[type="number"] {
             width: 100%;
             padding: 10px;
-            margin-bottom: 20px;
+            font-size: 16px;
             border: 1px solid #ccc;
             border-radius: 5px;
             box-sizing: border-box;
         }
-        input[type="file"] {
-            margin-bottom: 20px;
-        }
-        input[type="submit"] {
-            background-color: #007bff;
-            color: #fff;
+        .button {
+            background-color: #007bff; 
+            color: #fff; 
             border: none;
+            border-radius: 5px;
             padding: 10px 20px;
             font-size: 16px;
-            border-radius: 5px;
             cursor: pointer;
         }
-        input[type="submit"]:hover {
+        .button:hover {
             background-color: #0056b3;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Property Host</h1>
-        <asp:Label ID="lblMessage" runat="server" ForeColor="Green"></asp:Label>
-        <form id="propertyForm" runat="server" enctype="multipart/form-data">
-           
-            <label for="propertyName">Property Name:</label>
-            <input type="text" id="propertyName" name="propertyName" runat="server" required>
-
-            <label for="propertyPrice">Property Price:</label>
-            <input type="number" id="propertyPrice" name="propertyPrice" runat="server" required>
-
-            <label for="propertyDescription">Property Description:</label>
-            <textarea id="propertyDescription" name="propertyDescription" rows="5" runat="server" required></textarea>
-
-            <label for="propertyAddress">Property Address:</label>
-            <input type="text" id="propertyAddress" name="propertyAddress" runat="server" required>
-
-            <label for="totalBedrooms">Total Bedrooms:</label>
-            <input type="number" id="totalBedrooms" name="totalBedrooms" runat="server" required>
-
-            <label for="totalBathrooms">Total Bathrooms:</label>
-            <input type="number" id="totalBathrooms" name="totalBathrooms" runat="server" required>
-
-            <input type="submit" value="Upload Property" OnServerClick="UploadProperty_Click">
-        </form>
+        <h2>Insert Property</h2>
+            <div class="form-group">
+                <label for="propertyID">Property ID:</label>
+                <input type="number" id="propertyID" name="propertyID" required>
+            </div>
+            <div class="form-group">
+                <label for="propertyName">Property Name:</label>
+                <input type="text" id="propertyName" name="propertyName" required>
+            </div>
+            <div class="form-group">
+                <label for="propertyPrice">Property Price:</label>
+                <input type="number" id="propertyPrice" name="propertyPrice" required>
+            </div>
+            <div class="form-group">
+                <label for="propertyDesc">Property Description:</label>
+                <textarea id="propertyDesc" name="propertyDesc" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="propertyAddress">Property Address:</label>
+                <input type="text" id="propertyAddress" name="propertyAddress" required>
+            </div>
+            <div class="form-group">
+                <label for="totalBedroom">Total Bedrooms:</label>
+                <input type="number" id="totalBedroom" name="totalBedroom" required>
+            </div>
+            <div class="form-group">
+                <label for="totalBathroom">Total Bathrooms:</label>
+                <input type="number" id="totalBathroom" name="totalBathroom" required>
+            </div>
+            <button type="submit" class="button">Upload Property</button>
     </div>
+   
 </body>
 </html>
+</asp:Content>
+

@@ -1,13 +1,14 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="property_host_modify.aspx.cs" Inherits="StayScape.property_host_modify" %>
-
-<!DOCTYPE html>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="property_host_modify.aspx.cs" Inherits="StayScape.property_host_modify" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<head>
     <title></title>
 </head>
 <body>
-    <form id="form1" runat="server">
         <div>
             <asp:ListView ID="ListView1" runat="server" DataKeyNames="propertyID" DataSourceID="SqlDataSource1" OnSelectedIndexChanged="ListView1_SelectedIndexChanged">
                 <AlternatingItemTemplate>
@@ -307,6 +308,8 @@
                 </UpdateParameters>
             </asp:SqlDataSource>
         </div>
-    </form>
 </body>
 </html>
+
+</asp:Content>
+
