@@ -49,7 +49,7 @@
                   <img class="h-10 w-10 rounded-lg" src="Images/WorldviewGrandHotel.jpg" alt="">
                 </div>
                 <div class="flex flex-col">
-                    <p class="font-semibold text-lg leading-8 text-indigo-600 ">Worldview Grand Hotel</p>
+                    <p class="font-semibold text-lg leading-8 text-indigo-600">Worldview Grand Hotel</p>
                     <p class="text-slate-500">29-35, Jalan 10/23a, Medan Makmur, 53300 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur</p>
                 </div>
             </div>

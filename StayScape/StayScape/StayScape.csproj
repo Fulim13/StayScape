@@ -67,6 +67,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CancellationPolicy.aspx" />
+    <Content Include="CancelReservation.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Images\WorldviewGrandHotel.jpg" />
     <Content Include="property_details.aspx" />
@@ -111,6 +113,20 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CancellationPolicy.aspx.cs">
+      <DependentUpon>CancellationPolicy.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CancellationPolicy.aspx.designer.cs">
+      <DependentUpon>CancellationPolicy.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CancelReservation.aspx.cs">
+      <DependentUpon>CancelReservation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CancelReservation.aspx.designer.cs">
+      <DependentUpon>CancelReservation.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
