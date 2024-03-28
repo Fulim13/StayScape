@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <script>
         function toggleLabels() {
             const labelValue = document.querySelector('#lbl-value');
@@ -57,7 +58,7 @@
                 hdnDiscountType.value = "Money Value Off";
             }
         }
-        
+
     </script>
     <div class="lg:mx-24 xl:mx-48 py-2">
         <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
@@ -82,7 +83,7 @@
                     </div>
 
                     <%-- Voucher Code --%>
-                    <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+                    <%--                    <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                         <label for="username" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Voucher Code </label>
                         <div class="mt-1 sm:mt-0 sm:col-span-2">
                             <asp:TextBox
@@ -92,7 +93,7 @@
                                 CssClass="py-2 px-3 block w-full border-gray-300 shadow-sm text-md rounded-lg focus:border-indigo-500 focus:ring-indigo-500">
                             </asp:TextBox>
                         </div>
-                    </div>
+                    </div>--%>
 
                     <%-- Total Voucher to be Issued --%>
                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
@@ -149,13 +150,46 @@
                     </div>
 
                     <%-- Apply To --%>
-                    <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+                    <%--                    <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                         <label class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Apply To</label>
                         <div class="mt-1 sm:mt-0 sm:col-span-2 sm:pt-2">
-                            <asp:RadioButton ID="rbEmail" runat="server" GroupName="ApplyToGroup" Text="&nbsp; &nbsp;All Properties" Checked="true" />
-                            <asp:RadioButton ID="rbPhone" runat="server" GroupName="ApplyToGroup" Text="&nbsp; &nbsp;Specific Property" CssClass="pl-5" />
+                            <asp:RadioButton ID="rbAll" runat="server" GroupName="ApplyToGroup" Text="&nbsp; &nbsp;All Properties" Checked="true" OnCheckedChanged="toggleDDLPanel_ValueChanged" AutoPostBack="True" />
+                            <asp:RadioButton ID="rbSpecific" runat="server" GroupName="ApplyToGroup" Text="&nbsp; &nbsp;Specific Property" CssClass="pl-5" OnCheckedChanged="toggleDDLPanel_ValueChanged" AutoPostBack="True" />
                         </div>
-                    </div>
+                    </div>--%>
+                    <%--                    <asp:Panel runat="server" ID="pnlHostProperty" Visible="false">
+                        <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+                            <label class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Select Property</label>
+                            <div class="mt-1 sm:mt-0 sm:col-span-2 sm:pt-2">
+                                <asp:DropDownList ID="ddlHostProperty" runat="server" CssClass="rounded-md border border-gray-300 focus:outline-none focus:border-indigo-500 focus:ring-indigo-500"></asp:DropDownList>
+                            </div>
+                        </div>
+                    </asp:Panel>--%>
+
+                    <asp:UpdatePanel ID="updatePanel" runat="server" UpdateMode="Conditional">
+                        <ContentTemplate>
+                            <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 mb-5 sm:pt-5">
+                                <label class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Apply To</label>
+                                <div class="mt-1 sm:mt-0 sm:col-span-2 sm:pt-2">
+                                    <asp:RadioButton ID="rbAll" runat="server" GroupName="ApplyToGroup" Text="&nbsp; &nbsp;All Properties" Checked="true" OnCheckedChanged="toggleDDLPanel_ValueChanged" AutoPostBack="True" />
+                                    <asp:RadioButton ID="rbSpecific" runat="server" GroupName="ApplyToGroup" Text="&nbsp; &nbsp;Specific Property" CssClass="pl-5" OnCheckedChanged="toggleDDLPanel_ValueChanged" AutoPostBack="True" />
+                                </div>
+                            </div>
+
+                            <asp:Panel runat="server" ID="pnlHostProperty" Visible="false" CssClass="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+                                <label class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Select Property</label>
+                                <div class="mt-1 sm:mt-0 sm:col-span-2 sm:pt-2">
+                                    <asp:DropDownList ID="ddlHostProperty" runat="server" CssClass="rounded-md border border-gray-300 focus:outline-none focus:border-indigo-500 focus:ring-indigo-500"></asp:DropDownList>
+                                </div>
+                            </asp:Panel>
+                        </ContentTemplate>
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="rbAll" EventName="CheckedChanged" />
+                            <asp:AsyncPostBackTrigger ControlID="rbSpecific" EventName="CheckedChanged" />
+                        </Triggers>
+                    </asp:UpdatePanel>
+
+
 
                     <%-- Discount Type --%>
                     <div class="sm:border-t sm:border-gray-200 sm:pt-4">
@@ -188,7 +222,7 @@
                             </label>
                         </div>
                     </div>
-                    <asp:HiddenField ID="hdnDiscountType" runat="server" Value="Money Value Off"/>
+                    <asp:HiddenField ID="hdnDiscountType" runat="server" Value="Money Value Off" />
 
 
                     <%-- Min Spend --%>
@@ -256,4 +290,5 @@
                 </div>
             </div>
         </div>
+    </div>
 </asp:Content>

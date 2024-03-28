@@ -15,6 +15,15 @@ namespace StayScape
     {
 
         /// <summary>
+        /// ScriptManager1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
+
+        /// <summary>
         /// txtVoucherName control.
         /// </summary>
         /// <remarks>
@@ -22,15 +31,6 @@ namespace StayScape
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtVoucherName;
-
-        /// <summary>
-        /// txtVoucherCode control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtVoucherCode;
 
         /// <summary>
         /// txtTotalVoucher control.
@@ -69,22 +69,49 @@ namespace StayScape
         protected global::System.Web.UI.WebControls.TextBox txtEndDate;
 
         /// <summary>
-        /// rbEmail control.
+        /// updatePanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbEmail;
+        protected global::System.Web.UI.UpdatePanel updatePanel;
 
         /// <summary>
-        /// rbPhone control.
+        /// rbAll control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbPhone;
+        protected global::System.Web.UI.WebControls.RadioButton rbAll;
+
+        /// <summary>
+        /// rbSpecific control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbSpecific;
+
+        /// <summary>
+        /// pnlHostProperty control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlHostProperty;
+
+        /// <summary>
+        /// ddlHostProperty control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlHostProperty;
 
         /// <summary>
         /// hdnDiscountType control.

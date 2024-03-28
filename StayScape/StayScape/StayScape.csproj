@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AddVoucher.aspx" />
+    <Content Include="BulkImportVoucher.aspx" />
     <Content Include="Global.asax" />
     <Content Include="property_details.aspx" />
     <Content Include="property_list.aspx" />
@@ -107,6 +108,7 @@
     <Content Include="Images\house.png" />
     <Content Include="Review.aspx" />
     <Content Include="Voucher.aspx" />
+    <Content Include="VoucherDetails.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -116,6 +118,13 @@
     </Compile>
     <Compile Include="AddVoucher.aspx.designer.cs">
       <DependentUpon>AddVoucher.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BulkImportVoucher.aspx.cs">
+      <DependentUpon>BulkImportVoucher.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BulkImportVoucher.aspx.designer.cs">
+      <DependentUpon>BulkImportVoucher.aspx</DependentUpon>
     </Compile>
     <Compile Include="CSVReader.cs" />
     <Compile Include="Dashboard.aspx.cs">
@@ -157,6 +166,13 @@
     </Compile>
     <Compile Include="ratings.aspx.designer.cs">
       <DependentUpon>ratings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VoucherDetails.aspx.cs">
+      <DependentUpon>VoucherDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VoucherDetails.aspx.designer.cs">
+      <DependentUpon>VoucherDetails.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
