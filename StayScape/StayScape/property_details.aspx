@@ -9,8 +9,6 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f2f2f2;
-            margin: 0;
-            padding: 0;
         }
         .container {
             max-width: 800px;
@@ -20,11 +18,22 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-      
         .property-name {
             font-size: 24px;
             color: #007bff;
             margin-bottom: 10px;
+        }
+        .button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
@@ -43,8 +52,19 @@
             <% } else { %>
                 <p>No property details available.</p>
             <% } %>
+
+            <!-- Reserve button -->
+           <button class="button">Reserve</button>
+
+            <!-- Back button -->
+            <button class="button" onclick="goBack()">Back</button>
+
+            <script>
+                function goBack() {
+                    window.history.back();
+                }
+            </script>
         </div>
     </div>
 </body>
 </html>
-

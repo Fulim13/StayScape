@@ -52,10 +52,31 @@
     .view-details-link:hover {
         color: #0056b3; 
     }
+
+       .search-container {
+            margin-bottom: 20px;
+        }
+
+        .search-container input[type=text] {
+            padding: 10px;
+            width: 300px;
+        }
+
+        .search-container button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
     <div class="container">
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Type a Property Name">
+            <button onclick="searchProperties()">Search</button>
+        </div>
         <% foreach (var property in Properties) { %>
             <div class="property-card">
                 <h2 class="property-name"><%= property.PropertyName %></h2>
@@ -69,5 +90,31 @@
             </div>
         <% } %>
     </div>
+
+     <script>
+         function searchProperties() {
+             var input, filter, cards, card, name, i;
+             input = document.getElementById("searchInput");
+             filter = input.value.toUpperCase();
+
+             // Validate search query
+             if (!filter.trim()) {
+                 alert("Please enter a property name!");
+                 return;
+             }
+
+             cards = document.getElementsByClassName("property-card");
+             for (i = 0; i < cards.length; i++) {
+                 card = cards[i];
+                 name = card.getElementsByClassName("property-name")[0];
+                 if (name.innerText.toUpperCase().indexOf(filter) > -1) {
+                     card.style.display = "";
+                 } else {
+                     card.style.display = "none";
+                 }
+             }
+         }
+     </script>
+
 </body>
 </html>

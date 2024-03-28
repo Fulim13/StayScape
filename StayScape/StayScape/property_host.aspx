@@ -12,8 +12,6 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f2f2f2;
-            margin: 0;
-            padding: 20px;
         }
         .container {
             max-width: 600px;
