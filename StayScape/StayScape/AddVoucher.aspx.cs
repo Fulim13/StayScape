@@ -60,8 +60,34 @@ namespace StayScape
             // Generate random voucher code
             Random random = new Random();
             string characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            string voucherCode = new string(Enumerable.Repeat(characters, 8).Select(s => s[random.Next(s.Length)]).ToArray());
+            string voucherCode = ""; // Initialize with an empty string
+
+            // Check if the voucher code already exists in the database
+            bool codeExists = true;
+            while (codeExists)
+            {
+                voucherCode = new string(Enumerable.Repeat(characters, 8).Select(s => s[random.Next(s.Length)]).ToArray());
+                codeExists = IsVoucherCodeExistsInDatabase(voucherCode);
+            }
+
             return voucherCode;
+        }
+
+        private bool IsVoucherCodeExistsInDatabase(string voucherCode)
+        {
+            // Check if the voucher code exists in the database
+            DBConnection dbConnection = new DBConnection();
+            dbConnection.createConnection();
+
+            string query = "SELECT COUNT(*) FROM Voucher WHERE voucherCode = @voucherCode";
+            SqlParameter parameter = new SqlParameter("@voucherCode", voucherCode);
+            SqlCommand command = dbConnection.ExecuteQuery(query, new SqlParameter[] { parameter });
+
+            int count = (int)command.ExecuteScalar();
+            dbConnection.closeConnection();
+
+            // If count > 0, means the code exists, return true
+            return count > 0;
         }
 
         private void LoadPropertyNames()
