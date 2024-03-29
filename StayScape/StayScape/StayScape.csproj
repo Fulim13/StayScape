@@ -70,7 +70,9 @@
   <ItemGroup>
     <Content Include="AddVoucher.aspx" />
     <Content Include="BulkImportVoucher.aspx" />
+    <Content Include="Checkout.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Images\testing.jpg" />
     <Content Include="property_details.aspx" />
     <Content Include="property_list.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
@@ -125,6 +127,13 @@
     </Compile>
     <Compile Include="BulkImportVoucher.aspx.designer.cs">
       <DependentUpon>BulkImportVoucher.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Checkout.aspx.cs">
+      <DependentUpon>Checkout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Checkout.aspx.designer.cs">
+      <DependentUpon>Checkout.aspx</DependentUpon>
     </Compile>
     <Compile Include="CSVReader.cs" />
     <Compile Include="Dashboard.aspx.cs">
