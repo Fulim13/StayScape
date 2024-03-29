@@ -53,7 +53,15 @@
                                         <div class="form-floating mb-4 p-0">
                                             <label for="birthDate">Birth Date</label>
                                             <asp:TextBox runat="server" ID="txtbDate" TextMode="Date" CssClass="form-control" placeholder="Birth Date" Required="true"></asp:TextBox>
-                                        </div>    
+                                        </div>
+                                        
+                                        <div class="form-floating mb-4 p-0">
+                                            <label for="gender">Gender</label>
+                                            <asp:DropDownList ID="genderDropdown" CssClass="form-control" runat="server">
+                                                <asp:ListItem>Male</asp:ListItem>
+                                                <asp:ListItem>Female</asp:ListItem>
+                                            </asp:DropDownList>
+                                        </div>
                                             
                                         <div class="form-floating p-0">
                                             <label for="password">Password</label>

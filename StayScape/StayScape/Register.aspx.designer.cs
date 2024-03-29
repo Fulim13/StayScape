@@ -24,7 +24,9 @@ namespace StayScape.DesmondsPage {
         protected System.Web.UI.WebControls.TextBox txtPhone;
         
         protected System.Web.UI.WebControls.TextBox txtbDate;
-        
+
+        protected System.Web.UI.WebControls.DropDownList genderDropdown;
+
         protected System.Web.UI.WebControls.TextBox txtPassword;
         
         protected System.Web.UI.WebControls.TextBox txtPasswordConfirm;
