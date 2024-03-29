@@ -16,7 +16,7 @@ namespace StayScape.DesmondsPage
 
             if (isValid)
             {
-                Session["LoggedIn"] = emailNum;
+                Session["LoggedIn"] = true;
 
                 Response.Redirect("Profile.aspx");
             }

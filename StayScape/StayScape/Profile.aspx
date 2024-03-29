@@ -109,7 +109,18 @@
         </div>
         <div class="col-sm-9 text-secondary">
         <span id="editable2" class="editable" contenteditable="false">kennethVal12@gmail.com</span>
-        <button class="btn btn-light" onclick="toggleEditable('editable2'; return false;">&#128221;</button>
+        <button class="btn btn-light" onclick="toggleEditable('editable2'); return false;">&#128221;</button>
+        </div>
+        </div>
+        <hr>
+
+        <div class="row">
+        <div class="col-sm-3">
+        <h6 class="mb-0">Phone Number</h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+        <span id="editable3" class="editable" contenteditable="false">016-8765467</span>
+        <button class="btn btn-light" onclick="toggleEditable('editable3'); return false;">&#128221;</button>
         </div>
         </div>
         <hr>
