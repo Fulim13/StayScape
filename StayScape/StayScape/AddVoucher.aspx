@@ -67,7 +67,6 @@
                     <h3 class="text-lg leading-6 font-medium text-gray-900">Voucher Information</h3>
                     <p class="mt-1 max-w-2xl text-sm text-red-500">* Indicates required field.</p>
                 </div>
-
                 <div class="mt-6 sm:mt-5 space-y-6 sm:space-y-5">
                     <%-- Voucher Name --%>
                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
@@ -81,19 +80,6 @@
                             </asp:TextBox>
                         </div>
                     </div>
-
-                    <%-- Voucher Code --%>
-                    <%--                    <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                        <label for="username" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Voucher Code </label>
-                        <div class="mt-1 sm:mt-0 sm:col-span-2">
-                            <asp:TextBox
-                                ID="txtVoucherCode"
-                                runat="server"
-                                placeholder="Enter voucher code"
-                                CssClass="py-2 px-3 block w-full border-gray-300 shadow-sm text-md rounded-lg focus:border-indigo-500 focus:ring-indigo-500">
-                            </asp:TextBox>
-                        </div>
-                    </div>--%>
 
                     <%-- Total Voucher to be Issued --%>
                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
@@ -151,6 +137,7 @@
 
                     <asp:UpdatePanel ID="updatePanel" runat="server" UpdateMode="Conditional">
                         <ContentTemplate>
+                            <%-- Apply To  --%>
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 mb-5 sm:pt-5">
                                 <label class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Apply To</label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2 sm:pt-2">
@@ -158,7 +145,7 @@
                                     <asp:RadioButton ID="rbSpecific" runat="server" GroupName="ApplyToGroup" Text="&nbsp; &nbsp;Specific Property" CssClass="pl-5" OnCheckedChanged="toggleDDLPanel_ValueChanged" AutoPostBack="True" />
                                 </div>
                             </div>
-
+                            <%-- Property Drop Down List: Only Display Whne user Choose Specific Property --%>
                             <asp:Panel runat="server" ID="pnlHostProperty" Visible="false" CssClass="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                                 <label class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Select Property</label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2 sm:pt-2">
@@ -171,8 +158,6 @@
                             <asp:AsyncPostBackTrigger ControlID="rbSpecific" EventName="CheckedChanged" />
                         </Triggers>
                     </asp:UpdatePanel>
-
-
 
                     <%-- Discount Type --%>
                     <div class="sm:border-t sm:border-gray-200 sm:pt-4">
@@ -206,7 +191,6 @@
                         </div>
                     </div>
                     <asp:HiddenField ID="hdnDiscountType" runat="server" Value="Money Value Off" />
-
 
                     <%-- Min Spend --%>
                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">

@@ -64,7 +64,7 @@ namespace StayScape
 
             if (expiredDate < DateTime.Now)
             {
-                inlineStyles += "background-color: #feb2b2; color: #7f1d1d;";
+                inlineStyles += "background-color: #d1d5db; color: #4b5563;";
             }
             else if (isActive)
             {
@@ -72,7 +72,7 @@ namespace StayScape
             }
             else
             {
-                inlineStyles += "background-color: #d1d5db; color: #4b5563;";
+                inlineStyles += "background-color: #feb2b2; color: #7f1d1d;";
             }
 
             return inlineStyles;

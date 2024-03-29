@@ -17,15 +17,13 @@ namespace StayScape
         {
             if (!IsPostBack)
             {
-                // Set the initial value only when the page is loaded for the first time
-                //txtTotalVoucher.Text = "50";
                 LoadProperty();
             }
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            resetFields();
+            Response.Redirect("~/Voucher.aspx");
         }
 
         protected void toggleDDLPanel_ValueChanged(object sender, EventArgs e)
@@ -44,7 +42,6 @@ namespace StayScape
         {
             // reset the form
             txtVoucherName.Text = "";
-            //txtVoucherCode.Text = "";
             txtTotalVoucher.Text = "";
             txtRedeemLimit.Text = "";
             txtStartDate.Text = "";
@@ -57,12 +54,10 @@ namespace StayScape
 
         private string generateVoucherCode()
         {
-            // Generate random voucher code
             Random random = new Random();
             string characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            string voucherCode = ""; // Initialize with an empty string
+            string voucherCode = "";
 
-            // Check if the voucher code already exists in the database
             bool codeExists = true;
             while (codeExists)
             {
@@ -75,7 +70,6 @@ namespace StayScape
 
         private bool IsVoucherCodeExistsInDatabase(string voucherCode)
         {
-            // Check if the voucher code exists in the database
             DBManager dbConnection = new DBManager();
             dbConnection.createConnection();
 
@@ -86,7 +80,6 @@ namespace StayScape
             int count = (int)command.ExecuteScalar();
             dbConnection.closeConnection();
 
-            // If count > 0, means the code exists, return true
             return count > 0;
         }
 
@@ -113,7 +106,7 @@ namespace StayScape
                 ddlHostProperty.DataValueField = "propertyID";
                 ddlHostProperty.DataBind();
 
-                // Optionally, you can add a default item to the DropDownList
+                // TODO: Validation for no properties available
                 ddlHostProperty.Items.Insert(0, new ListItem("Select Property", ""));
             }
             else
@@ -127,7 +120,6 @@ namespace StayScape
             // TODO: Replace session host id
             int hostID = 1;
 
-            // Connection to database
             DBManager dbConnection = new DBManager();
 
             string sqlCommand = "INSERT INTO Voucher (voucherName, voucherCode, totalVoucher, redeemLimitPerCustomer, startDate, expiredDate, activeStatus, discountType, minSpend, discountRate, discountPrice, capAt, createdBy, hostID, propertyID) " +
@@ -136,8 +128,6 @@ namespace StayScape
 
             string selectedValue = rbSpecific.Checked && ddlHostProperty != null && ddlHostProperty.Items.Count > 1 ? ddlHostProperty.SelectedValue : "";
 
-
-            // Insert Voucher
             if (hdnDiscountType.Value == "Money Value Off")
             {
                 parameters = new SqlParameter[]
@@ -189,9 +179,8 @@ namespace StayScape
             dbConnection.createConnection();
             bool isBool = dbConnection.ExecuteNonQuery(sqlCommand, parameters);
             dbConnection.closeConnection();
-
             resetFields();
-
+            Response.Redirect("~/Voucher.aspx");
         }
 
     }
