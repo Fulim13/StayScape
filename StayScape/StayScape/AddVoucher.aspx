@@ -149,23 +149,6 @@
                         </div>
                     </div>
 
-                    <%-- Apply To --%>
-                    <%--                    <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                        <label class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Apply To</label>
-                        <div class="mt-1 sm:mt-0 sm:col-span-2 sm:pt-2">
-                            <asp:RadioButton ID="rbAll" runat="server" GroupName="ApplyToGroup" Text="&nbsp; &nbsp;All Properties" Checked="true" OnCheckedChanged="toggleDDLPanel_ValueChanged" AutoPostBack="True" />
-                            <asp:RadioButton ID="rbSpecific" runat="server" GroupName="ApplyToGroup" Text="&nbsp; &nbsp;Specific Property" CssClass="pl-5" OnCheckedChanged="toggleDDLPanel_ValueChanged" AutoPostBack="True" />
-                        </div>
-                    </div>--%>
-                    <%--                    <asp:Panel runat="server" ID="pnlHostProperty" Visible="false">
-                        <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                            <label class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Select Property</label>
-                            <div class="mt-1 sm:mt-0 sm:col-span-2 sm:pt-2">
-                                <asp:DropDownList ID="ddlHostProperty" runat="server" CssClass="rounded-md border border-gray-300 focus:outline-none focus:border-indigo-500 focus:ring-indigo-500"></asp:DropDownList>
-                            </div>
-                        </div>
-                    </asp:Panel>--%>
-
                     <asp:UpdatePanel ID="updatePanel" runat="server" UpdateMode="Conditional">
                         <ContentTemplate>
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 mb-5 sm:pt-5">
