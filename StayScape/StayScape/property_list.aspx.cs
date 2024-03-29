@@ -39,7 +39,9 @@ namespace StayScape.PPT
                             PropertyPrice = Convert.ToDecimal(reader["propertyPrice"]),
                             PropertyDesc = reader["propertyDesc"].ToString(),
                             CreatedAt = Convert.ToDateTime(reader["createdAt"]),
-                            LastUpdate = Convert.ToDateTime(reader["lastUpdate"])
+                            LastUpdate = Convert.ToDateTime(reader["lastUpdate"]),
+                            TotalBedroom = reader.GetInt32(0),
+                            TotalBathroom = reader.GetInt32(0),
                         };
                         properties.Add(property);
                     }
@@ -65,5 +67,6 @@ namespace StayScape.PPT
         public int TotalBathroom { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime LastUpdate { get; set; }
+
     }
 }

@@ -75,10 +75,39 @@
     <div class="container">
         <div class="search-container">
             <input type="text" id="searchInput" placeholder="Type a Property Name">
+            <select id="ddlBedrooms">
+                <option disabled selected>All Bedrooms</option>
+                <option value="1">1 Bedroom</option>
+                <option value="2">2 Bedrooms</option>
+                <option value="3">3 Bedrooms</option>
+                <option value="4">4 Bedrooms</option>
+                <option value="5">5 Bedrooms</option>
+                <option value="6">6 Bedrooms</option>
+                <option value="7">7 Bedrooms</option>
+                <option value="8">8 Bedrooms</option>
+                <option value="9">9 Bedrooms</option>
+                <option value="10">10 Bedrooms</option>
+                <!-- Add more options as needed -->
+            </select>
+            <select id="ddlBathrooms">
+                <option disabled selected>All Bathrooms</option>
+                <option value="1">1 Bathroom</option>
+                <option value="2">2 Bathrooms</option>
+                <option value="3">3 Bathrooms</option>
+                <option value="4">4 Bathrooms</option>
+                <option value="5">5 Bathrooms</option>
+                <option value="6">6 Bathrooms</option>
+                <option value="7">7 Bathrooms</option>
+                <option value="8">8 Bathrooms</option>
+                <option value="9">9 Bathrooms</option>
+                <option value="10">10 Bathrooms</option>
+                <!-- Add more options as needed -->
+            </select>
             <button onclick="searchProperties()">Search</button>
         </div>
         <% foreach (var property in Properties) { %>
-            <div class="property-card">
+            <div class="property-card" data-bedrooms="<%= property.TotalBedroom %>" data-bathrooms="<%= property.TotalBathroom %>">
+                <img src="PropertyImg/1.jpg" alt="Property Image" style="width: 100%; max-width: 400px;">
                 <h2 class="property-name"><%= property.PropertyName %></h2>
                 <p class="property-price">Price: $<%= property.PropertyPrice %></p>
                 <p class="property-description">Description: <%= property.PropertyDesc %></p>
@@ -96,6 +125,8 @@
              var input, filter, cards, card, name, i;
              input = document.getElementById("searchInput");
              filter = input.value.toUpperCase();
+             var bedroomsFilter = document.getElementById("ddlBedrooms").value;
+             var bathroomsFilter = document.getElementById("ddlBathrooms").value;
 
              // Validate search query
              if (!filter.trim()) {
@@ -107,7 +138,13 @@
              for (i = 0; i < cards.length; i++) {
                  card = cards[i];
                  name = card.getElementsByClassName("property-name")[0];
-                 if (name.innerText.toUpperCase().indexOf(filter) > -1) {
+                 var bedrooms = card.getAttribute("data-bedrooms");
+                 var bathrooms = card.getAttribute("data-bathrooms");
+
+
+                 if ((name.innerText.toUpperCase().indexOf(filter) > -1)||
+                     (bedroomsFilter === "" || bedrooms === bedroomsFilter) &&
+                     (bathroomsFilter === "" || bathrooms === bathroomsFilter)) {
                      card.style.display = "";
                  } else {
                      card.style.display = "none";

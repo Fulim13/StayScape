@@ -68,6 +68,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="PropertyImg\1.jpg" />
+    <Content Include="PropertyImg\2.jpg" />
+    <Content Include="PropertyImg\3.jpg" />
+    <Content Include="PropertyImg\4.jpg" />
+    <Content Include="PropertyImg\5.jpg" />
+    <Content Include="PropertyImg\6.jpg" />
+    <Content Include="PropertyImg\7.jpg" />
+    <Content Include="PropertyImg\8.jpg" />
     <Content Include="property_details.aspx" />
     <Content Include="property_host.aspx" />
     <Content Include="property_host_delete.aspx" />

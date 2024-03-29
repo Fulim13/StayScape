@@ -41,6 +41,7 @@
     <div class="container">
         <div class="property-details">
             <% if (Property != null) { %>
+                <img src="PropertyImg/1.jpg" alt="Property Image" style="width: 100%; max-width: 400px;">
                 <h2 class="property-name"><%= Property.PropertyName %></h2>
                 <p><strong>Price:</strong> $<%= Property.PropertyPrice %></p>
                 <p><strong>Description:</strong> <%= Property.PropertyDesc %></p>
