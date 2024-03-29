@@ -7,7 +7,7 @@ using System.Web;
 
 namespace StayScape
 {
-    public class DBConnection
+    public class DBManager
     {
         private string connectionString =
             ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;

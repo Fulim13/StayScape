@@ -32,7 +32,7 @@ namespace StayScape
 
         private bool hasVoucher()
         {
-            DBConnection dbConnection = new DBConnection();
+            DBManager dbConnection = new DBManager();
             string sqlCommand = "SELECT COUNT(*) FROM Voucher";
             dbConnection.createConnection();
             int count = dbConnection.ExecuteScalar(sqlCommand);

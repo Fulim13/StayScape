@@ -58,7 +58,7 @@ namespace StayScape
             // Example: 
             // InsertDataIntoDatabase(voucherName, voucherCode, totalVoucher, ...);
             // Connection to database
-            DBConnection dbConnection = new DBConnection();
+            DBManager dbConnection = new DBManager();
 
             string sqlCommand = "INSERT INTO Voucher (voucherName, voucherCode, totalVoucher, redeemLimitPerCustomer, startDate, expiredDate , minSpend, discountPrice, createdBy) " +
                 "Values (@voucherName, @voucherCode, @totalVoucher, @redeemLimitPerCustomer, @startDate, @expiredDate, @minSpend, @discountPrice, @createdBy)";

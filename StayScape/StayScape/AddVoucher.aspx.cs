@@ -76,7 +76,7 @@ namespace StayScape
         private bool IsVoucherCodeExistsInDatabase(string voucherCode)
         {
             // Check if the voucher code exists in the database
-            DBConnection dbConnection = new DBConnection();
+            DBManager dbConnection = new DBManager();
             dbConnection.createConnection();
 
             string query = "SELECT COUNT(*) FROM Voucher WHERE voucherCode = @voucherCode";
@@ -92,7 +92,7 @@ namespace StayScape
 
         private void LoadPropertyNames()
         {
-            DBConnection dbConnection = new DBConnection();
+            DBManager dbConnection = new DBManager();
             dbConnection.createConnection();
 
             string query = "SELECT propertyID, propertyName FROM Property";
@@ -128,7 +128,7 @@ namespace StayScape
             int hostID = 1;
 
             // Connection to database
-            DBConnection dbConnection = new DBConnection();
+            DBManager dbConnection = new DBManager();
 
             string sqlCommand = "INSERT INTO Voucher (voucherName, voucherCode, totalVoucher, redeemLimitPerCustomer, startDate, expiredDate, activeStatus, discountType, minSpend, discountRate, discountPrice, capAt, createdBy, hostID, propertyID) " +
                 "Values (@voucherName, @voucherCode, @totalVoucher, @redeemLimitPerCustomer, @startDate, @expiredDate, @activeStatus, @discountType, @minSpend, @discountRate, @discountPrice, @capAt, @createdBy, @hostID, @propertyID)";
