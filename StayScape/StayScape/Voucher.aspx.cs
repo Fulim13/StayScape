@@ -17,10 +17,9 @@ namespace StayScape
         {
             if (!IsPostBack)
             {
-                if (hasVoucher())
+                if (HasVoucher())
                 {
                     DisplayVouchersTable();
-                    //DisplayNewVoucherSection();
 
                 }
                 else
@@ -30,7 +29,7 @@ namespace StayScape
             }
         }
 
-        private bool hasVoucher()
+        private bool HasVoucher()
         {
             DBManager dbConnection = new DBManager();
             string sqlCommand = "SELECT COUNT(*) FROM Voucher";
@@ -51,16 +50,12 @@ namespace StayScape
 
         protected string GetDiscountDetailFromValue(decimal minSpend, decimal discountPrice)
         {
-
             return $"Discount would be: RM{discountPrice}<br />If order value reaches: RM{minSpend}";
-
         }
 
         protected string GetDiscountDetailFromDiscount(decimal minSpend, decimal discountRate, decimal capAt)
         {
-
             return $"Discount would be: {discountRate}% Cap At RM{capAt}<br />If order value reaches: RM{minSpend}";
-
         }
 
         protected string GetStatusLabelCss(bool isActive, DateTime expiredDate)

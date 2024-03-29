@@ -13,6 +13,7 @@
                 </svg>
                 <h3 class="mt-2 text-sm font-medium text-gray-900">No vouchers</h3>
                 <p class="mt-1 text-sm text-gray-500">Get started by creating a new voucher.</p>
+                <%-- New Voucher Button --%>
                 <div class="mt-6">
                     <asp:HyperLink ID="AddVoucherLink" runat="server" NavigateUrl="~/AddVoucher.aspx" class="inline-flex items-center px-4 py-2.5 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                      <!-- Heroicon name: solid/plus -->
@@ -22,6 +23,7 @@
                      New Voucher
                     </asp:HyperLink>
                 </div>
+                <%-- Divider --%>
                 <div class="relative py-3">
                     <div class="absolute inset-0 flex items-center" aria-hidden="true">
                         <div class="w-full border-t border-gray-300"></div>
@@ -30,9 +32,10 @@
                         <span class="px-2 bg-white text-sm text-gray-500">Or </span>
                     </div>
                 </div>
+                <%-- Bulk Import Button --%>
                 <div class="mt-1">
                     <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/BulkImportVoucher.aspx" class="inline-flex items-center px-5 py-2.5 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                         <!-- Heroicon name: solid/plus -->
+                         <!-- Heroicon name: solid/folder-plus -->
                         <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 10.5v6m3-3H9m4.06-7.19-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" />
                         </svg>
@@ -51,6 +54,7 @@
                     <h1 class="text-xl font-semibold text-gray-900">Voucher List</h1>
                 </div>
                 <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+                    <%-- New Voucher Button --%>
                     <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/BulkImportVoucher.aspx" class="inline-flex items-center px-5 py-2.5 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     <!-- Heroicon name: outline/folder-plus -->
                     <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -58,6 +62,7 @@
                     </svg>
                         Bulk Import
                     </asp:HyperLink>
+                    <%-- Bulk Import Button --%>
                     <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/AddVoucher.aspx" class="ml-4 inline-flex items-center px-4 py-2.5 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                      <!-- Heroicon name: solid/plus -->
                      <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -67,9 +72,10 @@
                     </asp:HyperLink>
                 </div>
             </div>
+            <%-- Voucher Table --%>
             <asp:ListView ID="ListView1" runat="server" DataKeyNames="voucherID" DataSourceID="SqlDataSource1">
+                <%-- Voucher Table Row --%>
                 <ItemTemplate>
-                    <%-- --%>
                     <tr class=" border-y border-gray-200 hover:bg-gray-50 cursor-pointer" onclick='<%# Eval("voucherID", "window.location.href = \"VoucherDetails.aspx?voucherID={0}\";") %>'>
                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                             <asp:Label ID="voucherNameLabel" runat="server" Text='<%# Eval("voucherName") %>' />
@@ -96,6 +102,7 @@
                         </td>
                     </tr>
                 </ItemTemplate>
+                <%-- Voucher Table Header --%>
                 <LayoutTemplate>
                     <div class="mt-8 flex flex-col">
                         <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -130,44 +137,36 @@
             </asp:ListView>
         </div>
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="
-    SELECT
-        Voucher.voucherID, Voucher.voucherName, Voucher.totalVoucher, Voucher.startDate, Voucher.expiredDate, Voucher.minSpend, Voucher.voucherCode,Voucher.activeStatus, Voucher.discountType, Voucher.discountRate, Voucher.discountPrice, Voucher.capAt,
-        COUNT(Redemption.redemptionID) AS TotalRedemptions
-    FROM
-        Voucher
-    LEFT JOIN
-        Redemption ON Voucher.voucherID = Redemption.voucherID
-    GROUP BY Voucher.voucherID, Voucher.voucherName, Voucher.totalVoucher, Voucher.startDate, Voucher.expiredDate, Voucher.minSpend, Voucher.voucherCode, Voucher.activeStatus, Voucher.discountType, Voucher.discountRate, Voucher.discountPrice, Voucher.capAt
-    "></asp:SqlDataSource>
+        SELECT
+            Voucher.voucherID, Voucher.voucherName, Voucher.totalVoucher, Voucher.startDate, Voucher.expiredDate, Voucher.minSpend, Voucher.voucherCode,Voucher.activeStatus, Voucher.discountType, Voucher.discountRate, Voucher.discountPrice, Voucher.capAt,
+            COUNT(Redemption.redemptionID) AS TotalRedemptions
+        FROM
+            Voucher
+        LEFT JOIN
+            Redemption ON Voucher.voucherID = Redemption.voucherID
+        GROUP BY Voucher.voucherID, Voucher.voucherName, Voucher.totalVoucher, Voucher.startDate, Voucher.expiredDate, Voucher.minSpend, Voucher.voucherCode, Voucher.activeStatus, Voucher.discountType, Voucher.discountRate, Voucher.discountPrice, Voucher.capAt
+            "></asp:SqlDataSource>
     </asp:Panel>
     <script>
-        // Get all clipboard icons
         const clipboardIcons = document.querySelectorAll(".clipboard-icon");
 
-        // Function to handle click event
         function handleClick(event) {
-            event.stopPropagation(); // Stop event propagation
+            event.stopPropagation();
 
-            // Get the voucher code associated with the clicked element
             const voucherCode = event.currentTarget.getAttribute("data-voucher-code");
-            console.log(voucherCode)
-
-            // Text to copy to clipboard
             const textToCopy = voucherCode;
 
-            // Use the Clipboard API to copy text to clipboard
             navigator.clipboard.writeText(textToCopy)
                 .then(() => {
                     console.log("Text copied to clipboard:", textToCopy);
-                    alert("Text copied to clipboard!"); // Optional: Show an alert message
+                    alert("Text copied to clipboard!"); // TODO: Replace with Toast notification
                 })
                 .catch(err => {
                     console.error("Error copying text to clipboard:", err);
-                    alert("Failed to copy text to clipboard. Please try again."); // Optional: Show an alert message
+                    alert("Failed to copy text to clipboard. Please try again."); // TODO: Replace with Toast notification
                 });
         }
 
-        // Attach click event listeners to all clipboard icons
         clipboardIcons.forEach(icon => {
             icon.addEventListener("click", handleClick);
         });
