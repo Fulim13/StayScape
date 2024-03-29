@@ -19,7 +19,7 @@ namespace StayScape
             {
                 // Set the initial value only when the page is loaded for the first time
                 //txtTotalVoucher.Text = "50";
-                LoadPropertyNames();
+                LoadProperty();
             }
         }
 
@@ -90,7 +90,7 @@ namespace StayScape
             return count > 0;
         }
 
-        private void LoadPropertyNames()
+        private void LoadProperty()
         {
             DBManager dbConnection = new DBManager();
             dbConnection.createConnection();
