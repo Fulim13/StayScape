@@ -9,7 +9,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            /<asp:LoginName ID="LoginName1" runat="server" FormatString="You have logged in, {0}." />
+            <h2>Welcome, <%=Session["LoggedIn"] %>!</h2>
         </div>
     </form>
 </body>
