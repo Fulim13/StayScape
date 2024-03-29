@@ -6,6 +6,7 @@
 		<siteMapNode url="~/Voucher.aspx" title="Voucher" description="">
 			<siteMapNode url="~/AddVoucher.aspx" title="Add Voucher" description="" />
 			<siteMapNode url="~/BulkImportVoucher.aspx" title="Bulk Import Voucher" description="" />
+			<siteMapNode url="~/VoucherDetails.aspx" title="Voucher Details" description="" />
 		</siteMapNode>
 		<siteMapNode url="~/Review.aspx" title="Review" description="" />
 		<siteMapNode url="~/Report.aspx" title="Report" description="" />
