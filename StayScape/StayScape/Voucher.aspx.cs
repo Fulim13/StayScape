@@ -17,9 +17,7 @@ namespace StayScape
         {
             if (!IsPostBack)
             {
-                bool hasVouchers = CheckForVouchers();
-
-                if (hasVouchers)
+                if (hasVoucher())
                 {
                     DisplayVouchersTable();
                     //DisplayNewVoucherSection();
@@ -32,16 +30,8 @@ namespace StayScape
             }
         }
 
-        private bool CheckForVouchers()
+        private bool hasVoucher()
         {
-            // Implement your logic to check if there are vouchers in the database
-            // For example, execute a SQL query to count the number of vouchers
-            // Return true if vouchers exist, false otherwise
-
-            // Example query:
-            // SELECT COUNT(*) FROM Voucher;
-
-            // For demonstration purpose, let's assume there are vouchers
             DBConnection dbConnection = new DBConnection();
             string sqlCommand = "SELECT COUNT(*) FROM Voucher";
             dbConnection.createConnection();
@@ -59,5 +49,54 @@ namespace StayScape
             newVoucherSection.Visible = true;
         }
 
+        protected string GetDiscountDetailFromValue(decimal minSpend, decimal discountPrice)
+        {
+
+            return $"Discount would be: RM{discountPrice}<br />If order value reaches: RM{minSpend}";
+
+        }
+
+        protected string GetDiscountDetailFromDiscount(decimal minSpend, decimal discountRate, decimal capAt)
+        {
+
+            return $"Discount would be: {discountRate}% Cap At RM{capAt}<br />If order value reaches: RM{minSpend}";
+
+        }
+
+        protected string GetStatusLabelCss(bool isActive, DateTime expiredDate)
+        {
+            string inlineStyles = "display: inline-flex; border-radius: 9999px; padding: 0.5rem 1rem; font-size: 0.75rem; font-weight: 600; line-height: 1.5; ";
+
+            if (expiredDate < DateTime.Now)
+            {
+                inlineStyles += "background-color: #feb2b2; color: #7f1d1d;";
+            }
+            else if (isActive)
+            {
+                inlineStyles += "background-color: #d1fae5; color: #065f46;";
+            }
+            else
+            {
+                inlineStyles += "background-color: #d1d5db; color: #4b5563;";
+            }
+
+            return inlineStyles;
+        }
+
+        protected string GetStatusLabelText(bool isActive, DateTime expiredDate)
+        {
+            if (expiredDate < DateTime.Now)
+            {
+                return "Expired";
+            }
+            else if (isActive)
+            {
+                return "Active";
+            }
+            else
+            {
+                return "Inactive";
+            }
+        }
     }
 }
