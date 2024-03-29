@@ -104,8 +104,8 @@ namespace StayScape
             // Connection to database
             DBConnection dbConnection = new DBConnection();
 
-            string sqlCommand = "INSERT INTO Voucher (voucherName, voucherCode, totalVoucher, redeemLimitPerCustomer, startDate, expiredDate, activeStatus, minSpend, discountRate, discountPrice, capAt, createdBy, hostID, propertyID) " +
-                "Values (@voucherName, @voucherCode, @totalVoucher, @redeemLimitPerCustomer, @startDate, @expiredDate, @activeStatus, @minSpend, @discountRate, @discountPrice, @capAt, @createdBy, @hostID, @propertyID)";
+            string sqlCommand = "INSERT INTO Voucher (voucherName, voucherCode, totalVoucher, redeemLimitPerCustomer, startDate, expiredDate, activeStatus, discountType, minSpend, discountRate, discountPrice, capAt, createdBy, hostID, propertyID) " +
+                "Values (@voucherName, @voucherCode, @totalVoucher, @redeemLimitPerCustomer, @startDate, @expiredDate, @activeStatus, @discountType, @minSpend, @discountRate, @discountPrice, @capAt, @createdBy, @hostID, @propertyID)";
             SqlParameter[] parameters;
 
             string selectedValue = rbSpecific.Checked && ddlHostProperty != null && ddlHostProperty.Items.Count > 1 ? ddlHostProperty.SelectedValue : "";
@@ -127,6 +127,7 @@ namespace StayScape
                     // Auto Generated Values
                     new SqlParameter("@voucherCode", generateVoucherCode()),
                     new SqlParameter("@activeStatus", 1),
+                    new SqlParameter("@discountType", "Value Off"),
                     new SqlParameter("@discountRate", DBNull.Value),
                     new SqlParameter("@capAt", DBNull.Value),
                     new SqlParameter("@createdBy", SqlDbType.DateTime) {Value = DateTime.Now },
@@ -151,6 +152,7 @@ namespace StayScape
                     // Auto Generated Values
                     new SqlParameter("@voucherCode", generateVoucherCode()),
                     new SqlParameter("@activeStatus", 1),
+                    new SqlParameter("@discountType", "Discount Off"),
                     new SqlParameter("@discountPrice", DBNull.Value),
                     new SqlParameter("@createdBy", SqlDbType.DateTime) {Value = DateTime.Now },
                     new SqlParameter("@hostID", hostID),
