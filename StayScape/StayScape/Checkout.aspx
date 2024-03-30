@@ -63,7 +63,7 @@
             </div>
 
             <!-- Display a payment form -->
-            <div class="pt-12">
+            <div class="pt-16">
                 <form id="payment-form">
                     <div id="payment-element">
                         <!--Stripe.js injects the Payment Element-->
