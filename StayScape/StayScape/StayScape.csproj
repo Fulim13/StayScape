@@ -104,6 +104,8 @@
     <Content Include="AddVoucher.aspx" />
     <Content Include="BulkImportVoucher.aspx" />
     <Content Include="Checkout.aspx" />
+    <Content Include="checkout.css" />
+    <Content Include="checkout.js" />
     <Content Include="Global.asax" />
     <Content Include="Images\testing.jpg" />
     <Content Include="property_details.aspx" />
@@ -167,6 +169,9 @@
     </Compile>
     <Compile Include="Checkout.aspx.designer.cs">
       <DependentUpon>Checkout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CreatePaymentIntent.ashx.cs">
+      <DependentUpon>CreatePaymentIntent.ashx</DependentUpon>
     </Compile>
     <Compile Include="CSVReader.cs" />
     <Compile Include="Dashboard.aspx.cs">
@@ -258,6 +263,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Main.Master" />
+    <Content Include="CreatePaymentIntent.ashx" />
     <None Include="packages.config" />
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Scripts\bootstrap.bundle.min.js.map" />

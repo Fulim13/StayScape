@@ -1,5 +1,6 @@
 ﻿using Stripe;
 using System;
+using System.Collections.Generic;
 
 namespace StayScape
 {
@@ -14,17 +15,14 @@ namespace StayScape
         {
             string stripeSecretKey = Environment.GetEnvironmentVariable("STRIPE_SECRET_KEY");
             StripeConfiguration.ApiKey = stripeSecretKey;
-            var paymentIntentService = new PaymentIntentService();
-            var paymentIntent = paymentIntentService.Create(new PaymentIntentCreateOptions
+            var options = new PaymentIntentCreateOptions
             {
-                Amount = 100,
+                PaymentMethodTypes = new List<string> { "fpx", "" },
+                Amount = 1099,
                 Currency = "myr",
-                // In the latest version of the API, specifying the `automatic_payment_methods` parameter is optional because Stripe enables its functionality by default.
-                AutomaticPaymentMethods = new PaymentIntentAutomaticPaymentMethodsOptions
-                {
-                    Enabled = true,
-                },
-            });
+            };
+            var service = new PaymentIntentService();
+            service.Create(options);
         }
     }
 }
