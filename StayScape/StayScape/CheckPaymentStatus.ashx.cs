@@ -2,13 +2,14 @@
 using System;
 using System.Data.SqlClient;
 using System.Web;
+using System.Web.SessionState;
 
 namespace StayScape
 {
     /// <summary>
     /// Summary description for CheckPaymentStatus
     /// </summary>
-    public class CheckPaymentStatus : IHttpHandler
+    public class CheckPaymentStatus : IHttpHandler, IRequiresSessionState
     {
 
         public void ProcessRequest(HttpContext context)
@@ -33,9 +34,8 @@ namespace StayScape
 
                 string sqlCommand = "INSERT INTO Payment (paymentID, paymentDate,reservationID) " +
                     "VALUES (@paymentID, @paymentDate, @reservationID)";
-
-                context.Session["reservationID"] = "1234567890";
-                Console.WriteLine("Reservation ID: " + context.Session["reservationID"]);
+                //context.Session["reservationID"] = "1234567890";
+                //Console.WriteLine("Reservation ID: " + context.Session["reservationID"]);
                 string reservationID = Convert.ToString(context.Session["reservationID"]);
 
 
