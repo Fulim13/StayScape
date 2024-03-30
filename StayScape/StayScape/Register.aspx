@@ -29,7 +29,8 @@
                             <h1 class="hero-title text-center mb-5">
                         <a href="#">
                             <img border="0" alt="" src="Images/house-transparent.png" width="200" height="200"></a></h1>
-                            <h1 class="hero-title text-center mb-5">Register</h1>
+                            <h1 class="hero-title text-center mb-5">Register - Customer</h1>
+                            <asp:HiddenField ID="userIDSetup" runat="server" />
 
                             <div class="row">
                                 <div class="col-lg-8 col-11 mx-auto">
