@@ -14,22 +14,17 @@ namespace StayScape
         {
             string stripeSecretKey = Environment.GetEnvironmentVariable("STRIPE_SECRET_KEY");
             StripeConfiguration.ApiKey = stripeSecretKey;
-            var optionsProduct = new Stripe.ProductCreateOptions
+            var paymentIntentService = new PaymentIntentService();
+            var paymentIntent = paymentIntentService.Create(new PaymentIntentCreateOptions
             {
-                Name = "T-Shirt",
-            };
-            var serviceProduct = new ProductService();
-            Product product = serviceProduct.Create(optionsProduct);
-            Console.Write("Success! Here is your starter subscription product id: {0}\n", product.Id);
-
-            var optionsPrice = new PriceCreateOptions
-            {
-                UnitAmount = 1200,
+                Amount = 100,
                 Currency = "myr",
-                Product = product.Id
-            };
-            var servicePrice = new PriceService();
-            Price price = servicePrice.Create(optionsPrice);
+                // In the latest version of the API, specifying the `automatic_payment_methods` parameter is optional because Stripe enables its functionality by default.
+                AutomaticPaymentMethods = new PaymentIntentAutomaticPaymentMethodsOptions
+                {
+                    Enabled = true,
+                },
+            });
         }
     }
 }
