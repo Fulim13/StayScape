@@ -180,6 +180,13 @@
       <DependentUpon>CreatePaymentIntent.ashx</DependentUpon>
     </Compile>
     <Compile Include="CSVReader.cs" />
+    <Compile Include="Customer.Master.cs">
+      <DependentUpon>Customer.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer.Master.designer.cs">
+      <DependentUpon>Customer.Master</DependentUpon>
+    </Compile>
     <Compile Include="Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -292,6 +299,8 @@
     <Content Include="Main.Master" />
     <Content Include="CreatePaymentIntent.ashx" />
     <Content Include="CheckPaymentStatus.ashx" />
+    <Content Include="CustomerPage.sitemap" />
+    <Content Include="Customer.Master" />
     <None Include="packages.config" />
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Scripts\bootstrap.bundle.min.js.map" />

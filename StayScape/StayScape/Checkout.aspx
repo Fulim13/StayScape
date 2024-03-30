@@ -8,8 +8,8 @@
     <title>Accept a payment</title>
     <meta name="description" content="A demo of a payment on Stripe" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="checkout.css" />
     <link href="./dist/output.css" rel="stylesheet" />
+    <link rel="stylesheet" href="checkout.css" />
     <script src="https://js.stripe.com/v3/"></script>
     <%--<script src="checkout.js" defer></script>--%>
 </head>
