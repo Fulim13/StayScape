@@ -15,7 +15,7 @@
 </head>
 <body>
     <form id="form1" style="width: auto; min-width: auto; align-self: auto; box-shadow: none; border-radius: initial; padding: initial;">
-        <div class="max-w-lg mx-auto grid grid-cols-1 gap-x-32 gap-y-16 lg:max-w-none lg:grid-cols-2">
+        <div class="items-start h-screen max-w-lg mx-auto grid grid-cols-1 gap-x-32 gap-y-16 lg:max-w-none lg:grid-cols-2">
             <div class="max-w-lg mx-auto px-4 pt-12 w-full">
                 <div class="flex py-4 gap-5">
                     <img src="/Images/testing.jpg" width="200" class="rounded-lg" />
@@ -63,7 +63,7 @@
             </div>
 
             <!-- Display a payment form -->
-            <div class="pt-16">
+            <div class="pt-20">
                 <form id="payment-form">
                     <div id="payment-element">
                         <!--Stripe.js injects the Payment Element-->
