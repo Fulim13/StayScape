@@ -1,21 +1,12 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Checkout.aspx.cs" Inherits="StayScape.Checkout" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Customer.Master" AutoEventWireup="true" CodeBehind="Checkout.aspx.cs" Inherits="StayScape.Checkout" %>
 
-<!DOCTYPE html>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <meta charset="utf-8" />
-    <title>Accept a payment</title>
-    <meta name="description" content="A demo of a payment on Stripe" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="./dist/output.css" rel="stylesheet" />
-    <link rel="stylesheet" href="checkout.css" />
     <script src="https://js.stripe.com/v3/"></script>
-    <%--<script src="checkout.js" defer></script>--%>
-</head>
-<body>
-    <form id="form1" style="width: auto; min-width: auto; align-self: auto; box-shadow: none; border-radius: initial; padding: initial;">
-        <div class="items-start h-screen max-w-lg mx-auto grid grid-cols-1 gap-x-32 gap-y-16 lg:max-w-none lg:grid-cols-2">
+    <div class="flex justify-center items-center">
+        <div class="h-screen max-w-lg mx-auto grid grid-cols-1 gap-x-32 gap-y-16 lg:max-w-none lg:grid-cols-2">
             <div class="max-w-lg mx-auto px-4 pt-12 w-full">
                 <div class="flex py-4 gap-5">
                     <img src="/Images/testing.jpg" width="200" class="rounded-lg" />
@@ -32,7 +23,7 @@
                         <label for="discount-code" class="block text-sm font-medium text-gray-700">Discount code</label>
                         <div class="flex space-x-4 mt-1">
                             <input type="text" id="discount-code" name="discount-code" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                            <button type="submit" class="bg-indigo-600 text-white text-sm font-medium rounded-md px-4 hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600">Apply</button>
+                            <button type="submit" class="w-1/3 bg-indigo-600 text-white text-sm font-medium rounded-md px-4 hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600">Apply</button>
                         </div>
                     </div>
                     <dl class="text-sm font-medium text-gray-500 mt-10 space-y-6">
@@ -63,7 +54,7 @@
             </div>
 
             <!-- Display a payment form -->
-            <div class="pt-20">
+            <div class="pt-20 w-full">
                 <form id="payment-form">
                     <div id="payment-element">
                         <!--Stripe.js injects the Payment Element-->
@@ -76,124 +67,123 @@
                 </form>
             </div>
         </div>
-    </form>
-</body>
-<script>
-    const stripe = Stripe("pk_test_51OzyRiLGo9hdPl3qZ6587wCFjVaBePXtzGkecdW0llSKBnmD6QaHRVFhQQ4Uh1uCb0fiiP8OIctEqAZmrHokG9fX00rbuIh65w");
+    </div>
+    <script>
+        const stripe = Stripe("pk_test_51OzyRiLGo9hdPl3qZ6587wCFjVaBePXtzGkecdW0llSKBnmD6QaHRVFhQQ4Uh1uCb0fiiP8OIctEqAZmrHokG9fX00rbuIh65w");
 
-    // Set the payment amount in cents (adjust as needed)
+        // Set the payment amount in cents (adjust as needed)
 
-    const paymentAmount = parseInt(parseFloat('<%= Session["reservationAmount"] %>') * 100);
+        const paymentAmount = parseInt(parseFloat('<%= Session["reservationAmount"] %>') * 100);
 
-    initialize();
-    checkStatus();
+        initialize();
+        checkStatus();
 
-    document
-        .querySelector("#payment-form")
-        .addEventListener("submit", handleSubmit);
+        document
+            .querySelector("#payment-form")
+            .addEventListener("submit", handleSubmit);
 
-    // Fetches a payment intent and captures the client secret
-    async function initialize() {
-        const response = await fetch("/CreatePaymentIntent.ashx", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ amount: paymentAmount }), // Send only the payment amount
-        });
-        const { clientSecret } = await response.json();
+        // Fetches a payment intent and captures the client secret
+        async function initialize() {
+            const response = await fetch("/CreatePaymentIntent.ashx", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ amount: paymentAmount }), // Send only the payment amount
+            });
+            const { clientSecret } = await response.json();
 
-        const appearance = {
-            theme: 'stripe',
-        };
-        elements = stripe.elements({ appearance, clientSecret });
+            const appearance = {
+                theme: 'stripe',
+            };
+            elements = stripe.elements({ appearance, clientSecret });
 
-        const paymentElementOptions = {
-            layout: "tabs",
-        };
+            const paymentElementOptions = {
+                layout: "tabs",
+            };
 
-        const paymentElement = elements.create("payment", paymentElementOptions);
-        paymentElement.mount("#payment-element");
-    }
-
-    async function handleSubmit(e) {
-        e.preventDefault();
-        setLoading(true);
-
-        const { error } = await stripe.confirmPayment({
-            elements,
-            confirmParams: {
-                // Make sure to change this to your payment completion page
-                return_url: "https://localhost:44321/PaymentProcessing.aspx",
-            },
-        });
-
-        // This point will only be reached if there is an immediate error when
-        // confirming the payment. Otherwise, your customer will be redirected to
-        // your `return_url`. For some payment methods like iDEAL, your customer will
-        // be redirected to an intermediate site first to authorize the payment, then
-        // redirected to the `return_url`.
-        if (error.type === "card_error" || error.type === "validation_error") {
-            showMessage(error.message);
-        } else {
-            showMessage("An unexpected error occurred.");
+            const paymentElement = elements.create("payment", paymentElementOptions);
+            paymentElement.mount("#payment-element");
         }
 
-        setLoading(false);
-    }
+        async function handleSubmit(e) {
+            e.preventDefault();
+            setLoading(true);
 
-    // Fetches the payment intent status after payment submission
-    async function checkStatus() {
-        const clientSecret = new URLSearchParams(window.location.search).get(
-            "payment_intent_client_secret"
-        );
+            const { error } = await stripe.confirmPayment({
+                elements,
+                confirmParams: {
+                    // Make sure to change this to your payment completion page
+                    return_url: "https://localhost:44321/PaymentProcessing.aspx",
+                },
+            });
 
-        if (!clientSecret) {
-            return;
+            // This point will only be reached if there is an immediate error when
+            // confirming the payment. Otherwise, your customer will be redirected to
+            // your `return_url`. For some payment methods like iDEAL, your customer will
+            // be redirected to an intermediate site first to authorize the payment, then
+            // redirected to the `return_url`.
+            if (error.type === "card_error" || error.type === "validation_error") {
+                showMessage(error.message);
+            } else {
+                showMessage("An unexpected error occurred.");
+            }
+
+            setLoading(false);
         }
 
-        const { paymentIntent } = await stripe.retrievePaymentIntent(clientSecret);
+        // Fetches the payment intent status after payment submission
+        async function checkStatus() {
+            const clientSecret = new URLSearchParams(window.location.search).get(
+                "payment_intent_client_secret"
+            );
 
-        switch (paymentIntent.status) {
-            case "succeeded":
-                showMessage("Payment succeeded!");
-                break;
-            case "processing":
-                showMessage("Your payment is processing.");
-                break;
-            case "requires_payment_method":
-                showMessage("Your payment was not successful, please try again.");
-                break;
-            default:
-                showMessage("Something went wrong.");
-                break;
+            if (!clientSecret) {
+                return;
+            }
+
+            const { paymentIntent } = await stripe.retrievePaymentIntent(clientSecret);
+
+            switch (paymentIntent.status) {
+                case "succeeded":
+                    showMessage("Payment succeeded!");
+                    break;
+                case "processing":
+                    showMessage("Your payment is processing.");
+                    break;
+                case "requires_payment_method":
+                    showMessage("Your payment was not successful, please try again.");
+                    break;
+                default:
+                    showMessage("Something went wrong.");
+                    break;
+            }
         }
-    }
 
-    // ------- UI helpers -------
+        // ------- UI helpers -------
 
-    function showMessage(messageText) {
-        const messageContainer = document.querySelector("#payment-message");
+        function showMessage(messageText) {
+            const messageContainer = document.querySelector("#payment-message");
 
-        messageContainer.classList.remove("hidden");
-        messageContainer.textContent = messageText;
+            messageContainer.classList.remove("hidden");
+            messageContainer.textContent = messageText;
 
-        setTimeout(function () {
-            messageContainer.classList.add("hidden");
-            messageContainer.textContent = "";
-        }, 4000);
-    }
-
-    // Show a spinner on payment submission
-    function setLoading(isLoading) {
-        if (isLoading) {
-            // Disable the button and show a spinner
-            document.querySelector("#submit").disabled = true;
-            document.querySelector("#spinner").classList.remove("hidden");
-            document.querySelector("#button-text").classList.add("hidden");
-        } else {
-            document.querySelector("#submit").disabled = false;
-            document.querySelector("#spinner").classList.add("hidden");
-            document.querySelector("#button-text").classList.remove("hidden");
+            setTimeout(function () {
+                messageContainer.classList.add("hidden");
+                messageContainer.textContent = "";
+            }, 4000);
         }
-    }
-</script>
-</html>
+
+        // Show a spinner on payment submission
+        function setLoading(isLoading) {
+            if (isLoading) {
+                // Disable the button and show a spinner
+                document.querySelector("#submit").disabled = true;
+                document.querySelector("#spinner").classList.remove("hidden");
+                document.querySelector("#button-text").classList.add("hidden");
+            } else {
+                document.querySelector("#submit").disabled = false;
+                document.querySelector("#spinner").classList.add("hidden");
+                document.querySelector("#button-text").classList.remove("hidden");
+            }
+        }
+    </script>
+</asp:Content>
