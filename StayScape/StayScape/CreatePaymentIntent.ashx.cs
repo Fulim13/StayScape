@@ -1,4 +1,5 @@
-﻿using Stripe;
+﻿using Newtonsoft.Json;
+using Stripe;
 using System;
 using System.Web;
 
@@ -20,11 +21,21 @@ namespace StayScape
                 string stripeSecretKey = Environment.GetEnvironmentVariable("STRIPE_SECRET_KEY");
                 StripeConfiguration.ApiKey = stripeSecretKey;
 
+                string requestBody;
+                using (var reader = new System.IO.StreamReader(context.Request.InputStream))
+                {
+                    requestBody = reader.ReadToEnd();
+                }
+
+                // Deserialize the JSON payload to get the amount
+                dynamic requestData = JsonConvert.DeserializeObject(requestBody);
+                int amount = requestData?.amount ?? 0; // Default to 0 if amount is not provided
+
                 // Handle the POST request to create a payment intent
                 var options = new PaymentIntentCreateOptions
                 {
                     PaymentMethodTypes = new System.Collections.Generic.List<string> { "card", "fpx" },
-                    Amount = 1099, // Adjust the amount as needed
+                    Amount = amount, // Adjust the amount as needed
                     Currency = "myr",
                 };
                 var service = new PaymentIntentService();

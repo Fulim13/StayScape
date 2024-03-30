@@ -1,7 +1,7 @@
 ﻿const stripe = Stripe("pk_test_51OzyRiLGo9hdPl3qZ6587wCFjVaBePXtzGkecdW0llSKBnmD6QaHRVFhQQ4Uh1uCb0fiiP8OIctEqAZmrHokG9fX00rbuIh65w");
 
 // Set the payment amount in cents (adjust as needed)
-const paymentAmount = 10.99;
+const paymentAmount = 1099;
 
 initialize();
 checkStatus();
