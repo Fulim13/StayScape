@@ -1,6 +1,4 @@
-﻿using Stripe;
-using System;
-using System.Collections.Generic;
+﻿using System;
 
 namespace StayScape
 {
@@ -8,21 +6,15 @@ namespace StayScape
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Store Property ID to Session
+            Session["PropertyID"] = 1;
 
-        }
+            Session["CheckIn"] = DateTime.Now;
+            Session["CheckOut"] = DateTime.Now.AddDays(1);
+            Session["reservationAmount"] = 10.99;
+            Session["discountAmount"] = 0;
 
-        protected void btnPlacePayment_Click(object sender, EventArgs e)
-        {
-            string stripeSecretKey = Environment.GetEnvironmentVariable("STRIPE_SECRET_KEY");
-            StripeConfiguration.ApiKey = stripeSecretKey;
-            var options = new PaymentIntentCreateOptions
-            {
-                PaymentMethodTypes = new List<string> { "fpx", "" },
-                Amount = 1099,
-                Currency = "myr",
-            };
-            var service = new PaymentIntentService();
-            service.Create(options);
+
         }
     }
 }

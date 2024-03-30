@@ -38,7 +38,7 @@
         }
 
         const { paymentIntent } = await stripe.retrievePaymentIntent(clientSecret);
-
+        //console.log(paymentIntent)
         try {
             const response = await fetch('CheckPaymentStatus.ashx', {
                 method: 'POST',
