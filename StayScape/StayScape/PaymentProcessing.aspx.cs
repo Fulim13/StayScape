@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 
 namespace StayScape
 {
@@ -16,7 +15,7 @@ namespace StayScape
             decimal reservationAmount = Convert.ToDecimal(Session["reservationAmount"]);
             decimal discountAmount = Convert.ToDecimal(Session["discountAmount"]);
             decimal totalAmount = reservationAmount - discountAmount;
-            string reservationID = generateReservationID();
+            string reservationID = Guid.NewGuid().ToString();
             Session["reservationID"] = reservationID;
 
             //Insert Reservation Table
@@ -45,36 +44,36 @@ namespace StayScape
             db.closeConnection();
 
         }
-        private string generateReservationID()
-        {
-            Random random = new Random();
-            string characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            string reservationID = "";
+        //private string generateReservationID()
+        //{
+        //    Random random = new Random();
+        //    string characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        //    string reservationID = "";
 
-            bool codeExists = true;
-            while (codeExists)
-            {
-                reservationID = new string(Enumerable.Repeat(characters, 40).Select(s => s[random.Next(s.Length)]).ToArray());
-                codeExists = IsReservationIDExistsInDatabase(reservationID);
-            }
+        //    bool codeExists = true;
+        //    while (codeExists)
+        //    {
+        //        reservationID = new string(Enumerable.Repeat(characters, 40).Select(s => s[random.Next(s.Length)]).ToArray());
+        //        codeExists = IsReservationIDExistsInDatabase(reservationID);
+        //    }
 
-            return reservationID;
-        }
+        //    return reservationID;
+        //}
 
-        private bool IsReservationIDExistsInDatabase(string reservationID)
-        {
-            DBManager db = new DBManager();
-            db.createConnection();
+        //private bool IsReservationIDExistsInDatabase(string reservationID)
+        //{
+        //    DBManager db = new DBManager();
+        //    db.createConnection();
 
-            string query = "SELECT COUNT(*) FROM Reservation WHERE reservationID = @reservationID";
-            SqlParameter parameter = new SqlParameter("@reservationID", reservationID);
-            SqlCommand command = db.ExecuteQuery(query, new SqlParameter[] { parameter });
+        //    string query = "SELECT COUNT(*) FROM Reservation WHERE reservationID = @reservationID";
+        //    SqlParameter parameter = new SqlParameter("@reservationID", reservationID);
+        //    SqlCommand command = db.ExecuteQuery(query, new SqlParameter[] { parameter });
 
-            int count = (int)command.ExecuteScalar();
-            db.closeConnection();
+        //    int count = (int)command.ExecuteScalar();
+        //    db.closeConnection();
 
-            return count > 0;
-        }
+        //    return count > 0;
+        //}
 
 
 
