@@ -80,6 +80,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="HostRegister.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Profile.aspx" />
     <Content Include="Register.aspx" />
@@ -98,6 +99,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HostRegister.aspx.cs">
+      <DependentUpon>HostRegister.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HostRegister.aspx.designer.cs">
+      <DependentUpon>HostRegister.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

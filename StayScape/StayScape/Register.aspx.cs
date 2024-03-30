@@ -12,7 +12,11 @@ namespace StayScape.DesmondsPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            if (!Roles.RoleExists("Customer"))
+            {
+                // Create the role if it doesn't exist
+                Roles.CreateRole("Customer");
+            }
         }
 
         protected void BtnRegister_Click(object sender, EventArgs e)
@@ -25,7 +29,7 @@ namespace StayScape.DesmondsPage
             {
                 con.Open();
 
-                SqlCommand regisCmd = new SqlCommand("INSERT INTO CUSTOMER (custID, customerName, custPhoneNumber, custEmail, custPassword, birthDate, gender) VALUES (@custID, @customerName, @custPhoneNumber, @custEmail, @custPassword, @birthDate, @gender)", con);
+                SqlCommand regisCmd = new SqlCommand("INSERT INTO CUSTOMER (custID, customerName, custPhoneNumber, custEmail, custPassword, birthDate, gender, createdAt) VALUES (@custID, @customerName, @custPhoneNumber, @custEmail, @custPassword, @birthDate, @gender, @createdAt)", con);
                 regisCmd.Parameters.AddWithValue("@custID", userID);
                 regisCmd.Parameters.AddWithValue("@customerName", txtName.Text);
                 regisCmd.Parameters.AddWithValue("@custPhoneNumber", txtPhone.Text);
@@ -35,6 +39,8 @@ namespace StayScape.DesmondsPage
                 regisCmd.Parameters.AddWithValue("@gender", genderDropdown.SelectedValue);
                 regisCmd.Parameters.AddWithValue("@createdAt", DateTime.Now);
                 regisCmd.ExecuteNonQuery();
+
+                Roles.AddUserToRole(userID, "Customer");
 
                 Response.Redirect("Login.aspx");
             }
