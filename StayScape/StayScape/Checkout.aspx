@@ -3,7 +3,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <script src="https://js.stripe.com/v3/"></script>
     <div class="flex justify-center items-center">
         <div class="h-screen max-w-lg mx-auto grid grid-cols-1 gap-x-32 gap-y-16 lg:max-w-none lg:grid-cols-2">
@@ -187,3 +188,4 @@
         }
     </script>
 </asp:Content>
+
