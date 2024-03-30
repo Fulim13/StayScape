@@ -44,39 +44,89 @@
                                         <div class="form-floating mb-4 p-0">
                                             <label for="email">Email address</label>
                                             <asp:TextBox runat="server" ID="txtEmail" TextMode="Email" CssClass="form-control" placeholder="Email address" Required="true"></asp:TextBox>
+                                            
+                                            <asp:RegularExpressionValidator ID="EmailValidator" runat="server"
+                                                ControlToValidate="txtEmail"
+                                                ErrorMessage="Invalid email address"
+                                                ValidationExpression="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                                                ValidationGroup="Registration">
+                                            </asp:RegularExpressionValidator>
                                         </div>
                                             
                                         <div class="form-floating mb-4 p-0">
                                             <label for="phone">Phone Number</label>
                                             <asp:TextBox runat="server" ID="txtPhone" TextMode="Phone" CssClass="form-control" placeholder="Phone Number" Required="true"></asp:TextBox>
+
+                                            <asp:RegularExpressionValidator ID="PhoneNumberValidator" runat="server"
+                                                ControlToValidate="txtPhone"
+                                                ErrorMessage="Invalid Malaysian phone number"
+                                                ValidationExpression="^(01[0-46-9]-\d{7,8}|03-\d{7,8}|04-\d{7,8}|05-\d{7,8}|06-\d{7,8}|07-\d{7,8}|08-\d{7,8}|09-\d{7,8})$"
+                                                ValidationGroup="Registration">
+                                            </asp:RegularExpressionValidator>                                        
                                         </div>
                                         
                                         <div class="form-floating mb-4 p-0">
                                             <label for="birthDate">Birth Date</label>
                                             <asp:TextBox runat="server" ID="txtbDate" TextMode="Date" CssClass="form-control" placeholder="Birth Date" Required="true"></asp:TextBox>
+                                            <asp:RangeValidator ID="ageRangeValidator" runat="server"
+                                                ControlToValidate="txtbDate"
+                                                Type="Date"
+                                                MinimumValue="1900-01-01"
+                                                MaximumValue="2004-12-31"
+                                                ErrorMessage="You must be between 18 and 120 years old."
+                                                Display="Dynamic"
+                                                CssClass="text-danger"
+                                                ValidationGroup="Registration">
+                                            </asp:RangeValidator>
                                         </div>
+
                                         
                                         <div class="form-floating mb-4 p-0">
                                             <label for="gender">Gender</label>
-                                            <asp:DropDownList ID="genderDropdown" CssClass="form-control" runat="server">
+                                            <asp:DropDownList ID="genderDropdown" CssClass="form-control" runat="server" AppendDataBoundItems="true">
+                                                <asp:ListItem Text="-- Select Gender --" Value="" />
                                                 <asp:ListItem>Male</asp:ListItem>
                                                 <asp:ListItem>Female</asp:ListItem>
                                             </asp:DropDownList>
+                                            <asp:RequiredFieldValidator ID="genderValidator" runat="server"
+                                                ControlToValidate="genderDropdown"
+                                                InitialValue=""
+                                                ErrorMessage="Please select a gender."
+                                                Display="Dynamic"
+                                                CssClass="text-danger"
+                                                ValidationGroup="Registration">
+                                            </asp:RequiredFieldValidator>
                                         </div>
+
                                             
                                         <div class="form-floating p-0">
                                             <label for="password">Password</label>
                                             <asp:TextBox runat="server" ID="txtPassword" TextMode="Password" CssClass="form-control" placeholder="Password" Required="true"></asp:TextBox>
+                                        
+                                            <asp:RegularExpressionValidator ID="PasswordValidator" runat="server"
+                                                ControlToValidate="txtPassword"
+                                                ErrorMessage="Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one digit, and one special character"
+                                                ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$"
+                                                ValidationGroup="Registration">
+                                            </asp:RegularExpressionValidator>                                     
                                         </div>
                                             
                                         <div class="form-floating p-0">
                                             <label for="passwordConfirm">Confirm Password</label>
                                             <asp:TextBox runat="server" ID="txtPasswordConfirm" TextMode="Password" CssClass="form-control" placeholder="Confirm Password" Required="true"></asp:TextBox>
+                                        
+                                            <asp:CompareValidator ID="PasswordCompareValidator" runat="server"
+                                                ControlToValidate="txtPasswordConfirm"
+                                                ControlToCompare="txtPassword"
+                                                ErrorMessage="Passwords do not match"
+                                                Display="Dynamic"
+                                                ValidationGroup="Registration">
+                                            </asp:CompareValidator>                                       
                                         </div>
                                         
                                         <br />
                                         
-                                        <asp:Button runat="server" ID="btnRegister" Text="Register" CssClass="btn btn-primary" OnClick="BtnRegister_Click" />
+                                        <asp:Button runat="server" ID="btnRegister" Text="Register" CssClass="btn btn-primary" OnClick="BtnRegister_Click" ValidationGroup="Registration" />
                                         <p class="text-center">Already have an account? <a href="Login.aspx">Sign In</a></p>
                                     </asp:Panel>
                                 </div>

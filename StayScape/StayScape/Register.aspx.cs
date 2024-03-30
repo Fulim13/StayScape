@@ -21,28 +21,32 @@ namespace StayScape.DesmondsPage
 
         protected void BtnRegister_Click(object sender, EventArgs e)
         {
-            string userID = GenerateRandomID(64);
-            string password = txtPassword.Text;
-            string hashedPassword = Convert.ToBase64String(System.Security.Cryptography.SHA256.Create().ComputeHash(Encoding.UTF8.GetBytes(password)));
-
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\desmo\Documents\Web_Dev_Assignment\StayScape\StayScape\App_Data\StayScapeDB.mdf;Integrated Security=True");
+            Page.Validate("Registration");
+            if (Page.IsValid)
             {
-                con.Open();
+                string userID = GenerateRandomID(64);
+                string password = txtPassword.Text;
+                string hashedPassword = Convert.ToBase64String(System.Security.Cryptography.SHA256.Create().ComputeHash(Encoding.UTF8.GetBytes(password)));
 
-                SqlCommand regisCmd = new SqlCommand("INSERT INTO CUSTOMER (custID, customerName, custPhoneNumber, custEmail, custPassword, birthDate, gender, createdAt) VALUES (@custID, @customerName, @custPhoneNumber, @custEmail, @custPassword, @birthDate, @gender, @createdAt)", con);
-                regisCmd.Parameters.AddWithValue("@custID", userID);
-                regisCmd.Parameters.AddWithValue("@customerName", txtName.Text);
-                regisCmd.Parameters.AddWithValue("@custPhoneNumber", txtPhone.Text);
-                regisCmd.Parameters.AddWithValue("@custEmail", txtEmail.Text);
-                regisCmd.Parameters.AddWithValue("@custPassword", hashedPassword);
-                regisCmd.Parameters.AddWithValue("@birthDate", txtbDate.Text);
-                regisCmd.Parameters.AddWithValue("@gender", genderDropdown.SelectedValue);
-                regisCmd.Parameters.AddWithValue("@createdAt", DateTime.Now);
-                regisCmd.ExecuteNonQuery();
+                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\desmo\Documents\Web_Dev_Assignment\StayScape\StayScape\App_Data\StayScapeDB.mdf;Integrated Security=True");
+                {
+                    con.Open();
 
-                Roles.AddUserToRole(userID, "Customer");
+                    SqlCommand regisCmd = new SqlCommand("INSERT INTO CUSTOMER (custID, customerName, custPhoneNumber, custEmail, custPassword, birthDate, gender, createdAt) VALUES (@custID, @customerName, @custPhoneNumber, @custEmail, @custPassword, @birthDate, @gender, @createdAt)", con);
+                    regisCmd.Parameters.AddWithValue("@custID", userID);
+                    regisCmd.Parameters.AddWithValue("@customerName", txtName.Text);
+                    regisCmd.Parameters.AddWithValue("@custPhoneNumber", txtPhone.Text);
+                    regisCmd.Parameters.AddWithValue("@custEmail", txtEmail.Text);
+                    regisCmd.Parameters.AddWithValue("@custPassword", hashedPassword);
+                    regisCmd.Parameters.AddWithValue("@birthDate", txtbDate.Text);
+                    regisCmd.Parameters.AddWithValue("@gender", genderDropdown.SelectedValue);
+                    regisCmd.Parameters.AddWithValue("@createdAt", DateTime.Now);
+                    regisCmd.ExecuteNonQuery();
 
-                Response.Redirect("Login.aspx");
+                    Roles.AddUserToRole(userID, "Customer");
+
+                    Response.Redirect("Login.aspx");
+                }
             }
         }
 
