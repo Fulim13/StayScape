@@ -26,13 +26,13 @@
                         </div>
 
                         <div>
-                            <form>
+                            <div>
                                 <label for="discount-code" class="block text-sm font-medium text-gray-700">Discount code</label>
                                 <div class="flex space-x-4 mt-1">
                                     <input type="text" id="discount-code" name="discount-code" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                     <button type="submit" class="bg-indigo-600 text-white text-sm font-medium rounded-md px-4 hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600">Apply</button>
                                 </div>
-                            </form>
+                            </div>
 
                             <dl class="text-sm font-medium text-gray-500 mt-10 space-y-6">
                                 <div class="flex justify-between">
@@ -82,7 +82,7 @@
                                 </div>
                             </div>
 
-                            <form class="mt-6">
+                            <div class="mt-6">
                                 <div class="grid grid-cols-12 gap-y-6 gap-x-4">
 
                                     <div class="col-span-full">
@@ -113,7 +113,7 @@
                                         </div>
                                     </div>
                                     <div class="col-span-full">
-                                        <button type="submit" class="w-full mt-6 bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Pay $141.92</button>
+                                        <asp:Button ID="btnPlacePayment" OnClick="btnPlacePayment_Click" class="w-full mt-6 bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" runat="server" Text="Pay"/>
                                     </div>
                                     <div class="col-span-full">
                                         <p class="flex justify-center text-sm font-medium text-gray-500 mt-6">
@@ -124,7 +124,7 @@
                                             Payment details stored in plain text
                                         </p>
                                     </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
