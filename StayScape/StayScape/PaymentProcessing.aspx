@@ -38,14 +38,14 @@
         }
 
         const { paymentIntent } = await stripe.retrievePaymentIntent(clientSecret);
-        //console.log(paymentIntent)
+        console.log(paymentIntent)
         try {
             const response = await fetch('CheckPaymentStatus.ashx', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(paymentIntent.status === 'succeeded')
+                body: JSON.stringify(paymentIntent)
             });
 
             if (!response.ok) {
@@ -55,12 +55,12 @@
             const data = await response.json();
             // Handle the response data if needed
             console.log(data);
-            // Redirect to the appropriate page based on payment status
+             //Redirect to the appropriate page based on payment status
             if (data.paymentMessage === 'Payment successful!') {
                 window.location.href = 'PaymentSuccessful.aspx'; // Redirect to success page
             } else {
                 window.location.href = 'PaymentFailed.aspx'; // Redirect to failure page
-            }
+            }W
         } catch (error) {
             console.error('There was a problem with the fetch operation:', error);
         }

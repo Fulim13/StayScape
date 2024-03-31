@@ -6,16 +6,17 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <script src="https://js.stripe.com/v3/"></script>
-    <div class="flex justify-center items-center">
-        <div class="h-screen max-w-lg mx-auto grid grid-cols-1 gap-x-32 gap-y-16 lg:max-w-none lg:grid-cols-2">
+    <div class="flex">
+        <div class="h-screen max-w-lg mx-auto grid grid-cols-1 gap-x-24 gap-y-16 content-between lg:max-w-none lg:grid-cols-2">
             <div class="max-w-lg mx-auto px-4 pt-12 w-full">
                 <div class="flex py-4 gap-5">
                     <img src="/Images/testing.jpg" width="200" class="rounded-lg" />
                     <div>
-                        <h3 class="text-lg font-medium text-gray-900">Fu Lim's Building</h3>
-                        <p class="text-sm text-gray-500">RM 200</p>
-                        <p class="text-sm text-gray-500">1 night</p>
-                        <p class="text-sm text-gray-500">From 22/12/2024 - 25/12/2024 </p>
+                        <asp:Label ID="lblPropertyName" class="text-lg font-medium text-gray-900" runat="server" Text="Fu Lim's Building"></asp:Label>
+                        <br />
+                        <asp:Label ID="lblPropertyPrice" class="text-sm text-gray-500" runat="server" Text="RM 200"></asp:Label>
+                        <br />
+                        <asp:Label ID="lblDate" class="text-sm text-gray-500" runat="server" Text="22/12/2024 - 25/12/2024"></asp:Label>
                     </div>
                 </div>
 
@@ -30,32 +31,24 @@
                     <dl class="text-sm font-medium text-gray-500 mt-10 space-y-6">
                         <div class="flex justify-between">
                             <dt>Subtotal</dt>
-                            <dd class="text-gray-900">$108.00</dd>
+                            <asp:Label ID="lblSubtotal" class="text-gray-900" runat="server" Text="RM 11"></asp:Label>
                         </div>
                         <div class="flex justify-between">
                             <dt class="flex">Discount
-                    <span class="ml-2 rounded-full bg-gray-200 text-xs text-gray-600 py-0.5 px-2 tracking-wide">CHEAPSKATE</span>
+                                <asp:Label ID="lblVoucherCode" class="ml-2 rounded-full bg-gray-200 text-xs text-gray-600 py-0.5 px-2 tracking-wide" runat="server" Text="CHEAPSKATE"></asp:Label>
                             </dt>
-                            <dd class="text-gray-900">-$16.00</dd>
-                        </div>
-                        <div class="flex justify-between">
-                            <dt>Taxes</dt>
-                            <dd class="text-gray-900">$9.92</dd>
-                        </div>
-                        <div class="flex justify-between">
-                            <dt>Shipping</dt>
-                            <dd class="text-gray-900">$8.00</dd>
+                            <asp:Label ID="lblDiscount" class="text-gray-900" runat="server" Text="RM 0"></asp:Label>
                         </div>
                         <div class="flex items-center justify-between border-t border-gray-200 text-gray-900 pt-6">
                             <dt>Total</dt>
-                            <dd class="text-base">$141.92</dd>
+                            <asp:Label ID="lblTotal" class="text-base" runat="server" Text="RM 11"></asp:Label>
                         </div>
                     </dl>
                 </div>
             </div>
 
             <!-- Display a payment form -->
-            <div class="pt-20 w-full">
+            <div class="mt-16">
                 <form id="payment-form">
                     <div id="payment-element">
                         <!--Stripe.js injects the Payment Element-->

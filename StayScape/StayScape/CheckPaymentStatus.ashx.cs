@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Stripe;
 using System;
 using System.Data.SqlClient;
 using System.Web;
@@ -25,23 +26,63 @@ namespace StayScape
             }
 
             // Deserialize the JSON payload to get the payment status
-            bool paymentStatus = JsonConvert.DeserializeObject<bool>(requestBody);
+            var paymentIntent = JsonConvert.DeserializeObject<PaymentIntent>(requestBody);
             string paymentMessage = "";
-            if (paymentStatus)
+            if (paymentIntent != null && paymentIntent.status == "succeeded")
             {
+                //Get Payment Method from the paymentIntent object
+                string paymentMethod = paymentIntent.payment_method;
+                // Initialize Stripe with your secret key
+                string stripeSecretKey = Environment.GetEnvironmentVariable("STRIPE_SECRET_KEY");
+                StripeConfiguration.ApiKey = stripeSecretKey;
+
+                // Retrieve the payment intent object
+                var service = new PaymentMethodService();
+                var paymentIntentObj = service.Get(paymentMethod);
+
+                // Retrieve the payment type
+                string paymentType = paymentIntentObj.Type;
+
+                string cardBrand = "";
+                string cardLast4 = "";
+                string cardExpMonth = "";
+                string cardExpYear = "";
+                string fpxBank = "";
+                if (paymentType == "card")
+                {
+                    // Retrieve the card details
+                    var card = paymentIntentObj.Card;
+                    cardBrand = card.Brand;
+                    cardLast4 = card.Last4;
+                    cardExpMonth = card.ExpMonth.ToString();
+                    cardExpYear = card.ExpYear.ToString();
+                }
+                else if (paymentType == "fpx")
+                {
+                    // Retrieve the FPX details
+                    var fpx = paymentIntentObj.Fpx;
+                    fpxBank = fpx.Bank;
+                }
+
+
+
                 // Insert payment details into the database
                 DBManager db = new DBManager();
 
-                string sqlCommand = "INSERT INTO Payment (paymentID, paymentDate,reservationID) " +
-                    "VALUES (@paymentID, @paymentDate, @reservationID)";
-                //context.Session["reservationID"] = "1234567890";
-                //Console.WriteLine("Reservation ID: " + context.Session["reservationID"]);
+                string sqlCommand = "INSERT INTO Payment (paymentID, paymentMethod, paymentMethodDetail, paymentDate,reservationID) " +
+                    "VALUES (@paymentID, @paymentMethod, @paymentMethodDetail, @paymentDate, @reservationID)";
                 string reservationID = Convert.ToString(context.Session["reservationID"]);
 
 
                 SqlParameter[] parameters =
                 {
                 new SqlParameter("@paymentID", Guid.NewGuid().ToString()),
+                new SqlParameter("@paymentMethod", paymentType),
+                paymentType == "card" ?
+                    new SqlParameter("@paymentMethodDetail", cardBrand + " Ending with " + cardLast4 + " Expires" + cardExpMonth + "/" + cardExpYear)
+                    : paymentType == "fpx" ?
+                    new SqlParameter("@paymentMethodDetail", fpxBank) :
+                    new SqlParameter("@paymentMethodDetail",DBNull.Value),
                 new SqlParameter("@paymentDate", DateTime.Now),
                 new SqlParameter("@reservationID", reservationID),
                 };
@@ -104,6 +145,12 @@ namespace StayScape
             {
                 return false;
             }
+        }
+
+        public class PaymentIntent
+        {
+            public string payment_method { get; set; }
+            public string status { get; set; }
         }
     }
 }

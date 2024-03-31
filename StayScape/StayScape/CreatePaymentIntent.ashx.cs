@@ -34,7 +34,7 @@ namespace StayScape
                 // Handle the POST request to create a payment intent
                 var options = new PaymentIntentCreateOptions
                 {
-                    PaymentMethodTypes = new System.Collections.Generic.List<string> { "card", "fpx" },
+                    PaymentMethodTypes = new System.Collections.Generic.List<string> { "card", "fpx", "grabpay" },
                     Amount = amount, // Adjust the amount as needed
                     Currency = "myr",
                 };
