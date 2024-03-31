@@ -17,7 +17,7 @@ namespace StayScape.DesmondsPage {
         
         protected System.Web.UI.WebControls.Panel pnlSignIn;
         
-        protected System.Web.UI.WebControls.TextBox txtMailNum;
+        protected System.Web.UI.WebControls.TextBox txtMail;
         
         protected System.Web.UI.WebControls.TextBox txtPassword;
         

@@ -35,8 +35,8 @@
                                 <div class="col-lg-8 col-11 mx-auto">
                                     <asp:Panel runat="server" ID="pnlSignIn">
                                         <div class="form-floating mb-4 p-0">
-                                            <label for="email" id="mailNumLabel">Email Address or Phone Number</label>
-                                            <asp:TextBox runat="server" ID="txtMailNum" CssClass="form-control" placeholder="Email address" Required="true"></asp:TextBox>
+                                            <label for="email" id="mailLabel">Email Address</label>
+                                            <asp:TextBox runat="server" ID="txtMail" CssClass="form-control" placeholder="Email address" Required="true"></asp:TextBox>
                                         </div>
                                         <div class="form-floating p-0">
                                             <label for="password" id="pwdLabel">Password</label>
