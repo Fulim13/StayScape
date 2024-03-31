@@ -101,12 +101,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CancellationPolicy.aspx" />
+    <Content Include="CancelReservation.aspx" />
     <Content Include="AddVoucher.aspx" />
     <Content Include="BulkImportVoucher.aspx" />
     <Content Include="Checkout.aspx" />
     <Content Include="checkout.css" />
     <Content Include="checkout.js" />
     <Content Include="Global.asax" />
+    <Content Include="Images\WorldviewGrandHotel.jpg" />
     <Content Include="PropertyImg\1.jpg" />
     <Content Include="PropertyImg\2.jpg" />
     <Content Include="PropertyImg\3.jpg" />
@@ -147,6 +150,8 @@
     <Content Include="rating.js" />
     <Content Include="ratings.aspx" />
     <Content Include="ratingsCSS.css" />
+    <Content Include="ReviewClient.aspx" />
+    <Content Include="ReviewForm.aspx" />
     <Content Include="Analytic.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -167,6 +172,20 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CancellationPolicy.aspx.cs">
+      <DependentUpon>CancellationPolicy.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CancellationPolicy.aspx.designer.cs">
+      <DependentUpon>CancellationPolicy.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CancelReservation.aspx.cs">
+      <DependentUpon>CancelReservation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CancelReservation.aspx.designer.cs">
+      <DependentUpon>CancelReservation.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AddVoucher.aspx.cs">
       <DependentUpon>AddVoucher.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -336,6 +355,20 @@
     </Compile>
     <Compile Include="Review.aspx.designer.cs">
       <DependentUpon>Review.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReviewClient.aspx.cs">
+      <DependentUpon>ReviewClient.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReviewClient.aspx.designer.cs">
+      <DependentUpon>ReviewClient.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReviewForm.aspx.cs">
+      <DependentUpon>ReviewForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReviewForm.aspx.designer.cs">
+      <DependentUpon>ReviewForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="Voucher.aspx.cs">
       <DependentUpon>Voucher.aspx</DependentUpon>
