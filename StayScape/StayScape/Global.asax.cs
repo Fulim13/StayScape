@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Security;
-using System.Web.SessionState;
+﻿using dotenv.net;
+using System;
+using System.IO;
 
 namespace StayScape
 {
@@ -12,7 +9,16 @@ namespace StayScape
 
         protected void Application_Start(object sender, EventArgs e)
         {
+            string envFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ".env");
 
+            if (File.Exists(envFilePath))
+            {
+                DotEnv.Load(options: new DotEnvOptions(envFilePaths: new[] { envFilePath }));
+            }
+            else
+            {
+                Console.WriteLine(".env file not found.");
+            }
         }
 
         protected void Session_Start(object sender, EventArgs e)

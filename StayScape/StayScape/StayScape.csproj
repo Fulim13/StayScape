@@ -1,4 +1,4 @@
-﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -43,7 +43,41 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="dotenv.net, Version=3.1.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\dotenv.net.3.1.3\lib\netstandard2.0\dotenv.net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Stripe.net, Version=43.21.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stripe.net.43.21.0\lib\net461\Stripe.net.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.2\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -67,6 +101,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AddVoucher.aspx" />
+    <Content Include="BulkImportVoucher.aspx" />
+    <Content Include="Checkout.aspx" />
+    <Content Include="checkout.css" />
+    <Content Include="checkout.js" />
     <Content Include="Global.asax" />
     <Content Include="PropertyImg\1.jpg" />
     <Content Include="PropertyImg\2.jpg" />
@@ -76,6 +115,13 @@
     <Content Include="PropertyImg\6.jpg" />
     <Content Include="PropertyImg\7.jpg" />
     <Content Include="PropertyImg\8.jpg" />
+    <Content Include="HostReservationDetails.aspx" />
+    <Content Include="Images\house2-transparent.png" />
+    <Content Include="Images\house2.png" />
+    <Content Include="Images\testing.jpg" />
+    <Content Include="PaymentFailed.aspx" />
+    <Content Include="PaymentProcessing.aspx" />
+    <Content Include="PaymentSuccessful.aspx" />
     <Content Include="property_details.aspx" />
     <Content Include="property_host.aspx" />
     <Content Include="property_host_delete.aspx" />
@@ -101,7 +147,7 @@
     <Content Include="rating.js" />
     <Content Include="ratings.aspx" />
     <Content Include="ratingsCSS.css" />
-    <Content Include="Report.aspx" />
+    <Content Include="Analytic.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -117,9 +163,45 @@
     <Content Include="Images\house.png" />
     <Content Include="Review.aspx" />
     <Content Include="Voucher.aspx" />
+    <Content Include="VoucherDetails.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddVoucher.aspx.cs">
+      <DependentUpon>AddVoucher.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddVoucher.aspx.designer.cs">
+      <DependentUpon>AddVoucher.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BulkImportVoucher.aspx.cs">
+      <DependentUpon>BulkImportVoucher.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BulkImportVoucher.aspx.designer.cs">
+      <DependentUpon>BulkImportVoucher.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Checkout.aspx.cs">
+      <DependentUpon>Checkout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Checkout.aspx.designer.cs">
+      <DependentUpon>Checkout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CheckPaymentStatus.ashx.cs">
+      <DependentUpon>CheckPaymentStatus.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="CreatePaymentIntent.ashx.cs">
+      <DependentUpon>CreatePaymentIntent.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="CSVReader.cs" />
+    <Compile Include="Customer.Master.cs">
+      <DependentUpon>Customer.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer.Master.designer.cs">
+      <DependentUpon>Customer.Master</DependentUpon>
+    </Compile>
     <Compile Include="Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -127,8 +209,16 @@
     <Compile Include="Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DBManager.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="HostReservationDetails.aspx.cs">
+      <DependentUpon>HostReservationDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HostReservationDetails.aspx.designer.cs">
+      <DependentUpon>HostReservationDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="Main.Master.cs">
       <DependentUpon>Main.Master</DependentUpon>
@@ -136,6 +226,27 @@
     </Compile>
     <Compile Include="Main.Master.designer.cs">
       <DependentUpon>Main.Master</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentFailed.aspx.cs">
+      <DependentUpon>PaymentFailed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentFailed.aspx.designer.cs">
+      <DependentUpon>PaymentFailed.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentProcessing.aspx.cs">
+      <DependentUpon>PaymentProcessing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentProcessing.aspx.designer.cs">
+      <DependentUpon>PaymentProcessing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentSuccessful.aspx.cs">
+      <DependentUpon>PaymentSuccessful.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentSuccessful.aspx.designer.cs">
+      <DependentUpon>PaymentSuccessful.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="property_details.aspx.cs">
@@ -187,6 +298,13 @@
     <Compile Include="ratings.aspx.designer.cs">
       <DependentUpon>ratings.aspx</DependentUpon>
     </Compile>
+    <Compile Include="VoucherDetails.aspx.cs">
+      <DependentUpon>VoucherDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VoucherDetails.aspx.designer.cs">
+      <DependentUpon>VoucherDetails.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css.map" />
@@ -205,12 +323,12 @@
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.rtl.css.map" />
     <Content Include="Content\bootstrap.rtl.min.css.map" />
-    <Compile Include="Report.aspx.cs">
-      <DependentUpon>Report.aspx</DependentUpon>
+    <Compile Include="Analytic.aspx.cs">
+      <DependentUpon>Analytic.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Report.aspx.designer.cs">
-      <DependentUpon>Report.aspx</DependentUpon>
+    <Compile Include="Analytic.aspx.designer.cs">
+      <DependentUpon>Analytic.aspx</DependentUpon>
     </Compile>
     <Compile Include="Review.aspx.cs">
       <DependentUpon>Review.aspx</DependentUpon>
@@ -229,6 +347,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Main.Master" />
+    <Content Include="CreatePaymentIntent.ashx" />
+    <Content Include="CheckPaymentStatus.ashx" />
+    <Content Include="CustomerPage.sitemap" />
+    <Content Include="Customer.Master" />
     <None Include="packages.config" />
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Scripts\bootstrap.bundle.min.js.map" />
@@ -244,7 +366,9 @@
     </None>
     <Content Include="Web.sitemap" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Uploads\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
