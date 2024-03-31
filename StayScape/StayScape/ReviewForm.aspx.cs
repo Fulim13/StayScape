@@ -13,5 +13,33 @@ namespace StayScape
         {
 
         }
+
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+            thanksModal.CssClass = thanksModal.CssClass.Replace("hidden", "");
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Dashboard.aspx");
+        }
+
+        protected void ModalCloseButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Dashboard.aspx");
+        }
+
+        protected void RatingButton_Click(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            if (button.CssClass.Contains("selected"))
+            {
+                button.CssClass = button.CssClass.Replace("selected", "").Trim();
+            }
+            else
+            {
+                button.CssClass += " selected";
+            }
+        }
     }
 }
