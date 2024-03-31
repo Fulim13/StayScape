@@ -135,7 +135,7 @@
     <Content Include="rating.js" />
     <Content Include="ratings.aspx" />
     <Content Include="ratingsCSS.css" />
-    <Content Include="Report.aspx" />
+    <Content Include="Analytic.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -283,12 +283,12 @@
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.rtl.css.map" />
     <Content Include="Content\bootstrap.rtl.min.css.map" />
-    <Compile Include="Report.aspx.cs">
-      <DependentUpon>Report.aspx</DependentUpon>
+    <Compile Include="Analytic.aspx.cs">
+      <DependentUpon>Analytic.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Report.aspx.designer.cs">
-      <DependentUpon>Report.aspx</DependentUpon>
+    <Compile Include="Analytic.aspx.designer.cs">
+      <DependentUpon>Analytic.aspx</DependentUpon>
     </Compile>
     <Compile Include="Review.aspx.cs">
       <DependentUpon>Review.aspx</DependentUpon>

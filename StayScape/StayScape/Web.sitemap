@@ -11,6 +11,6 @@
 			<siteMapNode url="~/VoucherDetails.aspx" title="Voucher Details" description="" />
 		</siteMapNode>
 		<siteMapNode url="~/Review.aspx" title="Review" description="" />
-		<siteMapNode url="~/Report.aspx" title="Report" description="" />
+		<siteMapNode url="~/Analytic.aspx" title="Analytic" description="" />
 	</siteMapNode>
 </siteMap>
