@@ -28,6 +28,27 @@ namespace StayScape
             decimal propertyPrice = Convert.ToDecimal(reader["propertyPrice"]);
             db.closeConnection();
 
+            //Get the property Image from the  session property ID
+            db.createConnection();
+            sqlCommand = "SELECT propertyPicture FROM PropertyImage WHERE propertyID = @propertyID";
+            SqlParameter[] parameters2 =
+            {
+                new SqlParameter("@propertyID", Session["PropertyID"])
+            };
+            command = db.ExecuteQuery(sqlCommand, parameters2);
+            reader = command.ExecuteReader();
+            if (reader.Read())
+            {
+                byte[] imageData = (byte[])reader["propertyPicture"];
+                string base64String = Convert.ToBase64String(imageData, 0, imageData.Length);
+                imgProperty.ImageUrl = "data:image/jpeg;base64," + base64String;
+            }
+            else
+            {
+                // Handle case where no image is found
+                imgProperty.ImageUrl = "/Images/testing.jpg"; // Or any default image path
+            }
+
 
             //Display in the label
             lblSubtotal.Text = "RM " + propertyPrice.ToString();
