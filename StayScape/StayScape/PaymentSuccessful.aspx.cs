@@ -104,7 +104,12 @@ namespace StayScape
             lblTotal.Text = "RM " + totalAmount.ToString();
 
             //Clear the session beside user session
-            Session.Remove("reservationID");
+            //Session.Remove("reservationID");
+        }
+
+        protected void btnOrderHistory_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("OrderHistory.aspx");
         }
     }
 }

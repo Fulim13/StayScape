@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace StayScape.PPT
 {
@@ -61,6 +56,16 @@ namespace StayScape.PPT
             }
 
             return property;
+        }
+
+        protected void btnPlace_Click(object sender, EventArgs e)
+        {
+            // Store the propertyID in the session
+            Session["propertyID"] = 1;
+            Session["CheckIn"] = DateTime.Now;
+            Session["CheckOut"] = DateTime.Now.AddDays(1);
+
+            Response.Redirect("Checkout.aspx");
         }
     }
 

@@ -8,7 +8,10 @@ namespace StayScape
         protected void Page_Load(object sender, EventArgs e)
         {
             //Store Property ID to Session
-            Session["PropertyID"] = 1;
+            //Session["PropertyID"] = 1;
+
+            // Get Session Property ID
+            int propertyID = Convert.ToInt32(Session["PropertyID"]);
 
 
             Session["discountAmount"] = 0;
@@ -19,7 +22,7 @@ namespace StayScape
             string sqlCommand = "SELECT propertyName, propertyPrice FROM Property WHERE propertyID = @propertyID";
             SqlParameter[] parameters =
             {
-                new SqlParameter("@propertyID", Session["PropertyID"])
+                new SqlParameter("@propertyID", propertyID)
             };
             SqlCommand command = db.ExecuteQuery(sqlCommand, parameters);
             SqlDataReader reader = command.ExecuteReader();
@@ -33,7 +36,7 @@ namespace StayScape
             sqlCommand = "SELECT propertyPicture FROM PropertyImage WHERE propertyID = @propertyID";
             SqlParameter[] parameters2 =
             {
-                new SqlParameter("@propertyID", Session["PropertyID"])
+                new SqlParameter("@propertyID", propertyID)
             };
             command = db.ExecuteQuery(sqlCommand, parameters2);
             reader = command.ExecuteReader();
@@ -55,8 +58,8 @@ namespace StayScape
             lblDiscount.Text = "RM " + Session["discountAmount"].ToString();
             lblTotal.Text = "RM " + Convert.ToString(propertyPrice - Convert.ToDecimal(Session["discountAmount"]));
 
-            Session["CheckIn"] = DateTime.Now;
-            Session["CheckOut"] = DateTime.Now.AddDays(1);
+            //Session["CheckIn"] = DateTime.Now;
+            //Session["CheckOut"] = DateTime.Now.AddDays(1);
             Session["reservationAmount"] = propertyPrice - Convert.ToDecimal(Session["discountAmount"]);
 
             lblPropertyName.Text = propertyName;
