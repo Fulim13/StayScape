@@ -15,15 +15,7 @@ namespace StayScape.DesmondsPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                // Check if the user is already logged in
-                if (Session["UserID"] != null)
-                {
-                    // Redirect to profile page
-                    Response.Redirect("Profile.aspx");
-                }
-            }
+            
         }
         protected void BtnSignIn_Click(object sender, EventArgs e)
         {
@@ -33,11 +25,15 @@ namespace StayScape.DesmondsPage
             // Validate the user using email
             if (Membership.ValidateUser(email, password))
             {
-                FormsAuthentication.RedirectFromLoginPage(email, false);
-            }
-            else
-            {
-                Debug.WriteLine("Login Invalid");
+                if (Roles.IsUserInRole(email, "Host"))
+                {
+                    FormsAuthentication.SetAuthCookie(email, false);
+                    // Response.Redirect("HostCheck.aspx"); <-- replace this with actual host page
+                }
+                else
+                {
+                    FormsAuthentication.RedirectFromLoginPage(email, false);
+                }
             }
         }
 
