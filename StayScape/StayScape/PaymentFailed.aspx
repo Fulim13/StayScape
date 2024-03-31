@@ -12,7 +12,7 @@
             <div class="mt-3 text-gray-500">The payment was unsucessfuol due to an abnormality.</div>
             <div class="text-gray-500">Please try again later or user another payment methods.</div>
             <asp:Button ID="btnTryAgain" CssClass="mt-6 py-3 px-8 bg-indigo-600 text-white text-sm font-medium rounded-md px-4 hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600" OnClick="btnTryAgain_Click" runat="server" Text="Try Again" />
-            <asp:Button ID="btnOrderPage" CssClass="mt-3 bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" runat="server" Text="Back to Order Page" />
+            <asp:Button ID="btnOrderPage" CssClass="mt-3 bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" runat="server" Text="Back to Order History" />
         </div>
     </div>
 </asp:Content>
