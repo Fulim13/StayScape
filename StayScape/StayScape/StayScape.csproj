@@ -107,6 +107,8 @@
     <Content Include="checkout.css" />
     <Content Include="checkout.js" />
     <Content Include="Global.asax" />
+    <Content Include="Images\house2-transparent.png" />
+    <Content Include="Images\house2.png" />
     <Content Include="Images\testing.jpg" />
     <Content Include="PaymentFailed.aspx" />
     <Content Include="PaymentProcessing.aspx" />
