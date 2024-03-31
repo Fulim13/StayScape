@@ -80,6 +80,8 @@ namespace StayScape
             lblDiscountPrice.Text = "RM " + discountAmount.ToString();
             lblTotal.Text = "RM " + totalAmount.ToString();
 
+            //Clear the session beside user session
+            Session.Remove("reservationID");
         }
     }
 }

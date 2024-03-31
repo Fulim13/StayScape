@@ -15,19 +15,37 @@ namespace StayScape
             decimal reservationAmount = Convert.ToDecimal(Session["reservationAmount"]);
             decimal discountAmount = Convert.ToDecimal(Session["discountAmount"]);
             decimal totalAmount = reservationAmount - discountAmount;
-            string reservationID = Guid.NewGuid().ToString();
-            Session["reservationID"] = reservationID;
-
-            //Insert Reservation Table
-            DBManager db = new DBManager();
-
-            string sqlCommand = "INSERT INTO Reservation (reservationID, reservationAmount, discountAmount, reservationTotal,checkInDate,checkOutDate,createdAt,reservationStatus, custID, propertyID) " +
-                "VALUES (@reservationID, @reservationAmount, @discountAmount, @reservationTotal, @checkInDate, @checkOutDate, @createdAt,@reservationStatus, @custID, @propertyID)";
-
-
-            SqlParameter[] parameters =
+            if (Session["reservationID"] == null)
             {
-                new SqlParameter("@reservationID", reservationID),
+                string reservationID = Guid.NewGuid().ToString();
+                Session["reservationID"] = reservationID;
+
+
+            }
+
+            //Check the reservation is on reservation table
+            //If got do proceed
+            //else insert into reservation table
+            DBManager db = new DBManager();
+            db.createConnection();
+            string sqlCommand = "SELECT COUNT(*) FROM Reservation WHERE reservationID = @reservationID";
+            SqlParameter parameter = new SqlParameter("@reservationID", Convert.ToString(Session["reservationID"]));
+            SqlCommand command = db.ExecuteQuery(sqlCommand, new SqlParameter[] { parameter });
+            int count = (int)command.ExecuteScalar();
+            db.closeConnection();
+
+
+            if (count == 0)
+            {
+
+                //Insert Reservation Table
+                string sqlCommand2 = "INSERT INTO Reservation (reservationID, reservationAmount, discountAmount, reservationTotal,checkInDate,checkOutDate,createdAt,reservationStatus, custID, propertyID) " +
+                    "VALUES (@reservationID, @reservationAmount, @discountAmount, @reservationTotal, @checkInDate, @checkOutDate, @createdAt,@reservationStatus, @custID, @propertyID)";
+
+
+                SqlParameter[] parameters2 =
+                {
+                new SqlParameter("@reservationID", Session["reservationID"]),
                 new SqlParameter("@reservationAmount", reservationAmount),
                 new SqlParameter("@discountAmount", discountAmount),
                 new SqlParameter("@reservationTotal", totalAmount),
@@ -39,9 +57,12 @@ namespace StayScape
                 new SqlParameter("@propertyID", propertyID)
             };
 
-            db.createConnection();
-            bool isBool = db.ExecuteNonQuery(sqlCommand, parameters);
-            db.closeConnection();
+                db.createConnection();
+                bool isBool = db.ExecuteNonQuery(sqlCommand2, parameters2);
+                db.closeConnection();
+            }
+
+
 
         }
         //private string generateReservationID()
