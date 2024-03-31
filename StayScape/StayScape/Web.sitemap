@@ -4,7 +4,7 @@
 		<siteMapNode url="~/Dashboard.aspx" title="Dashboard" description="" >
 			<siteMapNode url="~/HostReservationDetails.aspx" title="Reservation Details" description="" />
 		</siteMapNode>
-		<siteMapNode url="~/property_list.aspx" title="Property" description="" />
+		<siteMapNode url="~/property_host.aspx" title="Property" description="" />
 		<siteMapNode url="~/Voucher.aspx" title="Voucher" description="">
 			<siteMapNode url="~/AddVoucher.aspx" title="Add Voucher" description="" />
 			<siteMapNode url="~/BulkImportVoucher.aspx" title="Bulk Import Voucher" description="" />

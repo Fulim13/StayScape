@@ -1,4 +1,4 @@
-﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -107,6 +107,14 @@
     <Content Include="checkout.css" />
     <Content Include="checkout.js" />
     <Content Include="Global.asax" />
+    <Content Include="PropertyImg\1.jpg" />
+    <Content Include="PropertyImg\2.jpg" />
+    <Content Include="PropertyImg\3.jpg" />
+    <Content Include="PropertyImg\4.jpg" />
+    <Content Include="PropertyImg\5.jpg" />
+    <Content Include="PropertyImg\6.jpg" />
+    <Content Include="PropertyImg\7.jpg" />
+    <Content Include="PropertyImg\8.jpg" />
     <Content Include="HostReservationDetails.aspx" />
     <Content Include="Images\house2-transparent.png" />
     <Content Include="Images\house2.png" />
@@ -115,6 +123,10 @@
     <Content Include="PaymentProcessing.aspx" />
     <Content Include="PaymentSuccessful.aspx" />
     <Content Include="property_details.aspx" />
+    <Content Include="property_host.aspx" />
+    <Content Include="property_host_delete.aspx" />
+    <Content Include="property_host_insert.aspx" />
+    <Content Include="property_host_modify.aspx" />
     <Content Include="property_list.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -243,6 +255,34 @@
     </Compile>
     <Compile Include="property_details.aspx.designer.cs">
       <DependentUpon>property_details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="property_host.aspx.cs">
+      <DependentUpon>property_host.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="property_host.aspx.designer.cs">
+      <DependentUpon>property_host.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="property_host_delete.aspx.cs">
+      <DependentUpon>property_host_delete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="property_host_delete.aspx.designer.cs">
+      <DependentUpon>property_host_delete.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="property_host_insert.aspx.cs">
+      <DependentUpon>property_host_insert.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="property_host_insert.aspx.designer.cs">
+      <DependentUpon>property_host_insert.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="property_host_modify.aspx.cs">
+      <DependentUpon>property_host_modify.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="property_host_modify.aspx.designer.cs">
+      <DependentUpon>property_host_modify.aspx</DependentUpon>
     </Compile>
     <Compile Include="property_list.aspx.cs">
       <DependentUpon>property_list.aspx</DependentUpon>

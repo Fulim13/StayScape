@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace StayScape.PPT
+namespace StayScape
 {
 
 
-    public partial class property_details
+    public partial class property_host_delete
     {
     }
 }
