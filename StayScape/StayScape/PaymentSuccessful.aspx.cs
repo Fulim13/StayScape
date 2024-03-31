@@ -22,6 +22,28 @@ namespace StayScape
             string propertyName = command.ExecuteScalar().ToString();
             db.closeConnection();
 
+            //Get the property Image from the session reservation ID
+            db.createConnection();
+            //sqlCommand = "SELECT propertyPicture FROM PropertyImage WHERE propertyID = @propertyID";
+            sqlCommand = "SELECT propertyPicture FROM PropertyImage WHERE propertyID = (SELECT propertyID FROM Reservation WHERE reservationID = @reservationID)";
+            SqlParameter[] parameters2 =
+            {
+                new SqlParameter("@reservationID", reservationID)
+            };
+            command = db.ExecuteQuery(sqlCommand, parameters2);
+            SqlDataReader reader = command.ExecuteReader();
+            if (reader.Read())
+            {
+                byte[] imageData = (byte[])reader["propertyPicture"];
+                string base64String = Convert.ToBase64String(imageData, 0, imageData.Length);
+                imgProperty.ImageUrl = "data:image/jpeg;base64," + base64String;
+            }
+            else
+            {
+                // Handle case where no image is found
+                imgProperty.ImageUrl = "/Images/testing.jpg"; // Or any default image path
+            }
+
             //Get Reservation Details
             db.createConnection();
             sqlCommand = "SELECT reservationAmount, discountAmount, reservationTotal, checkInDate, checkOutDate FROM Reservation WHERE reservationID = @reservationID";
@@ -30,7 +52,7 @@ namespace StayScape
                     new SqlParameter("@reservationID", reservationID)
                 };
             command = db.ExecuteQuery(sqlCommand, parametersReservationDetails);
-            SqlDataReader reader = command.ExecuteReader();
+            reader = command.ExecuteReader();
             reader.Read();
             decimal reservationAmount = Convert.ToDecimal(reader["reservationAmount"]);
             decimal discountAmount = Convert.ToDecimal(reader["discountAmount"]);
@@ -69,6 +91,7 @@ namespace StayScape
 
 
             //Set the values to the labels
+            lblOrderNum.Text = "Order Number: " + reservationID;
             lblProperty.Text = propertyName;
             lblDate.Text = checkInDate.ToString("dd MMMM yyyy") + " - " + checkOutDate.ToString("dd MMMM yyyy");
             lblCustName.Text = customerName;

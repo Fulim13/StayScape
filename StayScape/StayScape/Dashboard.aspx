@@ -62,7 +62,7 @@
                 </table>
             </EmptyDataTemplate>
             <ItemTemplate>
-                <tr class="border-y border-gray-200 hover:bg-gray-50 cursor-pointer">
+                <tr class="border-y border-gray-200 hover:bg-gray-50 cursor-pointer" onclick='<%# Eval("reservationID", "window.location.href = \"HostReservationDetails.aspx?reservationID={0}\";") %>'>
                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                         <asp:Label ID="reservationIDLabel" runat="server" Text='<%# Eval("reservationID") %>' />
                     </td>

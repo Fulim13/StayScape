@@ -16,7 +16,8 @@
 
             <div class="mt-10 border-t border-gray-200">
                 <div class="py-10 border-b border-gray-200 flex space-x-6">
-                    <img src="Images/testing.jpg" class="flex-none w-20 h-20 object-center object-cover bg-gray-100 rounded-lg sm:w-40 sm:h-40">
+                    <%--<img src="Images/testing.jpg" class="flex-none w-20 h-20 object-center object-cover bg-gray-100 rounded-lg sm:w-40 sm:h-40">--%>
+                    <asp:Image ID="imgProperty" width="200" class="rounded-lg" runat="server" />
                     <div class="flex-auto flex flex-col">
                         <div>
                             <h4 class="font-medium text-gray-900">

@@ -107,6 +107,7 @@
     <Content Include="checkout.css" />
     <Content Include="checkout.js" />
     <Content Include="Global.asax" />
+    <Content Include="HostReservationDetails.aspx" />
     <Content Include="Images\house2-transparent.png" />
     <Content Include="Images\house2.png" />
     <Content Include="Images\testing.jpg" />
@@ -199,6 +200,13 @@
     <Compile Include="DBManager.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="HostReservationDetails.aspx.cs">
+      <DependentUpon>HostReservationDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HostReservationDetails.aspx.designer.cs">
+      <DependentUpon>HostReservationDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="Main.Master.cs">
       <DependentUpon>Main.Master</DependentUpon>
