@@ -22,7 +22,7 @@ namespace StayScape.PPT
         private PropertyModel GetPropertyFromDatabase(int propertyID)
         {
             PropertyModel property = null;
-            string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            string connectionString = ConfigurationManager.ConnectionStrings["LocalSqlServer"].ConnectionString;
             string query = "SELECT propertyName, propertyPrice, propertyDesc, propertyAddress, totalBedroom, totalBathroom, createdAt, lastUpdate FROM Property WHERE propertyID = @propertyID";
 
             using (SqlConnection connection = new SqlConnection(connectionString))

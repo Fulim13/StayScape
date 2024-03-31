@@ -2,10 +2,6 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace StayScape.PPT
 {
@@ -20,7 +16,7 @@ namespace StayScape.PPT
         {
             List<PropertyModel> properties = new List<PropertyModel>();
 
-            string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            string connectionString = ConfigurationManager.ConnectionStrings["LocalSqlServer"].ConnectionString;
             string query = "SELECT propertyID, propertyName, propertyPrice, propertyDesc, createdAt, lastUpdate FROM Property";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -49,7 +45,7 @@ namespace StayScape.PPT
                 }
                 catch (Exception ex)
                 {
-                 
+
                 }
             }
             return properties;
