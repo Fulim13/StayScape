@@ -23,7 +23,7 @@
             }
             h2 {
                 font-size: 24px;
-                color: #007bff;
+                color: #4338ca;
                 margin-bottom: 20px;
                 text-align: center;
             }
@@ -47,7 +47,7 @@
                 display: block;
                 width: 100%;
                 padding: 10px 20px;
-                background-color: #007bff;
+                background-color: #4338ca;
                 color: #fff;
                 border: none;
                 border-radius: 5px;

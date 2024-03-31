@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="property_details.aspx.cs" Inherits="StayScape.PPT.property_details" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Customer.Master" AutoEventWireup="true" CodeBehind="property_details.aspx.cs" Inherits="StayScape.PPT.property_details" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -14,11 +14,13 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
         }
 
         .container {
             max-width: 800px;
-            margin: 0 auto;
+            margin: 20px auto;
             background-color: #fff;
             padding: 20px;
             border-radius: 10px;
@@ -27,6 +29,7 @@
 
         .property-details {
             margin-bottom: 20px;
+            text-align: center;
         }
 
         .property-image {
@@ -34,28 +37,31 @@
             max-width: 400px;
             border-radius: 5px;
             margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         .property-name {
             font-size: 24px;
-            color: #007bff;
+            color: #4338ca;
             margin-bottom: 10px;
         }
 
         .property-info {
-            margin-bottom: 10px;
+            margin-bottom: 20px;
+            text-align: left;
         }
 
-            .property-info strong {
-                margin-right: 5px;
-            }
+        .property-info strong {
+            margin-right: 5px;
+            color: #333;
+        }
 
         .button-container {
             text-align: center;
         }
 
         .button {
-            background-color: #007bff;
+            background-color: #4338ca;
             color: #fff;
             border: none;
             border-radius: 5px;
@@ -63,11 +69,35 @@
             margin: 0 10px;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            font-size: 16px;
         }
 
-            .button:hover {
-                background-color: #0056b3;
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        .button.secondary {
+            background-color: #ddd;
+            color: #333;
+        }
+
+        .button.secondary:hover {
+            background-color: #ccc;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
             }
+
+            .property-details {
+                text-align: left;
+            }
+
+            .property-image {
+                max-width: 100%;
+            }
+        }
     </style>
     
 </head>
@@ -94,9 +124,8 @@
             <% } %>
         </div>
         <div class="button-container">
-            <%--<button class="button"></button>--%>
             <asp:Button CssClass="button" ID="btnPlace" runat="server" Text="Reserve" OnClick="btnPlace_Click" />
-            <button class="button" onclick="goBack()">Back</button>
+            <button class="button secondary" onclick="goBack()">Back</button>
         </div>
     </div>
     <section class="py-24 relative">
@@ -321,11 +350,11 @@
         </div>
     </div>
 </section>
-    <script>
-        function goBack() {
-            window.history.back();
-        }
-    </script>
+   <script>
+       function goBack() {
+           window.history.back();
+       }
+   </script>
 </body>
 </html>
 </asp:Content>

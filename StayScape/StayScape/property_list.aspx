@@ -1,10 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="property_list.aspx.cs" Inherits="StayScape.PPT.property_list" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Customer.Master" AutoEventWireup="true" CodeBehind="property_list.aspx.cs" Inherits="StayScape.PPT.property_list" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,6 +25,9 @@
             margin-bottom: 20px;
             padding: 20px;
             transition: box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         .property-card:hover {
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
@@ -37,8 +40,9 @@
         }
         .property-name {
             font-size: 24px;
-            color: #007bff;
+            color: #4338ca;
             margin-bottom: 10px;
+            text-align: center;
         }
         .property-price {
             font-size: 18px;
@@ -48,14 +52,17 @@
         .property-description {
             color: #555;
             margin-bottom: 10px;
+            text-align: center;
         }
         .property-dates {
             margin-bottom: 5px;
             color: #777;
+            text-align: center;
         }
         .view-details-link {
-            color: #007bff;
+            color: #4338ca;
             text-decoration: none;
+            transition: color 0.3s ease;
         }
         .view-details-link:hover {
             color: #0056b3;
@@ -65,14 +72,7 @@
             display: flex;
             align-items: center;
         }
-        .search-container input[type=text] {
-            flex: 1;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            font-size: 16px;
-            margin-right: 10px;
-        }
+        .search-container input[type=text], 
         .search-container select {
             padding: 10px;
             border-radius: 5px;
@@ -82,7 +82,7 @@
         }
         .search-container button {
             padding: 10px 15px;
-            background-color: #007bff;
+            background-color: #4338ca;
             color: #fff;
             border: none;
             border-radius: 5px;
@@ -93,13 +93,19 @@
         .search-container button:hover {
             background-color: #0056b3;
         }
+        .auto-style1 {
+            width: 170px;
+        }
+        .auto-style2 {
+            width: 170px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Type a Property Name">
-            <select id="ddlBedrooms">
+            <input type="text" id="searchInput" placeholder="Search by Property Name">
+            <select id="ddlBedrooms" class="auto-style1">
                 <option disabled selected>All Bedrooms</option>
                 <option value="1">1 Bedroom</option>
                 <option value="2">2 Bedrooms</option>
@@ -112,7 +118,7 @@
                 <option value="9">9 Bedrooms</option>
                 <option value="10">10 Bedrooms</option>
             </select>
-            <select id="ddlBathrooms">
+            <select id="ddlBathrooms" class="auto-style2">
                 <option disabled selected>All Bathrooms</option>
                 <option value="1">1 Bathroom</option>
                 <option value="2">2 Bathrooms</option>
@@ -141,40 +147,6 @@
             </div>
         <% } %>
     </div>
-  <script>
-      function searchProperties() {
-          var input, filter, cards, card, name, i;
-          input = document.getElementById("searchInput");
-          filter = input.value.toUpperCase().trim(); 
-
-          var bedroomsFilter = document.getElementById("ddlBedrooms").value;
-          var bathroomsFilter = document.getElementById("ddlBathrooms").value;
-
-          if (!filter) {
-              alert("Please enter a property name!");
-              return;
-          }
-
-          cards = document.getElementsByClassName("property-card");
-          for (i = 0; i < cards.length; i++) {
-              card = cards[i];
-              name = card.getElementsByClassName("property-name")[0];
-              var bedrooms = card.getAttribute("data-bedrooms");
-              var bathrooms = card.getAttribute("data-bathrooms");
-
-              var propertyName = name.innerText.toUpperCase().trim(); 
-
-              if (propertyName.startsWith(filter) ||
-                  (bedroomsFilter === "" || bedrooms === bedroomsFilter) &&
-                  (bathroomsFilter === "" || bathrooms === bathroomsFilter)) {
-                  card.style.display = "";
-              } else {
-                  card.style.display = "none";
-              }
-          }
-      }
-  </script>
-
 </body>
 </html>
 </asp:Content>
