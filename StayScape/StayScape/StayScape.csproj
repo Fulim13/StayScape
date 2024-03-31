@@ -109,8 +109,11 @@
     <Content Include="checkout.css" />
     <Content Include="checkout.js" />
     <Content Include="Global.asax" />
+    <Content Include="HostRegister.aspx" />
     <Content Include="Images\WorldviewGrandHotel.jpg" />
+    <Content Include="Login.aspx" />
     <Content Include="OrderHistory.aspx" />
+    <Content Include="Profile.aspx" />
     <Content Include="PropertyImg\1.jpg" />
     <Content Include="PropertyImg\2.jpg" />
     <Content Include="PropertyImg\3.jpg" />
@@ -151,6 +154,7 @@
     <Content Include="rating.js" />
     <Content Include="ratings.aspx" />
     <Content Include="ratingsCSS.css" />
+    <Content Include="Register.aspx" />
     <Content Include="ReviewClient.aspx" />
     <Content Include="ReviewForm.aspx" />
     <Content Include="Analytic.aspx" />
@@ -233,12 +237,26 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="HostRegister.aspx.cs">
+      <DependentUpon>HostRegister.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HostRegister.aspx.designer.cs">
+      <DependentUpon>HostRegister.aspx</DependentUpon>
+    </Compile>
     <Compile Include="HostReservationDetails.aspx.cs">
       <DependentUpon>HostReservationDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="HostReservationDetails.aspx.designer.cs">
       <DependentUpon>HostReservationDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Main.Master.cs">
       <DependentUpon>Main.Master</DependentUpon>
@@ -274,6 +292,13 @@
     </Compile>
     <Compile Include="PaymentSuccessful.aspx.designer.cs">
       <DependentUpon>PaymentSuccessful.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile.aspx.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile.aspx.designer.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="property_details.aspx.cs">
@@ -324,6 +349,13 @@
     </Compile>
     <Compile Include="ratings.aspx.designer.cs">
       <DependentUpon>ratings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
     <Compile Include="VoucherDetails.aspx.cs">
       <DependentUpon>VoucherDetails.aspx</DependentUpon>

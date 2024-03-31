@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 
 namespace StayScape
 {
     public class DBManager
     {
         private string connectionString =
-            ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            ConfigurationManager.ConnectionStrings["LocalSqlServer"].ConnectionString;
         SqlConnection connection;
 
 
