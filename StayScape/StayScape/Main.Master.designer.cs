@@ -69,13 +69,13 @@ namespace StayScape
         protected global::System.Web.UI.WebControls.HyperLink reviewLink;
 
         /// <summary>
-        /// reportLink control.
+        /// analyticLink control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink reportLink;
+        protected global::System.Web.UI.WebControls.HyperLink analyticLink;
 
         /// <summary>
         /// SiteMapPath1 control.

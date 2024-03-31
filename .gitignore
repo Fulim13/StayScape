@@ -365,5 +365,5 @@ FodyWeavers.xsd
 # Tailwind - generated file
 StayScape/StayScape/dist/output.css
 
-# stirpe api env
+# Stripe ENV file
 .env

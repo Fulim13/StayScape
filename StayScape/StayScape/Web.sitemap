@@ -1,10 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
 	<siteMapNode url="~/Home.aspx" title="Home" description="">
-		<siteMapNode url="~/Dashboard.aspx" title="Dashboard" description="" />
+		<siteMapNode url="~/Dashboard.aspx" title="Dashboard" description="" >
+			<siteMapNode url="~/HostReservationDetails.aspx" title="Reservation Details" description="" />
+		</siteMapNode>
 		<siteMapNode url="~/property_list.aspx" title="Property" description="" />
-		<siteMapNode url="~/Voucher.aspx" title="Voucher" description="" />
+		<siteMapNode url="~/Voucher.aspx" title="Voucher" description="">
+			<siteMapNode url="~/AddVoucher.aspx" title="Add Voucher" description="" />
+			<siteMapNode url="~/BulkImportVoucher.aspx" title="Bulk Import Voucher" description="" />
+			<siteMapNode url="~/VoucherDetails.aspx" title="Voucher Details" description="" />
+		</siteMapNode>
 		<siteMapNode url="~/Review.aspx" title="Review" description="" />
-		<siteMapNode url="~/Report.aspx" title="Report" description="" />
+		<siteMapNode url="~/Analytic.aspx" title="Analytic" description="" />
 	</siteMapNode>
 </siteMap>
