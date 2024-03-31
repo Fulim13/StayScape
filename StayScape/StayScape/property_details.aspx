@@ -68,6 +68,7 @@
     
 </head>
 <body>
+    <form id="form1" runat="server">
     <div class="container">
         <div class="property-details">
             <% if (Property != null)
@@ -90,7 +91,8 @@
             <% } %>
         </div>
         <div class="button-container">
-            <button class="button">Reserve</button>
+            <%--<button class="button"></button>--%>
+            <asp:Button CssClass="button" ID="btnPlace" runat="server" Text="Reserve" OnClick="btnPlace_Click" />
             <button class="button" onclick="goBack()">Back</button>
         </div>
     </div>
@@ -316,6 +318,7 @@
         </div>
     </div>
 </section>
+    </form>
     <script>
         function goBack() {
             window.history.back();

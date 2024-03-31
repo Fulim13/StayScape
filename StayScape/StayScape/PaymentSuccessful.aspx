@@ -6,7 +6,7 @@
     <div class="bg-white">
         <div class="max-w-3xl mx-auto px-4 py-8 sm:px-6 sm:pb-20 sm:pt-8 lg:px-8">
             <div class="text-right">
-                <a href="#" class="text-sm font-medium text-indigo-600 hover:text-indigo-500">Continue Shopping<span aria-hidden="true"> &rarr;</span></a>
+                <asp:Button ID="btnOrderHistory" class="text-sm font-medium text-indigo-600 hover:text-indigo-500" runat="server" Text="Continue" OnClick="btnOrderHistory_Click" />
             </div>
             <div class="max-w-xl">
                 <h1 class="text-sm font-semibold uppercase tracking-wide text-indigo-600">Payment Successful</h1>
