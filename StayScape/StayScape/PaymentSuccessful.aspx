@@ -10,13 +10,12 @@
             </div>
             <div class="max-w-xl">
                 <h1 class="text-sm font-semibold uppercase tracking-wide text-indigo-600">Payment Successful</h1>
-                <p class="mt-2 text-4xl font-extrabold tracking-tight sm:text-5xl">Thanks for reservation</p>
-                <asp:Label ID="lblOrderNum" class="mt-2 text-base text-gray-500" runat="server" Text="Order Number: "></asp:Label>
+                <p class="my-2 text-4xl font-extrabold tracking-tight sm:text-5xl">Thanks for reservation</p>
+                <asp:Label ID="lblOrderNum" class="text-base text-gray-500" runat="server" Text="Order Number: "></asp:Label>
             </div>
 
             <div class="mt-10 border-t border-gray-200">
                 <div class="py-10 border-b border-gray-200 flex space-x-6">
-                    <%--<img src="Images/testing.jpg" class="flex-none w-20 h-20 object-center object-cover bg-gray-100 rounded-lg sm:w-40 sm:h-40">--%>
                     <asp:Image ID="imgProperty" width="200" class="rounded-lg" runat="server" />
                     <div class="flex-auto flex flex-col">
                         <div>
@@ -70,10 +69,6 @@
                             </dt>
                             <asp:Label ID="lblDiscountPrice" class="text-gray-700" runat="server" Text="-$18.00 (50%)"></asp:Label>
                         </div>
-                        <%--                        <div class="flex justify-between">
-                            <dt class="font-medium text-gray-900">Tax</dt>
-                            <dd class="text-gray-700">$5.00</dd>
-                        </div>--%>
                         <div class="flex justify-between">
                             <dt class="font-medium text-gray-900">Total</dt>
                             <asp:Label ID="lblTotal" class="text-gray-900" runat="server" Text="$23.00"></asp:Label>

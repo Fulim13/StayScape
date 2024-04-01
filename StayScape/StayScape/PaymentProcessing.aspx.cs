@@ -24,8 +24,6 @@ namespace StayScape
             }
 
             //Check the reservation is on reservation table
-            //If got do proceed
-            //else insert into reservation table
             DBManager db = new DBManager();
             db.createConnection();
             string sqlCommand = "SELECT COUNT(*) FROM Reservation WHERE reservationID = @reservationID";
