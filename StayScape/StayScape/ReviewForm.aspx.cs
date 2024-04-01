@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace StayScape
@@ -21,12 +17,12 @@ namespace StayScape
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Dashboard.aspx");
+            Response.Redirect("~/OrderHistory.aspx");
         }
 
         protected void ModalCloseButton_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Dashboard.aspx");
+            Response.Redirect("~/OrderHistory.aspx");
         }
 
         protected void RatingButton_Click(object sender, EventArgs e)

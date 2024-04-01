@@ -1,15 +1,8 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CancellationPolicy.aspx.cs" Inherits="StayScape.CancellationPolicy" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Customer.Master" AutoEventWireup="true" CodeBehind="CancellationPolicy.aspx.cs" Inherits="StayScape.CancellationPolicy" %>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Cancellation Policy</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link href="./dist/output.css" rel="stylesheet" />
-</head>
-<body class="bg-gray-100">
-    <form id="form1" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
         <div class="max-w-4xl mx-auto px-4 py-8">
             <div class="bg-white rounded-lg shadow-md p-8">
                 <div class="flex justify-end">
@@ -47,6 +40,6 @@
                 </div>
             </div>
         </div>
-    </form>
-</body>
-</html>
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
+</asp:Content>
