@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
-using System.Data.Common;
-using System.Security.Cryptography;
+using System.Web.UI.WebControls;
 
 namespace StayScape
 {
@@ -52,36 +46,7 @@ namespace StayScape
             txtCapAt.Text = "";
         }
 
-        private string generateVoucherCode()
-        {
-            Random random = new Random();
-            string characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            string voucherCode = "";
 
-            bool codeExists = true;
-            while (codeExists)
-            {
-                voucherCode = new string(Enumerable.Repeat(characters, 8).Select(s => s[random.Next(s.Length)]).ToArray());
-                codeExists = IsVoucherCodeExistsInDatabase(voucherCode);
-            }
-
-            return voucherCode;
-        }
-
-        private bool IsVoucherCodeExistsInDatabase(string voucherCode)
-        {
-            DBManager dbConnection = new DBManager();
-            dbConnection.createConnection();
-
-            string query = "SELECT COUNT(*) FROM Voucher WHERE voucherCode = @voucherCode";
-            SqlParameter parameter = new SqlParameter("@voucherCode", voucherCode);
-            SqlCommand command = dbConnection.ExecuteQuery(query, new SqlParameter[] { parameter });
-
-            int count = (int)command.ExecuteScalar();
-            dbConnection.closeConnection();
-
-            return count > 0;
-        }
 
         private void LoadProperty()
         {
@@ -117,6 +82,8 @@ namespace StayScape
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            GenerateVoucher voucherGenerator = new GenerateVoucher();
+
             // TODO: Replace session host id
             int hostID = 1;
 
@@ -141,7 +108,7 @@ namespace StayScape
                     new SqlParameter("@minSpend", Convert.ToDouble(txtMinSpend.Text)),
                     new SqlParameter("@discountPrice", Convert.ToDouble(txtDiscountValue.Text)),
                     // Auto Generated Values
-                    new SqlParameter("@voucherCode", generateVoucherCode()),
+                    new SqlParameter("@voucherCode", voucherGenerator.generateVoucherCode()),
                     new SqlParameter("@activeStatus", 1),
                     new SqlParameter("@discountType", "Value Off"),
                     new SqlParameter("@discountRate", DBNull.Value),
@@ -166,7 +133,7 @@ namespace StayScape
                     new SqlParameter("@discountRate", Convert.ToDouble(txtDiscountRate.Text)),
                     new SqlParameter("@capAt", Convert.ToDouble(txtCapAt.Text)),
                     // Auto Generated Values
-                    new SqlParameter("@voucherCode", generateVoucherCode()),
+                    new SqlParameter("@voucherCode", voucherGenerator.generateVoucherCode()),
                     new SqlParameter("@activeStatus", 1),
                     new SqlParameter("@discountType", "Discount Off"),
                     new SqlParameter("@discountPrice", DBNull.Value),
