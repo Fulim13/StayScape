@@ -62,7 +62,7 @@
             transition: background-color 0.3s ease;
         }
         .button:hover {
-            background-color: #0056b3; 
+            background-color: #4338ca; 
         }
         .icon {
             font-size: 40px;

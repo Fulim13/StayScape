@@ -8,41 +8,42 @@
         <div class="container mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-10 lg:px-8">
             <h1 class="text-3xl font-bold tracking-tight text-gray-900 mb-6 text-center">Property List</h1>
             <br />
-            <div class="search-container mb-6 flex justify-center">
-                <input type="text" id="searchInput" placeholder="Search by Property Name" class="mr-2 p-2 border border-gray-300 rounded-md">
-                <select id="ddlBedrooms" class="mr-2 p-2 border border-gray-300 rounded-md">
-                    <option disabled selected>All Bedrooms</option>
-                    <option value="1">1 Bedroom</option>
-                    <option value="2">2 Bedrooms</option>
-                    <option value="3">3 Bedrooms</option>
-                    <option value="4">4 Bedrooms</option>
-                    <option value="5">5 Bedrooms</option>
-                    <option value="6">6 Bedrooms</option>
-                    <option value="7">7 Bedrooms</option>
-                    <option value="8">8 Bedrooms</option>
-                    <option value="9">9 Bedrooms</option>
-                    <option value="10">10 Bedrooms</option>
-                </select>
-                <select id="ddlBathrooms" class="mr-2 p-2 border border-gray-300 rounded-md">
-                    <option disabled selected>All Bathrooms</option>
-                    <option value="1">1 Bathroom</option>
-                    <option value="2">2 Bathrooms</option>
-                    <option value="3">3 Bathrooms</option>
-                    <option value="4">4 Bathrooms</option>
-                    <option value="5">5 Bathrooms</option>
-                    <option value="6">6 Bathrooms</option>
-                    <option value="7">7 Bathrooms</option>
-                    <option value="8">8 Bathrooms</option>
-                    <option value="9">9 Bathrooms</option>
-                    <option value="10">10 Bathrooms</option>
-                </select>
-               <button onclick="searchProperties()" class="inline-block p-3 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-300">Search</button>
-                <br />
-            </div>
+                <div class="search-container mb-6 flex justify-center">
+                    <input type="text" id="searchInput" placeholder="Search by Property Name" class="w-full mr-2 p-2 border border-gray-300 rounded-md">
+                    <button onclick="searchProperties()" class="w-1/12 inline-block p-3 bg-indigo-700 text-white rounded-md hover:bg-indigo-600 transition duration-300">Search</button>
+                </div>
+                <div>
+                    <select id="ddlBedrooms" class="mr-2 py-2 pl-4 pr-8 border border-gray-300 rounded-md">
+                        <option disabled selected>All Bedrooms</option>
+                        <option value="1">1 Bedroom</option>
+                        <option value="2">2 Bedrooms</option>
+                        <option value="3">3 Bedrooms</option>
+                        <option value="4">4 Bedrooms</option>
+                        <option value="5">5 Bedrooms</option>
+                        <option value="6">6 Bedrooms</option>
+                        <option value="7">7 Bedrooms</option>
+                        <option value="8">8 Bedrooms</option>
+                        <option value="9">9 Bedrooms</option>
+                        <option value="10">10 Bedrooms</option>
+                    </select>
+                    <select id="ddlBathrooms" class="mr-2 py-2 pl-4 pr-8 border border-gray-300 rounded-md">
+                        <option disabled selected>All Bathrooms</option>
+                        <option value="1">1 Bathroom</option>
+                        <option value="2">2 Bathrooms</option>
+                        <option value="3">3 Bathrooms</option>
+                        <option value="4">4 Bathrooms</option>
+                        <option value="5">5 Bathrooms</option>
+                        <option value="6">6 Bathrooms</option>
+                        <option value="7">7 Bathrooms</option>
+                        <option value="8">8 Bathrooms</option>
+                        <option value="9">9 Bathrooms</option>
+                        <option value="10">10 Bathrooms</option>
+                    </select>
+                </div>
             <br />
             <div class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
                 <% foreach (var property in Properties)
-                { %>
+                    { %>
                 <div class="property-card mb-6" data-bedrooms="<%= property.TotalBedroom %>" data-bathrooms="<%= property.TotalBathroom %>">
                     <div class="group relative">
                         <a href="property_details.aspx?propertyID=<%= property.PropertyID %>">
@@ -60,7 +61,7 @@
                                 </h3>
                                 <p class="mt-1 text-sm text-gray-500"><%= property.PropertyDesc %></p>
                             </div>
-                            <p class="text-sm font-medium text-gray-900">$<%= property.PropertyPrice %></p>
+                            <p class="text-sm font-medium text-gray-900">RM <%= property.PropertyPrice %></p>
                         </div>
                     </div>
                 </div>
