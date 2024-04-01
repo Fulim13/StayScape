@@ -1,200 +1,90 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Profile.aspx.cs" Inherits="StayScape.Profile" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Customer.Master" CodeBehind="Profile.aspx.cs" Inherits="StayScape.Profile" %>
 
-<!DOCTYPE html>
-<html>
-<head runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <meta charset="utf-8">
     <title>Profile</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+</asp:Content>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
-        
-    <style type="text/css">
-        body{
-            margin-top:20px;
-            color: #1a202c;
-            text-align: left;
-            background-color: #e2e8f0;    
-        }
-        .main-body {
-            padding: 15px;
-        }
-        .card {
-            box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
-        }
-
-        .card {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            min-width: 0;
-            word-wrap: break-word;
-            background-color: #fff;
-            background-clip: border-box;
-            border: 0 solid rgba(0,0,0,.125);
-            border-radius: .25rem;
-        }
-
-        .card-body {
-            flex: 1 1 auto;
-            min-height: 1px;
-            padding: 1rem;
-        }
-
-        .gutters-sm {
-            margin-right: -8px;
-            margin-left: -8px;
-        }
-
-        .gutters-sm>.col, .gutters-sm>[class*=col-] {
-            padding-right: 8px;
-            padding-left: 8px;
-        }
-        .mb-3, .my-3 {
-            margin-bottom: 1rem!important;
-        }
-
-        .bg-gray-300 {
-            background-color: #e2e8f0;
-        }
-        .h-100 {
-            height: 100%!important;
-        }
-        .shadow-none {
-            box-shadow: none!important;
-        }
-        .no-border {
-            border: 0;
-            box-shadow: none;
-        }
-    </style>
-</head>
-<body>
-	<form id="form1" runat="server">
-        <div class="container">
-        <div class="main-body">
-
-        <div class="card mb-3">
-        <div class="card-body">
-            
-        <div class="row">
-        <div class="col-sm-5">
-        <h4 class="mb-2">Profile Details - Customer</h4>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="flex justify-center items-center mt-8">
+        <div class="flex flex-col items-start">
+            <div>
+                <h3 class="text-lg leading-6 font-medium text-gray-900">Applicant Information</h3>
+                <p class="mt-1 max-w-2xl text-sm text-gray-500">Personal details and application.</p>
+            </div>
+            <div class="mt-5 border-t border-gray-200">
+                <dl class="divide-y divide-gray-200">
+                    <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
+                        <dt class="text-sm font-medium text-gray-500">Full name</dt>
+                        <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                            <span class="flex-grow">Desmond Tan Zhe Xuan</span>
+                            <span class="ml-4 flex-shrink-0">
+                                <button type="button" class="bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Update</button>
+                            </span>
+                        </dd>
+                    </div>
+                    <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
+                        <dt class="text-sm font-medium text-gray-500">I am a</dt>
+                        <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                            <span class="flex-grow">Host</span>
+                            <span class="ml-4 flex-shrink-0">
+                                <button type="button" class="bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Update</button>
+                            </span>
+                        </dd>
+                    </div>
+                    <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
+                        <dt class="text-sm font-medium text-gray-500">Email address</dt>
+                        <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                            <span class="flex-grow">des@gmail.com</span>
+                            <span class="ml-4 flex-shrink-0">
+                                <button type="button" class="bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Update</button>
+                            </span>
+                        </dd>
+                    </div>
+                    <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
+                        <dt class="text-sm font-medium text-gray-500">Phone Number</dt>
+                        <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                            <span class="flex-grow">011-55080191</span>
+                            <span class="ml-4 flex-shrink-0">
+                                <button type="button" class="bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Update</button>
+                            </span>
+                        </dd>
+                    </div>
+                    <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
+                        <dt class="text-sm font-medium text-gray-500">Gender</dt>
+                        <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                            <span class="flex-grow">Male</span>
+                            <span class="ml-4 flex-shrink-0">
+                                <button type="button" class="bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Update</button>
+                            </span>
+                        </dd>
+                    </div>
+                    <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
+                        <dt class="text-sm font-medium text-gray-500">Birth Date</dt>
+                        <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                            <span class="flex-grow">04-17-2001</span>
+                            <span class="ml-4 flex-shrink-0">
+                                <button type="button" class="bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Update</button>
+                            </span>
+                        </dd>
+                    </div>
+                    <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
+                        <dt class="text-sm font-medium text-gray-500">Account Creation Date</dt>
+                        <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                            <span class="flex-grow">04-02-2024</span>
+                            <span class="ml-4 flex-shrink-0">
+                                <button type="button" class="bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Update</button>
+                            </span>
+                        </dd>
+                    </div>
+                    <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
+                        <span class="ml-4 flex-shrink-0">
+                            <button type="button" class="bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Change Profile Picture</button>
+                        </span>
+                    </div>
+                </dl>
+            </div>
         </div>
-        </div>
-        <hr>
-
-        <div class="row">
-        <div class="col-sm-5">
-            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="pfp" class="rounded-circle" width="150">
-            <button class="btn btn-primary">Change Avatar</button>          
-        </div>
-        </div>
-        <hr>
-
-        <div class="row">
-        <div class="col-sm-3">
-        <h6 class="mb-0">Full Name</h6>
-        </div>
-        <div class="col-sm-9 text-secondary">
-        <span id="editable1" class="editable" contenteditable="false">Kenneth Valdez</span>
-        <button class="btn btn-light" onclick="toggleEditable('editable1'); return false;">&#128221;</button>
-        </div>
-        </div>
-        <hr>
-
-        <div class="row">
-        <div class="col-sm-3">
-        <h6 class="mb-0">Email</h6>
-        </div>
-        <div class="col-sm-9 text-secondary">
-        <span id="editable2" class="editable" contenteditable="false">kennethVal12@gmail.com</span>
-        <button class="btn btn-light" onclick="toggleEditable('editable2'); return false;">&#128221;</button>
-        </div>
-        </div>
-        <hr>
-
-        <div class="row">
-        <div class="col-sm-3">
-        <h6 class="mb-0">Phone Number</h6>
-        </div>
-        <div class="col-sm-9 text-secondary">
-        <span id="editable3" class="editable" contenteditable="false">016-8765467</span>
-        <button class="btn btn-light" onclick="toggleEditable('editable3'); return false;">&#128221;</button>
-        </div>
-        </div>
-        <hr>
-
-        <div class="row">
-        <div class="col-sm-3">
-        <h6 class="mb-0">Birth Date</h6>
-        </div>
-        <div class="col-sm-9 text-secondary">
-        <input type="date" class="no-border" id="dateInput" value="1996-12-26" disabled>
-        <button class="btn btn-light" onclick="toggleDateEditable(); return false;">&#128221;</button>
-        </div>
-        </div>
-        <hr>
-
-        <div class="row">
-        <div class="col-sm-3">
-        <h6 class="mb-0">Account Creation Date</h6>
-        </div>
-        <div class="col-sm-9 text-secondary">
-        2024-03-26
-        </div>
-        </div>
-        <hr>
-
-        <div class="row">
-        <div class="col-sm-3">
-            <h6 class="mb-0">Gender</h6>
-        </div>
-        <div class="col-sm-9 text-secondary">
-            <select id="dropdown" disabled>
-                <option value="option1">Male</option>
-                <option value="option2">Female</option>
-            </select>
-            <button class="btn btn-light" onclick="toggleDropdownEditable(); return false;">&#128221;</button>
-        </div>
-        
-        <hr>
-        <div class="col-sm-10">
-            <button class="btn btn-primary">Change Password</button>
-        </div>
-
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>  
-	</form>
-        
-<script>
-    function toggleEditable(fieldId) {
-        var field = document.getElementById(fieldId);
-        var isEditable = field.getAttribute('contenteditable') === 'true';
-        field.setAttribute('contenteditable', !isEditable);
-        if (!isEditable) {
-            field.focus();
-        }
-    }
-
-    function toggleDateEditable() {
-        var dateInput = document.getElementById('dateInput');
-        dateInput.disabled = !dateInput.disabled;
-        if (!dateInput.disabled) {
-            dateInput.focus();
-        }
-    }
-
-    function toggleDropdownEditable() {
-        var dropdown = document.getElementById('dropdown');
-        dropdown.disabled = !dropdown.disabled;
-        if (!dropdown.disabled) {
-            dropdown.focus();
-        }
-    }
-</script>
-</body>
-</html>
+    </div>
+</asp:Content>
