@@ -17,7 +17,7 @@
                 <p class="ml-16 text-sm font-medium text-gray-500 truncate">Total Revenue (RM)</p>
             </dt>
             <dd class="ml-16 pb-6 flex items-baseline sm:pb-7">
-                <p class="text-2xl font-semibold text-gray-900">71,897</p>
+                <asp:Label ID="lblTotalRevenue" class="text-2xl font-semibold text-gray-900" runat="server" Text=""></asp:Label>
             </dd>
         </div>
 
@@ -32,7 +32,7 @@
                 <p class="ml-16 text-sm font-medium text-gray-500 truncate">Total Reservation</p>
             </dt>
             <dd class="ml-16 pb-6 flex items-baseline sm:pb-7">
-                <p class="text-2xl font-semibold text-gray-900">58.16%</p>
+                <asp:Label ID="lblTotalReservation" class="text-2xl font-semibold text-gray-900" runat="server" Text=""></asp:Label>
             </dd>
         </div>
 
@@ -47,7 +47,7 @@
                 <p class="ml-16 text-sm font-medium text-gray-500 truncate">Avg. Reservation Made (RM)</p>
             </dt>
             <dd class="ml-16 pb-6 flex items-baseline sm:pb-7">
-                <p class="text-2xl font-semibold text-gray-900">24.57%</p>
+                <asp:Label ID="lblAvgReservation" class="text-2xl font-semibold text-gray-900" runat="server" Text=""></asp:Label>
             </dd>
         </div>
     </dl>

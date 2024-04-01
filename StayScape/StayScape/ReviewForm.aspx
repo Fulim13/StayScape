@@ -1,20 +1,14 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ReviewForm.aspx.cs" Inherits="StayScape.ReviewForm" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Customer.Master" AutoEventWireup="true" CodeBehind="ReviewForm.aspx.cs" Inherits="StayScape.ReviewForm" %>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>ReviewForm</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="./dist/output.css" rel="stylesheet" />
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
         /* Hide the radio buttons */
-        #RadioButtonList1 input[type="radio"] {
+        #ContentPlaceHolder1_RadioButtonList1 input[type="radio"] {
             display: none;
         }
 
         /* Style the labels */
-        #RadioButtonList1 label {
+        #ContentPlaceHolder1_RadioButtonList1 label {
             cursor: pointer;
             display: inline-block;
             margin-right: 5px;
@@ -23,18 +17,18 @@
         }
 
         /* Style the labels to appear as stars */
-        #RadioButtonList1 label:before {
+        #ContentPlaceHolder1_RadioButtonList1 label:before {
             content: '\2605'; /* Unicode character for a star */
         }
 
         /* Style the selected labels */
-        #RadioButtonList1 input[type="radio"]:checked + label:before,
-        #RadioButtonList1 input[type="radio"]:checked + label {
+        #ContentPlaceHolder1_RadioButtonList1 input[type="radio"]:checked + label:before,
+        #ContentPlaceHolder1_RadioButtonList1 input[type="radio"]:checked + label {
             color: rgb(253, 224, 71); /* Yellow color for checked star */
         }
 
         /* Hide the span elements inside the labels */
-        #RadioButtonList1 label span {
+        #ContentPlaceHolder1_RadioButtonList1 label span {
             display: none;
         }
 
@@ -44,13 +38,35 @@
         }
 
     </style>
-</head>
-<body>
-    <form id="form1" runat="server" class="container mx-auto px-4 py-8">
-        <div class="w-full max-w-3xl py-4 px-4 md:px-5 lg-6 mx-auto bg-indigo-100 rounded-md shadow-md">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#ContentPlaceHolder1_RadioButtonList1 input[type="radio"]').change(function () {
+                var selectedIndex = $(this).closest('td').index(); // Find the index of the clicked radio button's parent cell
+                $(this).closest('table').find('tr td label').each(function (index) { // Traverse to the parent table, find all rows, and then find labels inside cells
+                    if (index <= selectedIndex) {
+                        // Apply yellow color directly
+                        $(this).css('color', 'rgb(253, 224, 71)');
+                    } else {
+                        // Remove yellow color
+                        $(this).css('color', ''); // Reset to default color
+                    }
+                });
+            });
+
+            // Initialize the colors based on the initially selected radio button
+            $('#ContentPlaceHolder1_RadioButtonList1 input[type="radio"]:checked').trigger('change');
+
+        });
+    </script>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="container mx-auto px-4 py-8">
+        <div class="w-full max-w-3xl py-4 px-4 md:px-5 lg-6 mx-auto rounded-md shadow-xl">
             <h3 class="text-lg leading-6 font-medium text-gray-900 underline underline-offset-4">Review</h3>
             <div class="flex py-4">
-                <div class="flex items-center py-2 mr-4">
+                <div class="imageaaa flex items-center py-2 mr-4">
                   <img class="h-10 w-10 rounded-lg" src="Images/WorldviewGrandHotel.jpg" alt=""/>
                 </div>
                 <div class="flex flex-col">
@@ -180,30 +196,9 @@
                 </div>
             </div>
         </div>
-    </form>
+    </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            $('#RadioButtonList1 input[type="radio"]').change(function () {
-                var selectedIndex = $(this).closest('td').index(); // Find the index of the clicked radio button's parent cell
-                $(this).closest('table').find('tr td label').each(function (index) { // Traverse to the parent table, find all rows, and then find labels inside cells
-                    if (index <= selectedIndex) {
-                        // Apply yellow color directly
-                        $(this).css('color', 'rgb(253, 224, 71)');
-                    } else {
-                        // Remove yellow color
-                        $(this).css('color', ''); // Reset to default color
-                    }
-                });
-            });
-
-            // Initialize the colors based on the initially selected radio button
-            $('#RadioButtonList1 input[type="radio"]:checked').trigger('change');
-
-        });
-    </script>
-
-</body>
-</html>
+    
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
+</asp:Content>

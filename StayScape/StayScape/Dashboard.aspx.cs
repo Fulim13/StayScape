@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.SqlClient;
 
 namespace StayScape
 {
@@ -8,6 +9,7 @@ namespace StayScape
         {
             //Create host session
             Session["hostID"] = 1;
+            FetchData();
         }
 
         protected string GetStatusLabelCss(string status)
@@ -27,6 +29,40 @@ namespace StayScape
             }
 
             return inlineStyles;
+        }
+
+        private void FetchData()
+        {
+            DBManager db = new DBManager();
+            db.createConnection();
+            // Fetch Total Revenue
+            string totalRevenueQuery = "SELECT SUM(reservationTotal) FROM Reservation r INNER JOIN Property p ON r.propertyID = p.propertyID WHERE p.hostID = @hostID AND r.reservationStatus = 'Paid'";
+            SqlParameter[] parameters =
+            {
+                new SqlParameter("@hostID", Session["hostID"])
+            };
+            SqlCommand command = db.ExecuteQuery(totalRevenueQuery, parameters);
+            string totalRevenue = command.ExecuteScalar().ToString();
+            db.closeConnection();
+
+            // Fetch Total Reservation
+            db.createConnection();
+            string totalReservationQuery = "SELECT COUNT(*) FROM Reservation r INNER JOIN Property p ON r.propertyID = p.propertyID WHERE p.hostID = @hostID AND r.reservationStatus = 'Paid'";
+            SqlParameter[] parameters2 =
+            {
+                new SqlParameter("@hostID", Session["hostID"])
+            };
+            SqlCommand command2 = db.ExecuteQuery(totalReservationQuery, parameters2);
+            string totalReservation = command2.ExecuteScalar().ToString();
+            db.closeConnection();
+
+            // Fetch Average Reservation Made
+            decimal avgReservation = Convert.ToDecimal(totalRevenue) / Convert.ToInt32(totalReservation);
+
+            // Bind the fetched data to labels in the front end
+            lblTotalRevenue.Text = "RM " + totalRevenue.ToString();
+            lblTotalReservation.Text = totalReservation.ToString();
+            lblAvgReservation.Text = "RM " + avgReservation.ToString();
         }
     }
 }
