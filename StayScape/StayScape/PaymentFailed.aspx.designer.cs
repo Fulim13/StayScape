@@ -24,12 +24,12 @@ namespace StayScape
         protected global::System.Web.UI.WebControls.Button btnTryAgain;
 
         /// <summary>
-        /// btnOrderPage control.
+        /// btnOrderHistoryPage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnOrderPage;
+        protected global::System.Web.UI.WebControls.Button btnOrderHistoryPage;
     }
 }
