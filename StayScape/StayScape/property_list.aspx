@@ -1,175 +1,103 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="property_list.aspx.cs" Inherits="StayScape.PPT.property_list" %>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Property List</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .property-card {
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            padding: 20px;
-            transition: box-shadow 0.3s ease;
-        }
-        .property-card:hover {
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-        }
-        .property-image {
-            width: 100%;
-            max-width: 400px;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
-        .property-name {
-            font-size: 24px;
-            color: #007bff;
-            margin-bottom: 10px;
-        }
-        .property-price {
-            font-size: 18px;
-            color: #333;
-            margin-bottom: 10px;
-        }
-        .property-description {
-            color: #555;
-            margin-bottom: 10px;
-        }
-        .property-dates {
-            margin-bottom: 5px;
-            color: #777;
-        }
-        .view-details-link {
-            color: #007bff;
-            text-decoration: none;
-        }
-        .view-details-link:hover {
-            color: #0056b3;
-        }
-        .search-container {
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-        }
-        .search-container input[type=text] {
-            flex: 1;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            font-size: 16px;
-            margin-right: 10px;
-        }
-        .search-container select {
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            font-size: 16px;
-            margin-right: 10px;
-        }
-        .search-container button {
-            padding: 10px 15px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .search-container button:hover {
-            background-color: #0056b3;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Type a Property Name">
-            <select id="ddlBedrooms">
-                <option disabled selected>All Bedrooms</option>
-                <option value="1">1 Bedroom</option>
-                <option value="2">2 Bedrooms</option>
-                <option value="3">3 Bedrooms</option>
-                <option value="4">4 Bedrooms</option>
-                <option value="5">5 Bedrooms</option>
-                <option value="6">6 Bedrooms</option>
-                <option value="7">7 Bedrooms</option>
-                <option value="8">8 Bedrooms</option>
-                <option value="9">9 Bedrooms</option>
-                <option value="10">10 Bedrooms</option>
-            </select>
-            <select id="ddlBathrooms">
-                <option disabled selected>All Bathrooms</option>
-                <option value="1">1 Bathroom</option>
-                <option value="2">2 Bathrooms</option>
-                <option value="3">3 Bathrooms</option>
-                <option value="4">4 Bathrooms</option>
-                <option value="5">5 Bathrooms</option>
-                <option value="6">6 Bathrooms</option>
-                <option value="7">7 Bathrooms</option>
-                <option value="8">8 Bathrooms</option>
-                <option value="9">9 Bathrooms</option>
-                <option value="10">10 Bathrooms</option>
-            </select>
-            <button onclick="searchProperties()">Search</button>
-        </div>
-        <% foreach (var property in Properties) { %>
-            <div class="property-card" data-bedrooms="<%= property.TotalBedroom %>" data-bathrooms="<%= property.TotalBathroom %>">
-                <img src="PropertyImg/1.jpg" alt="Property Image" class="property-image">
-                <h2 class="property-name"><%= property.PropertyName %></h2>
-                <p class="property-price">Price: $<%= property.PropertyPrice %></p>
-                <p class="property-description">Description: <%= property.PropertyDesc %></p>
-                <p class="property-dates">
-                    Created At: <%= property.CreatedAt.ToString("yyyy-MM-dd HH:mm:ss") %><br>
-                    Last Update: <%= property.LastUpdate.ToString("yyyy-MM-dd HH:mm:ss") %>
-                </p>
-                <a href="property_details.aspx?propertyID=<%= property.PropertyID %>" class="view-details-link">View Details</a>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Customer.Master" AutoEventWireup="true" CodeBehind="property_list.aspx.cs" Inherits="StayScape.PPT.property_list" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="bg-white">
+        <div class="container mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-10 lg:px-8">
+            <h1 class="text-3xl font-bold tracking-tight text-gray-900 mb-6 text-center">Property List</h1>
+            <br />
+                <div class="search-container mb-6 flex justify-center">
+                    <input type="text" id="searchInput" placeholder="Search by Property Name" class="w-full mr-2 p-2 border border-gray-300 rounded-md">
+                    <button onclick="searchProperties()" class="w-1/12 inline-block p-3 bg-indigo-700 text-white rounded-md hover:bg-indigo-600 transition duration-300">Search</button>
+                </div>
+                <div>
+                    <select id="ddlBedrooms" class="mr-2 py-2 pl-4 pr-8 border border-gray-300 rounded-md">
+                        <option disabled selected>All Bedrooms</option>
+                        <option value="1">1 Bedroom</option>
+                        <option value="2">2 Bedrooms</option>
+                        <option value="3">3 Bedrooms</option>
+                        <option value="4">4 Bedrooms</option>
+                        <option value="5">5 Bedrooms</option>
+                        <option value="6">6 Bedrooms</option>
+                        <option value="7">7 Bedrooms</option>
+                        <option value="8">8 Bedrooms</option>
+                        <option value="9">9 Bedrooms</option>
+                        <option value="10">10 Bedrooms</option>
+                    </select>
+                    <select id="ddlBathrooms" class="mr-2 py-2 pl-4 pr-8 border border-gray-300 rounded-md">
+                        <option disabled selected>All Bathrooms</option>
+                        <option value="1">1 Bathroom</option>
+                        <option value="2">2 Bathrooms</option>
+                        <option value="3">3 Bathrooms</option>
+                        <option value="4">4 Bathrooms</option>
+                        <option value="5">5 Bathrooms</option>
+                        <option value="6">6 Bathrooms</option>
+                        <option value="7">7 Bathrooms</option>
+                        <option value="8">8 Bathrooms</option>
+                        <option value="9">9 Bathrooms</option>
+                        <option value="10">10 Bathrooms</option>
+                    </select>
+                </div>
+            <br />
+            <div class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+                <% foreach (var property in Properties)
+                    { %>
+                <div class="property-card mb-6" data-bedrooms="<%= property.TotalBedroom %>" data-bathrooms="<%= property.TotalBathroom %>">
+                    <div class="group relative">
+                        <a href="property_details.aspx?propertyID=<%= property.PropertyID %>">
+                            <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+                                <img src="PropertyImg/1.jpg" alt="Property Image" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+                            </div>
+                        </a>
+                        <div class="mt-4 flex justify-between">
+                            <div>
+                                <h3 class="text-sm text-gray-700">
+                                    <a href="property_details.aspx?propertyID=<%= property.PropertyID %>">
+                                        <span aria-hidden="true" class="absolute inset-0"></span>
+                                        <%= property.PropertyName %>
+                                    </a>
+                                </h3>
+                                <p class="mt-1 text-sm text-gray-500"><%= property.PropertyDesc %></p>
+                            </div>
+                            <p class="text-sm font-medium text-gray-900">RM <%= property.PropertyPrice %></p>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
             </div>
-        <% } %>
+        </div>
     </div>
-  <script>
-      function searchProperties() {
-          var input, filter, cards, card, name, i;
-          input = document.getElementById("searchInput");
-          filter = input.value.toUpperCase().trim(); 
 
-          var bedroomsFilter = document.getElementById("ddlBedrooms").value;
-          var bathroomsFilter = document.getElementById("ddlBathrooms").value;
+    <script>
+        function searchProperties() {
+            var input, filter, cards, card, name, i;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase().trim();
 
-          if (!filter) {
-              alert("Please enter a property name!");
-              return;
-          }
+            var bedroomsFilter = document.getElementById("ddlBedrooms").value;
+            var bathroomsFilter = document.getElementById("ddlBathrooms").value;
 
-          cards = document.getElementsByClassName("property-card");
-          for (i = 0; i < cards.length; i++) {
-              card = cards[i];
-              name = card.getElementsByClassName("property-name")[0];
-              var bedrooms = card.getAttribute("data-bedrooms");
-              var bathrooms = card.getAttribute("data-bathrooms");
+            cards = document.querySelectorAll('.property-card');
+            for (i = 0; i < cards.length; i++) {
+                card = cards[i];
+                name = card.querySelector('.property-name');
 
-              var propertyName = name.innerText.toUpperCase().trim(); 
+                var propertyName = name.innerText.toUpperCase().trim();
+                var bedrooms = card.getAttribute("data-bedrooms");
+                var bathrooms = card.getAttribute("data-bathrooms");
 
-              if (propertyName.startsWith(filter) ||
-                  (bedroomsFilter === "" || bedrooms === bedroomsFilter) &&
-                  (bathroomsFilter === "" || bathrooms === bathroomsFilter)) {
-                  card.style.display = "";
-              } else {
-                  card.style.display = "none";
-              }
-          }
-      }
-  </script>
+                if ((propertyName.includes(filter) || filter === '') &&
+                    (bedroomsFilter === '' || bedrooms === bedroomsFilter) &&
+                    (bathroomsFilter === '' || bathrooms === bathroomsFilter)) {
+                    card.style.display = "flex";
+                } else {
+                    card.style.display = "none";
+                }
+            }
+        }
+    </script>
+</asp:Content>
 
-</body>
-</html>
+
