@@ -19,56 +19,35 @@
 <body>
 	<form id="loginForm" runat="server">
         <main>
+                <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+                    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+                        <h1 class="hero-title text-center mb-5">
+                            <a href="property_list.aspx">
+                                <img border="0" alt="" src="Images/house-transparent.png" width="200" height="200"></a></h1>
+                        <h1 class="hero-title text-center mb-5">Sign In</h1>
+                    </div>
 
-            <section class="sign-in-form section-padding">
-                <div class="container">
-                    <div class="row">
-
-                        <div class="col-lg-8 mx-auto col-12">
-
-                            <h1 class="hero-title text-center mb-5">
-                        <a href="#">
-                            <img border="0" alt="" src="Images/house-transparent.png" width="200" height="200"></a></h1>
-                            <h1 class="hero-title text-center mb-5">Sign In</h1>
-
-                            <div class="row">
-                                <div class="col-lg-8 col-11 mx-auto">
-                                    <asp:Panel runat="server" ID="pnlSignIn">
-                                        <div class="form-floating mb-4 p-0">
-                                            <label for="email" id="mailLabel">Email Address</label>
-                                            <asp:TextBox runat="server" ID="txtMail" CssClass="form-control" placeholder="Email address" Required="true"></asp:TextBox>
-                                        </div>
-                                        <div class="form-floating p-0">
-                                            <label for="password" id="pwdLabel">Password</label>
-                                            <asp:TextBox runat="server" ID="txtPassword" TextMode="Password" CssClass="form-control" placeholder="Password" Required="true"></asp:TextBox>
-                                        </div>
-                                        <br />
-                                        <asp:Button runat="server" ID="btnSignIn" Text="Sign in" CssClass="btn btn-primary" OnClick="BtnSignIn_Click" />
-                                        <p class="text-center">Don’t have an account? <a href="Register.aspx">Create One</a></p>
-                                    </asp:Panel>
-                                </div>
+                    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+                        <asp:Panel runat="server" ID="pnlSignIn">
+                            <div class="form-floating mb-4 p-0">
+                                <label for="email" id="mailLabel">Email Address</label>
+                                <asp:TextBox runat="server" ID="txtMail" CssClass="form-control" placeholder="Email address" Required="true"></asp:TextBox>
                             </div>
-                            
-                        </div>
-
+                            <div class="form-floating p-0">
+                                <label for="password" id="pwdLabel">Password</label>
+                                <asp:TextBox runat="server" ID="txtPassword" TextMode="Password" CssClass="form-control" placeholder="Password" Required="true"></asp:TextBox>
+                            </div>
+                            <br />
+                            <div class="col text-center">
+                              <asp:Button runat="server" ID="btnSignIn" Text="Sign in" CssClass="btn btn-primary" OnClick="BtnSignIn_Click" />
+                            </div>
+                            <br />
+                            <p class="text-center">Don’t have an account? Create One: <a href="Register.aspx">Customers</a>/<a href="HostRegister.aspx">Hosts</a></p>
+                        </asp:Panel>
                     </div>
                 </div>
-            </section>
 
         </main>
     </form>
-
-        <footer class="site-footer">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-lg-3 col-10 me-auto mb-4">
-                        <a href="#">
-                            &nbsp;</a><p class="copyright-text text-muted mt-lg-5 mb-4 mb-lg-0">Copyright © 2024 <strong>StayScape</strong></p>
-                    </div>
-
-                </div>
-            </div>
-        </footer>
 </body>
 </html>
