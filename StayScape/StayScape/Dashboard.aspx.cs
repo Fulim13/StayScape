@@ -21,11 +21,11 @@ namespace StayScape
             }
             else if (status == "Failed")
             {
-                inlineStyles += "background-color: #d1d5db; color: #4b5563;";
+                inlineStyles += "background-color: #feb2b2; color: #7f1d1d;";
             }
             else
             {
-                inlineStyles += "background-color: #feb2b2; color: #7f1d1d;";
+                inlineStyles += "background-color: #d1d5db; color: #4b5563;";
             }
 
             return inlineStyles;
@@ -58,6 +58,8 @@ namespace StayScape
 
             // Fetch Average Reservation Made
             decimal avgReservation = Convert.ToDecimal(totalRevenue) / Convert.ToInt32(totalReservation);
+            avgReservation = Math.Round(avgReservation, 2);
+
 
             // Bind the fetched data to labels in the front end
             lblTotalRevenue.Text = "RM " + totalRevenue.ToString();

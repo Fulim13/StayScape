@@ -61,7 +61,7 @@ namespace StayScape.PPT
         protected void btnPlace_Click(object sender, EventArgs e)
         {
             // Store the propertyID in the session
-            Session["propertyID"] = 1;
+            Session["propertyID"] = Request.QueryString["propertyID"];
             Session["CheckIn"] = DateTime.Now;
             Session["CheckOut"] = DateTime.Now.AddDays(1);
 

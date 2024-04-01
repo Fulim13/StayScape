@@ -90,11 +90,11 @@
                                         <td runat="server" class="min-w-full">
                                             <table id="itemPlaceholderContainer" runat="server" class="min-w-full divide-y divide-gray-500">
                                                 <tr runat="server" class="bg-gray-50">
-                                                    <th runat="server" scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">reservationID</th>
-                                                    <th runat="server" scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">reservationTotal</th>
-                                                    <th runat="server" scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">checkInDate</th>
-                                                    <th runat="server" scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">checkOutDate</th>
-                                                    <th runat="server" scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">reservationStatus</th>
+                                                    <th runat="server" scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Reservation ID</th>
+                                                    <th runat="server" scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Reservation Total</th>
+                                                    <th runat="server" scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Check-In Date</th>
+                                                    <th runat="server" scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Check-Out Date</th>
+                                                    <th runat="server" scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Reservation Status</th>
                                                 </tr>
                                                 <tr id="itemPlaceholder" runat="server">
                                                 </tr>
