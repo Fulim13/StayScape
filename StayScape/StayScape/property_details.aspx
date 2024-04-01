@@ -1,99 +1,93 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="property_details.aspx.cs" Inherits="StayScape.PPT.property_details" %>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Property Details</title>
-    <link href="./dist/output.css" rel="stylesheet" />
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-        }
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Customer.Master" AutoEventWireup="true" CodeBehind="property_details.aspx.cs" Inherits="StayScape.PPT.property_details" %>
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
-        .property-details {
-            margin-bottom: 20px;
-        }
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="bg-white">
+        <div class="pt-6">
 
-        .property-image {
-            width: 100%;
-            max-width: 400px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-        }
-
-        .property-name {
-            font-size: 24px;
-            color: #007bff;
-            margin-bottom: 10px;
-        }
-
-        .property-info {
-            margin-bottom: 10px;
-        }
-
-            .property-info strong {
-                margin-right: 5px;
-            }
-
-        .button-container {
-            text-align: center;
-        }
-
-        .button {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            margin: 0 10px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-            .button:hover {
-                background-color: #0056b3;
-            }
-    </style>
-    
-</head>
-<body>
-    <form id="form1" runat="server">
-    <div class="container">
-        <div class="property-details">
             <% if (Property != null)
                 { %>
-                <img src="PropertyImg/1.jpg" alt="Property Image" class="property-image">
-                <h2 class="property-name"><%= Property.PropertyName %></h2>
-                <div class="property-info">
-                    <strong>Price:</strong> $<%= Property.PropertyPrice %><br>
-                    <strong>Description:</strong> <%= Property.PropertyDesc %><br>
-                    <strong>Address:</strong> <%= Property.PropertyAddress %><br>
-                    <strong>Total Bedrooms:</strong> <%= Property.TotalBedroom %><br>
-                    <strong>Total Bathrooms:</strong> <%= Property.TotalBathroom %><br>
-                    <strong>Created At:</strong> <%= Property.CreatedAt.ToString("yyyy-MM-dd HH:mm:ss") %><br>
-                    <strong>Last Update:</strong> <%= Property.LastUpdate.ToString("yyyy-MM-dd HH:mm:ss") %><br>
+            <!-- Image gallery -->
+            <div class="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
+                <div class="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
+                    <img src="PropertyImg/1.jpg" alt="Property Image" class="h-full w-full object-cover object-center property-image">
                 </div>
+                <div class="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
+                    <div class="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
+                        <img src="PropertyImg/2.jpg" alt="Property Image" class="h-full w-full object-cover object-center property-image">
+                    </div>
+                    <div class="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
+                        <img src="PropertyImg/3.jpg" alt="Property Image" class="h-full w-full object-cover object-center property-image">
+                    </div>
+                </div>
+                <div class="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg">
+                    <img src="PropertyImg/4.jpg" alt="Property Image" class="h-full w-full object-cover object-center property-image">
+                </div>
+            </div>
+
+            <!-- Product info -->
+            <div class="mx-auto max-w-2xl px-4 pb-4 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-4 lg:pt-16">
+                <div class="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
+                    <h2 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl property-name"><%= Property.PropertyName %></h2>
+                </div>
+
+                <!-- Options -->
+                <div class="mt-4 lg:row-span-3 lg:mt-0 lg:text-right">
+                    <h2 class="sr-only">Product information</h2>
+                    <p class="text-3xl tracking-tight text-gray-900">$<%= Property.PropertyPrice %></p>
+                </div>
+
+
+                <div class="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
+                    <!-- Description and details -->
+                    <div>
+                        <h3 class="sr-only">Description</h3>
+
+                        <div class="space-y-6">
+                            <strong>Description:</strong> <%= Property.PropertyDesc %><br />
+                            <strong>Address:</strong> <%= Property.PropertyAddress %><br>
+                            <strong>Total Bedrooms:</strong> <%= Property.TotalBedroom %><br>
+                            <strong>Total Bathrooms:</strong> <%= Property.TotalBathroom %><br>
+                            <strong>Created At:</strong> <%= Property.CreatedAt.ToString("yyyy-MM-dd HH:mm:ss") %><br>
+                            <strong>Last Update:</strong> <%= Property.LastUpdate.ToString("yyyy-MM-dd HH:mm:ss") %><br>
+                        </div>
+                    </div>
+
+                    <div class="mt-10">
+                        <h3 class="text-sm font-medium text-gray-900">Highlights</h3>
+
+                        <div class="mt-4">
+                            <ul role="list" class="list-disc space-y-2 pl-4 text-sm">
+                                <li class="text-gray-400"><span class="text-gray-600">Hand cut and sewn locally</span></li>
+                                <li class="text-gray-400"><span class="text-gray-600">Dyed with our proprietary colors</span></li>
+                                <li class="text-gray-400"><span class="text-gray-600">Pre-washed &amp; pre-shrunk</span></li>
+                                <li class="text-gray-400"><span class="text-gray-600">Ultra-soft 100% cotton</span></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="mt-10">
+                        <h2 class="text-sm font-medium text-gray-900">Details</h2>
+
+                        <div class="mt-4 space-y-6">
+                            <p class="text-sm text-gray-600">The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming &quot;Charcoal Gray&quot; limited release.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="button-container flex justify-center space-x-4">
+                <asp:Button CssClass="mt-5 flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 button" ID="btnPlace" runat="server" Text="Reserve" OnClick="btnPlace_Click" />
+                <button class="mt-5 flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 button secondary" onclick="goBack()">Back</button>
+            </div>
+
             <% }
                 else
                 { %>
-                <p>No property details available.</p>
+            <p>No property details available.</p>
             <% } %>
-        </div>
-        <div class="button-container">
-            <%--<button class="button"></button>--%>
-            <asp:Button CssClass="button" ID="btnPlace" runat="server" Text="Reserve" OnClick="btnPlace_Click" />
-            <button class="button" onclick="goBack()">Back</button>
         </div>
     </div>
     <section class="py-24 relative">
@@ -318,11 +312,9 @@
         </div>
     </div>
 </section>
-    </form>
-    <script>
-        function goBack() {
-            window.history.back();
-        }
-    </script>
-</body>
-</html>
+   <script>
+       function goBack() {
+           window.location.href = 'property_list.aspx'; 
+       }
+   </script>
+</asp:Content>

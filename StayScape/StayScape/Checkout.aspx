@@ -10,8 +10,7 @@
         <div class="h-screen max-w-lg mx-auto grid grid-cols-1 gap-x-24 gap-y-16 content-between lg:max-w-none lg:grid-cols-2">
             <div class="max-w-lg mx-auto px-4 pt-12 w-full">
                 <div class="flex py-4 gap-5">
-                    <%--<img src="/Images/testing.jpg" width="200" class="rounded-lg" />--%>
-                    <asp:Image ID="imgProperty" width="200" class="rounded-lg" runat="server" />
+                    <asp:Image ID="imgProperty" Width="200" class="rounded-lg" runat="server" />
                     <div>
                         <asp:Label ID="lblPropertyName" class="text-lg font-medium text-gray-900" runat="server" Text="Fu Lim's Building"></asp:Label>
                         <br />
@@ -20,9 +19,9 @@
                         <asp:Label ID="lblDate" class="text-sm text-gray-500" runat="server" Text="22/12/2024 - 25/12/2024"></asp:Label>
                     </div>
                 </div>
-
                 <div>
                     <div>
+                        <%-- Apply Discout Code --%>
                         <label for="discount-code" class="block text-sm font-medium text-gray-700">Discount code</label>
                         <div class="flex space-x-4 mt-1">
                             <input type="text" id="discount-code" name="discount-code" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -36,7 +35,7 @@
                         </div>
                         <div class="flex justify-between">
                             <dt class="flex">Discount
-                                <asp:Label ID="lblVoucherCode" class="ml-2 rounded-full bg-gray-200 text-xs text-gray-600 py-0.5 px-2 tracking-wide" runat="server" Text="CHEAPSKATE"></asp:Label>
+                                <asp:Label ID="lblVoucherCode" class="ml-2 rounded-full bg-gray-200 text-xs text-gray-600 py-0.5 px-2 tracking-wide" runat="server" Text="CHEAPPRICE"></asp:Label>
                             </dt>
                             <asp:Label ID="lblDiscount" class="text-gray-900" runat="server" Text="RM 0"></asp:Label>
                         </div>
@@ -66,12 +65,9 @@
     <script>
         const stripe = Stripe("pk_test_51OzyRiLGo9hdPl3qZ6587wCFjVaBePXtzGkecdW0llSKBnmD6QaHRVFhQQ4Uh1uCb0fiiP8OIctEqAZmrHokG9fX00rbuIh65w");
 
-        // Set the payment amount in cents (adjust as needed)
-
         const paymentAmount = parseInt(parseFloat('<%= Session["reservationAmount"] %>') * 100);
 
         initialize();
-        checkStatus();
 
         document
             .querySelector("#payment-form")
@@ -82,13 +78,14 @@
             const response = await fetch("/CreatePaymentIntent.ashx", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ amount: paymentAmount }), // Send only the payment amount
+                body: JSON.stringify({ amount: paymentAmount }),
             });
             const { clientSecret } = await response.json();
 
             const appearance = {
                 theme: 'stripe',
             };
+
             elements = stripe.elements({ appearance, clientSecret });
 
             const paymentElementOptions = {
@@ -106,16 +103,10 @@
             const { error } = await stripe.confirmPayment({
                 elements,
                 confirmParams: {
-                    // Make sure to change this to your payment completion page
                     return_url: "https://localhost:44321/PaymentProcessing.aspx",
                 },
             });
 
-            // This point will only be reached if there is an immediate error when
-            // confirming the payment. Otherwise, your customer will be redirected to
-            // your `return_url`. For some payment methods like iDEAL, your customer will
-            // be redirected to an intermediate site first to authorize the payment, then
-            // redirected to the `return_url`.
             if (error.type === "card_error" || error.type === "validation_error") {
                 showMessage(error.message);
             } else {
@@ -125,36 +116,7 @@
             setLoading(false);
         }
 
-        // Fetches the payment intent status after payment submission
-        async function checkStatus() {
-            const clientSecret = new URLSearchParams(window.location.search).get(
-                "payment_intent_client_secret"
-            );
-
-            if (!clientSecret) {
-                return;
-            }
-
-            const { paymentIntent } = await stripe.retrievePaymentIntent(clientSecret);
-
-            switch (paymentIntent.status) {
-                case "succeeded":
-                    showMessage("Payment succeeded!");
-                    break;
-                case "processing":
-                    showMessage("Your payment is processing.");
-                    break;
-                case "requires_payment_method":
-                    showMessage("Your payment was not successful, please try again.");
-                    break;
-                default:
-                    showMessage("Something went wrong.");
-                    break;
-            }
-        }
-
         // ------- UI helpers -------
-
         function showMessage(messageText) {
             const messageContainer = document.querySelector("#payment-message");
 

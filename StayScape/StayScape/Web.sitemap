@@ -4,7 +4,11 @@
 		<siteMapNode url="~/Dashboard.aspx" title="Dashboard" description="" >
 			<siteMapNode url="~/HostReservationDetails.aspx" title="Reservation Details" description="" />
 		</siteMapNode>
-		<siteMapNode url="~/property_host.aspx" title="Property" description="" />
+		<siteMapNode url="~/property_host.aspx" title="Property" description="" >
+			<siteMapNode url="~/property_host_insert.aspx" title="Add Property" description="" />
+			<siteMapNode url="~/property_host_modify.aspx" title="Update Property" description="" />
+			<siteMapNode url="~/property_host_delete.aspx" title="Delete Property" description="" />
+		</siteMapNode>
 		<siteMapNode url="~/Voucher.aspx" title="Voucher" description="">
 			<siteMapNode url="~/AddVoucher.aspx" title="Add Voucher" description="" />
 			<siteMapNode url="~/BulkImportVoucher.aspx" title="Bulk Import Voucher" description="" />

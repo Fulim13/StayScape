@@ -18,8 +18,8 @@ namespace StayScape
             if (context.Request.HttpMethod == "POST")
             {
                 // Initialize Stripe with your secret key
-                string stripeSecretKey = Environment.GetEnvironmentVariable("STRIPE_SECRET_KEY");
-                StripeConfiguration.ApiKey = stripeSecretKey;
+                //string stripeSecretKey = Environment.GetEnvironmentVariable("STRIPE_SECRET_KEY");
+                StripeConfiguration.ApiKey = "sk_test_51OzyRiLGo9hdPl3qRJQk7tVvWK8tgJmqoax5JaIKMpWc3pkFVE2aW0KlS0yAZRz1CJsMsiJzQMyf7d1OrNH5qhZO00hdQmzwOE";
 
                 string requestBody;
                 using (var reader = new System.IO.StreamReader(context.Request.InputStream))

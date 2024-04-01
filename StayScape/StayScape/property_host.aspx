@@ -2,41 +2,42 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Property Host</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> 
+    <link href="./dist/output.css" rel="stylesheet" />
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f2f2f2;
         }
         .container {
-            max-width: 800px;
-            margin: 0 auto;
+            max-width: 1200px;
+            margin: 20px auto;
             text-align: center;
         }
         .heading {
-            font-size: 32px;
+            font-size: 36px;
             font-weight: bold;
             margin-bottom: 40px;
             color: #333;
         }
         .card-holder {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             flex-wrap: wrap;
         }
         .card {
-            flex: 0 0 calc(33.33% - 20px);
+            flex: 0 0 calc(33.33% - 40px);
             background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 30px;
-            margin-bottom: 30px;
+            margin: 20px;
             transition: all 0.3s ease;
         }
         .card:hover {
@@ -46,12 +47,12 @@
         .card h2 {
             font-size: 24px;
             margin-bottom: 20px;
-            color: #007bff;
+            color: #333;
         }
         .button {
             display: inline-block;
             padding: 12px 24px;
-            background-color: #007bff; 
+            background-color: #4338ca; 
             color: #fff;
             border: none;
             border-radius: 5px;
@@ -61,12 +62,12 @@
             transition: background-color 0.3s ease;
         }
         .button:hover {
-            background-color: #0056b3; 
+            background-color: #4338ca; 
         }
         .icon {
             font-size: 40px;
             margin-bottom: 20px;
-            color: #007bff;
+            color: #4338ca;
         }
     </style>
 </head>
