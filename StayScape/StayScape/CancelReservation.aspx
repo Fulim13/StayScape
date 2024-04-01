@@ -1,18 +1,12 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CancelReservation.aspx.cs" Inherits="StayScape.CancelReservation" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Customer.Master" AutoEventWireup="true" CodeBehind="CancelReservation.aspx.cs" Inherits="StayScape.CancelReservation" %>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Cancel Reservation</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link href="./dist/output.css" rel="stylesheet" />
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
-        #reasonRbl label {
+        #ContentPlaceHolder1_reasonRbl label {
             margin-left: .5rem;
         }
 
-        #reasonRbl td{
+        #ContentPlaceHolder1_reasonRbl td{
             padding-bottom: 1rem;
         }
     </style>
@@ -23,10 +17,10 @@
             alert(message);
         }
     </script>
-</head>
-<body>
-    <form id="form1" runat="server" class="container mx-auto px-4 py-8">
-        <div class="w-full max-w-3xl py-4 px-4 md:px-5 lg-6 mx-auto bg-indigo-100 rounded-md shadow-md">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="container mx-auto px-4 py-8">
+        <div class="w-full max-w-3xl py-4 px-4 md:px-5 lg-6 mx-auto rounded-md shadow-xl">
             <h3 class="text-lg leading-6 font-medium text-gray-900 underline underline-offset-4">Cancellation Of Reservation</h3>
             <div class="flex py-4">
                 <div class="flex flex-col">
@@ -126,6 +120,7 @@
                 </div>
             </div>
         </div>
-    </form>
-</body>
-</html>
+    </div>
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
+</asp:Content>

@@ -74,7 +74,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="flex flex-col flex-grow">
-      <div class="px-3 py-3 rounded-md shadow-md">
+      <div class="px-3 py-3">
         <div class="py-2 px-2">
             <h3 class="font-manrope font-bold text-2xl text-black mb-2">Property Reviews</h3>
             <asp:Button 
