@@ -1,3 +1,16 @@
+# For teacher to run our project
+1. Unzip the folder
+2. Open the StayScape.sin
+3. Clean and Rebuild Solution in Visual Studio
+4. Run the Program
+5. If encounter error, you may consider to update the package
+![error](error.png)
+Go to Visual Studio Tools > Nuget Package Manager > Package Manager Console
+```
+Update-Package Microsoft.CodeDom.Providers.DotNetCompilerPlatform -r
+```
+
+# For other developers
 # Prerequisite
 1. Node Installed https://nodejs.org/en/download/current
 2. Visual Studio
