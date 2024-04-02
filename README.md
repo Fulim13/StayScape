@@ -10,6 +10,30 @@ Go to Visual Studio Tools > Nuget Package Manager > Package Manager Console
 Update-Package Microsoft.CodeDom.Providers.DotNetCompilerPlatform -r
 ```
 
+6. Run the program, if the program start page is not property_list.aspx, set it as a start page
+
+Testing data for customer
+```
+dongweijie@gmail.com
+W123.90a
+```
+
+Testing data for card payment
+```
+4242424242424242
+12/34
+111
+```
+
+7. After Complete Customer side, go to Dashboard.aspx for Host side
+
+Testing data for host
+```
+des@gmail.com
+W123.90a
+```
+
+
 # For other developers
 # Prerequisite
 1. Node Installed https://nodejs.org/en/download/current
