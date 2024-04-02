@@ -33,11 +33,12 @@ Other Payment method no need
 For more information: https://docs.stripe.com/testing
 
 # Prerequisite
-1. Node
+1. Node Installed https://nodejs.org/en/download/current
 2. Visual Studio
 
 # Step to run our project
-1. Install dependency
+1. change directory to this project directory
+2. Install dependency
 ```
 npm i
 ```
@@ -46,9 +47,9 @@ npm i
 npm run build:css
 ```
 3. Clean and Rebuild Solution in Visual Studio
-
-
-Note: If encounter error, you may consider to update the package
+4. Run the Program
+5. If encounter error, you may consider to update the package
+![error](error.png)
 ```
 Update-Package Microsoft.CodeDom.Providers.DotNetCompilerPlatform -r
 ```
