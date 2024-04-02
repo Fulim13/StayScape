@@ -30,6 +30,7 @@ CVC
 ```
 
 Other Payment method no need
+
 For more information: https://docs.stripe.com/testing
 
 # Prerequisite
