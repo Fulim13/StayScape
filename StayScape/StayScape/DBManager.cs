@@ -54,8 +54,15 @@ namespace StayScape
 
         public void createConnection()
         {
-            connection = new SqlConnection(connectionString);
-            connection.Open();
+            try
+            {
+                connection = new SqlConnection(connectionString);
+                connection.Open();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         public void closeConnection()
