@@ -110,6 +110,7 @@
     <Content Include="checkout.js" />
     <Content Include="Global.asax" />
     <Content Include="HostRegister.aspx" />
+    <Content Include="Images\newuser.jpg" />
     <Content Include="Images\WorldviewGrandHotel.jpg" />
     <Content Include="Login.aspx" />
     <Content Include="OrderHistory.aspx" />

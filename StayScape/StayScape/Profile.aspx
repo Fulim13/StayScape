@@ -18,8 +18,8 @@
                     <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
                         <dt class="text-sm font-medium text-gray-500">Full name</dt>
                         <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                            <span class="flex-grow">Desmond Tan Zhe Xuan</span>
-                            <span class="ml-4 flex-shrink-0">
+                            <asp:Label class="flex-grow" ID="nameLabel" runat="server" Text="Testing"></asp:Label>
+                            &nbsp;<span class="ml-4 flex-shrink-0">
                                 <button type="button" class="bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Update</button>
                             </span>
                         </dd>
