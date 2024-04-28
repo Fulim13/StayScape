@@ -84,11 +84,17 @@ namespace StayScape
             return result;
         }
 
-
         protected void btnSignout_Click(object sender, EventArgs e)
         {
             FormsAuthentication.SignOut(); // Sign the user out
             Response.Redirect("Login.aspx"); // Redirect to the login page
         }
+
+        public string ProfilePictureUrl
+        {
+            get { return imgProfilePicture.ImageUrl; }
+            set { imgProfilePicture.ImageUrl = value; }
+        }
+
     }
 }

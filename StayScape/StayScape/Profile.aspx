@@ -78,10 +78,10 @@
                             </span>
                         </dd>
                     </div>
-                    <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
+                    <div class="py-4 sm:grid sm:py-4 sm:grid-cols-5 sm:gap-4">
                         <span class="ml-4 flex-shrink-0">
                             <asp:FileUpload ID="pfpUpload" runat="server" />
-                            <asp:Button ID="pfpChange" runat="server" class="bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" Text="Change Profile Picture" />
+                            <asp:Button ID="pfpChange" runat="server" class="bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" Text="Change Profile Picture" OnClick="pfpChange_Click" />
                         </span>
                     </div>
                 </dl>

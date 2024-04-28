@@ -1,13 +1,8 @@
-﻿using Microsoft.VisualBasic.ApplicationServices;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Data.SqlClient;
 using System.Diagnostics;
-using System.Linq;
 using System.Web;
 using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace StayScape
 {
@@ -121,5 +116,47 @@ namespace StayScape
             public DateTime aDate { get; set; }
         }
 
+        protected void pfpChange_Click(object sender, EventArgs e)
+        {
+            if (pfpUpload.HasFile)
+            {
+                // Read the file into a byte array
+                byte[] imageData = pfpUpload.FileBytes;
+                string userId = HttpContext.Current.User.Identity.Name;
+
+                // Insert the image data into the database
+                InsertImageDataIntoDatabase(userId, imageData);
+
+                // Update the <img> tag to display the new image
+                string base64String = Convert.ToBase64String(imageData, 0, imageData.Length);
+                string imageUrl = "data:image/jpeg;base64," + base64String;
+                ((Customer)Master).ProfilePictureUrl = imageUrl;
+            }
+        }
+
+        private void InsertImageDataIntoDatabase(string userId, byte[] imageData)
+        {
+            // Insert the image data into the database
+            using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\desmo\Documents\Web_Dev_Assignment\StayScape\StayScape\App_Data\StayScapeDB.mdf;Integrated Security=True"))
+            {
+                con.Open();
+
+                if (Roles.IsUserInRole("Host"))
+                {
+                    SqlCommand command = new SqlCommand("UPDATE Customer SET custProfilePic = @custProfilePic WHERE custEmail = @userId", con);
+                    command.Parameters.AddWithValue("@custProfilePic", imageData);
+                    command.Parameters.AddWithValue("@userId", userId);
+                    command.ExecuteNonQuery();
+                }
+
+                if (Roles.IsUserInRole("Customer"))
+                {
+                    SqlCommand command = new SqlCommand("UPDATE Host SET hostProfilePic = @hostProfilePic WHERE hostEmail = @userId", con);
+                    command.Parameters.AddWithValue("@hostProfilePic", imageData);
+                    command.Parameters.AddWithValue("@userId", userId);
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }
