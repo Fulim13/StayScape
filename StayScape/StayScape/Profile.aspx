@@ -18,7 +18,7 @@
                     <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
                         <dt class="text-sm font-medium text-gray-500">Full name</dt>
                         <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                            <asp:Label class="flex-grow" ID="nameLabel" runat="server" Text="Testing"></asp:Label>
+                            <asp:Label class="flex-grow" ID="nameLabel" runat="server"></asp:Label>
                             &nbsp;<span class="ml-4 flex-shrink-0">
                                 <button type="button" class="bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Update</button>
                             </span>
@@ -27,7 +27,7 @@
                     <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
                         <dt class="text-sm font-medium text-gray-500">I am a</dt>
                         <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                            <span class="flex-grow">Host</span>
+                            <asp:Label class="flex-grow" ID="roleLabel" runat="server"></asp:Label>
                             <span class="ml-4 flex-shrink-0">
                                 <button type="button" class="bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Update</button>
                             </span>
@@ -36,7 +36,7 @@
                     <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
                         <dt class="text-sm font-medium text-gray-500">Email address</dt>
                         <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                            <span class="flex-grow">des@gmail.com</span>
+                            <asp:Label class="flex-grow" ID="emailLabel" runat="server"></asp:Label>
                             <span class="ml-4 flex-shrink-0">
                                 <button type="button" class="bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Update</button>
                             </span>
@@ -45,7 +45,7 @@
                     <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
                         <dt class="text-sm font-medium text-gray-500">Phone Number</dt>
                         <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                            <span class="flex-grow">011-55080191</span>
+                            <asp:Label class="flex-grow" ID="phoneLabel" runat="server"></asp:Label>
                             <span class="ml-4 flex-shrink-0">
                                 <button type="button" class="bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Update</button>
                             </span>
@@ -54,7 +54,7 @@
                     <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
                         <dt class="text-sm font-medium text-gray-500">Gender</dt>
                         <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                            <span class="flex-grow">Male</span>
+                            <asp:Label class="flex-grow" ID="genderLabel" runat="server"></asp:Label>
                             <span class="ml-4 flex-shrink-0">
                                 <button type="button" class="bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Update</button>
                             </span>
@@ -63,7 +63,7 @@
                     <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
                         <dt class="text-sm font-medium text-gray-500">Birth Date</dt>
                         <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                            <span class="flex-grow">04-17-2001</span>
+                            <asp:Label class="flex-grow" ID="bDateLabel" runat="server"></asp:Label>
                             <span class="ml-4 flex-shrink-0">
                                 <button type="button" class="bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Update</button>
                             </span>
@@ -72,7 +72,7 @@
                     <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
                         <dt class="text-sm font-medium text-gray-500">Account Creation Date</dt>
                         <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                            <span class="flex-grow">04-02-2024</span>
+                            <asp:Label class="flex-grow" ID="aDateLabel" runat="server"></asp:Label>
                             <span class="ml-4 flex-shrink-0">
                                 <button type="button" class="bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Update</button>
                             </span>
@@ -80,7 +80,8 @@
                     </div>
                     <div class="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
                         <span class="ml-4 flex-shrink-0">
-                            <button type="button" class="bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Change Profile Picture</button>
+                            <asp:FileUpload ID="pfpUpload" runat="server" />
+                            <asp:Button ID="pfpChange" runat="server" class="bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" Text="Change Profile Picture" />
                         </span>
                     </div>
                 </dl>

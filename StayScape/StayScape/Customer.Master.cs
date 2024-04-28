@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Claims;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
@@ -17,7 +18,7 @@ namespace StayScape
         {
             if (!IsPostBack)
             {
-                // Retrieve user ID
+                // Retrieve user email instead since i cant retrieve id, will see what to do later
                 string userId = HttpContext.Current.User.Identity.Name;
 
                 // Retrieve image data from the database
@@ -48,13 +49,13 @@ namespace StayScape
             byte[] result = null;
 
             // Check if the user is a host
-            query = "SELECT hostProfilePic FROM Host WHERE hostID = @userId";
+            query = "SELECT hostProfilePic FROM Host WHERE hostEmail = @userId";
             result = GetImageDataFromQuery(query, userId);
 
             // If no result from host, check if the user is a customer
             if (result == null)
             {
-                query = "SELECT custProfilePic FROM Customer WHERE custID = @userId";
+                query = "SELECT custProfilePic FROM Customer WHERE custEmail = @userId";
                 result = GetImageDataFromQuery(query, userId);
             }
 
