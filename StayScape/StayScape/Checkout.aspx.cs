@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.Diagnostics;
+using System.Web;
+using System.Web.Services;
 
 namespace StayScape
 {
@@ -65,6 +68,146 @@ namespace StayScape
             lblPropertyName.Text = propertyName;
             lblPropertyPrice.Text = "RM " + propertyPrice.ToString();
             lblDate.Text = Session["CheckIn"].ToString() + " - <br/>" + Session["CheckOut"].ToString();
+        }
+
+        [WebMethod]
+        public static decimal ApplyDiscount(string code)
+        {
+            //Check the voucher code is on database or not, if not return 0
+            DBManager db = new DBManager();
+            db.createConnection();
+            string sqlCommand = "SELECT COUNT(*) FROM Voucher WHERE voucherCode = @voucherCode";
+            SqlParameter[] parameters =
+            {
+                new SqlParameter("@voucherCode", code)
+            };
+            SqlCommand command = db.ExecuteQuery(sqlCommand, parameters);
+            int count = Convert.ToInt32(command.ExecuteScalar());
+            if (count == 0)
+            {
+                return 0;
+            }
+
+            //Get session property ID
+            int propertyID = Convert.ToInt32(HttpContext.Current.Session["PropertyID"]);
+
+            //Get the hostID from the propertyID
+
+            db.createConnection();
+            sqlCommand = "SELECT hostID FROM Property WHERE propertyID = @propertyID";
+            SqlParameter[] parameters1 =
+            {
+                new SqlParameter("@propertyID", propertyID)
+            };
+            command = db.ExecuteQuery(sqlCommand, parameters1);
+            SqlDataReader reader = command.ExecuteReader();
+            reader.Read();
+            int hostID = Convert.ToInt32(reader["hostID"]);
+
+
+
+            //Get all the voucher code for this host
+            db.createConnection();
+            sqlCommand = "SELECT voucherID, voucherCode,totalVoucher,redeemLimitPerCustomer,startDate,expiredDate,activeStatus,discountType,minSpend,discountRate,discountPrice,capAt FROM Voucher WHERE hostID = @hostID";
+            SqlParameter[] parameters2 =
+            {
+                new SqlParameter("@hostID", hostID)
+            };
+            command = db.ExecuteQuery(sqlCommand, parameters2);
+            reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                int voucherID = Convert.ToInt32(reader["voucherID"]);
+                string voucherCode = reader["voucherCode"].ToString();
+                int totalVoucher = Convert.ToInt32(reader["totalVoucher"]);
+                int redeemLimitPerCustomer = Convert.ToInt32(reader["redeemLimitPerCustomer"]);
+                DateTime startDate = Convert.ToDateTime(reader["startDate"]);
+                DateTime expiredDate = Convert.ToDateTime(reader["expiredDate"]);
+                bool activeStatus = Convert.ToBoolean(reader["activeStatus"]);
+                string discountType = reader["discountType"].ToString();
+                decimal minSpend = Convert.ToDecimal(reader["minSpend"]);
+                decimal discountRate = Convert.ToDecimal(reader["discountRate"]);
+                decimal discountPrice = Convert.ToDecimal(reader["discountPrice"]);
+                decimal capAt = Convert.ToDecimal(reader["capAt"]);
+
+
+                if (code == voucherCode)
+                {
+                    //Check if the voucher is still active
+                    if (!activeStatus)
+                    {
+                        return 0;
+                    }
+
+                    //Check if the voucher is still valid
+                    if (DateTime.Now < startDate || DateTime.Now > expiredDate)
+                    {
+                        return 0;
+                    }
+
+                    //Get customer ID from session
+                    int customerID = Convert.ToInt32(HttpContext.Current.Session["CustomerID"]);
+
+                    //Check if the customer has already redeem the voucher
+                    db.createConnection();
+                    sqlCommand = "SELECT COUNT(*) FROM Redemption WHERE custID = @customerID AND voucherID = @voucherID";
+                    SqlParameter[] parameters3 =
+                    {
+                        new SqlParameter("@customerID", customerID),
+                        new SqlParameter("@voucherID", voucherID)
+                    };
+                    command = db.ExecuteQuery(sqlCommand, parameters3);
+                    count = Convert.ToInt32(command.ExecuteScalar());
+                    if (count > redeemLimitPerCustomer)
+                    {
+                        return 0;
+                    }
+
+                    //Check the that this voucher has been redeemed how many time and cannot exceed the total voucher
+                    db.createConnection();
+                    sqlCommand = "SELECT COUNT(*) FROM Redemption WHERE voucherID = @voucherID";
+                    SqlParameter[] parameters4 =
+                    {
+                        new SqlParameter("@voucherID", voucherID)
+                    };
+                    command = db.ExecuteQuery(sqlCommand, parameters4);
+                    count = Convert.ToInt32(command.ExecuteScalar());
+                    if (count > totalVoucher)
+                    {
+                        return 0;
+                    }
+
+
+
+                }
+            }
+
+            // Get all the voucher code for this property
+
+
+            Debug.WriteLine(propertyID);
+            Debug.WriteLine(code);
+            // Add your server-side code for applying the discount here
+            // Calculate and return the discount amount
+            // For example:
+            //decimal discountAmount = CalculateDiscount(code);
+            //return discountAmount;
+            return 1;
+        }
+
+        private static decimal CalculateDiscount(string code)
+        {
+
+            // Add your discount calculation logic here
+            // For example:
+            if (code == "CHEAPPRICE")
+            {
+                return 10; // Apply a discount of RM 10
+            }
+            else
+            {
+                return 0; // No discount applied
+            }
         }
     }
 }

@@ -25,9 +25,8 @@
                         <label for="discount-code" class="block text-sm font-medium text-gray-700">Discount code</label>
                         <div class="flex space-x-4 mt-1">
                             <input type="text" id="discount-code" name="discount-code" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                            <button type="submit" class="w-1/3 bg-indigo-600 text-white text-sm font-medium rounded-md px-4 hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600">Apply</button>
+                            <button type="submit" onclick="applyDiscount()" class="w-1/3 bg-indigo-600 text-white text-sm font-medium rounded-md px-4 hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600">Apply</button>
                         </div>
-                    </div>
                     <dl class="text-sm font-medium text-gray-500 mt-10 space-y-6">
                         <div class="flex justify-between">
                             <dt>Subtotal</dt>
@@ -141,6 +140,32 @@
                 document.querySelector("#spinner").classList.add("hidden");
                 document.querySelector("#button-text").classList.remove("hidden");
             }
+        }
+
+        function applyDiscount() {
+            var discountCode = document.getElementById("discount-code").value;
+            fetch("Checkout.aspx/ApplyDiscount", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8"
+                },
+                body: JSON.stringify({ code: discountCode })
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Error applying discount.");
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    //var discount = data.d;
+                    console.log(data);
+                    //document.getElementById("lblDiscount").innerText = "RM " + discount;
+                    //document.getElementById("submit").click();
+                })
+                .catch(error => {
+                    alert(error.message);
+                });
         }
     </script>
 </asp:Content>
