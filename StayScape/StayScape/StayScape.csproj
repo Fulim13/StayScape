@@ -108,6 +108,7 @@
     <Content Include="Checkout.aspx" />
     <Content Include="checkout.css" />
     <Content Include="checkout.js" />
+    <Content Include="errors\404.aspx" />
     <Content Include="Global.asax" />
     <Content Include="HostRegister.aspx" />
     <Content Include="Images\WorldviewGrandHotel.jpg" />
@@ -234,6 +235,13 @@
       <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
     <Compile Include="DBManager.cs" />
+    <Compile Include="errors\404.aspx.cs">
+      <DependentUpon>404.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="errors\404.aspx.designer.cs">
+      <DependentUpon>404.aspx</DependentUpon>
+    </Compile>
     <Compile Include="GenerateVoucher.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

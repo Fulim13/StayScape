@@ -110,7 +110,7 @@
                     </div>
                 </div>
             </LayoutTemplate>
-        </asp:ListView>
+        </asp:ListView> 
     </div>
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:LocalSqlServer %>" SelectCommand="SELECT r.reservationID, r.reservationTotal, r.checkInDate, r.checkOutDate, r.reservationStatus
 FROM Reservation r
