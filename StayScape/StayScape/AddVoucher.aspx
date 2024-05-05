@@ -37,6 +37,10 @@
                 capAt.classList.remove('hidden', "sm:hidden");
 
                 hdnDiscountType.value = "Percentage Discount Off";
+                //document.getElementById('RequiredFieldValidator5').ValidationGroup = '';
+                //document.getElementById('rfvDisRate').ValidationGroup = 'VoucherValidation';
+                //document.getElementById('RequiredFieldValidator4').ValidationGroup = 'VoucherValidation';
+                
 
             } else {
                 // Value on
@@ -56,6 +60,9 @@
                 discountValue.classList.remove('hidden', "sm:hidden");
 
                 hdnDiscountType.value = "Money Value Off";
+                //document.getElementById('RequiredFieldValidator5').ValidationGroup = 'VoucherValidation';
+                //document.getElementById('rfvDisRate').ValidationGroup = '';
+                //document.getElementById('RequiredFieldValidator4').ValidationGroup = '';
             }
         }
 
@@ -272,10 +279,10 @@
                                 placeholder="Enter Discount Rate"
                                 CssClass="py-2 px-3 block w-full border border-gray-300 shadow-sm text-md rounded-lg focus:outline-none focus:border-indigo-500 focus:ring-indigo-500">
                             </asp:TextBox>
-<%--                            <asp:RequiredFieldValidator ID="rfvDisRate" class="text-sm italic hidden"
-                                ValidationGroup="VoucherValidation"
+                        <asp:RequiredFieldValidator ID="rfvDisRate" class="text-sm italic hidden"
+                                ValidationGroup=""
                                 runat="server" ControlToValidate="txtDiscountRate"
-                                ErrorMessage="Please enter a discount rate." Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>--%>
+                                ErrorMessage="Please enter a discount rate." Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
                         </div>
                     </div>
 
@@ -289,11 +296,11 @@
                                 placeholder="Enter Cat At (RM)"
                                 CssClass="py-2 px-3 block w-full border border-gray-300 shadow-sm text-md rounded-lg focus:outline-none focus:border-indigo-500 focus:ring-indigo-500">
                             </asp:TextBox>
-<%--                           <asp:RequiredFieldValidator ID="RequiredFieldValidator4" class="text-sm italic"
-                                ValidationGroup="VoucherValidation"
+                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" class="text-sm italic"
+                                ValidationGroup=""
                                 runat="server" ControlToValidate="txtCapAt"
                                 ErrorMessage="Please enter a cap at value."
-                                Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>--%>
+                                Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
                         </div>
                     </div>
                 </div>
