@@ -62,31 +62,48 @@
         </style>
     </head>
     <body>
-        <div class="container">
-            <h2>Update Current Property</h2>
-            <div class="form-group">
-                <label for="propertyName">Select Property Name:</label>
-                <select id="propertyName" name="propertyName" required>
-                    <option value="property1">Property 1</option>
-                    <option value="property2">Property 2</option>
-                    <option value="property3">Property 3</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="propertyPrice">Enter Updated Property Price:</label>
-                <input type="number" id="propertyPrice" name="propertyPrice" required>
-            </div>
-            <button type="submit" class="button" onclick="confirmUpdate()">Confirm Update</button>
+       <div class="container">
+        <h2>Update Property Details</h2>
+        <div class="form-group">
+            <label>Select Property:</label>
+            <asp:DropDownList ID="ddlProperty" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlProperty_SelectedIndexChanged">
+                <asp:ListItem Text="--Select Property--" Value="" />
+            </asp:DropDownList>
         </div>
-
-        <script>
-            function confirmUpdate() {
-                if (confirm("Are you sure you want to update the property price?")) {
-                    ///Will add the function to make changes in database
-                    alert("Property price updated successfully for property: ");
-                }
-            }
-        </script>
+        <div class="form-group">
+            <label>Property Name:</label>
+            <asp:TextBox ID="txtPropertyName" runat="server" CssClass="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Property Price:</label>
+            <asp:TextBox ID="txtPropertyPrice" runat="server" CssClass="form-control" TextMode="Number" />
+        </div>
+        <div class="form-group">
+            <label>Property Description:</label>
+            <asp:TextBox ID="txtPropertyDesc" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3" />
+        </div>
+        <div class="form-group">
+            <label>Address:</label>
+            <asp:TextBox ID="txtPropertyAddress" runat="server" CssClass="form-control" />
+        </div>
+        <div class="form-group">
+            <label>City:</label>
+            <asp:TextBox ID="txtCity" runat="server" CssClass="form-control" />
+        </div>
+        <div class="form-group">
+            <label>State:</label>
+            <asp:TextBox ID="txtState" runat="server" CssClass="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Total Bedrooms:</label>
+            <asp:TextBox ID="txtTotalBedrooms" runat="server" CssClass="form-control" TextMode="Number" />
+        </div>
+        <div class="form-group">
+            <label>Total Bathrooms:</label>
+            <asp:TextBox ID="txtTotalBathrooms" runat="server" CssClass="form-control" TextMode="Number" />
+        </div>
+        <asp:Button ID="btnUpdate" runat="server" Text="Update Property" OnClick="btnUpdate_Click" CssClass="button" />
+    </div>
     </body>
     </html>
 </asp:Content>

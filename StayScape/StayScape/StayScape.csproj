@@ -173,6 +173,7 @@
     <Content Include="Images\house-transparent.png" />
     <Content Include="Images\house.png" />
     <Content Include="Review.aspx" />
+    <Content Include="UploadImage.aspx" />
     <Content Include="Voucher.aspx" />
     <Content Include="VoucherDetails.aspx" />
     <Content Include="Web.config" />
@@ -365,6 +366,13 @@
     </Compile>
     <Compile Include="Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UploadImage.aspx.cs">
+      <DependentUpon>UploadImage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UploadImage.aspx.designer.cs">
+      <DependentUpon>UploadImage.aspx</DependentUpon>
     </Compile>
     <Compile Include="VoucherDetails.aspx.cs">
       <DependentUpon>VoucherDetails.aspx</DependentUpon>
