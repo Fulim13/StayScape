@@ -40,21 +40,20 @@ namespace StayScape.DesmondsPage
                         Guid userId = (Guid)newUser.ProviderUserKey;
 
                         // Insert user details into the CUSTOMER table
-                        /* using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\YourInstanceName;AttachDbFilename=C:\Users\desmo\Documents\Web_Dev_Assignment\StayScape\StayScape\App_Data\StayScapeDB.mdf;Integrated Security=True"))
+                        using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\StayScapeDB.mdf;Integrated Security=True"))
                         {
                             con.Open();
 
-                            SqlCommand regisCmd = new SqlCommand("INSERT INTO CUSTOMER (custID, customerName, custPhoneNumber, custEmail, custPassword, birthDate, gender, createdAt) VALUES (@custID, @customerName, @custPhoneNumber, @custEmail, @custPassword, @birthDate, @gender, @createdAt)", con);
+                            SqlCommand regisCmd = new SqlCommand("INSERT INTO CUSTOMER (custID, customerName, custPhoneNumber, custEmail, birthDate, gender, createdAt) VALUES (@custID, @customerName, @custPhoneNumber, @custEmail, @birthDate, @gender, @createdAt)", con);
                             regisCmd.Parameters.AddWithValue("@custID", userId);
                             regisCmd.Parameters.AddWithValue("@customerName", txtName.Text);
                             regisCmd.Parameters.AddWithValue("@custPhoneNumber", txtPhone.Text);
                             regisCmd.Parameters.AddWithValue("@custEmail", txtEmail.Text);
-                            regisCmd.Parameters.AddWithValue("@custPassword", "hashedPassword");
                             regisCmd.Parameters.AddWithValue("@birthDate", txtbDate.Text);
                             regisCmd.Parameters.AddWithValue("@gender", genderDropdown.SelectedValue);
                             regisCmd.Parameters.AddWithValue("@createdAt", DateTime.Now);
                             regisCmd.ExecuteNonQuery();
-                        } */
+                        }
 
                         Roles.AddUserToRole(newUser.UserName, "Customer");
 
