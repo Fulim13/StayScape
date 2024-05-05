@@ -76,24 +76,43 @@ namespace StayScape
         private void UpdatePropertyDetails(int propertyID)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["LocalSqlServer"].ConnectionString;
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                SqlCommand cmd = new SqlCommand("UPDATE Property SET propertyName = @propertyName, propertyPrice = @propertyPrice, propertyDesc = @propertyDesc, propertyAddress = @propertyAddress, propertyAddress_City = @city, propertyAddress_State = @state, totalBedroom = @totalBedroom, totalBathroom = @totalBathroom, lastUpdate = GETDATE() WHERE propertyID = @propertyID", conn);
-                cmd.Parameters.AddWithValue("@propertyID", propertyID);
-                cmd.Parameters.AddWithValue("@propertyName", txtPropertyName.Text);
-                cmd.Parameters.AddWithValue("@propertyPrice", decimal.Parse(txtPropertyPrice.Text));
-                cmd.Parameters.AddWithValue("@propertyDesc", txtPropertyDesc.Text);
-                cmd.Parameters.AddWithValue("@propertyAddress", txtPropertyAddress.Text);
-                cmd.Parameters.AddWithValue("@city", txtCity.Text);
-                cmd.Parameters.AddWithValue("@state", txtState.Text);
-                cmd.Parameters.AddWithValue("@totalBedroom", int.Parse(txtTotalBedrooms.Text));
-                cmd.Parameters.AddWithValue("@totalBathroom", int.Parse(txtTotalBathrooms.Text));
-                conn.Open();
-                cmd.ExecuteNonQuery();
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    SqlCommand cmd = new SqlCommand("UPDATE Property SET propertyName = @propertyName, propertyPrice = @propertyPrice, propertyDesc = @propertyDesc, propertyAddress = @propertyAddress, propertyAddress_City = @city, propertyAddress_State = @state, totalBedroom = @totalBedroom, totalBathroom = @totalBathroom, lastUpdate = GETDATE() WHERE propertyID = @propertyID", conn);
+                    cmd.Parameters.AddWithValue("@propertyID", propertyID);
+                    cmd.Parameters.AddWithValue("@propertyName", txtPropertyName.Text);
+                    cmd.Parameters.AddWithValue("@propertyPrice", decimal.Parse(txtPropertyPrice.Text));
+                    cmd.Parameters.AddWithValue("@propertyDesc", txtPropertyDesc.Text);
+                    cmd.Parameters.AddWithValue("@propertyAddress", txtPropertyAddress.Text);
+                    cmd.Parameters.AddWithValue("@city", txtCity.Text);
+                    cmd.Parameters.AddWithValue("@state", txtState.Text);
+                    cmd.Parameters.AddWithValue("@totalBedroom", int.Parse(txtTotalBedrooms.Text));
+                    cmd.Parameters.AddWithValue("@totalBathroom", int.Parse(txtTotalBathrooms.Text));
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Property updated successfully.');", true);
+                    ClearFormFields();
+                }
+            }catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Failed to add property. Error: " + ex.Message + "');", true);
             }
+        }
 
-            // Optionally show a success message or redirect
-            Response.Write("<script>alert('Property updated successfully');</script>");
+        private void ClearFormFields()
+        {
+            // Clear all the input fields
+            txtPropertyName.Text = string.Empty;
+            txtPropertyPrice.Text = string.Empty;
+            txtPropertyDesc.Text = string.Empty;
+            txtPropertyAddress.Text = string.Empty;
+            txtCity.Text = string.Empty;
+            txtState.Text = string.Empty;
+            txtTotalBedrooms.Text = string.Empty;
+            txtTotalBathrooms.Text = string.Empty;
+            // Clear other fields as necessary
         }
     }
 }

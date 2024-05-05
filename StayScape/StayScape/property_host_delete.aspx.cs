@@ -78,18 +78,30 @@ namespace StayScape
         private void DeleteProperty(int propertyID)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["LocalSqlServer"].ConnectionString;
-            using (SqlConnection con = new SqlConnection(connectionString))
+            try
             {
-                SqlCommand cmd = new SqlCommand("DELETE FROM PropertyImage WHERE propertyID = @propertyID; DELETE FROM Property WHERE propertyID = @propertyID;", con);
-                cmd.Parameters.AddWithValue("@propertyID", propertyID);
-                con.Open();
-                cmd.ExecuteNonQuery();
-                lblSuccess.Text = "Property deleted successfully!";
-                PopulateProperties(); // Refresh dropdown list after delete
-                Response.Redirect(Request.RawUrl); // This will reload the page
-
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    SqlCommand cmd = new SqlCommand("DELETE FROM PropertyImage WHERE propertyID = @propertyID; DELETE FROM Property WHERE propertyID = @propertyID;", con);
+                    cmd.Parameters.AddWithValue("@propertyID", propertyID);
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Property deleted successfully.');", true);
+                    PopulateProperties(); // Refresh dropdown list after delete
+                    ClearFormFields();
+                }
+            }catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Failed to delete property. Error: " + ex.Message + "');", true);
             }
         }
 
+        private void ClearFormFields()
+        {
+            // Clear all the input fields
+            lblPrice.Text = string.Empty;
+            lblDescription.Text = string.Empty;
+            lblAddress.Text = string.Empty;
+        }
     }
 }

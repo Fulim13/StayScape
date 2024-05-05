@@ -183,8 +183,6 @@
                         Display="Dynamic" />
                 </div>
                 <asp:Button ID="btnSubmit" runat="server" Text="Add Property" CssClass="button" OnClientClick="return confirm('Are you sure you want to add this property?');" OnClick="UploadProperty" />
-                <asp:Label ID="lblSuccessMessage" runat="server" CssClass="success-message"></asp:Label>
-
             </asp:Panel>
         </div>
     </body>
