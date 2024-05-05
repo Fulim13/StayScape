@@ -14,10 +14,14 @@ namespace StayScape.PPT
         }
         private List<PropertyModel> GetPropertiesFromDatabase()
         {
-            List<PropertyModel> properties = new List<PropertyModel>();
+            Dictionary<int, PropertyModel> propertyDictionary = new Dictionary<int, PropertyModel>();
 
             string connectionString = ConfigurationManager.ConnectionStrings["LocalSqlServer"].ConnectionString;
-            string query = "SELECT propertyID, propertyName, propertyPrice, propertyDesc, createdAt, lastUpdate FROM Property";
+            string query = @"
+            SELECT P.propertyID, P.propertyName, P.propertyPrice, P.propertyDesc, P.createdAt, P.lastUpdate,
+            P.totalBedroom, P.totalBathroom, P.propertyAddress_State, PI.propertyPicture
+            FROM Property P
+            LEFT JOIN PropertyImage PI ON P.propertyID = PI.propertyID";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -28,27 +32,37 @@ namespace StayScape.PPT
                     SqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
-                        PropertyModel property = new PropertyModel
+                        int propertyID = reader.GetInt32(0);
+                        if (!propertyDictionary.TryGetValue(propertyID, out PropertyModel property))
                         {
-                            PropertyID = reader.GetInt32(0),
-                            PropertyName = reader["propertyName"].ToString(),
-                            PropertyPrice = Convert.ToDecimal(reader["propertyPrice"]),
-                            PropertyDesc = reader["propertyDesc"].ToString(),
-                            CreatedAt = Convert.ToDateTime(reader["createdAt"]),
-                            LastUpdate = Convert.ToDateTime(reader["lastUpdate"]),
-                            TotalBedroom = reader.GetInt32(0),
-                            TotalBathroom = reader.GetInt32(0),
-                        };
-                        properties.Add(property);
+                            property = new PropertyModel
+                            {
+                                PropertyID = propertyID,
+                                PropertyName = reader["propertyName"].ToString(),
+                                PropertyPrice = Convert.ToDecimal(reader["propertyPrice"]),
+                                PropertyDesc = reader["propertyDesc"].ToString(),
+                                CreatedAt = Convert.ToDateTime(reader["createdAt"]),
+                                LastUpdate = Convert.ToDateTime(reader["lastUpdate"]),
+                                TotalBedroom = reader.GetInt32(6),
+                                TotalBathroom = reader.GetInt32(7),
+                                PropertyAddress_State = reader["propertyAddress_State"].ToString(),
+                                PropertyImages = new List<byte[]>()
+                            };
+                            propertyDictionary.Add(propertyID, property);
+                        }
+                        if (!(reader["propertyPicture"] is DBNull))
+                        {
+                            property.PropertyImages.Add((byte[])reader["propertyPicture"]);
+                        }
                     }
                     reader.Close();
                 }
                 catch (Exception ex)
                 {
-
+                    // Handle or log the exception
                 }
             }
-            return properties;
+            return new List<PropertyModel>(propertyDictionary.Values);
         }
     }
 
@@ -59,10 +73,13 @@ namespace StayScape.PPT
         public decimal PropertyPrice { get; set; }
         public string PropertyDesc { get; set; }
         public string PropertyAddress { get; set; }
+        public string PropertyAddress_City { get; set; }
+        public string PropertyAddress_State { get; set; }
         public int TotalBedroom { get; set; }
         public int TotalBathroom { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime LastUpdate { get; set; }
-
+        public List<byte[]> PropertyImages { get; set; } = new List<byte[]>(); // Store multiple images
     }
+
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -42,21 +43,20 @@ namespace StayScape
                         Guid userId = (Guid)newUser.ProviderUserKey;
 
                         // Insert user details into the HOST table
-                        /* using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\YourInstanceName;AttachDbFilename=C:\Users\desmo\Documents\Web_Dev_Assignment\StayScape\StayScape\App_Data\StayScapeDB.mdf;Integrated Security=True"))
+                        using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\StayScapeDB.mdf;Integrated Security=True"))
                         {
                             con.Open();
 
-                            SqlCommand regisCmd = new SqlCommand("INSERT INTO HOST (hostID, hostName, hostPhoneNumber, hostEmail, hostPassword, birthDate, gender, createdAt) VALUES (@hostID, @hostName, @hostPhoneNumber, @hostEmail, @hostPassword, @birthDate, @gender, @createdAt)", con);
-                            regisCmd.Parameters.AddWithValue("@hostID", userID);
+                            SqlCommand regisCmd = new SqlCommand("INSERT INTO HOST (hostID, hostName, hostPhoneNumber, hostEmail, birthDate, gender, createdAt) VALUES (@hostID, @hostName, @hostPhoneNumber, @hostEmail, @birthDate, @gender, @createdAt)", con);
+                            regisCmd.Parameters.AddWithValue("@hostID", userId);
                             regisCmd.Parameters.AddWithValue("@hostName", txtName.Text);
                             regisCmd.Parameters.AddWithValue("@hostPhoneNumber", txtPhone.Text);
                             regisCmd.Parameters.AddWithValue("@hostEmail", txtEmail.Text);
-                            regisCmd.Parameters.AddWithValue("@hostPassword", hashedPassword);
                             regisCmd.Parameters.AddWithValue("@birthDate", txtbDate.Text);
                             regisCmd.Parameters.AddWithValue("@gender", genderDropdown.SelectedValue);
                             regisCmd.Parameters.AddWithValue("@createdAt", DateTime.Now);
                             regisCmd.ExecuteNonQuery();
-                        } */
+                        }
 
                         Roles.AddUserToRole(newUser.UserName, "Host");
 
