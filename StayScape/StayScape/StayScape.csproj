@@ -108,8 +108,10 @@
     <Content Include="Checkout.aspx" />
     <Content Include="checkout.css" />
     <Content Include="checkout.js" />
+    <Content Include="errors\404.aspx" />
     <Content Include="Global.asax" />
     <Content Include="HostRegister.aspx" />
+    <Content Include="Images\newuser.jpg" />
     <Content Include="Images\WorldviewGrandHotel.jpg" />
     <Content Include="Login.aspx" />
     <Content Include="OrderHistory.aspx" />
@@ -172,6 +174,7 @@
     <Content Include="Images\house-transparent.png" />
     <Content Include="Images\house.png" />
     <Content Include="Review.aspx" />
+    <Content Include="UploadImage.aspx" />
     <Content Include="Voucher.aspx" />
     <Content Include="VoucherDetails.aspx" />
     <Content Include="Web.config" />
@@ -234,6 +237,13 @@
       <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
     <Compile Include="DBManager.cs" />
+    <Compile Include="errors\404.aspx.cs">
+      <DependentUpon>404.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="errors\404.aspx.designer.cs">
+      <DependentUpon>404.aspx</DependentUpon>
+    </Compile>
     <Compile Include="GenerateVoucher.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -357,6 +367,13 @@
     </Compile>
     <Compile Include="Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UploadImage.aspx.cs">
+      <DependentUpon>UploadImage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UploadImage.aspx.designer.cs">
+      <DependentUpon>UploadImage.aspx</DependentUpon>
     </Compile>
     <Compile Include="VoucherDetails.aspx.cs">
       <DependentUpon>VoucherDetails.aspx</DependentUpon>
