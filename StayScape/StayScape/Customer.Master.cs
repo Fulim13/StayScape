@@ -74,7 +74,7 @@ namespace StayScape
 
                     connection.Open();
                     object queryResult = command.ExecuteScalar();
-                    if (queryResult != null)
+                    if (queryResult != null && queryResult != DBNull.Value)
                     {
                         result = (byte[])queryResult;
                     }
@@ -83,6 +83,7 @@ namespace StayScape
 
             return result;
         }
+
 
         protected void btnSignout_Click(object sender, EventArgs e)
         {
