@@ -15,6 +15,42 @@ namespace StayScape
     {
 
         /// <summary>
+        /// lblPropertyName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPropertyName;
+
+        /// <summary>
+        /// lblCheckInOutDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCheckInOutDate;
+
+        /// <summary>
+        /// lblReservationDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblReservationDate;
+
+        /// <summary>
+        /// lblReservationTotal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblReservationTotal;
+
+        /// <summary>
         /// reasonRbl control.
         /// </summary>
         /// <remarks>
@@ -22,15 +58,6 @@ namespace StayScape
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList reasonRbl;
-
-        /// <summary>
-        /// reasonTxtbx control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox reasonTxtbx;
 
         /// <summary>
         /// navLink control.
@@ -69,13 +96,22 @@ namespace StayScape
         protected global::System.Web.UI.WebControls.Button btnCancel;
 
         /// <summary>
-        /// pendingApprovalModal control.
+        /// successCancelModal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pendingApprovalModal;
+        protected global::System.Web.UI.WebControls.Panel successCancelModal;
+
+        /// <summary>
+        /// lblSuccessCancelText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSuccessCancelText;
 
         /// <summary>
         /// modalCloseButton control.

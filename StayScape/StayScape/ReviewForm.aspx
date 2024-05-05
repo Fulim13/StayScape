@@ -67,11 +67,14 @@
             <h3 class="text-lg leading-6 font-medium text-gray-900 underline underline-offset-4">Review</h3>
             <div class="flex py-4">
                 <div class="imageaaa flex items-center py-2 mr-4">
-                  <img class="h-10 w-10 rounded-lg" src="Images/WorldviewGrandHotel.jpg" alt=""/>
+                    <asp:Image ID="imgProperty" class="h-10 w-10 rounded-lg" runat="server" />
+                    <%--<img class="h-10 w-10 rounded-lg" src="Images/WorldviewGrandHotel.jpg" alt=""/>--%>
                 </div>
                 <div class="flex flex-col">
-                    <p class="font-semibold text-lg leading-8 text-indigo-600">Worldview Grand Hotel</p>
-                    <p class="text-slate-500">29-35, Jalan 10/23a, Medan Makmur, 53300 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur</p>
+                    <asp:Label ID="lblPropertyName" class="font-semibold text-lg leading-8 text-indigo-600" runat="server" Text="propertyName"></asp:Label>
+                    <%--<p class="font-semibold text-lg leading-8 text-indigo-600">Worldview Grand Hotel</p>--%>
+                    <asp:Label ID="lblPropertyAddress" class="text-slate-500" runat="server" Text="propertyAddress"></asp:Label>
+                    <%--<p class="text-slate-500">29-35, Jalan 10/23a, Medan Makmur, 53300 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur</p>--%>
                 </div>
             </div>
             <div class="flex items-center space-x-5 mb-4 rating">

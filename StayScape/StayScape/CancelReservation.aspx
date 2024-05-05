@@ -23,11 +23,25 @@
         <div class="w-full max-w-3xl py-4 px-4 md:px-5 lg-6 mx-auto rounded-md shadow-xl">
             <h3 class="text-lg leading-6 font-medium text-gray-900 underline underline-offset-4">Cancellation Of Reservation</h3>
             <div class="flex py-4">
-                <div class="flex flex-col">
-                    <p class="font-semibold text-lg leading-8 text-indigo-600 ">Worldview Grand Hotel</p>
-                    <p class="text-slate-500">Check-in Date: 20/4/2024</p>
-                    <p class="text-slate-500">Check-out Date: 22/4/2024</p>
-                    <p class="text-slate-500">Reservation Date: 10/4/2024</p>
+                <div class="bg-gray-50 px-4 py-6 sm:rounded-lg sm:p-6 md:flex md:items-center md:justify-between md:space-x-2 lg:space-x-4">
+                    <dl class="divide-y divide-gray-200 space-y-4 text-sm text-gray-600 flex-auto md:divide-y-0 md:space-y-0 md:grid md:grid-cols-4 md:gap-x-2 lg:w-1/2 lg:gap-x-4">
+                        <div class="flex justify-between md:block">
+                            <dt class="font-medium text-gray-900">Property Name</dt>
+                            <asp:Label ID="lblPropertyName" runat="server" Text="propertyName"></asp:Label>
+                        </div>
+                        <div class="flex justify-between pt-4 md:block md:pt-0">
+                            <dt class="font-medium text-gray-900">Duration</dt>
+                            <asp:Label ID="lblCheckInOutDate" class="text-slate-500" runat="server" Text="Check-in and Check-out Date"></asp:Label>
+                        </div>
+                        <div class="flex justify-between pt-4 md:block md:pt-0">
+                            <dt class="font-medium text-gray-900">Made Reservation On</dt>
+                            <asp:Label ID="lblReservationDate" class="text-slate-500" runat="server" Text="Reservation Total"></asp:Label>
+                        </div>
+                        <div class="flex justify-between pt-4 font-medium text-gray-900 md:block md:pt-0">
+                            <dt class="font-medium text-gray-900">Total</dt>
+                            <asp:Label ID="lblReservationTotal" class="text-slate-500" runat="server" Text="Reservation Total"></asp:Label>
+                        </div>
+                    </dl>
                 </div>
             </div>
             <p>Select Cancellation Reason: </p>
@@ -38,16 +52,16 @@
                 <p>Please select a valid cancellation reason. Upon successful reservation cancellation, your refund will be processed immediately.</p>
             </div>
             <div>
-                <asp:RadioButtonList ID="reasonRbl" runat="server" AutoPostBack="True" CssClass="px-2" OnSelectedIndexChanged="reasonRbl_SelectedIndexChanged">
+                <asp:RadioButtonList ID="reasonRbl" runat="server" AutoPostBack="True" CssClass="px-2">
                     <asp:ListItem>Double Booking or Mistake</asp:ListItem>
                     <asp:ListItem>Change in Travel Plans</asp:ListItem>
                     <asp:ListItem>Found Better Deal or Accommodation</asp:ListItem>
                     <asp:ListItem>Unforeseen Circumstances at Home or Work</asp:ListItem>
                     <asp:ListItem>Personal Reasons</asp:ListItem>
-                    <asp:ListItem Value="Other">Other (Please Describe)</asp:ListItem>
+                    <asp:ListItem>Other / Change of mind</asp:ListItem>
                 </asp:RadioButtonList>
             </div>
-            <div class="sm:border-t sm:border-gray-200">
+            <%--<div class="sm:border-t sm:border-gray-200">
                 <div class="mt-1 sm:mt-0">
                     <asp:TextBox 
                         ID="reasonTxtbx" 
@@ -58,7 +72,7 @@
                         TextMode="MultiLine">
                     </asp:TextBox>
                 </div>
-            </div>
+                </div>--%>
             <asp:HyperLink ID="navLink" runat="server" NavigateUrl="~/CancellationPolicy.aspx" Text="View Policy" CssClass="text-indigo-600 hover:text-indigo-800" />
             <br />
             <asp:Label ID="lblError" runat="server" CssClass="text-red-500"></asp:Label>
@@ -79,27 +93,28 @@
                         CssClass="ml-3 bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" 
                         OnClick="btnCancel_Click" 
                     />                    
-                    <asp:Panel ID="pendingApprovalModal" runat="server" CssClass="hidden fixed z-10 inset-0 overflow-y-auto">
+                    <asp:Panel ID="successCancelModal" runat="server" CssClass="hidden fixed z-10 inset-0 overflow-y-auto">
                         <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
                             <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
                             <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
                             <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
                                 <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                                     <div class="flex items-center justify-center h-full py-4">
-                                        <div class="mx-auto flex-shrink-0 flex items-center justify-center sm:mx-0 sm:h-10 sm:w-10">
-                                            <img src="Images/pending.svg" alt="Pending" class="w-10 h-10"/>
+                                        <div class="mx-auto flex-shrink-0 flex items-center justify-center h-20 w-20 rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10">
+                                            <svg class="h-16 w-16 text-green-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                            </svg>
                                         </div>
                                     </div>
                                     <div class="flex items-center justify-center h-full py-2">
                                         <div class="sm:flex sm:items-start">                        
                                             <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                                                 <h3 class="text-lg leading-6 font-medium text-gray-900 text-center" id="modal-title">
-                                                    Pending Approval
+                                                    Cancel Reservation Successful.
                                                 </h3>
-                                                <div class="mt-2">
-                                                    <p class="text-sm text-gray-500 text-center">
-                                                        Your request is pending approval. You will receive an email notification once the approval process is complete.
-                                                    </p>
+                                                <div class="mt-2 text-center">
+                                                    <!-- Label for the refund information -->
+                                                    <asp:Label ID="lblSuccessCancelText" runat="server" CssClass="text-center text-sm text-gray-500" Text="Cancellation details will appear here."></asp:Label>
                                                 </div>
                                             </div>
                                         </div>
