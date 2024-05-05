@@ -37,8 +37,8 @@ namespace StayScape
             {
 
                 //Insert Reservation Table
-                string sqlCommand2 = "INSERT INTO Reservation (reservationID, reservationAmount, discountAmount, reservationTotal,checkInDate,checkOutDate,createdAt,reservationStatus, custID, propertyID) " +
-                    "VALUES (@reservationID, @reservationAmount, @discountAmount, @reservationTotal, @checkInDate, @checkOutDate, @createdAt,@reservationStatus, @custID, @propertyID)";
+                string sqlCommand2 = "INSERT INTO Reservation (reservationID, reservationAmount, discountAmount, reservationTotal,checkInDate,checkOutDate,createdAt,reservationStatus, custID, propertyID,redemptionID) " +
+                    "VALUES (@reservationID, @reservationAmount, @discountAmount, @reservationTotal, @checkInDate, @checkOutDate, @createdAt,@reservationStatus, @custID, @propertyID, @redemptionID)";
 
 
                 SqlParameter[] parameters2 =
@@ -52,11 +52,23 @@ namespace StayScape
                 new SqlParameter("@createdAt", SqlDbType.DateTime) {Value = DateTime.Now },
                 new SqlParameter("@reservationStatus", "Pending"),
                 new SqlParameter("@custID", 1),
-                new SqlParameter("@propertyID", propertyID)
+                new SqlParameter("@propertyID", propertyID),
+                new SqlParameter("@redemptionID", Session["redemptionID"])
             };
 
                 db.createConnection();
                 bool isBool = db.ExecuteNonQuery(sqlCommand2, parameters2);
+                db.closeConnection();
+
+                //Update Redemption ID - redemptionStatus to "Used"
+                string sqlCommand3 = "UPDATE Redemption SET redemptionStatus = @redemptionStatus WHERE redemptionID = @redemptionID";
+                SqlParameter[] parameters3 =
+                {
+                    new SqlParameter("@redemptionStatus", "Used"),
+                    new SqlParameter("@redemptionID", Session["redemptionID"])
+                    };
+                db.createConnection();
+                bool isBool2 = db.ExecuteNonQuery(sqlCommand3, parameters3);
                 db.closeConnection();
             }
 

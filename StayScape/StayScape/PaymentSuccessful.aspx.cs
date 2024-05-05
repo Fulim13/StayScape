@@ -99,7 +99,7 @@ namespace StayScape
             lblPaymentMethod.Text = paymentMethod;
             lblPaymentDetails.Text = paymentMethodDetail;
             lblSubtotal.Text = "RM " + reservationAmount.ToString();
-            lblPrice.Text = "RM " + reservationAmount.ToString();
+            lblPrice.Text = "RM " + totalAmount.ToString();
             lblDiscountPrice.Text = "RM " + discountAmount.ToString();
             lblTotal.Text = "RM " + totalAmount.ToString();
 

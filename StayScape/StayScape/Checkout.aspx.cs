@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data.SqlClient;
-using System.Diagnostics;
 using System.Web;
 using System.Web.Services;
 
@@ -10,9 +9,11 @@ namespace StayScape
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Store Property ID to Session
-            //Session["PropertyID"] = 1;
+            ////Only run this code when the page is loaded for the first time
+            //if (!IsPostBack)
+            //{
 
+            //}
             // Get Session Property ID
             int propertyID = Convert.ToInt32(Session["PropertyID"]);
 
@@ -73,6 +74,7 @@ namespace StayScape
         [WebMethod]
         public static decimal ApplyDiscount(string code)
         {
+
             //Check the voucher code is on database or not, if not return 0
             DBManager db = new DBManager();
             db.createConnection();
@@ -92,7 +94,6 @@ namespace StayScape
             int propertyID = Convert.ToInt32(HttpContext.Current.Session["PropertyID"]);
 
             //Get the hostID from the propertyID
-
             db.createConnection();
             sqlCommand = "SELECT hostID FROM Property WHERE propertyID = @propertyID";
             SqlParameter[] parameters1 =
@@ -108,7 +109,7 @@ namespace StayScape
 
             //Get all the voucher code for this host
             db.createConnection();
-            sqlCommand = "SELECT voucherID, voucherCode,totalVoucher,redeemLimitPerCustomer,startDate,expiredDate,activeStatus,discountType,minSpend,discountRate,discountPrice,capAt FROM Voucher WHERE hostID = @hostID";
+            sqlCommand = "SELECT voucherID, voucherCode,totalVoucher,redeemLimitPerCustomer,startDate,expiredDate,activeStatus,discountType,minSpend,discountRate,discountPrice,capAt,propertyID FROM Voucher WHERE hostID = @hostID";
             SqlParameter[] parameters2 =
             {
                 new SqlParameter("@hostID", hostID)
@@ -125,14 +126,38 @@ namespace StayScape
                 DateTime expiredDate = Convert.ToDateTime(reader["expiredDate"]);
                 bool activeStatus = Convert.ToBoolean(reader["activeStatus"]);
                 string discountType = reader["discountType"].ToString();
-                decimal minSpend = Convert.ToDecimal(reader["minSpend"]);
-                decimal discountRate = Convert.ToDecimal(reader["discountRate"]);
-                decimal discountPrice = Convert.ToDecimal(reader["discountPrice"]);
-                decimal capAt = Convert.ToDecimal(reader["capAt"]);
+                decimal minSpend = Convert.ToInt32(reader["minSpend"]);
+                decimal discountRate = 0;
+                if (reader["discountRate"] != DBNull.Value)
+                {
+                    discountRate = Convert.ToDecimal(reader["discountRate"]);
+                }
+                decimal discountPrice = 0;
+                if (reader["discountPrice"] != DBNull.Value)
+                {
+                    discountPrice = Convert.ToDecimal(reader["discountPrice"]);
+                }
+                decimal capAt = 0;
+                if (reader["capAt"] != DBNull.Value)
+                {
+                    capAt = Convert.ToDecimal(reader["capAt"]);
+                }
+                int propertyIDVoucher = 0;
+                if (reader["propertyID"] != DBNull.Value)
+                {
+                    propertyIDVoucher = Convert.ToInt32(reader["propertyID"]);
+                }
 
 
                 if (code == voucherCode)
                 {
+                    //the voucher is for this property or not
+                    if (propertyIDVoucher != propertyID && propertyIDVoucher != 0)
+                    {
+                        return 0;
+                    }
+
+
                     //Check if the voucher is still active
                     if (!activeStatus)
                     {
@@ -146,11 +171,12 @@ namespace StayScape
                     }
 
                     //Get customer ID from session
-                    int customerID = Convert.ToInt32(HttpContext.Current.Session["CustomerID"]);
+                    int customerID = 1;
+                    //int customerID = Convert.ToInt32(HttpContext.Current.Session["CustomerID"]);
 
                     //Check if the customer has already redeem the voucher
                     db.createConnection();
-                    sqlCommand = "SELECT COUNT(*) FROM Redemption WHERE custID = @customerID AND voucherID = @voucherID";
+                    sqlCommand = "SELECT COUNT(*) FROM Redemption WHERE custID = @customerID AND voucherID = @voucherID AND redemptionStatus = 'Used'";
                     SqlParameter[] parameters3 =
                     {
                         new SqlParameter("@customerID", customerID),
@@ -163,9 +189,9 @@ namespace StayScape
                         return 0;
                     }
 
-                    //Check the that this voucher has been redeemed how many time and cannot exceed the total voucher
+                    //Check the that this voucher has been redeemed how many time for the redemptionStatus Used and cannot exceed the total voucher
                     db.createConnection();
-                    sqlCommand = "SELECT COUNT(*) FROM Redemption WHERE voucherID = @voucherID";
+                    sqlCommand = "SELECT COUNT(*) FROM Redemption WHERE voucherID = @voucherID AND redemptionStatus = 'Used'";
                     SqlParameter[] parameters4 =
                     {
                         new SqlParameter("@voucherID", voucherID)
@@ -177,22 +203,94 @@ namespace StayScape
                         return 0;
                     }
 
+                    //Check discount type
+                    if (discountType == "Value Off")
+                    {
+                        if (Convert.ToDecimal(HttpContext.Current.Session["reservationAmount"]) < minSpend)
+                        {
+                            return 0;
+                        }
 
+                        // store the discount amount in session
+                        HttpContext.Current.Session["discountAmount"] = discountPrice;
+
+                        //insert redemption to database
+                        db.createConnection();
+                        sqlCommand = "INSERT INTO Redemption (custID, voucherID, redemptionDate, redemptionStatus) VALUES (@custID, @voucherID, @redemptionDate, @redemptionStatus)";
+                        SqlParameter[] parameters5 =
+                        {
+                            new SqlParameter("@custID", customerID),
+                            new SqlParameter("@voucherID", voucherID),
+                            new SqlParameter("@redemptionDate", DateTime.Now),
+                            new SqlParameter("@redemptionStatus", "Pending")
+                        };
+                        db.ExecuteNonQuery(sqlCommand, parameters5);
+
+                        //store redemption ID in session
+                        sqlCommand = "SELECT redemptionID FROM Redemption WHERE custID = @custID AND voucherID = @voucherID";
+                        SqlParameter[] parameters6 =
+                        {
+                            new SqlParameter("@custID", customerID),
+                            new SqlParameter("@voucherID", voucherID)
+                        };
+                        command = db.ExecuteQuery(sqlCommand, parameters6);
+                        reader = command.ExecuteReader();
+                        reader.Read();
+                        int redemptionID = Convert.ToInt32(reader["redemptionID"]);
+                        HttpContext.Current.Session["redemptionID"] = redemptionID;
+
+                        return discountPrice;
+
+                    }
+                    else if (discountType == "Percentage Off")
+                    {
+                        if (Convert.ToDecimal(HttpContext.Current.Session["reservationAmount"]) < minSpend)
+                        {
+                            return 0;
+                        }
+
+                        decimal discountAmount = Convert.ToDecimal(HttpContext.Current.Session["reservationAmount"]) * discountRate / 100;
+                        if (discountAmount > capAt)
+                        {
+                            discountAmount = capAt;
+                        }
+                        //store redemption ID in session
+                        sqlCommand = "SELECT redemptionID FROM Redemption WHERE custID = @custID AND voucherID = @voucherID";
+                        SqlParameter[] parameters6 =
+                        {
+                            new SqlParameter("@custID", customerID),
+                            new SqlParameter("@voucherID", voucherID)
+                        };
+                        command = db.ExecuteQuery(sqlCommand, parameters6);
+                        reader = command.ExecuteReader();
+                        reader.Read();
+                        int redemptionID = Convert.ToInt32(reader["redemptionID"]);
+                        HttpContext.Current.Session["redemptionID"] = redemptionID;
+
+
+                        // store the discount amount in session
+                        HttpContext.Current.Session["discountAmount"] = discountAmount;
+                        return discountAmount;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
 
                 }
             }
 
-            // Get all the voucher code for this property
+            //// Get all the voucher code for this property
 
 
-            Debug.WriteLine(propertyID);
-            Debug.WriteLine(code);
-            // Add your server-side code for applying the discount here
-            // Calculate and return the discount amount
-            // For example:
-            //decimal discountAmount = CalculateDiscount(code);
-            //return discountAmount;
-            return 1;
+            //Debug.WriteLine(propertyID);
+            //Debug.WriteLine(code);
+            //// Add your server-side code for applying the discount here
+            //// Calculate and return the discount amount
+            //// For example:
+            ////decimal discountAmount = CalculateDiscount(code);
+            ////return discountAmount;
+            return 0;
         }
 
         private static decimal CalculateDiscount(string code)
