@@ -6,7 +6,26 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <style type="text/css">
         .calendar {
-            margin-top: 16px;
+            display: flex;
+            flex-direction: column;
+            max-width: 300px; 
+            margin: auto; 
+        }
+
+        .date-input {
+            margin-bottom: 10px; 
+        }
+
+        .date-label {
+            display: block;
+            margin-bottom: 5px; 
+        }
+
+        .datepicker {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
         }
     </style>
 </asp:Content>
@@ -41,11 +60,16 @@
                     <p class="text-3xl tracking-tight text-gray-900">Price: RM <%= Property.PropertyPrice %></p>
 
                     <div class="calendar">
-                        <label for="checkInDate" class="mt-6">Check-in Date:</label>
-                        <input type="text" id="checkInDate" name="checkInDate" class="datepicker" />
-                        <label for="checkOutDate" class="mt-6">Check-out Date:</label>
-                        <input type="text" id="checkOutDate" name="checkOutDate" class="datepicker" />
+                        <div class="date-input">
+                            <label for="checkInDate" class="date-label">Check-in Date:</label>
+                            <input type="text" id="checkInDate" name="checkInDate" class="datepicker" />
+                        </div>
+                        <div class="date-input">
+                            <label for="checkOutDate" class="date-label">Check-out Date:</label>
+                            <input type="text" id="checkOutDate" name="checkOutDate" class="datepicker" />
+                        </div>
                     </div>
+
                     <p class="mt-6 text-2xl text-gray-700" id="totalPrice">Total Price: RM 0.00</p>
                 </div>
 
@@ -80,7 +104,7 @@
             </div>
 
             <div class="button-container flex justify-center space-x-4">
-                <asp:Button CssClass="mt-5 flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 button" ID="btnPlace" runat="server" Text="Reserve" OnClick="btnPlace_Click" />
+                <asp:Button CssClass="mt-5 flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 button" ID="btnPlace" runat="server" Text="Reserve" OnClick="btnPlace_Click" Enabled="false"/>
                 <asp:Button CssClass="mt-5 flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 button secondary" ID="btnBack" runat="server" Text="Back" OnClick="btnBack_Click" />
             </div>
 
@@ -321,25 +345,29 @@
         $(function () {
             var propertyPrice = <%= Property.PropertyPrice %>;
 
-             $(".datepicker").datepicker({
-                 dateFormat: 'yy-mm-dd',
-                 onSelect: function (selectedDate, instance) {
-                     var checkInDate = $('#checkInDate').datepicker('getDate');
-                     var checkOutDate = $('#checkOutDate').datepicker('getDate');
+        $(".datepicker").datepicker({
+            dateFormat: 'yy-mm-dd',
+            onSelect: function (selectedDate, instance) {
+                var checkInDate = $('#checkInDate').datepicker('getDate');
+                var checkOutDate = $('#checkOutDate').datepicker('getDate');
 
-                     if (checkInDate && checkOutDate) {
-                         var days = (checkOutDate - checkInDate) / (1000 * 60 * 60 * 24);
-
-                         if (days > 0 && days <= 30) {
-                             var totalPrice = days * propertyPrice;
-                             $('#totalPrice').text('Total Price: RM ' + totalPrice.toFixed(2));
-                         } else {
-                             $('#totalPrice').text('');
-                             alert('Please select a valid duration (maximum 30 days for reserve  ).');
-                         }
-                     }
-                 }
-             });
-         });
+                if (checkInDate && checkOutDate) {
+                    var days = (checkOutDate - checkInDate) / (1000 * 60 * 60 * 24);
+                    if (days > 0 && days < 30) {
+                        var totalPrice = days * propertyPrice;
+                        $('#totalPrice').text('Total Price: RM ' + totalPrice.toFixed(2));
+                        $('#<%= btnPlace.ClientID %>').prop('disabled', false); 
+                    } else {
+                        $('#totalPrice').text('');
+                        alert('Please select a valid duration (1 to 29 days).');
+                        $('#<%= btnPlace.ClientID %>').prop('disabled', true); 
+                    }
+                } else {
+                    $('#<%= btnPlace.ClientID %>').prop('disabled', true);
+                }
+            }
+        });
+    });
     </script>
+
 </asp:Content>
