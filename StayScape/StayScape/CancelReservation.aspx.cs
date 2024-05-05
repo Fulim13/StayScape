@@ -82,6 +82,12 @@ namespace StayScape
             {
                 string strError = "Please select a cancellation reason!";
                 lblError.Text = strError;
+                // Re-load reservation details to prevent data loss after error
+                if (!string.IsNullOrEmpty(reservationID))
+                {
+                    LoadReservationDetails(reservationID);
+                }
+
                 return;
             }
 

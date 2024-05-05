@@ -288,9 +288,9 @@ namespace StayScape
                 {
                     // If a reply exists, update it
                     string updateReplyQuery = @"
-            UPDATE Reply 
-            SET replyText = @replyText, repliedAt = @repliedAt 
-            WHERE replyID = @replyID";
+                        UPDATE Reply 
+                        SET replyText = @replyText, repliedAt = @repliedAt 
+                        WHERE replyID = @replyID";
 
                     SqlCommand updateCmd = new SqlCommand(updateReplyQuery, conn);
                     updateCmd.Parameters.AddWithValue("@replyText", replyText);
@@ -303,8 +303,8 @@ namespace StayScape
                 {
                     // If no reply exists, insert a new reply
                     string insertReplyQuery = @"
-            INSERT INTO Reply (replyID, replyText, repliedAt, repliedBy, reviewID)
-            VALUES (@replyID, @replyText, @repliedAt, @repliedBy, @reviewID)";
+                        INSERT INTO Reply (replyID, replyText, repliedAt, repliedBy, reviewID)
+                        VALUES (@replyID, @replyText, @repliedAt, @repliedBy, @reviewID)";
 
                     // Generate new reply ID
                     string newReplyID = GenerateNewReplyID(conn);
@@ -388,9 +388,9 @@ namespace StayScape
         }
 
             protected void ShowReplyModal()
-        {
-            replyModal.CssClass = replyModal.CssClass.Replace("hidden", "").Trim(); // Make modal visible
-        }
+            {
+                replyModal.CssClass = replyModal.CssClass.Replace("hidden", "").Trim(); // Make modal visible
+            }
 
         protected void ModalCloseButton_Click(object sender, EventArgs e)
         {

@@ -27,15 +27,6 @@
                 txtDate._flatpickr.open();
             });
         });
-
-        function toggleRatingsAnalysis() {
-            var ratingsAnalysis = document.getElementById('ratingsAnalysis');
-            if (ratingsAnalysis.classList.contains('hidden')) {
-                ratingsAnalysis.classList.remove('hidden');
-            } else {
-                ratingsAnalysis.classList.add('hidden');
-            }
-        }
     </script>
 
     <style>
@@ -77,117 +68,6 @@
       <div class="px-3 py-3">
         <div class="py-2 px-2">
             <h3 class="font-manrope font-bold text-2xl text-black mb-2">Property Reviews</h3>
-            <asp:Button 
-                ID="btnShowAnalysis" 
-                runat="server" 
-                Text="Show Ratings Analysis" 
-                OnClientClick="toggleRatingsAnalysis(); return false;" 
-                CssClass="border-b border-indigo-600 text-indigo-600 mb-4 hover:cursor-pointer hover:text-indigo-800"
-            />
-            <div ID="ratingsAnalysis" class="hidden grid grid-cols-7 xl:grid-cols-7 gap-4 pb-11 border-b border-gray-100 max-xl:max-w-2xl max-xl:mx-auto">
-                <div class="box flex flex-col w-full ">
-                    <p class="mb-2 text-slate-500">Based on 3 reviews</p>
-                    <p class="font-medium text-lg text-black text-center">4.3/5.0</p>
-                    <div class="flex items-center my-3 mr-4"">
-                        <svg class="w-6 h-6 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                        </svg>
-                        <svg class="w-6 h-6 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                        </svg>
-                        <svg class="w-6 h-6 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                        </svg>
-                        <svg class="w-6 h-6 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                        </svg>
-                        <svg class="w-6 h-6 text-gray-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                        </svg>
-                    </div>
-                    <div class="flex items-center w-full">
-                        <p class="font-medium text-lg text-black mr-0.5">5</p>
-                            <svg class="w-6 h-6 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                            </svg>
-                        <p class="h-2 w-full rounded-3xl bg-indigo-50 ml-5 mr-3">
-                            <span class="h-full w-[33%] rounded-3xl bg-indigo-400 flex"></span>
-                        </p>
-                        <p class="font-medium text-lg  text-black mr-0.5">1</p>
-                    </div>
-                    <div class="flex items-center w-full">
-                        <p class="font-medium text-lg text-black mr-0.5">4</p>
-                        <svg class="w-6 h-6 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                        </svg>
-                        <p class="h-2 w-full rounded-3xl bg-indigo-50 ml-5 mr-3">
-                            <span class="h-full w-[67%] rounded-3xl bg-indigo-400 flex"></span>
-                        </p>
-                        <p class="font-medium text-lg text-black mr-0.5">2</p>
-                    </div>
-                    <div class="flex items-center">
-                        <p class="font-medium text-lg text-black mr-0.5">3</p>
-                        <svg class="w-6 h-6 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                        </svg>
-                        <p class="h-2 w-full rounded-3xl bg-indigo-50 ml-5 mr-3">
-                            <span class="h-full w-[0%] rounded-3xl bg-indigo-400 flex"></span>
-                        </p>
-                        <p class="font-medium text-lg text-black mr-0.5">0</p>
-                    </div>
-                    <div class="flex items-center">
-                        <p class="font-medium text-lg text-black mr-0.5">2</p>
-                        <svg class="w-6 h-6 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                        </svg>
-                        <p class="h-2 w-full rounded-3xl bg-indigo-50 ml-5 mr-3">
-                            <span class="h-full w-[0%] rounded-3xl bg-indigo-400 flex"></span>
-                        </p>
-                        <p class="font-medium text-lg text-black mr-0.5">0</p>
-                    </div>
-                    <div class="flex items-center">
-                        <p class="font-medium text-lg text-black mr-0.5">1</p>
-                        <svg class="w-6 h-6 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                        </svg>
-                        <p class="h-2 w-full rounded-3xl bg-indigo-50 ml-5 mr-3">
-                            <span class="h-full w-[0%] rounded-3xl bg-indigo-400 flex"></span>
-                        </p>
-                        <p class="font-medium text-lg py-[1px] text-black mr-0.5">0</p>
-                    </div>
-        
-                </div>
-                <div class="flex flex-col items-center justify-center border-l border-gray">
-                    <p class="font-medium text-xl leading-8 text-gray-900 text-center">Cleanliness</p>
-                    <p class="py-4 font-medium text-lg text-black">4.9</p>
-                    <img src="Images/water.svg" alt="Cleanliness" class="w-10 h-10"/>
-                </div>
-                <div class="flex flex-col items-center justify-center border-l border-gray">
-                    <p class="font-medium text-xl leading-8 text-gray-900 text-center">Service</p>
-                    <p class="py-4 font-medium text-lg text-black">4.9</p>
-                    <img src="Images/nut.svg" alt="Service" class="w-10 h-10"/>
-                </div>
-                <div class="flex flex-col items-center justify-center border-l border-gray">
-                    <p class="font-medium text-xl leading-8 text-gray-900 text-center">Comfort</p>
-                    <p class="py-4 font-medium text-lg text-black">4.9</p>
-                    <img src="Images/sun.svg" alt="Comfort" class="w-10 h-10"/>
-                </div>
-                <div class="flex flex-col items-center justify-center border-l border-gray">
-                    <p class="font-medium text-xl leading-8 text-gray-900 text-center">Condition</p>
-                    <p class="py-4 font-medium text-lg text-black">4.9</p>
-                    <img src="Images/lamp.svg" alt="Condition" class="w-10 h-10"/>
-                </div>
-                <div class="flex flex-col items-center justify-center border-l border-gray">
-                    <p class="font-medium text-xl leading-8 text-gray-900 text-center">Amenities</p>
-                    <p class="py-4 font-medium text-lg text-black">4.9</p>
-                    <img src="Images/tv.svg" alt="Amenities" class="w-10 h-10"/>
-                </div>
-                <div class="flex flex-col items-center justify-center border-l border-gray">
-                    <p class="font-medium text-xl leading-8 text-gray-900 text-center">Location</p>
-                    <p class="py-4 font-medium text-lg text-black">4.9</p>
-                    <img src="Images/location.svg" alt="Location" class="w-10 h-10"/>
-                </div>
-            </div>
             <div class="pb-4 grid grid-rows-3 gap-4">
                 <div>
                     <asp:Label 
@@ -230,7 +110,7 @@
                     <asp:Button 
                         ID="btnSearch" 
                         runat="server" 
-                        CssClass="py-2 px-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 ml-auto hover:cursor-pointer"
+                        CssClass="w-20 py-2 px-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 ml-auto hover:cursor-pointer"
                         Text="Search" 
                         OnClick="btnSearch_Click"
                     />
@@ -367,7 +247,7 @@
                                     ID="btnReply" 
                                     runat="server" 
                                     Text="Reply" 
-                                    CssClass="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 hover:cursor-pointer"
+                                    CssClass="w-20 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 hover:cursor-pointer"
                                     CommandName="ShowReply" 
                                     Visible='<%# (Eval("replyID") == DBNull.Value) %>' 
                                 />
@@ -377,7 +257,7 @@
                                     ID="btnEditReply" 
                                     runat="server" 
                                     Text="Edit" 
-                                    CssClass="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 hover:cursor-pointer"
+                                    CssClass="w-20 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 hover:cursor-pointer"
                                     CommandName="ShowReply" 
                                     Visible='<%# (Eval("replyID") != DBNull.Value) %>' 
                                 />

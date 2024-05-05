@@ -61,14 +61,18 @@
                 <ItemTemplate>
                     <div class="px-6 py-6 rounded-md shadow-xl">
                         <div class="bg-gray-50 px-4 py-6 sm:rounded-lg sm:p-6 md:flex md:items-center md:justify-between md:space-x-6 lg:space-x-8">
-                            <dl class="divide-y divide-gray-200 space-y-4 text-sm text-gray-600 flex-auto md:divide-y-0 md:space-y-0 md:grid md:grid-cols-3 md:gap-x-6 lg:w-1/2 lg:gap-x-8">
+                            <dl class="divide-y divide-gray-200 space-y-4 text-sm text-gray-600 flex-auto md:divide-y-0 md:space-y-0 md:grid md:grid-cols-4 md:gap-x-6 lg:w-1/2 lg:gap-x-8">
                                 <div class="flex justify-between md:block">
                                     <dt class="font-medium text-gray-900">Reservation Number</dt>
                                     <asp:Label ID="lblOrderNum" runat="server" Text='<%# Eval("ReservationID") %>' />
                                 </div>
                                 <div class="flex justify-between pt-4 md:block md:pt-0">
+                                    <dt class="font-medium text-gray-900">Duration</dt>
+                                    <asp:Label ID="lblCheckInOutDate" runat="server" Text='<%# Eval("CheckInDate") + "-" + Eval("CheckOutDate") %>' />
+                                </div>
+                                <div class="flex justify-between pt-4 md:block md:pt-0">
                                     <dt class="font-medium text-gray-900">Date Placed</dt>
-                                    <asp:Label ID="lblDatePlaced" runat="server" Text='<%# Eval("DatePlaced") %>' />
+                                    <asp:Label ID="Label2" runat="server" Text='<%# Eval("DatePlaced") %>' />
                                 </div>
                                 <div class="flex justify-between pt-4 font-medium text-gray-900 md:block md:pt-0">
                                     <dt>Total Amount</dt>
@@ -87,7 +91,7 @@
                                                     <asp:Label ID="lblPropertyName" runat="server" Text='<%# Eval("PropertyName") %>' CssClass="font-medium text-gray-900" />
                                                     <asp:Label ID="lblPropertyAddress" runat="server" Text='<%# Eval("PropertyAddress") %>' CssClass="hidden mt-2 text-sm text-gray-500 sm:block" />
                                                 </div>
-                                                <asp:Label ID="Label1" runat="server" Text='<%# Eval("Status") %>' CssClass="mt-1 font-medium text-gray-900 sm:mt-0 sm:ml-6" />
+                                                <asp:Label ID="lblStatus" runat="server" Text='<%# Eval("Status") %>' CssClass="mt-1 font-medium text-gray-900 sm:mt-0 sm:ml-40" />
                                             </div>
                                             <div class="mt-2 flex text-sm font-medium sm:mt-4">
                                                 <asp:Button 
@@ -151,19 +155,41 @@
                             <asp:Label ID="lblReviewRating" runat="server" Text="Review rating will be displayed here"></asp:Label>
                             <%--<asp:Literal ID="litStarRating" runat="server" Text="Star"/>--%> 
                             <br />
-                            <div class="bg-gray-50 px-4 py-6 sm:rounded-lg">
-                                <asp:Label ID="lblReviewDesc" runat="server" Text="Review content goes here"></asp:Label>
+                            <div class="px-4 py-6">
+                                <asp:TextBox 
+                                    ID="txtReviewDesc" 
+                                    runat="server" 
+                                    TextMode="MultiLine" 
+                                    CssClass="w-full p-2 border border-gray-300 rounded-md" 
+                                    Rows="4"
+                                />
+                                <%--<asp:Label ID="lblReviewDesc" runat="server" Text="Review content goes here"></asp:Label>--%>
                             </div>
                         </div>
                     </div>
-                    <div class="bg-gray-50 px-4 py-3 sm:px-6 flex justify-center">
+                    <div class="px-4 py-3 sm:px-6 flex justify-end">
                         <asp:Button 
+                            ID="btnSubmitEditReview" 
+                            runat="server" 
+                            Text="Submit" 
+                            CssClass="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            OnClick="btnSubmitEditReview_Click" 
+                        />
+                        <!-- Close button to close the modal -->
+                        <asp:Button 
+                            ID="btnCloseModal" 
+                            runat="server" 
+                            Text="Cancel" 
+                            CssClass="ml-3 bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            OnClick="btnCloseModal_Click" 
+                        />
+                        <%--<asp:Button 
                             ID="btnCloseModal" 
                             runat="server" 
                             Text="Close" 
                             CssClass="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-500 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:w-auto sm:text-sm"
                             OnClick="btnCloseModal_Click" 
-                        />
+                        />--%>
                     </div>
                 </div>
             </div>

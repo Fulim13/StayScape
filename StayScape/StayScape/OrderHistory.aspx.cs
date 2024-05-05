@@ -82,7 +82,7 @@ namespace StayScape
                     r.reservationTotal AS TotalAmount,
                     p.propertyName AS PropertyName,
                     p.propertyAddress AS PropertyAddress,
-                    (SELECT propertyPicture FROM PropertyImage WHERE propertyID = p.propertyID) AS PropertyImage
+                    (SELECT TOP 1 propertyPicture FROM PropertyImage WHERE propertyID = p.propertyID) AS PropertyImage
                 FROM 
                     Reservation r
                 INNER JOIN 
@@ -248,9 +248,46 @@ namespace StayScape
             int roundedRating = (int)Math.Round(rating);
             // Display the rating as integer and add "/5"
             lblReviewRating.Text = $"Rating: {roundedRating}/5";
-            lblReviewDesc.Text = review.reviewDesc ?? "No review found";
+
+
+            txtReviewDesc.Text = review.reviewDesc ?? "No review found";
+            ViewState["reviewID"] = review.reviewID;
             // Open the modal
             ScriptManager.RegisterStartupScript(this, GetType(), "openModal", "openReviewModal();", true);
+        }
+
+        protected void btnSubmitEditReview_Click(object sender, EventArgs e)
+        {
+            // Retrieve the review ID from ViewState
+            string reviewID = ViewState["reviewID"]?.ToString();
+
+            if (string.IsNullOrEmpty(reviewID))
+            {
+                // Handle the error if review ID is missing
+                return;
+            }
+
+            string updatedReviewDesc = txtReviewDesc.Text; // Get the edited review description
+
+            string connectionString = ConfigurationManager.ConnectionStrings["LocalSqlServer"].ConnectionString;
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string sqlCommand = @"
+                    UPDATE Review 
+                    SET reviewDesc = @reviewDesc 
+                    WHERE reviewID = @reviewID";
+
+                SqlCommand cmd = new SqlCommand(sqlCommand, conn);
+                cmd.Parameters.AddWithValue("@reviewDesc", updatedReviewDesc);
+                cmd.Parameters.AddWithValue("@reviewID", reviewID);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+
+            // After submitting, close the modal and possibly update the page to reflect changes
+            ScriptManager.RegisterStartupScript(this, GetType(), "closeReviewModal", "closeReviewModal();", true);
         }
 
         protected void btnCancelReservation_Click(object sender, EventArgs e)
@@ -267,13 +304,13 @@ namespace StayScape
             Response.Redirect("CancelReservation.aspx");
         }
 
-        private (string reviewDesc, decimal rating) GetReviewByReservationID(string reservationID)
+        private (string reviewID, string reviewDesc, decimal rating) GetReviewByReservationID(string reservationID)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["LocalSqlServer"].ConnectionString;
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "SELECT reviewDesc, rating FROM Review WHERE reservationID = @reservationID";
+                string query = "SELECT reviewDesc, rating , reviewID FROM Review WHERE reservationID = @reservationID";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@reservationID", reservationID);
@@ -283,13 +320,14 @@ namespace StayScape
 
                 if (reader.Read())
                 {
+                    string reviewID = reader["reviewID"].ToString();
                     string reviewDesc = reader["reviewDesc"].ToString();
                     decimal rating = Convert.ToDecimal(reader["rating"]);
 
-                    return (reviewDesc, rating); // Return a tuple with review description and rating
+                    return (reviewID, reviewDesc, rating); // Return a tuple with review description and rating
                 }
 
-                return (null, 0); // Default value if no review is found
+                return (null, null, 0); // Default value if no review is found
             }
         }
         protected void btnCloseModal_Click(object sender, EventArgs e)
