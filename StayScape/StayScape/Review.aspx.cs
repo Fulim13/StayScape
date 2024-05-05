@@ -273,49 +273,121 @@ namespace StayScape
             // TODO: Replace session host id
             int hostID = 1;
 
-            // Generate the new reply ID
-            string newReplyID;
-            string query = "SELECT TOP 1 replyID FROM Reply ORDER BY replyID DESC";
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
 
-                SqlCommand cmd = new SqlCommand(query, conn);
-                object result = cmd.ExecuteScalar(); // Get the last reply ID
-                string lastReplyID = result?.ToString(); // Convert result to string or return null if no records
+                // Check if there's an existing reply for this review
+                string checkReplyQuery = "SELECT replyID FROM Reply WHERE reviewID = @reviewID";
+                SqlCommand checkCmd = new SqlCommand(checkReplyQuery, conn);
+                checkCmd.Parameters.AddWithValue("@reviewID", reviewID);
 
-                // Generate the new reply ID based on the last one
-                if (string.IsNullOrEmpty(lastReplyID))
+                object existingReplyID = checkCmd.ExecuteScalar(); // Retrieve existing reply ID if any
+
+                if (existingReplyID != null)
                 {
-                    newReplyID = "RP0001"; // If no records, start with RP0001
+                    // If a reply exists, update it
+                    string updateReplyQuery = @"
+            UPDATE Reply 
+            SET replyText = @replyText, repliedAt = @repliedAt 
+            WHERE replyID = @replyID";
+
+                    SqlCommand updateCmd = new SqlCommand(updateReplyQuery, conn);
+                    updateCmd.Parameters.AddWithValue("@replyText", replyText);
+                    updateCmd.Parameters.AddWithValue("@repliedAt", DateTime.Now);
+                    updateCmd.Parameters.AddWithValue("@replyID", existingReplyID.ToString());
+
+                    updateCmd.ExecuteNonQuery(); // Execute the update command
                 }
                 else
                 {
-                    // Extract the numeric part, increment it, and format with leading zeros
-                    int lastNumber = int.Parse(lastReplyID.Substring(2)); // Get the number part
-                    int nextNumber = lastNumber + 1;
+                    // If no reply exists, insert a new reply
+                    string insertReplyQuery = @"
+            INSERT INTO Reply (replyID, replyText, repliedAt, repliedBy, reviewID)
+            VALUES (@replyID, @replyText, @repliedAt, @repliedBy, @reviewID)";
 
-                    newReplyID = $"RP{nextNumber:D4}"; // Generate the new reply ID with leading zeros
+                    // Generate new reply ID
+                    string newReplyID = GenerateNewReplyID(conn);
+
+                    SqlCommand insertCmd = new SqlCommand(insertReplyQuery, conn);
+                    insertCmd.Parameters.AddWithValue("@replyID", newReplyID);
+                    insertCmd.Parameters.AddWithValue("@replyText", replyText);
+                    insertCmd.Parameters.AddWithValue("@repliedAt", DateTime.Now);
+                    insertCmd.Parameters.AddWithValue("@repliedBy", hostID);
+                    insertCmd.Parameters.AddWithValue("@reviewID", reviewID);
+
+                    insertCmd.ExecuteNonQuery(); // Execute the insert command
                 }
-
-                // SQL command to insert a new reply into the Reply table
-                string insertQuery = @"
-                INSERT INTO Reply (replyID, replyText, repliedAt, repliedBy, reviewID)
-                VALUES (@replyID, @replyText, @repliedAt, @repliedBy, @reviewID)";
-
-                // Insert the new reply into the database
-                cmd = new SqlCommand(insertQuery, conn);
-                cmd.Parameters.AddWithValue("@replyID", newReplyID);
-                cmd.Parameters.AddWithValue("@replyText", replyText);
-                cmd.Parameters.AddWithValue("@repliedAt", DateTime.Now);
-                cmd.Parameters.AddWithValue("@repliedBy", hostID);
-                cmd.Parameters.AddWithValue("@reviewID", reviewID);
-
-                cmd.ExecuteNonQuery(); // Execute the insert command
             }
+            //// Generate the new reply ID
+            //string newReplyID;
+            //string query = "SELECT TOP 1 replyID FROM Reply ORDER BY replyID DESC";
+            //using (SqlConnection conn = new SqlConnection(connectionString))
+            //{
+            //    conn.Open();
+
+            //    SqlCommand cmd = new SqlCommand(query, conn);
+            //    object result = cmd.ExecuteScalar(); // Get the last reply ID
+            //    string lastReplyID = result?.ToString(); // Convert result to string or return null if no records
+
+            //    // Generate the new reply ID based on the last one
+            //    if (string.IsNullOrEmpty(lastReplyID))
+            //    {
+            //        newReplyID = "RP0001"; // If no records, start with RP0001
+            //    }
+            //    else
+            //    {
+            //        // Extract the numeric part, increment it, and format with leading zeros
+            //        int lastNumber = int.Parse(lastReplyID.Substring(2)); // Get the number part
+            //        int nextNumber = lastNumber + 1;
+
+            //        newReplyID = $"RP{nextNumber:D4}"; // Generate the new reply ID with leading zeros
+            //    }
+
+            //    // SQL command to insert a new reply into the Reply table
+            //    string insertQuery = @"
+            //    INSERT INTO Reply (replyID, replyText, repliedAt, repliedBy, reviewID)
+            //    VALUES (@replyID, @replyText, @repliedAt, @repliedBy, @reviewID)";
+
+            //    // Insert the new reply into the database
+            //    cmd = new SqlCommand(insertQuery, conn);
+            //    cmd.Parameters.AddWithValue("@replyID", newReplyID);
+            //    cmd.Parameters.AddWithValue("@replyText", replyText);
+            //    cmd.Parameters.AddWithValue("@repliedAt", DateTime.Now);
+            //    cmd.Parameters.AddWithValue("@repliedBy", hostID);
+            //    cmd.Parameters.AddWithValue("@reviewID", reviewID);
+
+            //    cmd.ExecuteNonQuery(); // Execute the insert command
+            //}
         }
 
-        protected void ShowReplyModal()
+        private string GenerateNewReplyID(SqlConnection conn)
+        {
+            string newReplyID;
+            string query = "SELECT TOP 1 replyID FROM Reply ORDER BY replyID DESC";
+
+            SqlCommand cmd = new SqlCommand(query, conn);
+            object result = cmd.ExecuteScalar(); // Get the last reply ID
+
+            string lastReplyID = result?.ToString();
+
+            if (string.IsNullOrEmpty(lastReplyID))
+            {
+                newReplyID = "RP0001"; // Start with this if there are no replies
+            }
+            else
+            {
+                // Extract the numeric part, increment it, and format with leading zeros
+                int lastNumber = int.Parse(lastReplyID.Substring(2)); // Get the numeric part
+                int nextNumber = lastNumber + 1; // Increment the number
+                newReplyID = $"RP{nextNumber:D4}"; // Generate the new reply ID with leading zeros
+            }
+
+            return newReplyID;
+
+        }
+
+            protected void ShowReplyModal()
         {
             replyModal.CssClass = replyModal.CssClass.Replace("hidden", "").Trim(); // Make modal visible
         }

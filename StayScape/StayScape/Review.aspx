@@ -336,16 +336,17 @@
                                           ID="replyTextBox" 
                                           runat="server" 
                                           CssClass="py-2 px-2 border border-gray-300 text-md rounded-lg w-full mt-2" 
-                                          Visible="False" 
+                                          Visible="false" 
+                                          Text='<%# Eval("replyText") %>' 
                                           TextMode="MultiLine">
                                       </asp:TextBox>
                                       <div class="flex justify-end">
                                           <asp:Button 
                                               ID="btnSubmitReply" 
                                               runat="server" 
-                                              Text="Submit" 
+                                              Text='<%# (Eval("replyID") != DBNull.Value) ? "Save" : "Submit" %>' 
                                               CssClass="mt-3 ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:cursor-pointer" 
-                                              Visible="False"
+                                              Visible="false" 
                                               CommandName="SubmitReply" 
                                               CommandArgument='<%# Eval("reviewID") %>' 
                                             />
@@ -354,7 +355,7 @@
                                               runat="server" 
                                               Text="Cancel" 
                                               CssClass="mt-3 ml-3 bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:cursor-pointer" 
-                                              Visible="False"
+                                              Visible="false" 
                                               CommandName="CancelReply"
                                           />
                                       </div>
@@ -367,7 +368,18 @@
                                     runat="server" 
                                     Text="Reply" 
                                     CssClass="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 hover:cursor-pointer"
-                                    CommandName="ShowReply"
+                                    CommandName="ShowReply" 
+                                    Visible='<%# (Eval("replyID") == DBNull.Value) %>' 
+                                />
+
+                                <!-- If there's a reply, show the "Edit" button -->
+                                <asp:Button 
+                                    ID="btnEditReply" 
+                                    runat="server" 
+                                    Text="Edit" 
+                                    CssClass="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 hover:cursor-pointer"
+                                    CommandName="ShowReply" 
+                                    Visible='<%# (Eval("replyID") != DBNull.Value) %>' 
                                 />
                             
                             </td>
