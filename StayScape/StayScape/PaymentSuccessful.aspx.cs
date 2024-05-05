@@ -109,7 +109,7 @@ namespace StayScape
 
         protected void btnOrderHistory_Click(object sender, EventArgs e)
         {
-            Response.Redirect("OrderHistory.aspx");
+            Response.Redirect("OrderHistory.aspx?propertyID=");
         }
     }
 }

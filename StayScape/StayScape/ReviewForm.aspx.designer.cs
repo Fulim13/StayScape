@@ -15,6 +15,33 @@ namespace StayScape
     {
 
         /// <summary>
+        /// imgProperty control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgProperty;
+
+        /// <summary>
+        /// lblPropertyName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPropertyName;
+
+        /// <summary>
+        /// lblPropertyAddress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPropertyAddress;
+
+        /// <summary>
         /// RadioButtonList1 control.
         /// </summary>
         /// <remarks>

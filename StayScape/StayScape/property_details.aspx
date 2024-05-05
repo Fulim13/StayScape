@@ -124,219 +124,169 @@
             </h3>
             <div class="grid grid-cols-7 xl:grid-cols-7 gap-4 pb-11 border-b border-gray-100 max-xl:max-w-2xl max-xl:mx-auto">
                 <div class="box flex flex-col w-full ">
-                    <p class="mb-2 text-slate-500">Based on 3 reviews</p>
-                    <p class="font-medium text-lg text-black text-center">4.3/5.0</p>
-                    <div class="flex items-center my-3 mr-4"">
-                        <svg class="w-6 h-6 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                        </svg>
-                        <svg class="w-6 h-6 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                        </svg>
-                        <svg class="w-6 h-6 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                        </svg>
-                        <svg class="w-6 h-6 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                        </svg>
-                        <svg class="w-6 h-6 text-gray-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                        </svg>
+                    <asp:Label ID="lblTotalReviews" runat="server" Text="Based on 0 review" class="mb-2 text-slate-500 mx-auto" />
+                    <%--<p class="mb-2 text-slate-500">Based on 3 reviews</p>--%>
+                    <asp:Label ID="lblAverageRating" runat="server" Text="" class="font-medium text-lg text-black mx-auto" />
+                    <%--<p class="font-medium text-lg text-black text-center">4.3/5.0</p>--%>
+                    <div class="flex items-center my-3 mr-4 mx-auto">
+                        <asp:Literal ID="lblStars" runat="server" Text="-"></asp:Literal>
                     </div>
-                    <div class="flex items-center w-full">
+                    <%--TODO:Count the rating of each star--%>
+<%--                    <div class="flex items-center w-full">
                         <p class="font-medium text-lg text-black mr-0.5">5</p>
-                            <svg class="w-6 h-6 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                            </svg>
+                        <svg class="w-6 h-6 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                        </svg>
                         <p class="h-2 w-full rounded-3xl bg-indigo-50 ml-5 mr-3">
-                            <span class="h-full w-[33%] rounded-3xl bg-indigo-400 flex"></span>
+                        <asp:Literal ID="lbl5StarRating" runat="server" Text="Loading..."/>
                         </p>
-                        <p class="font-medium text-lg  text-black mr-0.5">1</p>
+                        <p class="font-medium text-lg text-black mr-0.5">0</p>
                     </div>
                     <div class="flex items-center w-full">
                         <p class="font-medium text-lg text-black mr-0.5">4</p>
                         <svg class="w-6 h-6 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.a1.535 1.535 0 0 0 1.463 9.2L11 17.033 2.375a1.523 1.523 0 0 0 .387-1.575Z"/>
                         </svg>
                         <p class="h-2 w-full rounded-3xl bg-indigo-50 ml-5 mr-3">
-                            <span class="h-full w-[67%] rounded-3xl bg-indigo-400 flex"></span>
+                            <asp:Literal ID="lbl4StarRating" runat="server" Text="Loading..."/>
                         </p>
-                        <p class="font-medium text-lg text-black mr-0.5">2</p>
+                        <p class="font-medium text-lg text-black mr-0.5">0</p>
                     </div>
-                    <div class="flex items-center">
+                    <div class="flex items-center w-full">
                         <p class="font-medium text-lg text-black mr-0.5">3</p>
                         <svg class="w-6 h-6 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.a1.535 1.535 0 0 0 1.463 9.2L11 17.033 2.375a1.523 1.523 0 0 0 .387-1.575Z"/>
                         </svg>
                         <p class="h-2 w-full rounded-3xl bg-indigo-50 ml-5 mr-3">
-                            <span class="h-full w-[0%] rounded-3xl bg-indigo-400 flex"></span>
+                            <asp:Literal ID="lbl3StarRating" runat="server" Text="Loading..."/>
                         </p>
                         <p class="font-medium text-lg text-black mr-0.5">0</p>
                     </div>
-                    <div class="flex items-center">
+                    <div class="flex items-center w-full">
                         <p class="font-medium text-lg text-black mr-0.5">2</p>
                         <svg class="w-6 h-6 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.a1.535 1.535 0 0 0 1.463 9.2L11 17.033 2.375a1.523 1.523 0 0 0 .387-1.575Z"/>
                         </svg>
                         <p class="h-2 w-full rounded-3xl bg-indigo-50 ml-5 mr-3">
-                            <span class="h-full w-[0%] rounded-3xl bg-indigo-400 flex"></span>
+                            <asp:Literal ID="lbl2StarRating" runat="server" Text="Loading..."/>
                         </p>
                         <p class="font-medium text-lg text-black mr-0.5">0</p>
                     </div>
-                    <div class="flex items-center">
+                    <div class="flex items-center w-full">
                         <p class="font-medium text-lg text-black mr-0.5">1</p>
                         <svg class="w-6 h-6 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.a1.535 1.535 0 0 0 1.463 9.2L11 17.033 2.375a1.523 1.523 0 0 0 .387-1.575Z"/>
                         </svg>
                         <p class="h-2 w-full rounded-3xl bg-indigo-50 ml-5 mr-3">
-                            <span class="h-full w-[0%] rounded-3xl bg-indigo-400 flex"></span>
+                            <asp:Literal ID="lbl1StarRating" runat="server" Text="Loading..."/>
                         </p>
-                        <p class="font-medium text-lg py-[1px] text-black mr-0.5">0</p>
-                    </div>
-                    
+                        <p class="font-medium text-lg text-black mr-0.5">0</p>
+                    </div>--%>               
                 </div>
                 <div class="flex flex-col items-center justify-center border-l border-gray">
                     <p class="font-medium text-xl leading-8 text-gray-900 text-center">Cleanliness</p>
-                    <p class="py-4 font-medium text-lg text-black">4.9</p>
-                    <img src="Images/water.svg" alt="Cleanliness" class="w-10 h-10"/>
+                    <asp:Label ID="lblCleanliness" runat="server" Text="-" class="py-4 font-medium text-lg text-black" />
+                    <asp:Image ID="imgCleanliness" runat="server" ImageUrl="~/Images/water.svg" CssClass="w-10 h-10"/>
+                    <%--<p class="py-4 font-medium text-lg text-black">4.9</p>
+                    <img src="Images/water.svg" alt="Cleanliness" class="w-10 h-10"/>--%>
                 </div>
                 <div class="flex flex-col items-center justify-center border-l border-gray">
                     <p class="font-medium text-xl leading-8 text-gray-900 text-center">Service</p>
-                    <p class="py-4 font-medium text-lg text-black">4.9</p>
-                    <img src="Images/nut.svg" alt="Service" class="w-10 h-10"/>
+                    <asp:Label ID="lblService" runat="server" Text="-" class="py-4 font-medium text-lg text-black" />
+                    <asp:Image ID="imgService" runat="server" ImageUrl="~/Images/nut.svg" CssClass="w-10 h-10"/>
+                    <%--<p class="py-4 font-medium text-lg text-black">4.9</p>
+                    <img src="Images/nut.svg" alt="Service" class="w-10 h-10"/>--%>
                 </div>
                 <div class="flex flex-col items-center justify-center border-l border-gray">
                     <p class="font-medium text-xl leading-8 text-gray-900 text-center">Comfort</p>
-                    <p class="py-4 font-medium text-lg text-black">4.9</p>
-                    <img src="Images/sun.svg" alt="Comfort" class="w-10 h-10"/>
+                    <asp:Label ID="lblComfort" runat="server" Text="-" class="py-4 font-medium text-lg text-black" />
+                    <asp:Image ID="imgComfort" runat="server" ImageUrl="~/Images/sun.svg" CssClass="w-10 h-10"/>
+                    <%--<p class="py-4 font-medium text-lg text-black">4.9</p>
+                    <img src="Images/sun.svg" alt="Comfort" class="w-10 h-10"/>--%>
                 </div>
                 <div class="flex flex-col items-center justify-center border-l border-gray">
                     <p class="font-medium text-xl leading-8 text-gray-900 text-center">Condition</p>
-                    <p class="py-4 font-medium text-lg text-black">4.9</p>
-                    <img src="Images/lamp.svg" alt="Condition" class="w-10 h-10"/>
+                    <asp:Label ID="lblCondition" runat="server" Text="-" class="py-4 font-medium text-lg text-black" />
+                    <asp:Image ID="imgCondition" runat="server" ImageUrl="~/Images/lamp.svg" CssClass="w-10 h-10"/>
+                    <%--<p class="py-4 font-medium text-lg text-black">4.9</p>
+                    <img src="Images/lamp.svg" alt="Condition" class="w-10 h-10"/>--%>
                 </div>
                 <div class="flex flex-col items-center justify-center border-l border-gray">
                     <p class="font-medium text-xl leading-8 text-gray-900 text-center">Amenities</p>
-                    <p class="py-4 font-medium text-lg text-black">4.9</p>
-                    <img src="Images/tv.svg" alt="Amenities" class="w-10 h-10"/>
+                    <asp:Label ID="lblAmenities" runat="server" Text="-" class="py-4 font-medium text-lg text-black" />
+                    <asp:Image ID="imgAmenities" runat="server" ImageUrl="~/Images/tv.svg" CssClass="w-10 h-10"/>
+                    <%--<p class="py-4 font-medium text-lg text-black">4.9</p>
+                    <img src="Images/tv.svg" alt="Amenities" class="w-10 h-10"/>--%>
                 </div>
                 <div class="flex flex-col items-center justify-center border-l border-gray">
                     <p class="font-medium text-xl leading-8 text-gray-900 text-center">Location</p>
-                    <p class="py-4 font-medium text-lg text-black">4.9</p>
-                    <img src="Images/location.svg" alt="Location" class="w-10 h-10"/>
+                    <asp:Label ID="lblLocation" runat="server" Text="-" class="py-4 font-medium text-lg text-black" />
+                    <asp:Image ID="imgLocation" runat="server" ImageUrl="~/Images/location.svg" CssClass="w-10 h-10"/>
+                    <%--<p class="py-4 font-medium text-lg text-black">4.9</p>
+                    <img src="Images/location.svg" alt="Location" class="w-10 h-10"/>--%>
                 </div>
             </div>
             <div class="mt-4 grid grid-cols-2 gap-4">
-                <div class="p-4 shadow-md rounded-lg border-gray-400">
-                    <div class="flex py-2">
-                        <div class="flex items-center py-2 mr-4">
-                        <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt=""/>
-                        </div>
-                        <div class="flex items-center">
-                            <p class="font-semibold text-lg leading-8 text-indigo-600 ">David</p>
-                        </div>
-                    </div>
-                    <div class="flex">
-                        <div class="flex items-center my-3 mr-4"">
-                            <svg class="w-6 h-6 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                            </svg>
-                            <svg class="w-6 h-6 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                            </svg>
-                            <svg class="w-6 h-6 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                            </svg>
-                            <svg class="w-6 h-6 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                            </svg>
-                            <svg class="w-6 h-6 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                            </svg>
-                        </div>
-                        <div class="flex items-center gap-2 my-3 mr-4">
-                            <p class="text-slate-500">Nov 01, 2023</p>
-                        </div>
-                    </div>
-                    <div class="py-2">
-                        <p>The room and the bathroom were comfortable and clean!</p>
-                    </div>
-                </div>
+                <asp:ListView ID="ListViewReview" runat="server" OnItemDataBound="ListViewReview_ItemDataBound">
 
-                <div class="p-4 shadow-md rounded-lg border-gray-400">
-                    <div class="flex py-2">
-                        <div class="flex items-center py-2 mr-4">
-                        <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt=""/>
+                    <ItemTemplate>
+                        <div class="p-4 shadow-md rounded-lg border-gray-400">
+                            <div class="flex py-2">
+                                <div class="flex items-center py-2 mr-4">
+                                    <asp:Image 
+                                        ID="imgCustomer" 
+                                        runat="server" 
+                                        CssClass="h-8 w-8 rounded-full" 
+                                        AlternateText="Reviewer Image" 
+                                    />
+                                <%--<img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt=""/>--%>
+                                </div>
+                                <div class="flex items-center">
+                                    <asp:Label ID="customerName" runat="server" CssClass="font-semibold text-lg leading-8 text-indigo-600" Text='<%# Eval("customerName") %>' />
+                                    <%--<p class="font-semibold text-lg leading-8 text-indigo-600 ">Amira</p>--%>
+                                </div>
+                            </div>
+                            <div class="flex">
+                                <div class="flex items-center my-3 mr-4"">
+                                    <!-- Display star ratings -->
+                                <%# StarRatingHelper.GetStarRating((decimal)Eval("rating")) %>
+                                    <%--<svg class="w-6 h-6 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                                    </svg>
+                                    <svg class="w-6 h-6 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                                    </svg>
+                                    <svg class="w-6 h-6 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                                    </svg>
+                                    <svg class="w-6 h-6 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                                    </svg>
+                                    <svg class="w-6 h-6 text-gray-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                                    </svg>--%>
+                                </div>
+                                <div class="flex items-center gap-2 my-3 mr-4">
+                                    <asp:Label ID="createdAt" runat="server" CssClass="text-slate-500" Text='<%# Eval("ReviewDate") %>' />
+                                    <%--<p class="text-slate-500">Nov 01, 2023</p>--%>
+                                </div>
+                            </div>
+                            <div class="py-2">
+                                <asp:Label ID="reviewDesc" runat="server" Text='<%# Eval("reviewDesc") %>' />
+                                <%--<p>Very cozy place and enjoy green landscape. Host is very kind and helpful.</p>--%>
+                            </div>
                         </div>
-                        <div class="flex items-center">
-                            <p class="font-semibold text-lg leading-8 text-indigo-600 ">Amira</p>
-                        </div>
-                    </div>
-                    <div class="flex">
-                        <div class="flex items-center my-3 mr-4"">
-                            <svg class="w-6 h-6 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                            </svg>
-                            <svg class="w-6 h-6 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                            </svg>
-                            <svg class="w-6 h-6 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                            </svg>
-                            <svg class="w-6 h-6 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                            </svg>
-                            <svg class="w-6 h-6 text-gray-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                            </svg>
-                        </div>
-                        <div class="flex items-center gap-2 my-3 mr-4">
-                            <p class="text-slate-500">Nov 01, 2023</p>
-                        </div>
-                    </div>
-                    <div class="py-2">
-                        <p>Very cozy place and enjoy green landscape. Host is very kind and helpful.</p>
-                    </div>
-                </div>
+                    </ItemTemplate>
 
-                <div class="p-4 shadow-md rounded-lg border-gray-400">
-                    <div class="flex py-2">
-                        <div class="flex items-center py-2 mr-4">
-                        <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.25&w=256&h=256&q=80" alt=""/>
+                    <EmptyDataTemplate>
+                        <div class="text-gray-500 py-6">
+                            No review found.
                         </div>
-                        <div class="flex items-center">
-                            <p class="font-semibold text-lg leading-8 text-indigo-600 ">Richard</p>
-                        </div>
-                    </div>
-                    <div class="flex">
-                        <div class="flex items-center my-3 mr-4"">
-                            <svg class="w-6 h-6 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                            </svg>
-                            <svg class="w-6 h-6 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                            </svg>
-                            <svg class="w-6 h-6 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                            </svg>
-                            <svg class="w-6 h-6 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                            </svg>
-                            <svg class="w-6 h-6 text-gray-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                            </svg>
-                        </div>
-                        <div class="flex items-center gap-2 my-3 mr-4">
-                            <p class="text-slate-500">Nov 01, 2023</p>
-                        </div>
-                    </div>
-                    <div class="py-2">
-                        <p>The place is clean, especially the outdoor kitchen.</p>
-                    </div>
-                </div>
+                    </EmptyDataTemplate>
+                </asp:ListView>
+                <asp:SqlDataSource ID="SqlDataSourceReview" runat="server" ConnectionString="<%$ ConnectionStrings:LocalSqlServer %>">
+                </asp:SqlDataSource>
             </div>
-            
-        </div>
     </div>
 </section>
     
