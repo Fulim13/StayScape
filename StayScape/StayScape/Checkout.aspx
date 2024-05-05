@@ -34,7 +34,7 @@
                             </div>
                             <div class="flex justify-between">
                                 <dt class="flex">Discount
-                                <asp:Label ID="lblVoucherCode" class="ml-2 rounded-full bg-gray-200 text-xs text-gray-600 py-0.5 px-2 tracking-wide" runat="server" Text="CHEAPPRICE"></asp:Label>
+                                <asp:Label ID="lblVoucherCode" class="ml-2 rounded-full bg-gray-200 text-xs text-gray-600 py-0.5 px-2 tracking-wide" runat="server" Text=""></asp:Label>
                                 </dt>
                                 <asp:Label ID="lblDiscount" class="text-gray-900" runat="server" Text="RM 0"></asp:Label>
                             </div>
@@ -169,7 +169,16 @@
                             totalPayment = totalPayment.toFixed(2);
                             document.getElementById("ContentPlaceHolder2_lblTotal").innerText = "RM " + totalPayment;
                             initialize(parseInt(totalPayment * 100));
-                        } else {
+                            alert("Redeem discount code.");
+
+                            //update ContentPlaceHolder2_lblVoucherCode
+                            document.getElementById("ContentPlaceHolder2_lblVoucherCode").innerText = discountCode;
+                        } else if (discountAmount == -1) {
+                            alert("Achieved Redeem Limit");
+                        } else if (discountAmount == -2) {
+                            alert("The voucher has fully redeemed");
+                        }
+                        else{
                             alert("Invalid discount code.");
                         }
                     })

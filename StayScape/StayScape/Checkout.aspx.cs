@@ -14,11 +14,28 @@ namespace StayScape
             //{
 
             //}
+            //Reset Reservation ID in session
+            Session["reservationID"] = null;
+
+
             // Get Session Property ID
             int propertyID = Convert.ToInt32(Session["PropertyID"]);
 
-
+            //// if the discount amount is not set, set it to 0
+            //if (Session["discountAmount"] == null)
+            //{
+            //    Session["discountAmount"] = 0;
+            //}
             Session["discountAmount"] = 0;
+
+            //Clean the session of redemptionID
+            Session["redemptionID"] = null;
+
+            ////get the voucher code from session
+            //if (Session["voucherCode"] != null)
+            //{
+            //    lblVoucherCode.Text = Session["voucherCode"].ToString();
+            //}
 
             //Get the property price from the  session property ID
             DBManager db = new DBManager();
@@ -184,9 +201,9 @@ namespace StayScape
                     };
                     command = db.ExecuteQuery(sqlCommand, parameters3);
                     count = Convert.ToInt32(command.ExecuteScalar());
-                    if (count > redeemLimitPerCustomer)
+                    if (count >= redeemLimitPerCustomer)
                     {
-                        return 0;
+                        return -1;
                     }
 
                     //Check the that this voucher has been redeemed how many time for the redemptionStatus Used and cannot exceed the total voucher
@@ -198,9 +215,9 @@ namespace StayScape
                     };
                     command = db.ExecuteQuery(sqlCommand, parameters4);
                     count = Convert.ToInt32(command.ExecuteScalar());
-                    if (count > totalVoucher)
+                    if (count >= totalVoucher)
                     {
-                        return 0;
+                        return -2;
                     }
 
                     //Check discount type
@@ -226,8 +243,8 @@ namespace StayScape
                         };
                         db.ExecuteNonQuery(sqlCommand, parameters5);
 
-                        //store redemption ID in session
-                        sqlCommand = "SELECT redemptionID FROM Redemption WHERE custID = @custID AND voucherID = @voucherID";
+                        //store order by largest redemption ID in session
+                        sqlCommand = "SELECT MAX(redemptionID) AS redemptionID FROM Redemption WHERE custID = @custID AND voucherID = @voucherID";
                         SqlParameter[] parameters6 =
                         {
                             new SqlParameter("@custID", customerID),
@@ -238,6 +255,14 @@ namespace StayScape
                         reader.Read();
                         int redemptionID = Convert.ToInt32(reader["redemptionID"]);
                         HttpContext.Current.Session["redemptionID"] = redemptionID;
+
+
+
+
+
+
+
+
 
                         return discountPrice;
 
@@ -266,6 +291,7 @@ namespace StayScape
                         reader.Read();
                         int redemptionID = Convert.ToInt32(reader["redemptionID"]);
                         HttpContext.Current.Session["redemptionID"] = redemptionID;
+
 
 
                         // store the discount amount in session

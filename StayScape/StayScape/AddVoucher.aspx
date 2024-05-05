@@ -78,6 +78,12 @@
                                 placeholder="Enter voucher name"
                                 CssClass="py-2 px-3 block w-full border-gray-300 shadow-sm text-md rounded-lg focus:border-indigo-500 focus:ring-indigo-500">
                             </asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1"
+                                ValidationGroup="VoucherValidation"
+                                class="text-sm italic" runat="server"
+                                ControlToValidate="txtVoucherName"
+                                ErrorMessage="Please enter a voucher name."
+                                Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
                         </div>
                     </div>
 
@@ -95,6 +101,12 @@
                                 placeholder="Enter Total Voucher"
                                 CssClass="py-2 px-3 block w-full border-gray-300 shadow-sm text-md rounded-lg focus:border-indigo-500 focus:ring-indigo-500">
                             </asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2"
+                                ValidationGroup="VoucherValidation"
+                                class="text-sm italic" runat="server"
+                                ControlToValidate="txtTotalVoucher"
+                                ErrorMessage="Total Voucher cannot be blank"
+                                Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
                         </div>
                     </div>
 
@@ -110,6 +122,12 @@
                                 placeholder="Enter Redeem limit"
                                 CssClass="py-2 px-3 block w-full border-gray-300 shadow-sm text-md rounded-lg focus:border-indigo-500 focus:ring-indigo-500">
                             </asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3"
+                                ValidationGroup="VoucherValidation"
+                                class="text-sm italic" runat="server"
+                                ControlToValidate="txtRedeemLimit"
+                                ErrorMessage="Redeem Limit Per Customer cannot be blank"
+                                Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
                         </div>
                     </div>
 
@@ -133,6 +151,19 @@
                                 CssClass="w-2/5 py-2 px-3 block w-full border-gray-300 shadow-sm text-md rounded-lg focus:border-indigo-500 focus:ring-indigo-500">
                             </asp:TextBox>
                         </div>
+                        <div>
+                        </div>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator7" class="text-sm italic"
+                            ValidationGroup="VoucherValidation"
+                            runat="server" ControlToValidate="txtStartDate"
+                            ErrorMessage="Please enter a start date."
+                            Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator8" class="text-sm italic"
+                            ValidationGroup="VoucherValidation"
+                            runat="server" ControlToValidate="txtEndDate"
+                            ErrorMessage="Please enter a end date."
+                            Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
+
                     </div>
 
                     <asp:UpdatePanel ID="updatePanel" runat="server" UpdateMode="Conditional">
@@ -202,6 +233,11 @@
                                 placeholder="Enter Min Spend"
                                 CssClass="py-2 px-3 block w-full border border-gray-300 shadow-sm text-md rounded-lg focus:outline-none focus:border-indigo-500 focus:ring-indigo-500">
                             </asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator6" class="text-sm italic"
+                                ValidationGroup="VoucherValidation"
+                                runat="server" ControlToValidate="txtMinSpend"
+                                ErrorMessage="Please enter a min spend."
+                                Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
                         </div>
                     </div>
 
@@ -215,6 +251,11 @@
                                 placeholder="Enter Discount Value (RM)"
                                 CssClass="py-2 px-3 block w-full border border-gray-300 shadow-sm text-md rounded-lg focus:outline-none focus:border-indigo-500 focus:ring-indigo-500">
                             </asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator5" class="text-sm italic"
+                                ValidationGroup="VoucherValidation"
+                                runat="server" ControlToValidate="txtDiscountValue"
+                                ErrorMessage="Please enter a discount value."
+                                Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
                         </div>
                     </div>
 
@@ -231,6 +272,10 @@
                                 placeholder="Enter Discount Rate"
                                 CssClass="py-2 px-3 block w-full border border-gray-300 shadow-sm text-md rounded-lg focus:outline-none focus:border-indigo-500 focus:ring-indigo-500">
                             </asp:TextBox>
+<%--                            <asp:RequiredFieldValidator ID="rfvDisRate" class="text-sm italic hidden"
+                                ValidationGroup="VoucherValidation"
+                                runat="server" ControlToValidate="txtDiscountRate"
+                                ErrorMessage="Please enter a discount rate." Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>--%>
                         </div>
                     </div>
 
@@ -244,6 +289,11 @@
                                 placeholder="Enter Cat At (RM)"
                                 CssClass="py-2 px-3 block w-full border border-gray-300 shadow-sm text-md rounded-lg focus:outline-none focus:border-indigo-500 focus:ring-indigo-500">
                             </asp:TextBox>
+<%--                           <asp:RequiredFieldValidator ID="RequiredFieldValidator4" class="text-sm italic"
+                                ValidationGroup="VoucherValidation"
+                                runat="server" ControlToValidate="txtCapAt"
+                                ErrorMessage="Please enter a cap at value."
+                                Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>--%>
                         </div>
                     </div>
                 </div>
@@ -253,7 +303,7 @@
             <div class="pt-5">
                 <div class="flex justify-end">
                     <asp:Button ID="btnCancel" OnClick="btnCancel_Click" runat="server" Text="Cancel" CssClass="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" />
-                    <asp:Button ID="btnSubmit" OnClick="btnSubmit_Click" runat="server" Text="Submit" CssClass="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" />
+                    <asp:Button ID="btnSubmit" OnClick="btnSubmit_Click" ValidationGroup="VoucherValidation" runat="server" Text="Submit" CssClass="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" />
                 </div>
             </div>
         </div>

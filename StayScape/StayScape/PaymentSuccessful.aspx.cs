@@ -7,6 +7,12 @@ namespace StayScape
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            ////only first time page load
+            //if (IsPostBack)
+            //{
+            //    return;
+            //}
+
             // Get the Reservation ID from the session
             string reservationID = Session["reservationID"].ToString();
 
@@ -105,6 +111,7 @@ namespace StayScape
 
             //Clear the session beside user session
             //Session.Remove("reservationID");
+
         }
 
         protected void btnOrderHistory_Click(object sender, EventArgs e)

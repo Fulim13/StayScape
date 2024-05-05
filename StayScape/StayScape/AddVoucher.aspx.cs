@@ -82,23 +82,25 @@ namespace StayScape
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            GenerateVoucher voucherGenerator = new GenerateVoucher();
-
-            // TODO: Replace session host id
-            int hostID = 1;
-
-            DBManager dbConnection = new DBManager();
-
-            string sqlCommand = "INSERT INTO Voucher (voucherName, voucherCode, totalVoucher, redeemLimitPerCustomer, startDate, expiredDate, activeStatus, discountType, minSpend, discountRate, discountPrice, capAt, createdBy, hostID, propertyID) " +
-                "Values (@voucherName, @voucherCode, @totalVoucher, @redeemLimitPerCustomer, @startDate, @expiredDate, @activeStatus, @discountType, @minSpend, @discountRate, @discountPrice, @capAt, @createdBy, @hostID, @propertyID)";
-            SqlParameter[] parameters;
-
-            string selectedValue = rbSpecific.Checked && ddlHostProperty != null && ddlHostProperty.Items.Count > 1 ? ddlHostProperty.SelectedValue : "";
-
-            if (hdnDiscountType.Value == "Money Value Off")
+            if (Page.IsValid)
             {
-                parameters = new SqlParameter[]
+                GenerateVoucher voucherGenerator = new GenerateVoucher();
+
+                // TODO: Replace session host id
+                int hostID = 1;
+
+                DBManager dbConnection = new DBManager();
+
+                string sqlCommand = "INSERT INTO Voucher (voucherName, voucherCode, totalVoucher, redeemLimitPerCustomer, startDate, expiredDate, activeStatus, discountType, minSpend, discountRate, discountPrice, capAt, createdBy, hostID, propertyID) " +
+                    "Values (@voucherName, @voucherCode, @totalVoucher, @redeemLimitPerCustomer, @startDate, @expiredDate, @activeStatus, @discountType, @minSpend, @discountRate, @discountPrice, @capAt, @createdBy, @hostID, @propertyID)";
+                SqlParameter[] parameters;
+
+                string selectedValue = rbSpecific.Checked && ddlHostProperty != null && ddlHostProperty.Items.Count > 1 ? ddlHostProperty.SelectedValue : "";
+
+                if (hdnDiscountType.Value == "Money Value Off")
                 {
+                    parameters = new SqlParameter[]
+                    {
                     // User Input Values
                     new SqlParameter("@voucherName", txtVoucherName.Text),
                     new SqlParameter("@totalVoucher", Convert.ToInt32(txtTotalVoucher.Text)),
@@ -116,13 +118,13 @@ namespace StayScape
                     new SqlParameter("@createdBy", SqlDbType.DateTime) {Value = DateTime.Now },
                     new SqlParameter("@hostID", hostID),
                     selectedValue != "" ? new SqlParameter("@propertyID",  Convert.ToInt32(selectedValue)): new SqlParameter("@propertyID",DBNull.Value)
-            };
+                };
 
-            }
-            else
-            {
-                parameters = new SqlParameter[]
+                }
+                else
                 {
+                    parameters = new SqlParameter[]
+                    {
                     // User Input Values
                     new SqlParameter("@voucherName", txtVoucherName.Text),
                     new SqlParameter("@totalVoucher", Convert.ToInt32(txtTotalVoucher.Text)),
@@ -140,14 +142,15 @@ namespace StayScape
                     new SqlParameter("@createdBy", SqlDbType.DateTime) {Value = DateTime.Now },
                     new SqlParameter("@hostID", hostID),
                     selectedValue != "" ? new SqlParameter("@propertyID",  Convert.ToInt32(selectedValue)): new SqlParameter("@propertyID",DBNull.Value)
-                };
-            }
+                    };
+                }
 
-            dbConnection.createConnection();
-            bool isBool = dbConnection.ExecuteNonQuery(sqlCommand, parameters);
-            dbConnection.closeConnection();
-            resetFields();
-            Response.Redirect("~/Voucher.aspx");
+                dbConnection.createConnection();
+                bool isBool = dbConnection.ExecuteNonQuery(sqlCommand, parameters);
+                dbConnection.closeConnection();
+                resetFields();
+                Response.Redirect("~/Voucher.aspx");
+            }
         }
 
     }

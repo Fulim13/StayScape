@@ -53,23 +53,30 @@ namespace StayScape
                 new SqlParameter("@reservationStatus", "Pending"),
                 new SqlParameter("@custID", 1),
                 new SqlParameter("@propertyID", propertyID),
-                new SqlParameter("@redemptionID", Session["redemptionID"])
+                //if redemptionID is null, set it to DBNull.Value
+                new SqlParameter("@redemptionID", Session["redemptionID"] ?? DBNull.Value)
             };
 
                 db.createConnection();
                 bool isBool = db.ExecuteNonQuery(sqlCommand2, parameters2);
                 db.closeConnection();
 
-                //Update Redemption ID - redemptionStatus to "Used"
-                string sqlCommand3 = "UPDATE Redemption SET redemptionStatus = @redemptionStatus WHERE redemptionID = @redemptionID";
-                SqlParameter[] parameters3 =
+
+                if (Session["redemptionID"] != null)
                 {
+                    //Update Redemption ID - redemptionStatus to "Used"
+                    string sqlCommand3 = "UPDATE Redemption SET redemptionStatus = @redemptionStatus WHERE redemptionID = @redemptionID";
+                    SqlParameter[] parameters3 =
+                    {
                     new SqlParameter("@redemptionStatus", "Used"),
                     new SqlParameter("@redemptionID", Session["redemptionID"])
                     };
-                db.createConnection();
-                bool isBool2 = db.ExecuteNonQuery(sqlCommand3, parameters3);
-                db.closeConnection();
+
+                    db.createConnection();
+                    bool isBool2 = db.ExecuteNonQuery(sqlCommand3, parameters3);
+                    db.closeConnection();
+                }
+
             }
 
 
