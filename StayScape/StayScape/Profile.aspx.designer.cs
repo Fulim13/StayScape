@@ -15,13 +15,22 @@ namespace StayScape
     {
 
         /// <summary>
-        /// nameLabel control.
+        /// nameText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label nameLabel;
+        protected global::System.Web.UI.WebControls.TextBox nameText;
+
+        /// <summary>
+        /// btnName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnName;
 
         /// <summary>
         /// roleLabel control.
@@ -42,13 +51,22 @@ namespace StayScape
         protected global::System.Web.UI.WebControls.Label emailLabel;
 
         /// <summary>
-        /// phoneLabel control.
+        /// phoneText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label phoneLabel;
+        protected global::System.Web.UI.WebControls.TextBox phoneText;
+
+        /// <summary>
+        /// btnPhone control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnPhone;
 
         /// <summary>
         /// genderLabel control.
@@ -60,13 +78,22 @@ namespace StayScape
         protected global::System.Web.UI.WebControls.Label genderLabel;
 
         /// <summary>
-        /// bDateLabel control.
+        /// bDateText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label bDateLabel;
+        protected global::System.Web.UI.WebControls.TextBox bDateText;
+
+        /// <summary>
+        /// btn_bDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_bDate;
 
         /// <summary>
         /// aDateLabel control.

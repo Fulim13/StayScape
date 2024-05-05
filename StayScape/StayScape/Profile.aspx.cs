@@ -3,6 +3,7 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Web;
 using System.Web.Security;
+using System.Xml;
 
 namespace StayScape
 {
@@ -22,12 +23,12 @@ namespace StayScape
                 if (userData != null)
                 {
                     // Display user data on the page
-                    nameLabel.Text = userData.FullName;
+                    nameText.Text = userData.FullName;
                     emailLabel.Text = userData.Email;
-                    phoneLabel.Text = userData.Phone;
+                    phoneText.Text = userData.Phone;
                     genderLabel.Text = userData.Gender;
-                    bDateLabel.Text = userData.bDate.ToString();
-                    aDateLabel.Text = userData.aDate.ToString();
+                    bDateText.Text = userData.bDate.ToString("yyyy-MM-dd");
+                    aDateLabel.Text = userData.aDate.ToString("yyyy-MM-dd");
 
                     if (roles != null && roles.Length > 0)
                     {
@@ -141,7 +142,7 @@ namespace StayScape
             {
                 con.Open();
 
-                if (Roles.IsUserInRole("Host"))
+                if (Roles.IsUserInRole("Customer"))
                 {
                     SqlCommand command = new SqlCommand("UPDATE Customer SET custProfilePic = @custProfilePic WHERE custEmail = @userId", con);
                     command.Parameters.AddWithValue("@custProfilePic", imageData);
@@ -149,13 +150,110 @@ namespace StayScape
                     command.ExecuteNonQuery();
                 }
 
-                if (Roles.IsUserInRole("Customer"))
+                if (Roles.IsUserInRole("Host"))
                 {
                     SqlCommand command = new SqlCommand("UPDATE Host SET hostProfilePic = @hostProfilePic WHERE hostEmail = @userId", con);
                     command.Parameters.AddWithValue("@hostProfilePic", imageData);
                     command.Parameters.AddWithValue("@userId", userId);
                     command.ExecuteNonQuery();
                 }
+            }
+        }
+
+        private void UpdateUserDataInDatabase(string userId, User userData)
+        {
+            using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\StayScapeDB.mdf;Integrated Security=True"))
+            {
+                con.Open();
+
+                if (Roles.IsUserInRole("Customer"))
+                {
+                    SqlCommand command = new SqlCommand("UPDATE Customer SET customerName = @customerName, custPhoneNumber = @custPhoneNumber, custEmail = @custEmail, birthDate = @birthDate, gender = @gender WHERE custEmail = @userId", con);
+                    command.Parameters.AddWithValue("@customerName", userData.FullName);
+                    command.Parameters.AddWithValue("@custEmail", userData.Email);
+                    command.Parameters.AddWithValue("@custPhoneNumber", userData.Phone);
+                    command.Parameters.AddWithValue("@gender", userData.Gender);
+                    command.Parameters.AddWithValue("@birthDate", userData.bDate);
+                    command.Parameters.AddWithValue("@userId", userId);
+                    command.ExecuteNonQuery();
+                }
+
+                if (Roles.IsUserInRole("Host"))
+                {
+                    SqlCommand command = new SqlCommand("UPDATE Host SET hostName = @hostName, hostPhoneNumber = @hostPhoneNumber, hostEmail = @hostEmail, birthDate = @birthDate, gender = @gender WHERE hostEmail = @userId", con);
+                    command.Parameters.AddWithValue("@customerName", userData.FullName);
+                    command.Parameters.AddWithValue("@custEmail", userData.Email);
+                    command.Parameters.AddWithValue("@custPhoneNumber", userData.Phone);
+                    command.Parameters.AddWithValue("@gender", userData.Gender);
+                    command.Parameters.AddWithValue("@birthDate", userData.bDate);
+                    command.Parameters.AddWithValue("@userId", userId);
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+
+        protected void btnName_Click(object sender, EventArgs e)
+        {
+            if (btnName.Text == "Edit")
+            {
+                nameText.ReadOnly = false; // Enable the label for editing
+                btnName.Text = "Update";
+            }
+            else
+            {
+                // Update the user data in the database
+                string userId = HttpContext.Current.User.Identity.Name;
+                User userData = GetUserDataFromDatabase(userId);
+                userData.FullName = nameText.Text; 
+                UpdateUserDataInDatabase(userId, userData); // Implement this method to update the user data in the database
+
+                // Disable the label for editing
+                nameText.ReadOnly = true;
+                btnName.Text = "Edit";
+            }
+        }
+
+        protected void btnPhone_Click(object sender, EventArgs e)
+        {
+            if (btnPhone.Text == "Edit")
+            {
+                phoneText.ReadOnly = false; // Enable the label for editing
+                btnPhone.Text = "Update";
+            }
+            else
+            {
+                // Update the user data in the database
+                string userId = HttpContext.Current.User.Identity.Name;
+                User userData = GetUserDataFromDatabase(userId);
+                userData.Phone = phoneText.Text; 
+                UpdateUserDataInDatabase(userId, userData); // Implement this method to update the user data in the database
+
+                // Disable the label for editing
+                phoneText.ReadOnly = true;
+                btnPhone.Text = "Edit";
+            }
+        }
+
+        protected void btn_bDate_Click(object sender, EventArgs e)
+        {
+            if (btn_bDate.Text == "Edit")
+            {
+                bDateText.ReadOnly = false; // Enable the label for editing
+                btn_bDate.Text = "Update";
+            }
+            else
+            {
+                // Update the user data in the database
+                string userId = HttpContext.Current.User.Identity.Name;
+                User userData = GetUserDataFromDatabase(userId);
+                userData.bDate = DateTime.Parse(bDateText.Text);
+
+                UpdateUserDataInDatabase(userId, userData); // Implement this method to update the user data in the database
+
+                // Disable the label for editing
+                bDateText.ReadOnly = true;
+                btn_bDate.Text = "Edit";
             }
         }
     }
