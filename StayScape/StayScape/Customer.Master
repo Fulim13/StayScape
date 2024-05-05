@@ -15,6 +15,9 @@
             var dropdownMenu = document.getElementById("dropdown-menu");
             dropdownMenu.classList.toggle("hidden");
         }
+        function backToHomePage() {
+            window.location.href = "property_list.aspx";
+        }
     </script>
 </head>
 <body>
@@ -23,7 +26,7 @@
             <div class="w-full mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between h-16">
                     <%-- Logo and Compang Name --%>
-                    <div class="flex items-center flex-shrink-0 px-4">
+                    <div class="flex items-center flex-shrink-0 px-4" onclick="backToHomePage()">
                         <img class="h-16 w-auto" src="Images/house2.png" alt="StayScape">
                         <div class="text-2xl font-bold">Stay Scape</div>
                     </div>

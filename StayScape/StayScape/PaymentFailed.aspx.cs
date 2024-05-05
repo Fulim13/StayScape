@@ -13,5 +13,10 @@ namespace StayScape
         {
             Response.Redirect("Checkout.aspx");
         }
+
+        protected void btnOrderHistoryPage_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("OrderHistory.aspx");
+        }
     }
 }
