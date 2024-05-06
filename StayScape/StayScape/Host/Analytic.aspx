@@ -12,7 +12,7 @@
         <div class="flex justify-between mt-12">
 
             <div class="w-1/2 mt-12">
-                <h1 class="text-xl font-bold uppercase tracking-wide text-indigo-600 mb-8">Top 5 Customer by Sales</h1>
+                <h1 class="text-xl font-bold uppercase tracking-wide text-indigo-600 mb-8">Top Customer by Sales</h1>
                 <canvas id="bar-chart1"></canvas>
             </div>
 
