@@ -17,7 +17,7 @@ namespace StayScape
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Voucher.aspx");
+            Response.Redirect("Voucher.aspx");
         }
 
         protected void toggleDDLPanel_ValueChanged(object sender, EventArgs e)
@@ -74,11 +74,13 @@ namespace StayScape
             DBManager dbConnection = new DBManager();
             dbConnection.createConnection();
 
-            string query = "SELECT propertyID, propertyName FROM Property";
+            string query = "SELECT propertyID, propertyName FROM Property WHERE hostID = @hostID";
 
             SqlCommand command = dbConnection.ExecuteQuery(query);
+            command.Parameters.AddWithValue("@hostID", Session["hostID"].ToString());
 
             SqlDataAdapter adapter = new SqlDataAdapter(command);
+
             DataTable dt = new DataTable();
 
             adapter.Fill(dt);
@@ -99,7 +101,7 @@ namespace StayScape
             else
             {
                 // Handle the case when no properties are available
-                 ddlHostProperty.Items.Clear();
+                ddlHostProperty.Items.Clear();
                 ddlHostProperty.Items.Insert(0, new ListItem("No properties available", ""));
                 ddlHostProperty.Enabled = false;
             }
@@ -111,8 +113,7 @@ namespace StayScape
             {
                 GenerateVoucher voucherGenerator = new GenerateVoucher();
 
-                // TODO: Replace session host id
-                int hostID = 1;
+
 
                 DBManager dbConnection = new DBManager();
 
@@ -141,7 +142,7 @@ namespace StayScape
                     new SqlParameter("@discountRate", DBNull.Value),
                     new SqlParameter("@capAt", DBNull.Value),
                     new SqlParameter("@createdBy", SqlDbType.DateTime) {Value = DateTime.Now },
-                    new SqlParameter("@hostID", hostID),
+                    new SqlParameter("@hostID", Session["hostID"].ToString()),
                     selectedValue != "" ? new SqlParameter("@propertyID",  Convert.ToInt32(selectedValue)): new SqlParameter("@propertyID",DBNull.Value)
                 };
 
@@ -165,7 +166,7 @@ namespace StayScape
                     new SqlParameter("@discountType", "Discount Off"),
                     new SqlParameter("@discountPrice", DBNull.Value),
                     new SqlParameter("@createdBy", SqlDbType.DateTime) {Value = DateTime.Now },
-                    new SqlParameter("@hostID", hostID),
+                    new SqlParameter("@hostID", Session["hostID"].ToString()),
                     selectedValue != "" ? new SqlParameter("@propertyID",  Convert.ToInt32(selectedValue)): new SqlParameter("@propertyID",DBNull.Value)
                     };
                 }
@@ -174,7 +175,7 @@ namespace StayScape
                 bool isBool = dbConnection.ExecuteNonQuery(sqlCommand, parameters);
                 dbConnection.closeConnection();
                 resetFields();
-                Response.Redirect("~/Voucher.aspx");
+                Response.Redirect("Voucher.aspx");
             }
         }
 

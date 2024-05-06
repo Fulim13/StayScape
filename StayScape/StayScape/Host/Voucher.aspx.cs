@@ -7,9 +7,8 @@ namespace StayScape
     public partial class Voucher : System.Web.UI.Page
     {
 
-        string baseQuery = "SELECT Voucher.voucherID, Voucher.voucherName, Voucher.totalVoucher, Voucher.startDate, Voucher.expiredDate, Voucher.minSpend, Voucher.voucherCode,Voucher.activeStatus, Voucher.discountType, Voucher.discountRate, Voucher.discountPrice, Voucher.capAt,Voucher.createdBy, COUNT(Redemption.redemptionID) AS TotalRedemptions FROM Voucher LEFT JOIN Redemption ON Voucher.voucherID = Redemption.voucherID";
+        string baseQuery = "SELECT Voucher.voucherID, Voucher.voucherName, Voucher.totalVoucher, Voucher.startDate, Voucher.expiredDate, Voucher.minSpend, Voucher.voucherCode,Voucher.activeStatus, Voucher.discountType, Voucher.discountRate, Voucher.discountPrice, Voucher.capAt,Voucher.createdBy, COUNT(Redemption.redemptionID) AS TotalRedemptions FROM Voucher LEFT JOIN Redemption ON Voucher.voucherID = Redemption.voucherID WHERE Voucher.hostID = @hostID AND Redemption.redemptionStatus = 'Used'";
         string groupBy = "GROUP BY Voucher.voucherID, Voucher.voucherName, Voucher.totalVoucher, Voucher.startDate, Voucher.expiredDate, Voucher.minSpend, Voucher.voucherCode, Voucher.activeStatus, Voucher.discountType, Voucher.discountRate, Voucher.discountPrice, Voucher.capAt, Voucher.createdBy ORDER BY Voucher.createdBy DESC";
-
         protected override void OnPreRender(EventArgs e)
         {
             base.OnPreRender(e);
@@ -19,6 +18,8 @@ namespace StayScape
                 {
                     SqlDataSource1.SelectCommand = baseQuery;
                     SqlDataSource1.SelectParameters.Clear();
+
+                    SqlDataSource1.SelectParameters.Add("hostID", Session["hostID"].ToString());
 
                     List<string> conditions = new List<string>();
 
@@ -47,12 +48,10 @@ namespace StayScape
 
                     if (conditions.Count > 0)
                     {
-                        SqlDataSource1.SelectCommand = baseQuery + " WHERE " + string.Join(" AND ", conditions) + " " + groupBy;
+                        SqlDataSource1.SelectCommand += " AND " + string.Join(" AND ", conditions);
                     }
-                    else
-                    {
-                        SqlDataSource1.SelectCommand = baseQuery + " " + groupBy;
-                    }
+
+                    SqlDataSource1.SelectCommand += " " + groupBy;
 
                     ListView1.DataBind();
                 }
@@ -62,6 +61,7 @@ namespace StayScape
                 }
             }
         }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)

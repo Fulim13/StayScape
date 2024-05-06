@@ -75,13 +75,13 @@ namespace StayScape
 
 
             //Display in the label
-            lblSubtotal.Text = "RM " + propertyPrice.ToString();
+            lblSubtotal.Text = "RM " + Session["totalPrice"].ToString();
             lblDiscount.Text = "RM " + Session["discountAmount"].ToString();
-            lblTotal.Text = "RM " + Convert.ToString(propertyPrice - Convert.ToDecimal(Session["discountAmount"]));
+            lblTotal.Text = "RM " + Convert.ToString(Convert.ToDecimal(Session["totalPrice"].ToString()) - Convert.ToDecimal(Session["discountAmount"]));
 
             //Session["CheckIn"] = DateTime.Now;
             //Session["CheckOut"] = DateTime.Now.AddDays(1);
-            Session["reservationAmount"] = propertyPrice - Convert.ToDecimal(Session["discountAmount"]);
+            Session["reservationAmount"] = Convert.ToDecimal(Session["totalPrice"].ToString()) - Convert.ToDecimal(Session["discountAmount"]);
 
             lblPropertyName.Text = propertyName;
             lblPropertyPrice.Text = "RM " + propertyPrice.ToString();
@@ -120,7 +120,7 @@ namespace StayScape
             command = db.ExecuteQuery(sqlCommand, parameters1);
             SqlDataReader reader = command.ExecuteReader();
             reader.Read();
-            int hostID = Convert.ToInt32(reader["hostID"]);
+            string hostID = reader["hostID"].ToString();
 
 
 
@@ -171,24 +171,24 @@ namespace StayScape
                     //the voucher is for this property or not
                     if (propertyIDVoucher != propertyID && propertyIDVoucher != 0)
                     {
-                        return 0;
+                        return -1;
                     }
 
 
                     //Check if the voucher is still active
                     if (!activeStatus)
                     {
-                        return 0;
+                        return -2;
                     }
 
                     //Check if the voucher is still valid
                     if (DateTime.Now < startDate || DateTime.Now > expiredDate)
                     {
-                        return 0;
+                        return -3;
                     }
 
                     //Get customer ID from session
-                    int customerID = 1;
+                    //int customerID = 1;
                     //int customerID = Convert.ToInt32(HttpContext.Current.Session["customerID"]);
 
                     //Check if the customer has already redeem the voucher
@@ -196,14 +196,14 @@ namespace StayScape
                     sqlCommand = "SELECT COUNT(*) FROM Redemption WHERE custID = @customerID AND voucherID = @voucherID AND redemptionStatus = 'Used'";
                     SqlParameter[] parameters3 =
                     {
-                        new SqlParameter("@customerID", customerID),
+                        new SqlParameter("@customerID", HttpContext.Current.Session["custID"].ToString()),
                         new SqlParameter("@voucherID", voucherID)
                     };
                     command = db.ExecuteQuery(sqlCommand, parameters3);
                     count = Convert.ToInt32(command.ExecuteScalar());
                     if (count >= redeemLimitPerCustomer)
                     {
-                        return -1;
+                        return -4;
                     }
 
                     //Check the that this voucher has been redeemed how many time for the redemptionStatus Used and cannot exceed the total voucher
@@ -217,7 +217,7 @@ namespace StayScape
                     count = Convert.ToInt32(command.ExecuteScalar());
                     if (count >= totalVoucher)
                     {
-                        return -2;
+                        return -5;
                     }
 
                     //Check discount type
@@ -225,7 +225,7 @@ namespace StayScape
                     {
                         if (Convert.ToDecimal(HttpContext.Current.Session["reservationAmount"]) < minSpend)
                         {
-                            return 0;
+                            return -6;
                         }
 
                         // store the discount amount in session
@@ -236,7 +236,7 @@ namespace StayScape
                         sqlCommand = "INSERT INTO Redemption (custID, voucherID, redemptionDate, redemptionStatus) VALUES (@custID, @voucherID, @redemptionDate, @redemptionStatus)";
                         SqlParameter[] parameters5 =
                         {
-                            new SqlParameter("@custID", customerID),
+                            new SqlParameter("@custID", HttpContext.Current.Session["custID"].ToString()),
                             new SqlParameter("@voucherID", voucherID),
                             new SqlParameter("@redemptionDate", DateTime.Now),
                             new SqlParameter("@redemptionStatus", "Pending")
@@ -247,7 +247,7 @@ namespace StayScape
                         sqlCommand = "SELECT MAX(redemptionID) AS redemptionID FROM Redemption WHERE custID = @custID AND voucherID = @voucherID";
                         SqlParameter[] parameters6 =
                         {
-                            new SqlParameter("@custID", customerID),
+                            new SqlParameter("@custID", HttpContext.Current.Session["custID"].ToString()),
                             new SqlParameter("@voucherID", voucherID)
                         };
                         command = db.ExecuteQuery(sqlCommand, parameters6);
@@ -271,7 +271,7 @@ namespace StayScape
                     {
                         if (Convert.ToDecimal(HttpContext.Current.Session["reservationAmount"]) < minSpend)
                         {
-                            return 0;
+                            return -6;
                         }
 
                         decimal discountAmount = Convert.ToDecimal(HttpContext.Current.Session["reservationAmount"]) * discountRate / 100;
@@ -283,7 +283,7 @@ namespace StayScape
                         sqlCommand = "SELECT redemptionID FROM Redemption WHERE custID = @custID AND voucherID = @voucherID";
                         SqlParameter[] parameters6 =
                         {
-                            new SqlParameter("@custID", customerID),
+                            new SqlParameter("@custID", HttpContext.Current.Session["custID"].ToString()),
                             new SqlParameter("@voucherID", voucherID)
                         };
                         command = db.ExecuteQuery(sqlCommand, parameters6);

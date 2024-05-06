@@ -67,11 +67,11 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
         <script>
             toastr.options = {
-                "closeButton": true,
+                "closeButton": false,
                 "debug": false,
                 "newestOnTop": false,
                 "progressBar": true,
-                "positionClass": "toast-bottom-center",
+                "positionClass": "toast-top-right",
                 "preventDuplicates": false,
                 "onclick": null,
                 "showDuration": "300",
@@ -191,20 +191,24 @@
                             totalPayment = totalPayment.toFixed(2);
                             document.getElementById("ContentPlaceHolder2_lblTotal").innerText = "RM " + totalPayment;
                             initialize(parseInt(totalPayment * 100));
-                            //alert("Redeem discount code.");
-                            toastr["error"]("Successful Redeem discount code");
+                            toastr["success"]("Successful Redeem discount code");
                             //update ContentPlaceHolder2_lblVoucherCode
                             document.getElementById("ContentPlaceHolder2_lblVoucherCode").innerText = discountCode;
                         } else if (discountAmount == -1) {
-                            toastr["error"]("Achieved Redeem Limit");
-                            //alert("Achieved Redeem Limit");
+                            toastr["error"]("This code is not for this property or this host");
                         } else if (discountAmount == -2) {
+                            toastr["error"]("This code is inactive");
+                        }else if (discountAmount == -3) {
+                            toastr["error"]("This code is expired");
+                        }else if (discountAmount == -4) {
+                            toastr["error"]("You have already redeemed");
+                        }else if (discountAmount == -5) {
                             toastr["error"]("The voucher has fully redeemed");
-                            //alert("The voucher has fully redeemed");
-                        }
-                        else {
+                        } else if (discountAmount == -6) {
+                            toastr["error"]("Not Achieved the MinSpend of this voucher code");
+
+                        } else {
                             toastr["error"]("Invalid discount code");
-                            //alert("Invalid discount code.");
                         }
                     })
                     .catch(error => {

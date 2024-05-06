@@ -71,6 +71,7 @@
                     </div>
 
                     <p class="mt-6 text-2xl text-gray-700" id="totalPrice">Total Price: RM 0.00</p>
+                    <input type="hidden" id="totalPriceField" name="totalPrice" />
                 </div>
 
                 <div class="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
@@ -319,6 +320,7 @@
                         var totalPrice = days * propertyPrice;
                         $('#totalPrice').text('Total Price: RM ' + totalPrice.toFixed(2));
                         $('#<%= btnPlace.ClientID %>').prop('disabled', false); 
+                        $('#totalPriceField').val(totalPrice.toFixed(2));
                     } else {
                         $('#totalPrice').text('');
                         alert('Please select a valid duration (Maximum to Book: 30 days).');

@@ -36,7 +36,7 @@ namespace StayScape
 
             if (requestedUrl.Contains("/home.aspx"))
             {
-                Response.Redirect("~/Dashboard.aspx", true);
+                Response.Redirect("/Host/Dashboard.aspx", true);
             }
         }
 

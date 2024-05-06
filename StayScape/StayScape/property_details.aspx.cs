@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Text;
 using System.Web.UI.WebControls;
 
@@ -289,13 +290,26 @@ namespace StayScape.PPT
 
         protected void btnPlace_Click(object sender, EventArgs e)
         {
-            //for checkout this date
-            var checkInDate = Request.Form["checkInDate"];
-            var checkOutDate = Request.Form["checkOutDate"];
-            // Store the propertyID in the session
+            ////for checkout this date
+            //var checkInDate = Request.Form["checkInDate"];
+            //var checkOutDate = Request.Form["checkOutDate"];
+            //// Store the propertyID in the session
             Session["propertyID"] = Request.QueryString["propertyID"];
-            Session["CheckIn"] = DateTime.Now;
-            Session["CheckOut"] = DateTime.Now.AddDays(1);
+            //Session["CheckIn"] = DateTime.Now;
+            //Session["CheckOut"] = DateTime.Now.AddDays(1);
+            // Get values from the form and store them in session
+            string checkInDateString = Request.Form["checkInDate"];
+            string checkOutDateString = Request.Form["checkOutDate"];
+            string totalPrice = Request.Form["totalPrice"];
+
+            // Convert checkInDate and checkOutDate to DateTime format
+            DateTime checkInDate = DateTime.ParseExact(checkInDateString, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+            DateTime checkOutDate = DateTime.ParseExact(checkOutDateString, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+
+            // Store values in session
+            Session["CheckIn"] = checkInDate;
+            Session["CheckOut"] = checkOutDate;
+            Session["TotalPrice"] = totalPrice;
 
             Response.Redirect("Customer/Checkout.aspx");
         }

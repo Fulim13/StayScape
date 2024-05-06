@@ -15,7 +15,7 @@
                 <p class="mt-1 text-sm text-gray-500">Get started by creating a new voucher.</p>
                 <%-- New Voucher Button --%>
                 <div class="mt-6">
-                    <asp:HyperLink ID="AddVoucherLink" runat="server" NavigateUrl="~/AddVoucher.aspx" class="inline-flex items-center px-4 py-2.5 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    <asp:HyperLink ID="AddVoucherLink" runat="server" NavigateUrl="AddVoucher.aspx" class="inline-flex items-center px-4 py-2.5 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                      <!-- Heroicon name: solid/plus -->
                      <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                          <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
@@ -34,7 +34,7 @@
                 </div>
                 <%-- Bulk Import Button --%>
                 <div class="mt-1">
-                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/BulkImportVoucher.aspx" class="inline-flex items-center px-5 py-2.5 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="BulkImportVoucher.aspx" class="inline-flex items-center px-5 py-2.5 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                          <!-- Heroicon name: solid/folder-plus -->
                         <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 10.5v6m3-3H9m4.06-7.19-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" />
@@ -84,7 +84,7 @@
 
                 <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                     <%-- New Voucher Button --%>
-                    <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/BulkImportVoucher.aspx" class="inline-flex items-center px-5 py-2.5 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="BulkImportVoucher.aspx" class="inline-flex items-center px-5 py-2.5 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     <!-- Heroicon name: outline/folder-plus -->
                     <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 10.5v6m3-3H9m4.06-7.19-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" />
@@ -92,7 +92,7 @@
                         Bulk Import
                     </asp:HyperLink>
                     <%-- Bulk Import Button --%>
-                    <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/AddVoucher.aspx" class="ml-4 inline-flex items-center px-4 py-2.5 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="AddVoucher.aspx" class="ml-4 inline-flex items-center px-4 py-2.5 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                      <!-- Heroicon name: solid/plus -->
                      <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                          <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
@@ -203,9 +203,15 @@
             Voucher
         LEFT JOIN
             Redemption ON Voucher.voucherID = Redemption.voucherID
+        WHERE Voucher.hostID = @hostID AND Redemption.redemptionStatus = 'Used'
         GROUP BY Voucher.voucherID, Voucher.voucherName, Voucher.totalVoucher, Voucher.startDate, Voucher.expiredDate, Voucher.minSpend, Voucher.voucherCode, Voucher.activeStatus, Voucher.discountType, Voucher.discountRate, Voucher.discountPrice, Voucher.capAt, Voucher.createdBy
             ORDER BY Voucher.createdBy DESC
-            "></asp:SqlDataSource>
+            ">
+            <SelectParameters>
+                <asp:SessionParameter Name="hostID" SessionField="hostID" />
+            </SelectParameters>
+        </asp:SqlDataSource>
+
     </asp:Panel>
     <script>
         const clipboardIcons = document.querySelectorAll(".clipboard-icon");

@@ -16,7 +16,7 @@
             dropdownMenu.classList.toggle("hidden");
         }
         function backToHomePage() {
-            window.location.href = "property_list.aspx";
+            window.location.href = "/property_list.aspx";
         }
     </script>
 </head>

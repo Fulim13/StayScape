@@ -41,11 +41,13 @@ namespace StayScape
             DBManager dbConnection = new DBManager();
             dbConnection.createConnection();
 
-            string query = "SELECT propertyID, propertyName FROM Property";
+            string query = "SELECT propertyID, propertyName FROM Property WHERE hostID = @hostID";
 
             SqlCommand command = dbConnection.ExecuteQuery(query);
+            command.Parameters.AddWithValue("@hostID", Session["hostID"].ToString());
 
             SqlDataAdapter adapter = new SqlDataAdapter(command);
+
             DataTable dt = new DataTable();
 
             adapter.Fill(dt);
@@ -61,10 +63,14 @@ namespace StayScape
 
                 // TODO: Validation for no properties available
                 ddlHostProperty.Items.Insert(0, new ListItem("Select Property", ""));
+                ddlHostProperty.Enabled = true;
             }
             else
             {
                 // Handle the case when no properties are available
+                ddlHostProperty.Items.Clear();
+                ddlHostProperty.Items.Insert(0, new ListItem("No properties available", ""));
+                ddlHostProperty.Enabled = false;
             }
         }
 
@@ -123,7 +129,7 @@ namespace StayScape
                 db.closeConnection();
                 if (valid)
                 {
-                    Response.Redirect("~/Voucher.aspx");
+                    Response.Redirect("Voucher.aspx");
                 }
             }
         }
@@ -149,7 +155,7 @@ namespace StayScape
                 db.closeConnection();
                 if (valid)
                 {
-                    Response.Redirect("~/Voucher.aspx");
+                    Response.Redirect("Voucher.aspx");
                 }
             }
             else
@@ -169,7 +175,7 @@ namespace StayScape
                 db.closeConnection();
                 if (valid)
                 {
-                    Response.Redirect("~/Voucher.aspx");
+                    Response.Redirect("Voucher.aspx");
                 }
             }
 

@@ -139,11 +139,15 @@ namespace StayScape
             SqlCommand command2 = db.ExecuteQuery(totalReservationQuery, parameters2);
             string totalReservation = command2.ExecuteScalar().ToString();
             db.closeConnection();
-
-            // Fetch Average Reservation Made
-            //decimal avgReservation = Convert.ToDecimal(totalRevenue) / Convert.ToInt32(totalReservation);
             decimal avgReservation = 0;
-            avgReservation = Math.Round(avgReservation, 2);
+            // Fetch Average Reservation Made
+            if (Convert.ToDecimal(totalRevenue) != 0 && Convert.ToInt32(totalReservation) != 0)
+            {
+                avgReservation = Convert.ToDecimal(totalRevenue) / Convert.ToInt32(totalReservation);
+                avgReservation = Math.Round(avgReservation, 2);
+            }
+
+
 
 
             // Bind the fetched data to labels in the front end
