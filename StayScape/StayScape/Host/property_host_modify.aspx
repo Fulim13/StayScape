@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="property_host_modify.aspx.cs" Inherits="StayScape.property_host_modify" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="Main.Master" AutoEventWireup="true" CodeBehind="property_host_modify.aspx.cs" Inherits="StayScape.property_host_modify" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -107,7 +107,7 @@
                     Type="Double"
                     MinimumValue="1.00"
                     MaximumValue="99999"
-                    ErrorMessage="Property Price must be greater than 0"
+                    ErrorMessage="Invalid Property Price"
                     ForeColor="Red"
                     Display="Dynamic" />
             </div>
@@ -177,7 +177,7 @@
                     Type="Integer"
                     MinimumValue="1"
                     MaximumValue="10"
-                    ErrorMessage="Total Bedrooms must be greater than 0 and not more than 10"
+                    ErrorMessage="Invalid Value"
                     ForeColor="Red"
                     Display="Dynamic" />
             </div>
@@ -199,7 +199,7 @@
                     Type="Integer"
                     MinimumValue="1"
                     MaximumValue="10"
-                    ErrorMessage="Total Bathrooms must be greater than 0 and not more than 10"
+                    ErrorMessage="Invalid Value"
                     ForeColor="Red"
                     Display="Dynamic" />
             </div>
