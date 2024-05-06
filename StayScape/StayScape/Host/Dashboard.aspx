@@ -177,16 +177,38 @@
         <!-- End Footer -->
     </div>
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:LocalSqlServer %>" 
-    SelectCommand="SELECT r.reservationID, r.reservationTotal, r.checkInDate, r.checkOutDate, r.reservationStatus, c.customerName
+    SelectCommand="SELECT r.reservationID, r.reservationTotal, r.checkInDate, r.checkOutDate, r.reservationStatus, r.createdAt, c.customerName
                    FROM Reservation r
                    JOIN Property p ON r.propertyID = p.propertyID
                    JOIN Host h ON p.hostID = h.hostID
                    JOIN Customer c ON r.custID = c.custID
-                   WHERE h.hostID = @hostID;">
+                   WHERE h.hostID = @hostID ORDER BY r.createdAt DESC;">
     <SelectParameters>
         <asp:SessionParameter Name="hostID" SessionField="hostID" />
     </SelectParameters>
 </asp:SqlDataSource>
+     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+ <script>
+     toastr.options = {
+         "closeButton": false,
+         "debug": false,
+         "newestOnTop": false,
+         "progressBar": true,
+         "positionClass": "toast-top-right",
+         "preventDuplicates": false,
+         "onclick": null,
+         "showDuration": "300",
+         "hideDuration": "1000",
+         "timeOut": "5000",
+         "extendedTimeOut": "1000",
+         "showEasing": "swing",
+         "hideEasing": "linear",
+         "showMethod": "fadeIn",
+         "hideMethod": "fadeOut"
+     }
+ </script>
     <script>
         const clipboardIcons = document.querySelectorAll(".clipboard-icon");
 
@@ -199,7 +221,7 @@
             navigator.clipboard.writeText(textToCopy)
                 .then(() => {
                     console.log("Text copied to clipboard:", textToCopy);
-                    alert("Text copied to clipboard!"); // TODO: Replace with Toast notification
+                    toastr["success"]("Text copied to clipboard!"); // TODO: Replace with Toast notification
                 })
                 .catch(err => {
                     console.error("Error copying text to clipboard:", err);

@@ -106,7 +106,7 @@
     <Content Include="Host\AddVoucher.aspx" />
     <Content Include="Host\BulkImportVoucher.aspx" />
     <Content Include="Customer\Checkout.aspx" />
-    <Content Include="Customer\checkout.css" />
+    <Content Include="checkout.css" />
     <Content Include="Customer\checkout.js" />
     <Content Include="errors\404.aspx" />
     <Content Include="Global.asax" />

@@ -202,8 +202,8 @@
         FROM
             Voucher
         LEFT JOIN
-            Redemption ON Voucher.voucherID = Redemption.voucherID
-        WHERE Voucher.hostID = @hostID AND Redemption.redemptionStatus = 'Used'
+            Redemption ON Voucher.voucherID = Redemption.voucherID AND Redemption.redemptionStatus = 'Used'
+        WHERE Voucher.hostID = @hostID
         GROUP BY Voucher.voucherID, Voucher.voucherName, Voucher.totalVoucher, Voucher.startDate, Voucher.expiredDate, Voucher.minSpend, Voucher.voucherCode, Voucher.activeStatus, Voucher.discountType, Voucher.discountRate, Voucher.discountPrice, Voucher.capAt, Voucher.createdBy
             ORDER BY Voucher.createdBy DESC
             ">
@@ -213,6 +213,28 @@
         </asp:SqlDataSource>
 
     </asp:Panel>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script>
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+</script>
     <script>
         const clipboardIcons = document.querySelectorAll(".clipboard-icon");
 
@@ -225,7 +247,7 @@
             navigator.clipboard.writeText(textToCopy)
                 .then(() => {
                     console.log("Text copied to clipboard:", textToCopy);
-                    alert("Text copied to clipboard!"); // TODO: Replace with Toast notification
+                    toastr["success"]("Text copied to clipboard!"); // TODO: Replace with Toast notification
                 })
                 .catch(err => {
                     console.error("Error copying text to clipboard:", err);

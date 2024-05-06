@@ -51,6 +51,8 @@ namespace StayScape
 
                 // Optionally, delete the uploaded file after processing
                 File.Delete(filePath);
+
+                Response.Redirect("Voucher.aspx");
             }
         }
 
@@ -113,7 +115,7 @@ namespace StayScape
                     new SqlParameter("@discountRate", DBNull.Value),
                     new SqlParameter("@capAt", DBNull.Value),
                     new SqlParameter("@createdBy", SqlDbType.DateTime) { Value = DateTime.Now },
-                    new SqlParameter("@hostID", 1), // TODO: Replace with actual host ID
+                    new SqlParameter("@hostID", Session["hostID"].ToString()), // TODO: Replace with actual host ID
                 };
             }
             else
@@ -133,7 +135,7 @@ namespace StayScape
                     new SqlParameter("@discountRate", discountRate),
                     new SqlParameter("@capAt", capAt),
                     new SqlParameter("@createdBy", SqlDbType.DateTime) { Value = DateTime.Now },
-                    new SqlParameter("@hostID", 1), // TODO: Replace with actual host ID
+                    new SqlParameter("@hostID", Session["hostID"].ToString()), // TODO: Replace with actual host ID
                 };
             }
 

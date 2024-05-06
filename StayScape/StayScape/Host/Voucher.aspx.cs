@@ -7,7 +7,7 @@ namespace StayScape
     public partial class Voucher : System.Web.UI.Page
     {
 
-        string baseQuery = "SELECT Voucher.voucherID, Voucher.voucherName, Voucher.totalVoucher, Voucher.startDate, Voucher.expiredDate, Voucher.minSpend, Voucher.voucherCode,Voucher.activeStatus, Voucher.discountType, Voucher.discountRate, Voucher.discountPrice, Voucher.capAt,Voucher.createdBy, COUNT(Redemption.redemptionID) AS TotalRedemptions FROM Voucher LEFT JOIN Redemption ON Voucher.voucherID = Redemption.voucherID WHERE Voucher.hostID = @hostID AND Redemption.redemptionStatus = 'Used'";
+        string baseQuery = "SELECT Voucher.voucherID, Voucher.voucherName, Voucher.totalVoucher, Voucher.startDate, Voucher.expiredDate, Voucher.minSpend, Voucher.voucherCode,Voucher.activeStatus, Voucher.discountType, Voucher.discountRate, Voucher.discountPrice, Voucher.capAt,Voucher.createdBy, COUNT(Redemption.redemptionID) AS TotalRedemptions FROM Voucher LEFT JOIN Redemption ON Voucher.voucherID = Redemption.voucherID AND Redemption.redemptionStatus = 'Used' WHERE Voucher.hostID = @hostID";
         string groupBy = "GROUP BY Voucher.voucherID, Voucher.voucherName, Voucher.totalVoucher, Voucher.startDate, Voucher.expiredDate, Voucher.minSpend, Voucher.voucherCode, Voucher.activeStatus, Voucher.discountType, Voucher.discountRate, Voucher.discountPrice, Voucher.capAt, Voucher.createdBy ORDER BY Voucher.createdBy DESC";
         protected override void OnPreRender(EventArgs e)
         {
