@@ -29,11 +29,13 @@ namespace StayScape
                     P.propertyAddress_City, P.propertyAddress_State, P.totalBedroom, P.totalBathroom, 
                     P.createdAt, P.lastUpdate, P.isActive,
                     (SELECT TOP 1 PI.propertyPicture FROM PropertyImage PI WHERE PI.propertyID = P.propertyID) AS propertyPicture
-                FROM Property P";
+                    
+                FROM Property P WHERE P.hostID = @hostID";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@hostID", Session["hostID"].ToString());
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
 
