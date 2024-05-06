@@ -13,7 +13,7 @@
         <link href="./dist/output.css" rel="stylesheet" />
         <style>
             body {
-                font-family: Arial, sans-serif;
+                /*font-family: Arial, sans-serif;*/
                 background-color: #f2f2f2;
             }
 
