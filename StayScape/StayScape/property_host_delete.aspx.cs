@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -25,7 +22,8 @@ namespace StayScape
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 // Select all properties regardless of activation status
-                SqlCommand cmd = new SqlCommand("SELECT propertyID, propertyName, isActive FROM Property ORDER BY isActive DESC, propertyName", con);
+                SqlCommand cmd = new SqlCommand("SELECT propertyID, propertyName, isActive FROM Property WHERE hostID = @hostID ORDER BY isActive DESC, propertyName", con);
+                cmd.Parameters.AddWithValue("@hostID", Session["hostID"].ToString());
                 con.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
                 ddlProperty.DataSource = reader;

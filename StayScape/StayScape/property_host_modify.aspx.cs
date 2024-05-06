@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -17,7 +14,7 @@ namespace StayScape
             {
                 PopulatePropertyDropDown();
             }
-         
+
         }
 
         private void PopulatePropertyDropDown()
@@ -45,8 +42,8 @@ namespace StayScape
             }
             if (ddlProperty.SelectedIndex > 0)
             {
-                ddlProperty.Items[0].Enabled = false;  
-                ddlProperty.Items.RemoveAt(0); 
+                ddlProperty.Items[0].Enabled = false;
+                ddlProperty.Items.RemoveAt(0);
             }
         }
 
@@ -86,7 +83,7 @@ namespace StayScape
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    SqlCommand cmd = new SqlCommand("UPDATE Property SET propertyName = @propertyName, propertyPrice = @propertyPrice, propertyDesc = @propertyDesc, propertyAddress = @propertyAddress, propertyAddress_City = @city, propertyAddress_State = @state, totalBedroom = @totalBedroom, totalBathroom = @totalBathroom, lastUpdate = GETDATE() WHERE propertyID = @propertyID", conn);
+                    SqlCommand cmd = new SqlCommand("UPDATE Property SET propertyName = @propertyName, propertyPrice = @propertyPrice, propertyDesc = @propertyDesc, propertyAddress = @propertyAddress, propertyAddress_City = @city, propertyAddress_State = @state, totalBedroom = @totalBedroom, totalBathroom = @totalBathroom, hostID=@hostID, lastUpdate = GETDATE() WHERE propertyID = @propertyID", conn);
                     cmd.Parameters.AddWithValue("@propertyID", propertyID);
                     cmd.Parameters.AddWithValue("@propertyName", txtPropertyName.Text);
                     cmd.Parameters.AddWithValue("@propertyPrice", decimal.Parse(txtPropertyPrice.Text));
@@ -96,12 +93,14 @@ namespace StayScape
                     cmd.Parameters.AddWithValue("@state", txtState.Text);
                     cmd.Parameters.AddWithValue("@totalBedroom", int.Parse(txtTotalBedrooms.Text));
                     cmd.Parameters.AddWithValue("@totalBathroom", int.Parse(txtTotalBathrooms.Text));
+                    cmd.Parameters.AddWithValue("@hostID", Session["hostID"].ToString());
                     conn.Open();
                     cmd.ExecuteNonQuery();
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Property updated successfully.');", true);
                     ClearFormFields();
                 }
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Failed to add property. Error: " + ex.Message + "');", true);
             }

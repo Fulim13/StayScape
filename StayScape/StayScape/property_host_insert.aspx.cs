@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.IO;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Configuration;
 
 namespace StayScape
 {
@@ -36,7 +33,7 @@ namespace StayScape
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("INSERT INTO Property (propertyName, propertyPrice, propertyDesc, propertyAddress, propertyAddress_City, propertyAddress_State, totalBedroom, totalBathroom, createdAt, lastUpdate) VALUES (@propertyName, @propertyPrice, @propertyDesc, @propertyAddress, @propertyAddress_city, @propertyAddress_state, @totalBedroom, @totalBathroom, GETDATE(), GETDATE()); SELECT SCOPE_IDENTITY();", conn);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO Property (propertyName, propertyPrice, propertyDesc, propertyAddress, propertyAddress_City, propertyAddress_State, totalBedroom, totalBathroom,hostID, createdAt, lastUpdate) VALUES (@propertyName, @propertyPrice, @propertyDesc, @propertyAddress, @propertyAddress_city, @propertyAddress_state, @totalBedroom, @totalBathroom,@hostID, GETDATE(), GETDATE()); SELECT SCOPE_IDENTITY();", conn);
                     cmd.Parameters.AddWithValue("@propertyName", propertyName);
                     cmd.Parameters.AddWithValue("@propertyPrice", propertyPrice);
                     cmd.Parameters.AddWithValue("@propertyDesc", propertyDesc);
@@ -45,6 +42,7 @@ namespace StayScape
                     cmd.Parameters.AddWithValue("@propertyAddress_state", propertyAddress_state);
                     cmd.Parameters.AddWithValue("@totalBedroom", totalBedrooms);
                     cmd.Parameters.AddWithValue("@totalBathroom", totalBathrooms);
+                    cmd.Parameters.AddWithValue("@hostID", Session["hostID"].ToString());
                     propertyID = Convert.ToInt32(cmd.ExecuteScalar());
                 }
 
