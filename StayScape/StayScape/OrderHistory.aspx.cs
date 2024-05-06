@@ -82,7 +82,7 @@ namespace StayScape
                     r.reservationTotal AS TotalAmount,
                     p.propertyName AS PropertyName,
                     p.propertyAddress AS PropertyAddress,
-                    (SELECT propertyPicture FROM PropertyImage WHERE propertyID = p.propertyID) AS PropertyImage
+                    (SELECT TOP 1 propertyPicture FROM PropertyImage WHERE propertyID = p.propertyID) AS PropertyImage
                 FROM 
                     Reservation r
                 INNER JOIN 

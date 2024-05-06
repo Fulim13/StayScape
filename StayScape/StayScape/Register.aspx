@@ -46,8 +46,7 @@
                                 ControlToValidate="txtEmail"
                                 ErrorMessage="Invalid email address"
                                 ValidationExpression="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
-                                ValidationGroup="Registration">
-                            </asp:RegularExpressionValidator>
+                                ValidationGroup="Registration" Font-Bold="True" ForeColor="Red"></asp:RegularExpressionValidator>
                         </div>
 
                         <div class="form-floating mb-4 p-0">
@@ -58,8 +57,7 @@
                                 ControlToValidate="txtPhone"
                                 ErrorMessage="Invalid Malaysian phone number"
                                 ValidationExpression="^(01[0-46-9]-\d{7,8}|03-\d{7,8}|04-\d{7,8}|05-\d{7,8}|06-\d{7,8}|07-\d{7,8}|08-\d{7,8}|09-\d{7,8})$"
-                                ValidationGroup="Registration">
-                            </asp:RegularExpressionValidator>
+                                ValidationGroup="Registration" Font-Bold="True" ForeColor="Red"></asp:RegularExpressionValidator>
                         </div>
 
                         <div class="form-floating mb-4 p-0">
@@ -73,8 +71,7 @@
                                 ErrorMessage="You must be between 18 and 120 years old."
                                 Display="Dynamic"
                                 CssClass="text-danger"
-                                ValidationGroup="Registration">
-                            </asp:RangeValidator>
+                                ValidationGroup="Registration" Font-Bold="True" ForeColor="Red"></asp:RangeValidator>
                         </div>
 
                         <div class="form-floating mb-4 p-0">
@@ -90,8 +87,7 @@
                                 ErrorMessage="Please select a gender."
                                 Display="Dynamic"
                                 CssClass="text-danger"
-                                ValidationGroup="Registration">
-                            </asp:RequiredFieldValidator>
+                                ValidationGroup="Registration" Font-Bold="True" ForeColor="Red"></asp:RequiredFieldValidator>
                         </div>
 
                         <div class="form-floating p-0">
@@ -102,8 +98,7 @@
                                 ControlToValidate="txtPassword"
                                 ErrorMessage="Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one digit, and one special character"
                                 ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$"
-                                ValidationGroup="Registration">
-                            </asp:RegularExpressionValidator>
+                                ValidationGroup="Registration" Font-Bold="True" ForeColor="Red"></asp:RegularExpressionValidator>
                         </div>
 
                         <div class="form-floating p-0">
@@ -115,8 +110,7 @@
                                 ControlToCompare="txtPassword"
                                 ErrorMessage="Passwords do not match"
                                 Display="Dynamic"
-                                ValidationGroup="Registration">
-                            </asp:CompareValidator>
+                                ValidationGroup="Registration" Font-Bold="True" ForeColor="Red"></asp:CompareValidator>
                         </div>
 
                         <br />

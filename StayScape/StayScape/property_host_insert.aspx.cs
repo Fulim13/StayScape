@@ -91,7 +91,6 @@ namespace StayScape
             txtState.Text = string.Empty;
             txtTotalBedrooms.Text = string.Empty;
             txtTotalBathrooms.Text = string.Empty;
-            // Clear other fields as necessary
         }
     }
 }
