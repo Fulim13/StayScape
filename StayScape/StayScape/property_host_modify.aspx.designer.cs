@@ -60,6 +60,15 @@ namespace StayScape
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPropertyPrice;
 
         /// <summary>
+        /// rvPropertyPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator rvPropertyPrice;
+
+        /// <summary>
         /// txtPropertyDesc control.
         /// </summary>
         /// <remarks>
@@ -150,6 +159,15 @@ namespace StayScape
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTotalBedrooms;
 
         /// <summary>
+        /// rvTotalBedrooms control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator rvTotalBedrooms;
+
+        /// <summary>
         /// txtTotalBathrooms control.
         /// </summary>
         /// <remarks>
@@ -166,6 +184,15 @@ namespace StayScape
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTotalBathrooms;
+
+        /// <summary>
+        /// rvTotalBathrooms control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator rvTotalBathrooms;
 
         /// <summary>
         /// btnUpdate control.

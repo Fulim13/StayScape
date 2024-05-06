@@ -14,7 +14,7 @@
 
             <div>
                 <select id="ddlState" class="mr-2 py-2 pl-4 pr-8 border border-gray-300 rounded-md" onchange="filterProperties()">
-                    <option disabled selected>All States</option>
+                    <option value="All States">All States</option>
                     <option value="Johor">Johor</option>
                     <option value="Kedah">Kedah</option>
                     <option value="Kelantan">Kelantan</option>
@@ -33,7 +33,7 @@
                     <option value="Putrajaya">Putrajaya</option>
                 </select>
                 <select id="ddlBedrooms" class="mr-2 py-2 pl-4 pr-8 border border-gray-300 rounded-md" onchange="filterProperties()">
-                    <option disabled selected>All Bedrooms</option>
+                    <option value="All Bedrooms">All Bedrooms</option>
                     <option value="1">1 Bedroom</option>
                     <option value="2">2 Bedrooms</option>
                     <option value="3">3 Bedrooms</option>
@@ -46,7 +46,7 @@
                     <option value="10">10 Bedrooms</option>
                 </select>
                 <select id="ddlBathrooms" class="mr-2 py-2 pl-4 pr-8 border border-gray-300 rounded-md" onchange="filterProperties()">
-                    <option disabled selected>All Bathrooms</option>
+                    <option value="All Bathrooms">All Bathrooms</option>
                     <option value="1">1 Bathroom</option>
                     <option value="2">2 Bathrooms</option>
                     <option value="3">3 Bathrooms</option>
