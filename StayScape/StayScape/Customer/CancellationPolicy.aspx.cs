@@ -16,7 +16,7 @@ namespace StayScape
 
         protected void imgbtnClose_Click(object sender, ImageClickEventArgs e)
         {
-            Response.Redirect("~/CancelReservation.aspx");
+            Response.Redirect("CancelReservation.aspx");
         }
     }
 }

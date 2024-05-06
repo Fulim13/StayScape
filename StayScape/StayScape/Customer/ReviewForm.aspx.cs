@@ -81,7 +81,7 @@ namespace StayScape
                 else
                 {
                     // Handle case where no image is found
-                    imgProperty.ImageUrl = "/Images/testing.jpg"; // Or any default image path
+                    imgProperty.ImageUrl = "~/Images/testing.jpg"; // Or any default image path
                 }
             }
 
@@ -252,12 +252,12 @@ namespace StayScape
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/OrderHistory.aspx");
+            Response.Redirect("OrderHistory.aspx");
         }
 
         protected void ModalCloseButton_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/OrderHistory.aspx");
+            Response.Redirect("OrderHistory.aspx");
         }
     }
 }

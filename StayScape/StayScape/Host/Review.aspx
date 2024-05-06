@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="Review.aspx.cs" Inherits="StayScape.Review" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="/Host/Main.Master" AutoEventWireup="true" CodeBehind="Review.aspx.cs" Inherits="StayScape.Review" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <!-- Include flatpickr library -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
@@ -98,7 +98,7 @@
                     <asp:Image 
                         ID="imgCalendar" 
                         runat="server" 
-                        ImageUrl="Images/calendar.svg" 
+                        ImageUrl="~/Images/calendar.svg" 
                         CssClass="w-10 h-10 hover:cursor-pointer" 
                     />
                     <asp:TextBox 
