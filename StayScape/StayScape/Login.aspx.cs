@@ -22,18 +22,23 @@ namespace StayScape.DesmondsPage
                 MembershipUser user = Membership.GetUser(email);
                 Guid userId = (Guid)user.ProviderUserKey;
 
-                Session["UserId"] = userId;
+                //Session["hostID"] = userId;
+
 
                 // Debug.WriteLine(userId);
 
                 if (Roles.IsUserInRole(email, "Host"))
                 {
                     FormsAuthentication.SetAuthCookie(email, false);
+                    //Debug.WriteLine(userId);
+                    Session["hostID"] = userId.ToString().ToUpper();
+                    Debug.WriteLine(Session["hostID"]);
                     Response.Redirect("Dashboard.aspx"); //<-- replace this with actual host page
                 }
                 else
                 {
                     FormsAuthentication.RedirectFromLoginPage(email, false);
+                    Session["custID"] = userId.ToString().ToUpper();
                     // Response.Redirect("Profile.aspx");
                 }
             }
