@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Web.Security;
 
 namespace StayScape.DesmondsPage
@@ -16,14 +15,18 @@ namespace StayScape.DesmondsPage
             string email = txtMail.Text.Trim();
             string password = txtPassword.Text.Trim();
 
+
             // Validate the user using email
             if (Membership.ValidateUser(email, password))
             {
+                MembershipUser user = Membership.GetUser(email);
+                Guid userId = (Guid)user.ProviderUserKey;
+
                 if (Roles.IsUserInRole(email, "Host"))
                 {
                     // Set authentication cookie with expiration set to "Session"
                     FormsAuthentication.SetAuthCookie(email, false);
-
+                    Session["hostID"] = userId.ToString().ToUpper();
                     // Redirect to the dashboard or host page
                     Response.Redirect("Dashboard.aspx"); //<-- replace this with actual host page
                 }
@@ -31,7 +34,7 @@ namespace StayScape.DesmondsPage
                 {
                     // Set authentication cookie with expiration set to "Session"
                     FormsAuthentication.SetAuthCookie(email, false);
-
+                    Session["custID"] = userId.ToString().ToUpper();
                     // Redirect to the default page or the requested page
                     FormsAuthentication.RedirectFromLoginPage(email, false);
                 }

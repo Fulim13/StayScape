@@ -23,17 +23,21 @@ namespace StayScape
         {
             decimal[] arr = new decimal[12];
             DBManager db = new DBManager();
-            string query = "SELECT MONTH(createdAt) AS month, SUM(reservationTotal) AS monthly_order_total " +
-           "FROM [Reservation] WHERE YEAR(createdAt) = @year  AND reservationStatus = 'Paid'  GROUP BY MONTH(createdAt) ORDER BY month;";
+            string query = @"SELECT MONTH(createdAt) AS month, SUM(reservationTotal) AS monthly_order_total 
+                     FROM [Reservation] 
+                     WHERE YEAR(createdAt) = @year AND reservationStatus = 'Paid' AND hostID = @hostID
+                     GROUP BY MONTH(createdAt) 
+                     ORDER BY month;";
             SqlParameter[] sqlParameters = new SqlParameter[]
             {
-                new SqlParameter("@year", DateTime.Now.Year)
+        new SqlParameter("@year", DateTime.Now.Year),
+        new SqlParameter("@hostID", Session["hostID"].ToString())
             };
             db.createConnection();
             SqlDataReader reader = db.ExecuteQuery(query, sqlParameters).ExecuteReader();
             while (reader.Read())
             {
-                arr[Convert.ToInt32(reader["month"]) - 1] = Convert.ToDecimal(reader[1].ToString());
+                arr[Convert.ToInt32(reader["month"]) - 1] = Convert.ToDecimal(reader["monthly_order_total"]);
 
             }
             db.closeConnection();
@@ -50,12 +54,13 @@ namespace StayScape
             string query = @"SELECT TOP 5 p.propertyName, SUM(r.reservationTotal) AS total 
                      FROM [Reservation] r 
                      INNER JOIN [Property] p ON r.propertyId = p.propertyId 
-                     WHERE YEAR(r.createdAt) = @year  AND reservationStatus = 'Paid' 
+                     WHERE YEAR(r.createdAt) = @year AND reservationStatus = 'Paid' AND r.hostID = @hostID
                      GROUP BY r.propertyId, p.propertyName 
                      ORDER BY total DESC;";
             SqlParameter[] sqlParameters = new SqlParameter[]
             {
-        new SqlParameter("@year", DateTime.Now.Year)
+        new SqlParameter("@year", DateTime.Now.Year),
+        new SqlParameter("@hostID", Session["hostID"].ToString())
             };
             db.createConnection();
             SqlDataReader reader = db.ExecuteQuery(query, sqlParameters).ExecuteReader();
@@ -79,12 +84,13 @@ namespace StayScape
             string query = @"SELECT TOP 5 c.customerName, SUM(r.reservationTotal) AS total 
                      FROM [Reservation] r 
                      INNER JOIN [Customer] c ON r.custID = c.custID 
-                     WHERE YEAR(r.createdAt) = @year  AND reservationStatus = 'Paid' 
+                     WHERE YEAR(r.createdAt) = @year AND reservationStatus = 'Paid' AND r.hostID = @hostID
                      GROUP BY r.custID, c.customerName 
                      ORDER BY total DESC;";
             SqlParameter[] sqlParameters = new SqlParameter[]
             {
-new SqlParameter("@year", DateTime.Now.Year)
+        new SqlParameter("@year", DateTime.Now.Year),
+        new SqlParameter("@hostID", Session["hostID"].ToString())
             };
             db.createConnection();
             SqlDataReader reader = db.ExecuteQuery(query, sqlParameters).ExecuteReader();

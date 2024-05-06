@@ -92,7 +92,7 @@
 
             <div class="form-group">
                 <label>Property Price:</label>
-                <asp:TextBox ID="txtPropertyPrice" runat="server" TextMode="Number" />
+                <asp:TextBox ID="txtPropertyPrice" runat="server" TextMode="SingleLine" />
                 <asp:RequiredFieldValidator
                     ID="rfvPropertyPrice"
                     runat="server"
@@ -104,8 +104,8 @@
                     ID="rvPropertyPrice"
                     runat="server"
                     ControlToValidate="txtPropertyPrice"
-                    Type="Integer"
-                    MinimumValue="1"
+                    Type="Double"
+                    MinimumValue="1.00"
                     MaximumValue="99999"
                     ErrorMessage="Property Price must be greater than 0"
                     ForeColor="Red"
