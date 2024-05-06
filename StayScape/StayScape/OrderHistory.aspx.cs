@@ -136,7 +136,7 @@ namespace StayScape
                 query += " ORDER BY r.createdAt DESC"; // Order by date placed
 
                 SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@custID", 1); // Replace with the actual customer ID
+                cmd.Parameters.AddWithValue("@custID", Session["custID"]); 
 
                 if (reservationFilter != "All") // Add parameter for filtering by status
                 {

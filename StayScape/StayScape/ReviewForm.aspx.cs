@@ -247,6 +247,7 @@ namespace StayScape
         private string GetCurrentCustomerID()
         {
             // Placeholder for actual host ID retrieval logic (from session, user context, etc.)
+            string custID = (string)Session["custID"];
             return "1"; // Default customer ID
         }
 
