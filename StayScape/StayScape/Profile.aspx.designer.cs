@@ -69,6 +69,15 @@ namespace StayScape
         protected global::System.Web.UI.WebControls.Button btnPhone;
 
         /// <summary>
+        /// genderEditDropdown control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList genderEditDropdown;
+
+        /// <summary>
         /// genderLabel control.
         /// </summary>
         /// <remarks>
@@ -76,6 +85,15 @@ namespace StayScape
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label genderLabel;
+
+        /// <summary>
+        /// btnGender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGender;
 
         /// <summary>
         /// bDateText control.

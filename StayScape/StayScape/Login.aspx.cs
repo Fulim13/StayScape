@@ -24,18 +24,22 @@ namespace StayScape.DesmondsPage
 
                 Session["UserId"] = userId;
 
-                Debug.WriteLine(userId);
+                // Debug.WriteLine(userId);
 
                 if (Roles.IsUserInRole(email, "Host"))
                 {
-                    //FormsAuthentication.SetAuthCookie(email, false);
+                    FormsAuthentication.SetAuthCookie(email, false);
                     Response.Redirect("Dashboard.aspx"); //<-- replace this with actual host page
                 }
                 else
                 {
-                    //FormsAuthentication.RedirectFromLoginPage(email, false);
-                    Response.Redirect("Profile.aspx");
+                    FormsAuthentication.RedirectFromLoginPage(email, false);
+                    // Response.Redirect("Profile.aspx");
                 }
+            }
+            else
+            {
+                LoginCheck.Text = "Invalid credentials.";
             }
         }
 

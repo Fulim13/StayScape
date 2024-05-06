@@ -39,7 +39,8 @@
                             <label for="password" id="pwdLabel">Password</label>
                             <asp:TextBox runat="server" ID="txtPassword" TextMode="Password" CssClass="form-control" placeholder="Password" Required="true"></asp:TextBox>
                         </div>
-                        <br />
+                        <asp:Label ID="LoginCheck" runat="server" Font-Bold="True" ForeColor="Red"></asp:Label>
+
                         <div class="col text-center">
                             <asp:Button runat="server" ID="btnSignIn" Text="Sign in" CssClass="inline-flex justify-center py-4 px-8 border border-transparent shadow-sm text-2xl font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" OnClick="BtnSignIn_Click" />
                         </div>
