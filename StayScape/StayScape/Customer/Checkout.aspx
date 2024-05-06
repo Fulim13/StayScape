@@ -96,7 +96,7 @@
 
             // Fetches a payment intent and captures the client secret
             async function initialize(paymentAmount) {
-                const response = await fetch("~/CreatePaymentIntent.ashx", {
+                const response = await fetch("/Customer/CreatePaymentIntent.ashx", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ amount: paymentAmount }),
@@ -124,7 +124,7 @@
                 const { error } = await stripe.confirmPayment({
                     elements,
                     confirmParams: {
-                        return_url: "https://localhost:44321/PaymentProcessing.aspx",
+                        return_url: "https://localhost:44321/Customer/PaymentProcessing.aspx",
                     },
                 });
 
