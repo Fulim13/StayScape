@@ -159,6 +159,24 @@ namespace StayScape
         protected global::System.Web.UI.WebControls.DropDownList ddlHostProperty;
 
         /// <summary>
+        /// chkMoneyValueOff control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkMoneyValueOff;
+
+        /// <summary>
+        /// chkPercentageDiscountOff control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkPercentageDiscountOff;
+
+        /// <summary>
         /// hdnDiscountType control.
         /// </summary>
         /// <remarks>

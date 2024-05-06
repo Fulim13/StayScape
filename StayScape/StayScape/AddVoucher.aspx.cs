@@ -32,6 +32,23 @@ namespace StayScape
             }
         }
 
+        protected void chkMoneyValueOff_CheckedChanged(object sender, EventArgs e)
+        {
+            // Implement your toggle functionality here
+            RequiredFieldValidator5.ValidationGroup = "VoucherValidation";
+            rfvDisRate.ValidationGroup = "";
+            RequiredFieldValidator4.ValidationGroup = "";
+        }
+
+        protected void chkPercentageDiscountOff_CheckedChanged(object sender, EventArgs e)
+        {
+            // Implement your toggle functionality here
+
+            RequiredFieldValidator5.ValidationGroup = "";
+            rfvDisRate.ValidationGroup = "VoucherValidation";
+            RequiredFieldValidator4.ValidationGroup = "VoucherValidation";
+        }
+
         private void resetFields()
         {
             // reset the form

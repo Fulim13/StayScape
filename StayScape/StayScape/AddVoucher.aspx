@@ -223,6 +223,7 @@
                     <%-- Discount Type --%>
                     <div class="sm:border-t sm:border-gray-200 sm:pt-4">
                         <div class="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
+                            <asp:CheckBox ID="chkMoneyValueOff" runat="server" AutoPostBack="True" OnCheckedChanged="chkMoneyValueOff_CheckedChanged" CssClass="sr-only" />
                             <%-- Money Value Offf --%>
                             <label id="lbl-value" class="relative bg-white border rounded-lg shadow-sm p-4 flex cursor-pointer focus:outline-none border-indigo-500 ring-2 ring-indigo-500">
                                 <input onclick="toggleLabels()" type="radio" name="project-type" value="Newsletter" class="sr-only" aria-labelledby="project-type-0-label" aria-describedby="project-type-0-description-0 project-type-0-description-1">
@@ -237,6 +238,7 @@
                                 <div class="absolute -inset-px rounded-lg border-2 pointer-events-none" aria-hidden="true"></div>
                             </label>
                             <%-- Percentage Discount Off --%>
+                            <asp:CheckBox ID="chkPercentageDiscountOff" runat="server" AutoPostBack="True" OnCheckedChanged="chkPercentageDiscountOff_CheckedChanged" CssClass="sr-only" />
                             <label id="lbl-percentage" class="relative bg-white border rounded-lg shadow-sm p-4 flex cursor-pointer focus:outline-none">
                                 <input onclick="toggleLabels()" type="radio" name="project-type" value="Existing Customers" class="sr-only" aria-labelledby="project-type-1-label" aria-describedby="project-type-1-description-0 project-type-1-description-1">
                                 <div class="flex-1 flex">
@@ -303,7 +305,7 @@
                                 CssClass="py-2 px-3 block w-full border border-gray-300 shadow-sm text-md rounded-lg focus:outline-none focus:border-indigo-500 focus:ring-indigo-500">
                             </asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfvDisRate" class="text-sm italic hidden"
-                                ValidationGroup="VoucherValidation"
+                                ValidationGroup=""
                                 runat="server" ControlToValidate="txtDiscountRate"
                                 ErrorMessage="Please enter a discount rate." Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
                         </div>
@@ -320,7 +322,7 @@
                                 CssClass="py-2 px-3 block w-full border border-gray-300 shadow-sm text-md rounded-lg focus:outline-none focus:border-indigo-500 focus:ring-indigo-500">
                             </asp:TextBox>
                          <asp:RequiredFieldValidator ID="RequiredFieldValidator4" class="text-sm italic"
-                                ValidationGroup="VoucherValidation"
+                                ValidationGroup=""
                                 runat="server" ControlToValidate="txtCapAt"
                                 ErrorMessage="Please enter a cap at value."
                                 Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
