@@ -189,7 +189,7 @@ namespace StayScape
 
                     //Get customer ID from session
                     int customerID = 1;
-                    //int customerID = Convert.ToInt32(HttpContext.Current.Session["CustomerID"]);
+                    //int customerID = Convert.ToInt32(HttpContext.Current.Session["customerID"]);
 
                     //Check if the customer has already redeem the voucher
                     db.createConnection();

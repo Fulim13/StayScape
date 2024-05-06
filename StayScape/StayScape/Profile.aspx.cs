@@ -11,6 +11,8 @@ namespace StayScape
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            genderEditDropdown.Visible = false;
+
             if (!IsPostBack)
             {
                 // Retrieve user email instead since i cant retrieve id, will see what to do later
@@ -29,6 +31,13 @@ namespace StayScape
                     genderLabel.Text = userData.Gender;
                     bDateText.Text = userData.bDate.ToString("yyyy-MM-dd");
                     aDateLabel.Text = userData.aDate.ToString("yyyy-MM-dd");
+
+                    string[] genders = { "Male", "Female" };
+                    genderEditDropdown.DataSource = genders;
+                    genderEditDropdown.DataBind();
+
+                    // Set the selected value of the dropdown list
+                    genderEditDropdown.SelectedValue = userData.Gender;
 
                     if (roles != null && roles.Length > 0)
                     {
@@ -181,9 +190,9 @@ namespace StayScape
                 if (Roles.IsUserInRole("Host"))
                 {
                     SqlCommand command = new SqlCommand("UPDATE Host SET hostName = @hostName, hostPhoneNumber = @hostPhoneNumber, hostEmail = @hostEmail, birthDate = @birthDate, gender = @gender WHERE hostEmail = @userId", con);
-                    command.Parameters.AddWithValue("@customerName", userData.FullName);
-                    command.Parameters.AddWithValue("@custEmail", userData.Email);
-                    command.Parameters.AddWithValue("@custPhoneNumber", userData.Phone);
+                    command.Parameters.AddWithValue("@hostName", userData.FullName);
+                    command.Parameters.AddWithValue("@hostEmail", userData.Email);
+                    command.Parameters.AddWithValue("@hostPhoneNumber", userData.Phone);
                     command.Parameters.AddWithValue("@gender", userData.Gender);
                     command.Parameters.AddWithValue("@birthDate", userData.bDate);
                     command.Parameters.AddWithValue("@userId", userId);
@@ -254,6 +263,32 @@ namespace StayScape
                 // Disable the label for editing
                 bDateText.ReadOnly = true;
                 btn_bDate.Text = "Edit";
+            }
+        }
+
+        protected void btnGender_Click(object sender, EventArgs e)
+        {
+            if (btnGender.Text == "Edit")
+            {
+                btnGender.Text = "Update";
+                genderEditDropdown.Visible = true;
+                genderLabel.Visible = false;
+            }
+            else
+            {
+                btnGender.Text = "Edit";
+                genderEditDropdown.Visible = false;
+                genderLabel.Visible = true;
+
+                string userId = HttpContext.Current.User.Identity.Name;
+                User userData = GetUserDataFromDatabase(userId);
+                userData.Gender = genderEditDropdown.SelectedValue.ToString();
+
+                genderLabel.Text = userData.Gender;
+
+                //Debug.WriteLine(genderEditDropdown.SelectedValue);
+
+                UpdateUserDataInDatabase(userId, userData); // Implement this method to update the user data in the database
             }
         }
     }

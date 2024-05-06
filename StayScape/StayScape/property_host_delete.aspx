@@ -71,7 +71,7 @@
     </head>
     <body>
         <div class="container">
-            <h2>Delete Property</h2>
+            <h2>Activation for Property</h2>
             <div class="form-group">
                 <label>Select Property:</label>
                 <asp:DropDownList ID="ddlProperty" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlProperty_SelectedIndexChanged">
@@ -92,9 +92,11 @@
                         <strong>Address:</strong>
                         <asp:Label ID="lblAddress" runat="server"></asp:Label>
                     </p>
-                    <p> <asp:Label ID="lblSuccess" runat="server"></asp:Label></p>
+                    <p>
+                        <asp:Label ID="lblSuccess" runat="server"></asp:Label></p>
                 </div>
-                <asp:Button ID="btnDelete" runat="server" Text="Confirm Delete" CssClass="button" OnClientClick="return confirm('Are you sure you want to delete this property?');" OnClick="btnDelete_Click" />
+                <asp:Label ID="lblActiveStatus" runat="server" Text="" ForeColor="Green"></asp:Label>
+                <asp:Button ID="btnToggleActive" runat="server" CssClass="button" OnClientClick="return confirm('Are you sure you want to change the activation status of this property?');" OnClick="btnToggleActive_Click" />
             </asp:Panel>
         </div>
 

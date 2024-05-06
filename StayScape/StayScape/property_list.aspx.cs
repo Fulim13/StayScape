@@ -18,10 +18,11 @@ namespace StayScape.PPT
 
             string connectionString = ConfigurationManager.ConnectionStrings["LocalSqlServer"].ConnectionString;
             string query = @"
-            SELECT P.propertyID, P.propertyName, P.propertyPrice, P.propertyDesc, P.createdAt, P.lastUpdate,
-            P.totalBedroom, P.totalBathroom, P.propertyAddress_State, PI.propertyPicture
-            FROM Property P
-            LEFT JOIN PropertyImage PI ON P.propertyID = PI.propertyID";
+        SELECT P.propertyID, P.propertyName, P.propertyPrice, P.propertyDesc, P.createdAt, P.lastUpdate,
+        P.totalBedroom, P.totalBathroom, P.propertyAddress_State, PI.propertyPicture
+        FROM Property P
+        LEFT JOIN PropertyImage PI ON P.propertyID = PI.propertyID
+        WHERE P.isActive = 1";  // Added WHERE clause to only select active properties
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -59,7 +60,8 @@ namespace StayScape.PPT
                 }
                 catch (Exception ex)
                 {
-                    // Handle or log the exception
+                    // Log or handle the exception
+                    // Consider notifying the user or re-throwing the exception after logging
                 }
             }
             return new List<PropertyModel>(propertyDictionary.Values);

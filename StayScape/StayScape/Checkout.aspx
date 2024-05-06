@@ -62,6 +62,28 @@
                 </form>
             </div>
         </div>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        <script>
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-bottom-center",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+        </script>
         <script>
             const stripe = Stripe("pk_test_51OzyRiLGo9hdPl3qZ6587wCFjVaBePXtzGkecdW0llSKBnmD6QaHRVFhQQ4Uh1uCb0fiiP8OIctEqAZmrHokG9fX00rbuIh65w");
 
@@ -158,9 +180,9 @@
                         return response.json();
                     })
                     .then(data => {
-                        
+
                         var discountAmount = data.d;
-                        console.log(discountAmount); 
+                        console.log(discountAmount);
 
                         //// Update UI with discount details
                         if (discountAmount > 0) {
@@ -169,17 +191,20 @@
                             totalPayment = totalPayment.toFixed(2);
                             document.getElementById("ContentPlaceHolder2_lblTotal").innerText = "RM " + totalPayment;
                             initialize(parseInt(totalPayment * 100));
-                            alert("Redeem discount code.");
-
+                            //alert("Redeem discount code.");
+                            toastr["error"]("Successful Redeem discount code");
                             //update ContentPlaceHolder2_lblVoucherCode
                             document.getElementById("ContentPlaceHolder2_lblVoucherCode").innerText = discountCode;
                         } else if (discountAmount == -1) {
-                            alert("Achieved Redeem Limit");
+                            toastr["error"]("Achieved Redeem Limit");
+                            //alert("Achieved Redeem Limit");
                         } else if (discountAmount == -2) {
-                            alert("The voucher has fully redeemed");
+                            toastr["error"]("The voucher has fully redeemed");
+                            //alert("The voucher has fully redeemed");
                         }
-                        else{
-                            alert("Invalid discount code.");
+                        else {
+                            toastr["error"]("Invalid discount code");
+                            //alert("Invalid discount code.");
                         }
                     })
                     .catch(error => {
