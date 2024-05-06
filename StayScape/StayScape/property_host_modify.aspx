@@ -177,7 +177,7 @@
                     Type="Integer"
                     MinimumValue="1"
                     MaximumValue="10"
-                    ErrorMessage="Total Bedrooms must be greater than 0"
+                    ErrorMessage="Total Bedrooms must be greater than 0 and not more than 10"
                     ForeColor="Red"
                     Display="Dynamic" />
             </div>
@@ -199,7 +199,7 @@
                     Type="Integer"
                     MinimumValue="1"
                     MaximumValue="10"
-                    ErrorMessage="Total Bathrooms must be greater than 0"
+                    ErrorMessage="Total Bathrooms must be greater than 0 and not more than 10"
                     ForeColor="Red"
                     Display="Dynamic" />
             </div>
