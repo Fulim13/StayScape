@@ -28,7 +28,7 @@ namespace StayScape.DesmondsPage
                     FormsAuthentication.SetAuthCookie(email, false);
                     Session["hostID"] = userId.ToString().ToUpper();
                     // Redirect to the dashboard or host page
-                    Response.Redirect("Dashboard.aspx"); //<-- replace this with actual host page
+                    Response.Redirect("Host/Dashboard.aspx"); //<-- replace this with actual host page
                 }
                 else
                 {

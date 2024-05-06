@@ -5,7 +5,6 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 using System.Web.UI.WebControls;
-using System.Web;
 
 namespace StayScape.PPT
 {
@@ -298,7 +297,7 @@ namespace StayScape.PPT
             Session["CheckIn"] = DateTime.Now;
             Session["CheckOut"] = DateTime.Now.AddDays(1);
 
-            Response.Redirect("Checkout.aspx");
+            Response.Redirect("Customer/Checkout.aspx");
         }
 
         protected void btnBack_Click(object sender, EventArgs e)

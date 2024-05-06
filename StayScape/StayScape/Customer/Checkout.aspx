@@ -96,7 +96,7 @@
 
             // Fetches a payment intent and captures the client secret
             async function initialize(paymentAmount) {
-                const response = await fetch("/CreatePaymentIntent.ashx", {
+                const response = await fetch("~/CreatePaymentIntent.ashx", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ amount: paymentAmount }),
