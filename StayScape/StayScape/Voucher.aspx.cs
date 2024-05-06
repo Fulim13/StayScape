@@ -1,18 +1,136 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Common;
-using System.Data.SqlClient;
 using System.Data;
-using System.IO;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace StayScape
 {
     public partial class Voucher : System.Web.UI.Page
     {
+        //const string query = "Select * FROM [Voucher]";
+
+        //protected override void OnPreRender(EventArgs e)
+        //{
+        //    base.OnPreRender(e);
+        //    if (IsPostBack)
+        //    {
+        //        try
+        //        {
+        //            if (txtSearch.Text != "" && ddlIsExpired.SelectedIndex != 0)
+        //            {
+        //                SqlDataSource1.SelectCommand = query + " WHERE voucherName LIKE '%' + @voucherName + '%'";
+        //                if (ddlIsExpired.SelectedValue == "active")
+        //                {
+        //                    SqlDataSource1.SelectCommand += " WHERE expiredDate >= @today AND activeStatus = True ";
+
+        //                }
+        //                else if (ddlIsExpired.SelectedValue == "inactive")
+        //                {
+        //                    SqlDataSource1.SelectCommand += " WHERE expiredDate >= @today AND activeStatus = False ";
+        //                }
+        //                else
+        //                {
+        //                    SqlDataSource1.SelectCommand += " WHERE expiredDate < @today ";
+        //                }
+        //                SqlDataSource1.SelectParameters.Clear();
+        //                SqlDataSource1.SelectParameters.Add("voucherName", txtSearch.Text);
+        //                SqlDataSource1.SelectParameters.Add("today", DbType.Date, DateTime.Now.Date.ToString("yyyy-MM-dd"));
+
+        //            }
+        //            else if (ddlIsExpired.SelectedIndex != 0)
+        //            {
+        //                if (ddlIsExpired.SelectedValue == "active")
+        //                {
+        //                    SqlDataSource1.SelectCommand += " WHERE expiredDate >= @today AND activeStatus = True ";
+
+        //                }
+        //                else if (ddlIsExpired.SelectedValue == "inactive")
+        //                {
+        //                    SqlDataSource1.SelectCommand += " WHERE expiredDate >= @today AND activeStatus = False ";
+        //                }
+        //                else
+        //                {
+        //                    SqlDataSource1.SelectCommand += " WHERE expiredDate < @today ";
+        //                }
+        //                SqlDataSource1.SelectParameters.Clear();
+        //                SqlDataSource1.SelectParameters.Add("today", DbType.Date, DateTime.Now.Date.ToString("yyyy-MM-dd"));
+        //            }
+        //            else if (txtSearch.Text != "")
+        //            {
+        //                SqlDataSource1.SelectCommand = query + " WHERE voucherName LIKE '%' + @voucherName + '%'";
+        //                SqlDataSource1.SelectParameters.Clear();
+        //                SqlDataSource1.SelectParameters.Add("voucherName", txtSearch.Text);
+        //            }
+        //            else
+        //            {
+        //                SqlDataSource1.SelectCommand = query;
+        //                SqlDataSource1.SelectParameters.Clear();
+        //            }
+
+        //            ListView1.DataBind();
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            System.Diagnostics.Debug.WriteLine(ex.Message + "\n" + query + "\n" + SqlDataSource1.SelectCommand);
+        //        }
+        //    }
+        //}
+
+        //const string query = "SELECT Voucher.voucherID, Voucher.voucherName, Voucher.totalVoucher, Voucher.startDate, Voucher.expiredDate, Voucher.minSpend, Voucher.voucherCode,Voucher.activeStatus, Voucher.discountType, Voucher.discountRate, Voucher.discountPrice, Voucher.capAt, COUNT(Redemption.redemptionID) AS TotalRedemptions FROM Voucher LEFT JOIN Redemption ON Voucher.voucherID = Redemption.voucherID GROUP BY Voucher.voucherID, Voucher.voucherName, Voucher.totalVoucher, Voucher.startDate, Voucher.expiredDate, Voucher.minSpend, Voucher.voucherCode, Voucher.activeStatus, Voucher.discountType, Voucher.discountRate, Voucher.discountPrice, Voucher.capAt";
+        string baseQuery = "SELECT Voucher.voucherID, Voucher.voucherName, Voucher.totalVoucher, Voucher.startDate, Voucher.expiredDate, Voucher.minSpend, Voucher.voucherCode,Voucher.activeStatus, Voucher.discountType, Voucher.discountRate, Voucher.discountPrice, Voucher.capAt, COUNT(Redemption.redemptionID) AS TotalRedemptions FROM Voucher LEFT JOIN Redemption ON Voucher.voucherID = Redemption.voucherID";
+        string groupBy = "GROUP BY Voucher.voucherID, Voucher.voucherName, Voucher.totalVoucher, Voucher.startDate, Voucher.expiredDate, Voucher.minSpend, Voucher.voucherCode, Voucher.activeStatus, Voucher.discountType, Voucher.discountRate, Voucher.discountPrice, Voucher.capAt";
+
+        protected override void OnPreRender(EventArgs e)
+        {
+            base.OnPreRender(e);
+            if (IsPostBack)
+            {
+                try
+                {
+                    SqlDataSource1.SelectCommand = baseQuery;
+                    SqlDataSource1.SelectParameters.Clear();
+
+                    List<string> conditions = new List<string>();
+
+                    if (txtSearch.Text != "")
+                    {
+                        conditions.Add("voucherName LIKE '%' + @voucherName + '%'");
+                        SqlDataSource1.SelectParameters.Add("voucherName", txtSearch.Text);
+                    }
+
+                    if (ddlIsExpired.SelectedIndex != 0)
+                    {
+                        if (ddlIsExpired.SelectedValue == "active")
+                        {
+                            conditions.Add("expiredDate >= @today AND activeStatus = 1");
+                        }
+                        else if (ddlIsExpired.SelectedValue == "inactive")
+                        {
+                            conditions.Add("expiredDate >= @today AND activeStatus = 0");
+                        }
+                        else
+                        {
+                            conditions.Add("expiredDate < @today");
+                        }
+                        SqlDataSource1.SelectParameters.Add("today", DbType.DateTime, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                    }
+
+                    if (conditions.Count > 0)
+                    {
+                        SqlDataSource1.SelectCommand = baseQuery + " WHERE " + string.Join(" AND ", conditions) + " " + groupBy;
+                    }
+                    else
+                    {
+                        SqlDataSource1.SelectCommand = baseQuery + " " + groupBy;
+                    }
+
+                    ListView1.DataBind();
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.Message + "\n" + baseQuery + "\n" + SqlDataSource1.SelectCommand);
+                }
+            }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -27,6 +145,15 @@ namespace StayScape
                     DisplayNewVoucherSection();
                 }
             }
+        }
+        protected void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void ddlIsExpired_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
         private bool HasVoucher()

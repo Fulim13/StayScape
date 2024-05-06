@@ -53,6 +53,35 @@
                 <div class="sm:flex-auto">
                     <h1 class="text-xl font-semibold text-gray-900">Voucher List</h1>
                 </div>
+                <!-- Search -->
+                <div class="sm:col-span-1">
+                    <label for="txtSearch" class="sr-only">Search</label>
+                    <div class="relative">
+                        <asp:TextBox runat="server" placeholder="Search voucher name" ID="txtSearch"
+                            AutoPostBack="true" OnTextChanged="txtSearch_TextChanged"
+                            class="py-2 px-3 ps-11 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
+                        </asp:TextBox>
+                        <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none ps-4">
+                            <svg class="h-4 w-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Search -->
+                <div class="sm:col-span-2 md:grow">
+                    <div class="flex justify-end gap-x-2">
+                        <asp:DropDownList runat="server" ID="ddlIsExpired" OnSelectedIndexChanged="ddlIsExpired_SelectedIndexChanged"
+                            class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
+                            AutoPostBack="True">
+                            <asp:ListItem Value="">All</asp:ListItem>
+                            <asp:ListItem Value="active">Active</asp:ListItem>
+                            <asp:ListItem Value="inactive">Inactive</asp:ListItem>
+                            <asp:ListItem Value="expired">Expired</asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
+                </div>
+
                 <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                     <%-- New Voucher Button --%>
                     <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/BulkImportVoucher.aspx" class="inline-flex items-center px-5 py-2.5 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
@@ -135,6 +164,36 @@
                     </div>
                 </LayoutTemplate>
             </asp:ListView>
+            <!-- Footer -->
+            <div class="px-6 py-4 flex justify-end items-center">
+                <div class="inline-flex gap-x-2">
+                    <asp:DataPager ID="DataPager2" runat="server" PagedControlID="ListView1" PageSize="10">
+                        <Fields>
+                            <asp:NextPreviousPagerField
+                                ButtonCssClass="cursor-pointer min-h-[38px] min-w-[38px] py-2 px-2.5 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none"
+                                ButtonType="Button"
+                                ShowFirstPageButton="True"
+                                ShowPreviousPageButton="True"
+                                ShowNextPageButton="False"
+                                ShowLastPageButton="False"
+                                RenderNonBreakingSpacesBetweenControls="false" />
+                            <asp:NumericPagerField
+                                NumericButtonCssClass="cursor-pointer min-h-[38px] min-w-[38px] text-gray-800 hover:bg-gray-100 py-2 px-3 text-sm rounded-lg focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none"
+                                ButtonType="Button"
+                                CurrentPageLabelCssClass="text-center inline-block min-h-[38px] min-w-[38px] bg-gray-200 text-gray-800 py-2 px-3 text-sm rounded-lg focus:outline-none focus:bg-gray-300 disabled:opacity-50 disabled:pointer-events-none"
+                                ButtonCount="10" />
+                            <asp:NextPreviousPagerField
+                                ButtonCssClass="cursor-pointer  min-h-[38px] min-w-[38px] py-2 px-2.5 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none"
+                                ButtonType="Button"
+                                ShowFirstPageButton="False"
+                                ShowPreviousPageButton="False"
+                                ShowNextPageButton="True"
+                                ShowLastPageButton="True" />
+                        </Fields>
+                    </asp:DataPager>
+                </div>
+            </div>
+            <!-- End Footer -->
         </div>
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:LocalSqlServer %>" SelectCommand="
         SELECT
