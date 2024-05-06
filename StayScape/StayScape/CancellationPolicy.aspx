@@ -12,11 +12,12 @@
                     <h2 class="text-lg font-semibold mb-4">Cancellation Timeframe and Charges
                     </h2>
                     <ul class="list-disc pl-5">
-                        <li>Cancellation within 24 hours of Booking: If you cancel your booking within 24 hours of making the reservation, you will receive a full refund.</li>
+                        <li>Cancellation within 24 hours of Booking: If you cancel your booking within 48 hours of making the reservation, you will receive a full refund.</li>
                         <li class="mt-2">Cancellation before Check-in Date:</li>
                         <ul class="list-disc pl-5">
                             <li>Cancellation made 7 or more days prior to the scheduled check-in date: No cancellation charges.</li>
-                            <li class="mt-2">Cancellation made between 3 to 6 days prior to the scheduled check-in date: 50% of the total booking amount will be charged as cancellation fee.</li>
+                            <li class="mt-2">Cancellation made between 3 to 7 days before check-in date: 50% of the total booking amount will be charged as cancellation fee.</li>
+                            <li class="mt-2">Cancellation made between 48 hours to 3 days before check-in date: 25% of the total booking amount will be charged as cancellation fee.</li>
                             <li class="mt-2">Cancellation made within 48 hours of the scheduled check-in date: 100% of the total booking amount will be charged as cancellation fee.</li>
                         </ul>
                     </ul>

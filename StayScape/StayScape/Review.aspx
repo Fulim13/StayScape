@@ -266,6 +266,12 @@
                         </tr>
                     </tbody>
                 </ItemTemplate>
+
+                <EmptyDataTemplate>
+                    <div class="text-center text-gray-500 py-6">
+                        No review found.
+                    </div>
+                </EmptyDataTemplate>
             </asp:ListView>
 
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:LocalSqlServer %>">

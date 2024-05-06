@@ -78,13 +78,22 @@ namespace StayScape
         protected global::System.Web.UI.WebControls.Panel ReviewModal;
 
         /// <summary>
-        /// lblReviewRating control.
+        /// litStarRating control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblReviewRating;
+        protected global::System.Web.UI.WebControls.Literal litStarRating;
+
+        /// <summary>
+        /// lblCreatedAt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCreatedAt;
 
         /// <summary>
         /// txtReviewDesc control.

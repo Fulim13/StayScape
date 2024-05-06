@@ -91,7 +91,14 @@
                                                     <asp:Label ID="lblPropertyName" runat="server" Text='<%# Eval("PropertyName") %>' CssClass="font-medium text-gray-900" />
                                                     <asp:Label ID="lblPropertyAddress" runat="server" Text='<%# Eval("PropertyAddress") %>' CssClass="hidden mt-2 text-sm text-gray-500 sm:block" />
                                                 </div>
-                                                <asp:Label ID="lblStatus" runat="server" Text='<%# Eval("Status") %>' CssClass="mt-1 font-medium text-gray-900 sm:mt-0 sm:ml-40" />
+                                                <asp:Label ID="lblStatus" runat="server" Text='<%# Eval("Status") %>' CssClass="mt-1 font-medium text-gray-900 sm:mt-0 sm:ml-24" />
+                                                <asp:Label 
+                                                    ID="lblRefundAmount" 
+                                                    runat="server" 
+                                                    Text='<%# "Refund: RM " + Eval("RefundAmount") %>' 
+                                                    CssClass="mt-1 sm:mt-0 sm:ml-8 text-green-600" 
+                                                    Visible='<%# Eval("Status").ToString() == "Cancelled" %>'
+                                                />
                                             </div>
                                             <div class="mt-2 flex text-sm font-medium sm:mt-4">
                                                 <asp:Button 
@@ -152,9 +159,10 @@
                     <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                         <h3 class="text-lg leading-6 font-medium text-gray-900 underline underline-offset-4">Your Review</h3>
                         <div class="mt-2">
-                            <asp:Label ID="lblReviewRating" runat="server" Text="Review rating will be displayed here"></asp:Label>
-                            <%--<asp:Literal ID="litStarRating" runat="server" Text="Star"/>--%> 
-                            <br />
+                            <div class="flex items-center my-3 mr-4 space-x-1">
+                                <asp:Literal ID="litStarRating" runat="server"></asp:Literal>
+                                <asp:Label ID="lblCreatedAt" runat="server" CssClass="text-slate-500 ml-3" Text="Date"></asp:Label>
+                            </div>
                             <div class="px-4 py-6">
                                 <asp:TextBox 
                                     ID="txtReviewDesc" 

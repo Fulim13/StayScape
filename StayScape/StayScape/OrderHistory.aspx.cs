@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -12,6 +13,36 @@ namespace StayScape
 {
     public partial class OrderHistory : System.Web.UI.Page
     {
+
+        public class StarRatingHelper
+        {
+            public static string GetStarRating(decimal rating)
+            {
+                int starCount = (int)Math.Round(rating);
+                // SVG code for full star
+                string fullStarSvg = "<svg class=\"w-6 h-6 text-yellow-300\" aria-hidden=\"true\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" viewBox=\"0 0 22 20\"><path d=\"M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z\" /></svg>";
+
+                // SVG code for empty star
+                string emptyStarSvg = "<svg class=\"w-6 h-6 text-gray-300\" aria-hidden=\"true\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" viewBox=\"0 0 22 20\"><path d=\"M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z\" /></svg>";
+
+                StringBuilder stars = new StringBuilder();
+
+                // Append the correct number of full stars
+                for (int i = 0; i < starCount; i++)
+                {
+                    stars.Append(fullStarSvg);
+                }
+
+                // Append the correct number of empty stars (out of 5)
+                for (int i = starCount; i < 5; i++)
+                {
+                    stars.Append(emptyStarSvg);
+                }
+
+                return stars.ToString();
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -82,9 +113,12 @@ namespace StayScape
                     r.reservationTotal AS TotalAmount,
                     p.propertyName AS PropertyName,
                     p.propertyAddress AS PropertyAddress,
-                    (SELECT TOP 1 propertyPicture FROM PropertyImage WHERE propertyID = p.propertyID) AS PropertyImage
+                    (SELECT TOP 1 propertyPicture FROM PropertyImage WHERE propertyID = p.propertyID) AS PropertyImage,
+                    c.refundAmount AS RefundAmount
                 FROM 
                     Reservation r
+                LEFT JOIN 
+                    Cancellation c ON r.reservationID = c.reservationID
                 INNER JOIN 
                     Property p 
                 ON 
@@ -138,6 +172,7 @@ namespace StayScape
                     imgProperty.ImageUrl = "/Images/testing.jpg"; // Default image if not found
                 }
 
+
                 // Get the reservation ID
                 string reservationID = dataItem["ReservationID"].ToString();
 
@@ -146,6 +181,27 @@ namespace StayScape
 
                 // Get reservation status and check-out date
                 string reservationStatus = dataItem["Status"].ToString();
+
+                // Get the refund label
+                var lblRefundAmount = (Label)e.Item.FindControl("lblRefundAmount");
+
+                // Show refund amount only if the reservation is cancelled
+                if (reservationStatus.Equals("Cancelled", StringComparison.OrdinalIgnoreCase))
+                {
+                    decimal refundAmount = 0;
+                    if (dataItem["RefundAmount"] != DBNull.Value)
+                    {
+                        refundAmount = Convert.ToDecimal(dataItem["RefundAmount"]);
+                    }
+
+                    lblRefundAmount.Text = $"Refund: RM {refundAmount:F2}";
+                    lblRefundAmount.Visible = true;
+                }
+                else
+                {
+                    lblRefundAmount.Visible = false; // Hide if not cancelled
+                }
+
                 DateTime checkOutDate = Convert.ToDateTime(dataItem["CheckOutDate"]);
 
                 // Get the "Add Review" button and "View Review" button
@@ -181,11 +237,13 @@ namespace StayScape
                 }
 
                 DateTime checkInDate = Convert.ToDateTime(dataItem["CheckInDate"]);
+                DateTime DatePlaced = Convert.ToDateTime(dataItem["DatePlaced"]);
 
                 // Check if the cancel button should be displayed
                 Button cancelReservationButton = (Button)e.Item.FindControl("btnCancelReservation");
 
-                if (reservationStatus == "Paid" && DateTime.Now < checkInDate)
+                bool isWithin24HoursOfBooking = (DateTime.Now - DatePlaced).TotalHours < 24;
+                if (reservationStatus == "Paid" && (DateTime.Now < checkInDate || isWithin24HoursOfBooking))
                 {
                     cancelReservationButton.CssClass = "text-indigo-600 hover:text-indigo-500 cursor-pointer"; // Default color
                     cancelReservationButton.Enabled = true; // Ensure it's clickable
@@ -243,12 +301,10 @@ namespace StayScape
             // Get the review details based on reservationID
             var review = GetReviewByReservationID(reservationID);
 
-            decimal rating = review.rating; // Assuming review.rating is a decimal
-            // Round the decimal rating to the nearest integer
-            int roundedRating = (int)Math.Round(rating);
+            string starRating = StarRatingHelper.GetStarRating(review.rating); // Assuming review.rating is a decimal
             // Display the rating as integer and add "/5"
-            lblReviewRating.Text = $"Rating: {roundedRating}/5";
-
+            litStarRating.Text = starRating;
+            lblCreatedAt.Text = review.reviewDate.ToString("MMMM dd, yyyy hh:mm tt");
 
             txtReviewDesc.Text = review.reviewDesc ?? "No review found";
             ViewState["reviewID"] = review.reviewID;
@@ -304,13 +360,13 @@ namespace StayScape
             Response.Redirect("CancelReservation.aspx");
         }
 
-        private (string reviewID, string reviewDesc, decimal rating) GetReviewByReservationID(string reservationID)
+        private (string reviewID, string reviewDesc, decimal rating, DateTime reviewDate) GetReviewByReservationID(string reservationID)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["LocalSqlServer"].ConnectionString;
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "SELECT reviewDesc, rating , reviewID FROM Review WHERE reservationID = @reservationID";
+                string query = "SELECT reviewDesc, rating , reviewID, createdAt FROM Review WHERE reservationID = @reservationID";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@reservationID", reservationID);
@@ -323,11 +379,14 @@ namespace StayScape
                     string reviewID = reader["reviewID"].ToString();
                     string reviewDesc = reader["reviewDesc"].ToString();
                     decimal rating = Convert.ToDecimal(reader["rating"]);
+                    DateTime reviewDate = reader["createdAt"] != DBNull.Value
+                    ? Convert.ToDateTime(reader["createdAt"])
+                    : DateTime.MinValue; // Use MinValue if 'createdAt' is null
 
-                    return (reviewID, reviewDesc, rating); // Return a tuple with review description and rating
+                    return (reviewID, reviewDesc, rating, reviewDate); // Return a tuple with review description and rating
                 }
 
-                return (null, null, 0); // Default value if no review is found
+                return (null, null, 0, DateTime.MinValue); // Default value if no review is found
             }
         }
         protected void btnCloseModal_Click(object sender, EventArgs e)
