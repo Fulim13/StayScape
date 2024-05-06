@@ -7,8 +7,11 @@ namespace StayScape
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //string hostID = Session["hostID"].ToString();
+            //Debug.WriteLine(Session["hostID"]);
+            //var a = Session["hostID"];
             //Create host session
-            Session["hostID"] = 1;
+            //Session["hostID"] = 1;
             FetchData();
         }
 
@@ -57,7 +60,8 @@ namespace StayScape
             db.closeConnection();
 
             // Fetch Average Reservation Made
-            decimal avgReservation = Convert.ToDecimal(totalRevenue) / Convert.ToInt32(totalReservation);
+            //decimal avgReservation = Convert.ToDecimal(totalRevenue) / Convert.ToInt32(totalReservation);
+            decimal avgReservation = 0;
             avgReservation = Math.Round(avgReservation, 2);
 
 

@@ -22,5 +22,7 @@ namespace StayScape.DesmondsPage {
         protected System.Web.UI.WebControls.TextBox txtPassword;
         
         protected System.Web.UI.WebControls.Button btnSignIn;
+
+        protected global::System.Web.UI.WebControls.Label LoginCheck;
     }
 }
