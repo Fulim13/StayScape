@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
-	<siteMapNode url="~/Home.aspx" title="Home" description="">
-		<siteMapNode url="~/Dashboard.aspx" title="Dashboard" description="" >
-			<siteMapNode url="~/HostReservationDetails.aspx" title="Reservation Details" description="" />
+	<siteMapNode url="/Host/Home.aspx" title="Home" description="">
+		<siteMapNode url="/Host/Dashboard.aspx" title="Dashboard" description="" >
+			<siteMapNode url="/Host/HostReservationDetails.aspx" title="Reservation Details" description="" />
 		</siteMapNode>
-		<siteMapNode url="~/property_host.aspx" title="Property" description="" >
-			<siteMapNode url="~/property_host_insert.aspx" title="Add Property" description="" />
-			<siteMapNode url="~/property_host_modify.aspx" title="Update Property" description="" />
-			<siteMapNode url="~/property_host_delete.aspx" title="Toggle Activation Property" description="" />
-			<siteMapNode url="~/property_host_disp.aspx" title="Display all Property" description="" />
+		<siteMapNode url="/Host/property_host.aspx" title="Property" description="" >
+			<siteMapNode url="/Host/property_host_insert.aspx" title="Add Property" description="" />
+			<siteMapNode url="/Host/property_host_modify.aspx" title="Update Property" description="" />
+			<siteMapNode url="/Host/property_host_delete.aspx" title="Toggle Activation Property" description="" />
+			<siteMapNode url="/Host/property_host_disp.aspx" title="Display all Property" description="" />
 		</siteMapNode>
-		<siteMapNode url="~/Voucher.aspx" title="Voucher" description="">
-			<siteMapNode url="~/AddVoucher.aspx" title="Add Voucher" description="" />
-			<siteMapNode url="~/BulkImportVoucher.aspx" title="Bulk Import Voucher" description="" />
-			<siteMapNode url="~/VoucherDetails.aspx" title="Voucher Details" description="" />
+		<siteMapNode url="/Host/Voucher.aspx" title="Voucher" description="">
+			<siteMapNode url="/Host/AddVoucher.aspx" title="Add Voucher" description="" />
+			<siteMapNode url="/Host/BulkImportVoucher.aspx" title="Bulk Import Voucher" description="" />
+			<siteMapNode url="/Host/VoucherDetails.aspx" title="Voucher Details" description="" />
 		</siteMapNode>
-		<siteMapNode url="~/Review.aspx" title="Review" description="" />
-		<siteMapNode url="~/ReviewClient.aspx" title="ReviewClient" description="" />
-		<siteMapNode url="~/Analytic.aspx" title="Analytic" description="" />
+		<siteMapNode url="/Host/Review.aspx" title="Review" description="" />
+		<siteMapNode url="/Host/ReviewClient.aspx" title="ReviewClient" description="" />
+		<siteMapNode url="/Host/Analytic.aspx" title="Analytic" description="" />
 	</siteMapNode>
 </siteMap>

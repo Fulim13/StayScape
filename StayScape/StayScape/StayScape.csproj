@@ -167,7 +167,7 @@
     <Content Include="App_Data\StayScapeDB_log.ldf">
       <DependentUpon>StayScapeDB.mdf</DependentUpon>
     </Content>
-    <Content Include="Dashboard.aspx" />
+    <Content Include="Host\Dashboard.aspx" />
     <Content Include="Images\house-transparent.png" />
     <Content Include="Images\house.png" />
     <Content Include="Host\Review.aspx" />
@@ -225,11 +225,11 @@
     <Compile Include="Customer.Master.designer.cs">
       <DependentUpon>Customer.Master</DependentUpon>
     </Compile>
-    <Compile Include="Dashboard.aspx.cs">
+    <Compile Include="Host\Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Dashboard.aspx.designer.cs">
+    <Compile Include="Host\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
     <Compile Include="DBManager.cs" />
