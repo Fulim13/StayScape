@@ -18,7 +18,7 @@ namespace StayScape
             {
                 try
                 {
-                    baseQuery = $"SELECT r.reservationID, r.reservationTotal, r.checkInDate, r.checkOutDate, r.reservationStatus FROM Reservation r JOIN Property p ON r.propertyID = p.propertyID JOIN Host h ON p.hostID = h.hostID WHERE h.hostID = {hostID}";
+                    baseQuery = $"SELECT r.reservationID, r.reservationTotal, r.checkInDate, r.checkOutDate, r.reservationStatus, c.customerName  FROM Reservation r JOIN Property p ON r.propertyID = p.propertyID JOIN Host h ON p.hostID = h.hostID JOIN Customer c ON r.custID = c.custID WHERE h.hostID = {hostID}";
 
                     SqlDataSource1.SelectCommand = baseQuery;
                     SqlDataSource1.SelectParameters.Clear();

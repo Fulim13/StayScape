@@ -191,8 +191,8 @@ namespace StayScape
                 if (discountType == "Value Off")
                 {
                     hdnDiscountType.Value = "Money Value Off";
-                    string script = "<script>toggleLabels();</script>";
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "CallToggleLabels", script);
+                    //string script = "<script>toggleLabels();</script>";
+                    //Page.ClientScript.RegisterStartupScript(this.GetType(), "CallToggleLabels", script);
                     txtDiscountValue.Text = voucherDetails["discountPrice"].ToString();
                 }
                 else if (discountType == "Discount Off")

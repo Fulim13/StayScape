@@ -6,78 +6,9 @@ namespace StayScape
 {
     public partial class Voucher : System.Web.UI.Page
     {
-        //const string query = "Select * FROM [Voucher]";
 
-        //protected override void OnPreRender(EventArgs e)
-        //{
-        //    base.OnPreRender(e);
-        //    if (IsPostBack)
-        //    {
-        //        try
-        //        {
-        //            if (txtSearch.Text != "" && ddlIsExpired.SelectedIndex != 0)
-        //            {
-        //                SqlDataSource1.SelectCommand = query + " WHERE voucherName LIKE '%' + @voucherName + '%'";
-        //                if (ddlIsExpired.SelectedValue == "active")
-        //                {
-        //                    SqlDataSource1.SelectCommand += " WHERE expiredDate >= @today AND activeStatus = True ";
-
-        //                }
-        //                else if (ddlIsExpired.SelectedValue == "inactive")
-        //                {
-        //                    SqlDataSource1.SelectCommand += " WHERE expiredDate >= @today AND activeStatus = False ";
-        //                }
-        //                else
-        //                {
-        //                    SqlDataSource1.SelectCommand += " WHERE expiredDate < @today ";
-        //                }
-        //                SqlDataSource1.SelectParameters.Clear();
-        //                SqlDataSource1.SelectParameters.Add("voucherName", txtSearch.Text);
-        //                SqlDataSource1.SelectParameters.Add("today", DbType.Date, DateTime.Now.Date.ToString("yyyy-MM-dd"));
-
-        //            }
-        //            else if (ddlIsExpired.SelectedIndex != 0)
-        //            {
-        //                if (ddlIsExpired.SelectedValue == "active")
-        //                {
-        //                    SqlDataSource1.SelectCommand += " WHERE expiredDate >= @today AND activeStatus = True ";
-
-        //                }
-        //                else if (ddlIsExpired.SelectedValue == "inactive")
-        //                {
-        //                    SqlDataSource1.SelectCommand += " WHERE expiredDate >= @today AND activeStatus = False ";
-        //                }
-        //                else
-        //                {
-        //                    SqlDataSource1.SelectCommand += " WHERE expiredDate < @today ";
-        //                }
-        //                SqlDataSource1.SelectParameters.Clear();
-        //                SqlDataSource1.SelectParameters.Add("today", DbType.Date, DateTime.Now.Date.ToString("yyyy-MM-dd"));
-        //            }
-        //            else if (txtSearch.Text != "")
-        //            {
-        //                SqlDataSource1.SelectCommand = query + " WHERE voucherName LIKE '%' + @voucherName + '%'";
-        //                SqlDataSource1.SelectParameters.Clear();
-        //                SqlDataSource1.SelectParameters.Add("voucherName", txtSearch.Text);
-        //            }
-        //            else
-        //            {
-        //                SqlDataSource1.SelectCommand = query;
-        //                SqlDataSource1.SelectParameters.Clear();
-        //            }
-
-        //            ListView1.DataBind();
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            System.Diagnostics.Debug.WriteLine(ex.Message + "\n" + query + "\n" + SqlDataSource1.SelectCommand);
-        //        }
-        //    }
-        //}
-
-        //const string query = "SELECT Voucher.voucherID, Voucher.voucherName, Voucher.totalVoucher, Voucher.startDate, Voucher.expiredDate, Voucher.minSpend, Voucher.voucherCode,Voucher.activeStatus, Voucher.discountType, Voucher.discountRate, Voucher.discountPrice, Voucher.capAt, COUNT(Redemption.redemptionID) AS TotalRedemptions FROM Voucher LEFT JOIN Redemption ON Voucher.voucherID = Redemption.voucherID GROUP BY Voucher.voucherID, Voucher.voucherName, Voucher.totalVoucher, Voucher.startDate, Voucher.expiredDate, Voucher.minSpend, Voucher.voucherCode, Voucher.activeStatus, Voucher.discountType, Voucher.discountRate, Voucher.discountPrice, Voucher.capAt";
-        string baseQuery = "SELECT Voucher.voucherID, Voucher.voucherName, Voucher.totalVoucher, Voucher.startDate, Voucher.expiredDate, Voucher.minSpend, Voucher.voucherCode,Voucher.activeStatus, Voucher.discountType, Voucher.discountRate, Voucher.discountPrice, Voucher.capAt, COUNT(Redemption.redemptionID) AS TotalRedemptions FROM Voucher LEFT JOIN Redemption ON Voucher.voucherID = Redemption.voucherID";
-        string groupBy = "GROUP BY Voucher.voucherID, Voucher.voucherName, Voucher.totalVoucher, Voucher.startDate, Voucher.expiredDate, Voucher.minSpend, Voucher.voucherCode, Voucher.activeStatus, Voucher.discountType, Voucher.discountRate, Voucher.discountPrice, Voucher.capAt";
+        string baseQuery = "SELECT Voucher.voucherID, Voucher.voucherName, Voucher.totalVoucher, Voucher.startDate, Voucher.expiredDate, Voucher.minSpend, Voucher.voucherCode,Voucher.activeStatus, Voucher.discountType, Voucher.discountRate, Voucher.discountPrice, Voucher.capAt,Voucher.createdBy, COUNT(Redemption.redemptionID) AS TotalRedemptions FROM Voucher LEFT JOIN Redemption ON Voucher.voucherID = Redemption.voucherID";
+        string groupBy = "GROUP BY Voucher.voucherID, Voucher.voucherName, Voucher.totalVoucher, Voucher.startDate, Voucher.expiredDate, Voucher.minSpend, Voucher.voucherCode, Voucher.activeStatus, Voucher.discountType, Voucher.discountRate, Voucher.discountPrice, Voucher.capAt, Voucher.createdBy ORDER BY Voucher.createdBy DESC";
 
         protected override void OnPreRender(EventArgs e)
         {

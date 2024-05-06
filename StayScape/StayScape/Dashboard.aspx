@@ -97,6 +97,9 @@
                         </svg>
                     </td>
                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                        <asp:Label ID="customerName" runat="server" Text='<%# Eval("customerName") %>' />
+                    </td>          
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                         <asp:Label ID="reservationTotalLabel" runat="server" Text='<%# "RM" + Eval("reservationTotal") %>' />
                     </td>
                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -121,6 +124,7 @@
                                             <table id="itemPlaceholderContainer" runat="server" class="min-w-full divide-y divide-gray-500">
                                                 <tr runat="server" class="bg-gray-50">
                                                     <th runat="server" scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Reservation ID</th>
+                                                    <th runat="server" scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Customer Name</th>
                                                     <th runat="server" scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Reservation Total</th>
                                                     <th runat="server" scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Check-In Date</th>
                                                     <th runat="server" scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Check-Out Date</th>
@@ -172,15 +176,17 @@
         </div>
         <!-- End Footer -->
     </div>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:LocalSqlServer %>" SelectCommand="SELECT r.reservationID, r.reservationTotal, r.checkInDate, r.checkOutDate, r.reservationStatus
-FROM Reservation r
-JOIN Property p ON r.propertyID = p.propertyID
-JOIN Host h ON p.hostID = h.hostID
-WHERE h.hostID = @hostID;">
-        <SelectParameters>
-            <asp:SessionParameter Name="hostID" SessionField="hostID" />
-        </SelectParameters>
-    </asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:LocalSqlServer %>" 
+    SelectCommand="SELECT r.reservationID, r.reservationTotal, r.checkInDate, r.checkOutDate, r.reservationStatus, c.customerName
+                   FROM Reservation r
+                   JOIN Property p ON r.propertyID = p.propertyID
+                   JOIN Host h ON p.hostID = h.hostID
+                   JOIN Customer c ON r.custID = c.custID
+                   WHERE h.hostID = @hostID;">
+    <SelectParameters>
+        <asp:SessionParameter Name="hostID" SessionField="hostID" />
+    </SelectParameters>
+</asp:SqlDataSource>
     <script>
         const clipboardIcons = document.querySelectorAll(".clipboard-icon");
 

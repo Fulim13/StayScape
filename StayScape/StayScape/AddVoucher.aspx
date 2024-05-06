@@ -1,10 +1,28 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="AddVoucher.aspx.cs" Inherits="StayScape.AddVoucher" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="AddVoucher.aspx.cs" Inherits="StayScape.AddVoucher" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <script>
+        function validateDateRange() {
+            var startDate = document.getElementById('<%= txtStartDate.ClientID %>');
+            var endDate = document.getElementById('<%= txtEndDate.ClientID %>');
+            var errorMessage = document.getElementById('endcannotgreaterthanstart');
+
+            var startDateTime = new Date(startDate.value);
+            var endDateTime = new Date(endDate.value);
+
+            if (endDateTime < startDateTime) {
+                errorMessage.textContent = "End date should be greater than Start date";
+                startDate.value = '';
+                endDate.value = '';
+                return false;
+            }
+
+            errorMessage.textContent = '';
+            return true;
+        }
         function toggleLabels() {
             const labelValue = document.querySelector('#lbl-value');
             const labelPercentage = document.querySelector('#lbl-percentage');
@@ -25,6 +43,7 @@
 
             // Toggle visibility of labels
             if (isVisible) {
+
                 // Percentage on
                 svgValueCheckCircle.classList.add('invisible');
                 labelValue.classList.remove('border-indigo-500', "ring-2", "ring-indigo-500");
@@ -53,6 +72,16 @@
                 valueValidator.validationGroup = '';
                 rateValidator.validationGroup = 'VoucherValidation';
                 capAtValidator.validationGroup = 'VoucherValidation';
+
+                //put the value textbox to 0
+                document.getElementById('<%= txtDiscountValue.ClientID %>').value = 0;
+
+                //put the rate textbox to empty string
+                document.getElementById('<%= txtDiscountRate.ClientID %>').value = '';
+
+                //put the cap at textbox to empty string
+                document.getElementById('<%= txtCapAt.ClientID %>').value = '';
+
 
 
                 
@@ -85,9 +114,19 @@
                 valueValidator.validationGroup = 'VoucherValidation';
                 rateValidator.validationGroup = '';
                 capAtValidator.validationGroup = '';
+
+                //put the value textbox to empty string
+                document.getElementById('<%= txtDiscountValue.ClientID %>').value = '';
+
+                //put the rate textbox to 0
+                document.getElementById('<%= txtDiscountRate.ClientID %>').value = 0;
+
+                //put the cap at textbox to 0
+                document.getElementById('<%= txtCapAt.ClientID %>').value = 0;
+
             }
         }
-        toggleLabels()
+        
 
     </script>
     <div class="lg:mx-24 xl:mx-48 py-2">
@@ -137,6 +176,16 @@
                                 ControlToValidate="txtTotalVoucher"
                                 ErrorMessage="Total Voucher cannot be blank"
                                 Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
+                            <asp:RangeValidator ID="RangeValidator1"
+                                ValidationGroup="VoucherValidation"
+                                class="text-sm italic"
+                                runat="server"
+                                ControlToValidate="txtTotalVoucher"
+                                Type="Integer"
+                                MinimumValue="1"
+                                MaximumValue="1000000"
+                                ErrorMessage="Total Voucher must be a valid integer and cannot be less than 1"
+                                Display="Dynamic" ForeColor="Red"></asp:RangeValidator>
                         </div>
                     </div>
 
@@ -158,6 +207,16 @@
                                 ControlToValidate="txtRedeemLimit"
                                 ErrorMessage="Redeem Limit Per Customer cannot be blank"
                                 Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
+                            <asp:RangeValidator ID="RangeValidator2"
+                                ValidationGroup="VoucherValidation"
+                                class="text-sm italic"
+                                runat="server"
+                                ControlToValidate="txtRedeemLimit"
+                                Type="Integer"
+                                MinimumValue="1"
+                                MaximumValue="1000000"
+                                ErrorMessage="Redeem Limit must be a valid integer and cannot be less than 1"
+                                Display="Dynamic" ForeColor="Red"></asp:RangeValidator>
                         </div>
                     </div>
 
@@ -169,8 +228,7 @@
                                 ID="txtStartDate"
                                 runat="server"
                                 TextMode="DateTimeLocal"
-                                CssClass="w-2/5 py-2 px-3 block w-full border-gray-300 shadow-sm text-md rounded-lg focus:border-indigo-500 focus:ring-indigo-500">
-                            </asp:TextBox>
+                                CssClass="w-2/5 py-2 px-3 block w-full border-gray-300 shadow-sm text-md rounded-lg focus:border-indigo-500 focus:ring-indigo-500"></asp:TextBox>
                             <div class="text-3xl">
                                 -
                             </div>
@@ -178,8 +236,7 @@
                                 ID="txtEndDate"
                                 runat="server"
                                 TextMode="DateTimeLocal"
-                                CssClass="w-2/5 py-2 px-3 block w-full border-gray-300 shadow-sm text-md rounded-lg focus:border-indigo-500 focus:ring-indigo-500">
-                            </asp:TextBox>
+                                CssClass="w-2/5 py-2 px-3 block w-full border-gray-300 shadow-sm text-md rounded-lg focus:border-indigo-500 focus:ring-indigo-500"></asp:TextBox>
                         </div>
                         <div>
                         </div>
@@ -193,7 +250,16 @@
                             runat="server" ControlToValidate="txtEndDate"
                             ErrorMessage="Please enter a end date."
                             Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
-
+                        <asp:CustomValidator ID="CustomValidator1"
+                            ValidationGroup="VoucherValidation"
+                            class="text-sm italic"
+                            runat="server"
+                            ControlToValidate="txtEndDate"
+                            OnServerValidate="CustomValidator_ServerValidate"
+                            ClientValidationFunction="validateDateRange"
+                            ErrorMessage="End date must be greater than or equal to start date"
+                            Display="Dynamic" ForeColor="Red"></asp:CustomValidator>
+                        <span class="text-sm italic text-red-500" id="endcannotgreaterthanstart"></span>
                     </div>
 
                     <asp:UpdatePanel ID="updatePanel" runat="server" UpdateMode="Conditional">
@@ -304,7 +370,7 @@
                                 placeholder="Enter Discount Rate"
                                 CssClass="py-2 px-3 block w-full border border-gray-300 shadow-sm text-md rounded-lg focus:outline-none focus:border-indigo-500 focus:ring-indigo-500">
                             </asp:TextBox>
-                        <asp:RequiredFieldValidator ID="rfvDisRate" class="text-sm italic hidden"
+                            <asp:RequiredFieldValidator ID="rfvDisRate" class="text-sm italic hidden"
                                 ValidationGroup=""
                                 runat="server" ControlToValidate="txtDiscountRate"
                                 ErrorMessage="Please enter a discount rate." Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
@@ -321,7 +387,7 @@
                                 placeholder="Enter Cat At (RM)"
                                 CssClass="py-2 px-3 block w-full border border-gray-300 shadow-sm text-md rounded-lg focus:outline-none focus:border-indigo-500 focus:ring-indigo-500">
                             </asp:TextBox>
-                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" class="text-sm italic"
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" class="text-sm italic"
                                 ValidationGroup=""
                                 runat="server" ControlToValidate="txtCapAt"
                                 ErrorMessage="Please enter a cap at value."
@@ -340,4 +406,5 @@
             </div>
         </div>
     </div>
+
 </asp:Content>

@@ -32,6 +32,11 @@ namespace StayScape
             }
         }
 
+        protected void CustomValidator_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            // Your validation logic here
+        }
+
         protected void chkMoneyValueOff_CheckedChanged(object sender, EventArgs e)
         {
             // Implement your toggle functionality here
@@ -43,7 +48,6 @@ namespace StayScape
         protected void chkPercentageDiscountOff_CheckedChanged(object sender, EventArgs e)
         {
             // Implement your toggle functionality here
-
             RequiredFieldValidator5.ValidationGroup = "";
             rfvDisRate.ValidationGroup = "VoucherValidation";
             RequiredFieldValidator4.ValidationGroup = "VoucherValidation";
@@ -90,10 +94,14 @@ namespace StayScape
 
                 // TODO: Validation for no properties available
                 ddlHostProperty.Items.Insert(0, new ListItem("Select Property", ""));
+                ddlHostProperty.Enabled = true;
             }
             else
             {
                 // Handle the case when no properties are available
+                 ddlHostProperty.Items.Clear();
+                ddlHostProperty.Items.Insert(0, new ListItem("No properties available", ""));
+                ddlHostProperty.Enabled = false;
             }
         }
 
