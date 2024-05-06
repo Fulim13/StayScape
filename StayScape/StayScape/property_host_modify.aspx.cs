@@ -17,6 +17,7 @@ namespace StayScape
             {
                 PopulatePropertyDropDown();
             }
+         
         }
 
         private void PopulatePropertyDropDown()
@@ -41,6 +42,11 @@ namespace StayScape
             if (propertyID != 0)
             {
                 LoadPropertyDetails(propertyID);
+            }
+            if (ddlProperty.SelectedIndex > 0)
+            {
+                ddlProperty.Items[0].Enabled = false;  
+                ddlProperty.Items.RemoveAt(0); 
             }
         }
 

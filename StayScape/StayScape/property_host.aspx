@@ -106,6 +106,11 @@
                     <h2>Toggle Activation Property</h2>
                     <a href="property_host_delete.aspx" class="button">Toggle</a>
                 </div>
+                <div class="card">
+                    <i class="fas fa-list large-icon"></i>
+                    <h2>Display All Properties</h2>
+                    <a href="property_host_disp.aspx" class="button">Display All</a>
+                </div>
             </div>
         </div>
 

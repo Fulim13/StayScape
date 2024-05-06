@@ -134,6 +134,7 @@
     <Content Include="property_details.aspx" />
     <Content Include="property_host.aspx" />
     <Content Include="property_host_delete.aspx" />
+    <Content Include="property_host_disp.aspx" />
     <Content Include="property_host_insert.aspx" />
     <Content Include="property_host_modify.aspx" />
     <Content Include="property_list.aspx" />
@@ -174,7 +175,6 @@
     <Content Include="Images\house-transparent.png" />
     <Content Include="Images\house.png" />
     <Content Include="Review.aspx" />
-    <Content Include="UploadImage.aspx" />
     <Content Include="Voucher.aspx" />
     <Content Include="VoucherDetails.aspx" />
     <Content Include="Web.config" />
@@ -333,6 +333,13 @@
     <Compile Include="property_host_delete.aspx.designer.cs">
       <DependentUpon>property_host_delete.aspx</DependentUpon>
     </Compile>
+    <Compile Include="property_host_disp.aspx.cs">
+      <DependentUpon>property_host_disp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="property_host_disp.aspx.designer.cs">
+      <DependentUpon>property_host_disp.aspx</DependentUpon>
+    </Compile>
     <Compile Include="property_host_insert.aspx.cs">
       <DependentUpon>property_host_insert.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -367,13 +374,6 @@
     </Compile>
     <Compile Include="Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UploadImage.aspx.cs">
-      <DependentUpon>UploadImage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UploadImage.aspx.designer.cs">
-      <DependentUpon>UploadImage.aspx</DependentUpon>
     </Compile>
     <Compile Include="VoucherDetails.aspx.cs">
       <DependentUpon>VoucherDetails.aspx</DependentUpon>

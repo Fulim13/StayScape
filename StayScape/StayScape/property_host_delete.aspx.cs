@@ -52,6 +52,12 @@ namespace StayScape
             {
                 PanelPropertyDetails.Visible = false;
             }
+
+            if (ddlProperty.SelectedIndex > 0)
+            {
+                ddlProperty.Items[0].Enabled = false;
+                ddlProperty.Items.RemoveAt(0);
+            }
         }
 
         private void ShowPropertyDetails(int propertyID)

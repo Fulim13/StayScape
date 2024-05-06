@@ -297,7 +297,14 @@
 
         $(".datepicker").datepicker({
             dateFormat: 'yy-mm-dd',
+            minDate: 0, // Disallow selection of past dates
             onSelect: function (selectedDate, instance) {
+                // Handle check-in date change
+                if (this.id === 'checkInDate') {
+                    var checkInDate = $(this).datepicker('getDate');
+                    $('#checkOutDate').datepicker('option', 'minDate', checkInDate);
+                }
+
                 var checkInDate = $('#checkInDate').datepicker('getDate');
                 var checkOutDate = $('#checkOutDate').datepicker('getDate');
 
@@ -309,7 +316,7 @@
                         $('#<%= btnPlace.ClientID %>').prop('disabled', false); 
                     } else {
                         $('#totalPrice').text('');
-                        alert('Please select a valid duration (1 to 29 days).');
+                        alert('Please select a valid duration (Maximum to Book: 30 days).');
                         $('#<%= btnPlace.ClientID %>').prop('disabled', true); 
                     }
                 } else {

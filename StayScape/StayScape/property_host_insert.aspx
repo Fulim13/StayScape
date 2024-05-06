@@ -1,5 +1,4 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="property_host_insert.aspx.cs" Inherits="StayScape.property_host_insert" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -182,10 +181,37 @@
                         ForeColor="Red"
                         Display="Dynamic" />
                 </div>
-                <asp:Button ID="btnSubmit" runat="server" Text="Add Property" CssClass="button" OnClientClick="return confirm('Are you sure you want to add this property?');" OnClick="UploadProperty" />
+                <asp:Button ID="btnSubmit" runat="server" Text="Add Property" CssClass="button" OnClientClick="return validateForm();" OnClick="UploadProperty" />
             </asp:Panel>
         </div>
     </body>
     </html>
+    <script>
+        function validateForm() {
+            var propertyName = document.getElementById('<%= txtPropertyName.ClientID %>').value;
+        var propertyPrice = document.getElementById('<%= txtPropertyPrice.ClientID %>').value;
+        var propertyDesc = document.getElementById('<%= txtPropertyDesc.ClientID %>').value;
+        var propertyAddress = document.getElementById('<%= txtPropertyAddress.ClientID %>').value;
+        var city = document.getElementById('<%= txtCity.ClientID %>').value;
+        var state = document.getElementById('<%= txtState.ClientID %>').value;
+        var totalBedrooms = document.getElementById('<%= txtTotalBedrooms.ClientID %>').value;
+        var totalBathrooms = document.getElementById('<%= txtTotalBathrooms.ClientID %>').value;
+        var propertyImage = document.getElementById('<%= fuPropertyImage.ClientID %>').files;
+
+            if (propertyName.trim() === '' ||
+                propertyPrice.trim() === '' ||
+                propertyDesc.trim() === '' ||
+                propertyAddress.trim() === '' ||
+                city.trim() === '' ||
+                state.trim() === '' ||
+                totalBedrooms.trim() === '' ||
+                totalBathrooms.trim() === '' ||
+                propertyImage.length === 0) {
+                alert('Please fill in all required fields.');
+                return false;
+            }
+            return true;
+        }
+    </script>
 
 </asp:Content>
