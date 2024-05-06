@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Security.Cryptography;
 using System.Web.UI.WebControls;
 
 namespace StayScape
@@ -21,7 +20,7 @@ namespace StayScape
                     LoadReservationDetails(reservationID);
                 }
             }
-            
+
         }
 
         protected void InitializeViewState()
@@ -248,7 +247,7 @@ namespace StayScape
         {
             // Placeholder for actual host ID retrieval logic (from session, user context, etc.)
             string custID = (string)Session["custID"];
-            return "1"; // Default customer ID
+            return custID; // Default customer ID
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)

@@ -51,7 +51,7 @@ namespace StayScape
                 new SqlParameter("@checkOutDate", SqlDbType.DateTime) {Value = checkOut },
                 new SqlParameter("@createdAt", SqlDbType.DateTime) {Value = DateTime.Now },
                 new SqlParameter("@reservationStatus", "Pending"),
-                new SqlParameter("@custID", 1),
+                new SqlParameter("@custID", Session["custID"].ToString()),
                 new SqlParameter("@propertyID", propertyID),
                 //if redemptionID is null, set it to DBNull.Value
                 new SqlParameter("@redemptionID", Session["redemptionID"] ?? DBNull.Value)

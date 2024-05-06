@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Text;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace StayScape
@@ -163,10 +160,10 @@ namespace StayScape
         }
 
         // TODO: Change to session
-        private int GetHostID()
+        private string GetHostID()
         {
             // Placeholder for actual host ID retrieval logic (from session, user context, etc.)
-            return Convert.ToInt32(Session["hostID"]); // Default host ID
+            return (string)Session["hostID"]; // Default host ID
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
@@ -315,7 +312,7 @@ namespace StayScape
             }
 
             // TODO: Replace session host id
-            int hostID = GetHostID();
+            string hostID = GetHostID();
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -431,10 +428,10 @@ namespace StayScape
 
         }
 
-            protected void ShowReplyModal()
-            {
-                replyModal.CssClass = replyModal.CssClass.Replace("hidden", "").Trim(); // Make modal visible
-            }
+        protected void ShowReplyModal()
+        {
+            replyModal.CssClass = replyModal.CssClass.Replace("hidden", "").Trim(); // Make modal visible
+        }
 
         protected void ModalCloseButton_Click(object sender, EventArgs e)
         {

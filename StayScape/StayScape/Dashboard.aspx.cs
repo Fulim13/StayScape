@@ -8,52 +8,65 @@ namespace StayScape
     {
 
 
-        int hostID = 1;
         string baseQuery;
-
         protected override void OnPreRender(EventArgs e)
         {
             base.OnPreRender(e);
+
             if (IsPostBack)
             {
                 try
                 {
-                    baseQuery = $"SELECT r.reservationID, r.reservationTotal, r.checkInDate, r.checkOutDate, r.reservationStatus, c.customerName  FROM Reservation r JOIN Property p ON r.propertyID = p.propertyID JOIN Host h ON p.hostID = h.hostID JOIN Customer c ON r.custID = c.custID WHERE h.hostID = {hostID}";
-
-                    SqlDataSource1.SelectCommand = baseQuery;
-                    SqlDataSource1.SelectParameters.Clear();
-
-                    List<string> conditions = new List<string>();
-
-                    if (txtSearch.Text != "")
+                    if (Session["hostID"] != null)
                     {
-                        conditions.Add("r.reservationID LIKE @reservationID");
-                        SqlDataSource1.SelectParameters.Add("reservationID", "%" + txtSearch.Text + "%");
-                    }
+                        string hostID = Session["hostID"].ToString();
+                        baseQuery = "SELECT r.reservationID, r.reservationTotal, r.checkInDate, r.checkOutDate, r.reservationStatus, c.customerName " +
+                                    "FROM Reservation r " +
+                                    "JOIN Property p ON r.propertyID = p.propertyID " +
+                                    "JOIN Host h ON p.hostID = h.hostID " +
+                                    "JOIN Customer c ON r.custID = c.custID " +
+                                    "WHERE h.hostID = @hostID"; // Using parameterized query
 
-                    if (ddlIsExpired.SelectedIndex != 0)
+                        SqlDataSource1.SelectCommand = baseQuery;
+                        SqlDataSource1.SelectParameters.Clear();
+                        SqlDataSource1.SelectParameters.Add("hostID", hostID); // Adding hostID as parameter
+
+                        List<string> conditions = new List<string>();
+
+                        if (!string.IsNullOrEmpty(txtSearch.Text))
+                        {
+                            conditions.Add("r.reservationID LIKE @reservationID");
+                            SqlDataSource1.SelectParameters.Add("reservationID", "%" + txtSearch.Text + "%");
+                        }
+
+                        if (ddlIsExpired.SelectedIndex != 0)
+                        {
+                            if (ddlIsExpired.SelectedValue == "paid")
+                            {
+                                conditions.Add("r.reservationStatus = 'Paid'");
+                            }
+                            else if (ddlIsExpired.SelectedValue == "failed")
+                            {
+                                conditions.Add("r.reservationStatus = 'Failed'");
+                            }
+                            else
+                            {
+                                //conditions.Add("r.checkOutDate < @today");
+                            }
+                            //SqlDataSource1.SelectParameters.Add("today", DbType.DateTime, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                        }
+
+                        if (conditions.Count > 0)
+                        {
+                            SqlDataSource1.SelectCommand += " AND " + string.Join(" AND ", conditions);
+                        }
+
+                        ListView1.DataBind();
+                    }
+                    else
                     {
-                        if (ddlIsExpired.SelectedValue == "paid")
-                        {
-                            conditions.Add("r.reservationStatus = 'Paid'");
-                        }
-                        else if (ddlIsExpired.SelectedValue == "failed")
-                        {
-                            conditions.Add("r.reservationStatus = 'Failed'");
-                        }
-                        else
-                        {
-                            //conditions.Add("r.checkOutDate < @today");
-                        }
-                        //SqlDataSource1.SelectParameters.Add("today", DbType.DateTime, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                        // Handle the case where hostID session variable is null
                     }
-
-                    if (conditions.Count > 0)
-                    {
-                        SqlDataSource1.SelectCommand = baseQuery + " AND " + string.Join(" AND ", conditions);
-                    }
-
-                    ListView1.DataBind();
                 }
                 catch (Exception ex)
                 {
@@ -61,6 +74,7 @@ namespace StayScape
                 }
             }
         }
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
