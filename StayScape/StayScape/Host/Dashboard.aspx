@@ -17,7 +17,7 @@
                 <p class="ml-16 text-sm font-medium text-gray-500 truncate">Total Revenue (RM)</p>
             </dt>
             <dd class="ml-16 pb-6 flex items-baseline sm:pb-7">
-                <asp:Label ID="lblTotalRevenue" class="text-2xl font-semibold text-gray-900" runat="server" Text=""></asp:Label>
+                <asp:Label ID="lblTotalRevenue" class="text-2xl font-semibold text-gray-900" runat="server" Text="0"></asp:Label>
             </dd>
         </div>
 

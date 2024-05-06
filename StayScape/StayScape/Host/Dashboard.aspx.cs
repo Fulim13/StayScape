@@ -141,7 +141,7 @@ namespace StayScape
             db.closeConnection();
             decimal avgReservation = 0;
             // Fetch Average Reservation Made
-            if (Convert.ToDecimal(totalRevenue) != 0 && Convert.ToInt32(totalReservation) != 0)
+            if (totalRevenue != "0" && totalReservation != "0")
             {
                 avgReservation = Convert.ToDecimal(totalRevenue) / Convert.ToInt32(totalReservation);
                 avgReservation = Math.Round(avgReservation, 2);
@@ -151,7 +151,7 @@ namespace StayScape
 
 
             // Bind the fetched data to labels in the front end
-            lblTotalRevenue.Text = "RM " + totalRevenue.ToString();
+            lblTotalRevenue.Text = "RM " + (totalRevenue.ToString() == "" ? "0" : totalRevenue.ToString());
             lblTotalReservation.Text = totalReservation.ToString();
             lblAvgReservation.Text = "RM " + avgReservation.ToString();
         }
