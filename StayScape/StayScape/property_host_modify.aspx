@@ -80,7 +80,7 @@
             </div>
             <div class="form-group">
                 <label>Property Name:</label>
-                <asp:TextBox ID="txtPropertyName" runat="server"/>
+                <asp:TextBox ID="txtPropertyName" runat="server" />
                 <asp:RequiredFieldValidator
                     ID="rfvPropertyName"
                     runat="server"
@@ -100,6 +100,16 @@
                     ErrorMessage="Property Price is required"
                     ForeColor="Red"
                     Display="Dynamic" />
+                <asp:RangeValidator
+                    ID="rvPropertyPrice"
+                    runat="server"
+                    ControlToValidate="txtPropertyPrice"
+                    Type="Integer"
+                    MinimumValue="1"
+                    MaximumValue="99999"
+                    ErrorMessage="Property Price must be greater than 0"
+                    ForeColor="Red"
+                    Display="Dynamic" />
             </div>
 
             <div class="form-group">
@@ -116,7 +126,7 @@
 
             <div class="form-group">
                 <label>Address:</label>
-                <asp:TextBox ID="txtPropertyAddress" runat="server"/>
+                <asp:TextBox ID="txtPropertyAddress" runat="server" />
                 <asp:RequiredFieldValidator
                     ID="rfvPropertyAddress"
                     runat="server"
@@ -160,6 +170,16 @@
                     ErrorMessage="Total Bedrooms is required"
                     ForeColor="Red"
                     Display="Dynamic" />
+                <asp:RangeValidator
+                    ID="rvTotalBedrooms"
+                    runat="server"
+                    ControlToValidate="txtTotalBedrooms"
+                    Type="Integer"
+                    MinimumValue="1"
+                    MaximumValue="10"
+                    ErrorMessage="Total Bedrooms must be greater than 0"
+                    ForeColor="Red"
+                    Display="Dynamic" />
             </div>
 
             <div class="form-group">
@@ -170,6 +190,16 @@
                     runat="server"
                     ControlToValidate="txtTotalBathrooms"
                     ErrorMessage="Total Bathrooms is required"
+                    ForeColor="Red"
+                    Display="Dynamic" />
+                <asp:RangeValidator
+                    ID="rvTotalBathrooms"
+                    runat="server"
+                    ControlToValidate="txtTotalBathrooms"
+                    Type="Integer"
+                    MinimumValue="1"
+                    MaximumValue="10"
+                    ErrorMessage="Total Bathrooms must be greater than 0"
                     ForeColor="Red"
                     Display="Dynamic" />
             </div>

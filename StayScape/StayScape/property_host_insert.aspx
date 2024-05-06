@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="property_host_insert.aspx.cs" Inherits="StayScape.property_host_insert" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -103,100 +104,133 @@
                         ErrorMessage="Property Price is required"
                         ForeColor="Red"
                         Display="Dynamic" />
-                </div>
-                <div class="form-group">
-                    <label>Property Description:</label>
-                    <asp:TextBox ID="txtPropertyDesc" runat="server" TextMode="MultiLine" />
-                    <asp:RequiredFieldValidator
-                        ID="rfvPropertyDesc"
+                    <asp:RangeValidator
+                        ID="rvPropertyPrice"
                         runat="server"
-                        ControlToValidate="txtPropertyDesc"
-                        ErrorMessage="Property Description is required"
+                        ControlToValidate="txtPropertyPrice"
+                        Type="Integer"
+                        MinimumValue="1"
+                        MaximumValue="99999"
+                        ErrorMessage="Property Price must be greater than 0"
                         ForeColor="Red"
                         Display="Dynamic" />
                 </div>
-                <div class="form-group">
-                    <label>Property Address:</label>
-                    <asp:TextBox ID="txtPropertyAddress" runat="server" />
-                    <asp:RequiredFieldValidator
-                        ID="rfvPropertyAddress"
-                        runat="server"
-                        ControlToValidate="txtPropertyAddress"
-                        ErrorMessage="Property Address is required"
-                        ForeColor="Red"
-                        Display="Dynamic" />
-                </div>
-                <div class="form-group">
-                    <label>City:</label>
-                    <asp:TextBox ID="txtCity" runat="server" />
-                    <asp:RequiredFieldValidator
-                        ID="rfvCity"
-                        runat="server"
-                        ControlToValidate="txtCity"
-                        ErrorMessage="City is required"
-                        ForeColor="Red"
-                        Display="Dynamic" />
-                </div>
-                <div class="form-group">
-                    <label>State:</label>
-                    <asp:TextBox ID="txtState" runat="server" />
-                    <asp:RequiredFieldValidator
-                        ID="rfvState"
-                        runat="server"
-                        ControlToValidate="txtState"
-                        ErrorMessage="State is required"
-                        ForeColor="Red"
-                        Display="Dynamic" />
-                </div>
-                <div class="form-group">
-                    <label>Total Bedrooms:</label>
-                    <asp:TextBox ID="txtTotalBedrooms" runat="server" TextMode="Number" />
-                    <asp:RequiredFieldValidator
-                        ID="rfvTtlBedroom"
-                        runat="server"
-                        ControlToValidate="txtTotalBedrooms"
-                        ErrorMessage="Number of Bedrooms is required"
-                        ForeColor="Red"
-                        Display="Dynamic" />
-                </div>
-                <div class="form-group">
-                    <label>Total Bathrooms:</label>
-                    <asp:TextBox ID="txtTotalBathrooms" runat="server" TextMode="Number" />
-                    <asp:RequiredFieldValidator
-                        ID="rfvTtlBathrooms"
-                        runat="server"
-                        ControlToValidate="txtTotalBathrooms"
-                        ErrorMessage="Number of Bathrooms is required"
-                        ForeColor="Red"
-                        Display="Dynamic" />
-                </div>
-                <div class="form-group">
-                    <label>Property Image:</label>
-                    <asp:FileUpload ID="fuPropertyImage" runat="server" AllowMultiple="true" />
-                    <asp:RequiredFieldValidator
-                        ID="rfvPropertyImage"
-                        runat="server"
-                        ControlToValidate="fuPropertyImage"
-                        ErrorMessage="Image is required"
-                        ForeColor="Red"
-                        Display="Dynamic" />
-                </div>
-                <asp:Button ID="btnSubmit" runat="server" Text="Add Property" CssClass="button" OnClientClick="return validateForm();" OnClick="UploadProperty" />
-            </asp:Panel>
+        </div>
+        <div class="form-group">
+            <label>Property Description:</label>
+            <asp:TextBox ID="txtPropertyDesc" runat="server" TextMode="MultiLine" />
+            <asp:RequiredFieldValidator
+                ID="rfvPropertyDesc"
+                runat="server"
+                ControlToValidate="txtPropertyDesc"
+                ErrorMessage="Property Description is required"
+                ForeColor="Red"
+                Display="Dynamic" />
+        </div>
+        <div class="form-group">
+            <label>Property Address:</label>
+            <asp:TextBox ID="txtPropertyAddress" runat="server" />
+            <asp:RequiredFieldValidator
+                ID="rfvPropertyAddress"
+                runat="server"
+                ControlToValidate="txtPropertyAddress"
+                ErrorMessage="Property Address is required"
+                ForeColor="Red"
+                Display="Dynamic" />
+        </div>
+        <div class="form-group">
+            <label>City:</label>
+            <asp:TextBox ID="txtCity" runat="server" />
+            <asp:RequiredFieldValidator
+                ID="rfvCity"
+                runat="server"
+                ControlToValidate="txtCity"
+                ErrorMessage="City is required"
+                ForeColor="Red"
+                Display="Dynamic" />
+        </div>
+        <div class="form-group">
+            <label>State:</label>
+            <asp:TextBox ID="txtState" runat="server" />
+            <asp:RequiredFieldValidator
+                ID="rfvState"
+                runat="server"
+                ControlToValidate="txtState"
+                ErrorMessage="State is required"
+                ForeColor="Red"
+                Display="Dynamic" />
+        </div>
+        <div class="form-group">
+            <label>Total Bedrooms:</label>
+            <asp:TextBox ID="txtTotalBedrooms" runat="server" TextMode="Number" />
+            <asp:RequiredFieldValidator
+                ID="rfvTtlBedroom"
+                runat="server"
+                ControlToValidate="txtTotalBedrooms"
+                ErrorMessage="Number of Bedrooms is required"
+                ForeColor="Red"
+                Display="Dynamic" />
+            <asp:RangeValidator
+                ID="rvTotalBedrooms"
+                runat="server"
+                ControlToValidate="txtTotalBedrooms"
+                Type="Integer"
+                MinimumValue="1"
+                MaximumValue="10"
+                ErrorMessage="Total Bedrooms must be greater than 0"
+                ForeColor="Red"
+                Display="Dynamic" />
+        </div>
+
+        <div class="form-group">
+            <label>Total Bathrooms:</label>
+            <asp:TextBox ID="txtTotalBathrooms" runat="server" TextMode="Number" />
+            <asp:RequiredFieldValidator
+                ID="rfvTtlBathrooms"
+                runat="server"
+                ControlToValidate="txtTotalBathrooms"
+                ErrorMessage="Number of Bathrooms is required"
+                ForeColor="Red"
+                Display="Dynamic" />
+            <asp:RangeValidator
+                ID="rvTotalBathrooms"
+                runat="server"
+                ControlToValidate="txtTotalBathrooms"
+                Type="Integer"
+                MinimumValue="1"
+                MaximumValue="10"
+                ErrorMessage="Total Bathrooms must be greater than 0"
+                ForeColor="Red"
+                Display="Dynamic" />
+        </div>
+
+        <div class="form-group">
+            <label>Property Image:</label>
+            <asp:FileUpload ID="fuPropertyImage" runat="server" AllowMultiple="true" />
+            <asp:RequiredFieldValidator
+                ID="rfvPropertyImage"
+                runat="server"
+                ControlToValidate="fuPropertyImage"
+                ErrorMessage="Image is required"
+                ForeColor="Red"
+                Display="Dynamic" />
+        </div>
+        <asp:Button ID="btnSubmit" runat="server" Text="Add Property" CssClass="button" OnClientClick="return validateForm();" OnClick="UploadProperty" />
+        </asp:Panel>
         </div>
     </body>
     </html>
     <script>
         function validateForm() {
             var propertyName = document.getElementById('<%= txtPropertyName.ClientID %>').value;
-        var propertyPrice = document.getElementById('<%= txtPropertyPrice.ClientID %>').value;
-        var propertyDesc = document.getElementById('<%= txtPropertyDesc.ClientID %>').value;
-        var propertyAddress = document.getElementById('<%= txtPropertyAddress.ClientID %>').value;
-        var city = document.getElementById('<%= txtCity.ClientID %>').value;
-        var state = document.getElementById('<%= txtState.ClientID %>').value;
-        var totalBedrooms = document.getElementById('<%= txtTotalBedrooms.ClientID %>').value;
-        var totalBathrooms = document.getElementById('<%= txtTotalBathrooms.ClientID %>').value;
-        var propertyImage = document.getElementById('<%= fuPropertyImage.ClientID %>').files;
+            var propertyPrice = document.getElementById('<%= txtPropertyPrice.ClientID %>').value;
+            var propertyDesc = document.getElementById('<%= txtPropertyDesc.ClientID %>').value;
+            var propertyAddress = document.getElementById('<%= txtPropertyAddress.ClientID %>').value;
+            var city = document.getElementById('<%= txtCity.ClientID %>').value;
+            var state = document.getElementById('<%= txtState.ClientID %>').value;
+            var totalBedrooms = document.getElementById('<%= txtTotalBedrooms.ClientID %>').value;
+            var totalBathrooms = document.getElementById('<%= txtTotalBathrooms.ClientID %>').value;
+            var propertyImage = document.getElementById('<%= fuPropertyImage.ClientID %>').files;
 
             if (propertyName.trim() === '' ||
                 propertyPrice.trim() === '' ||
