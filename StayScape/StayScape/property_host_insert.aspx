@@ -96,7 +96,7 @@
                 </div>
                 <div class="form-group">
                     <label>Property Price:</label>
-                    <asp:TextBox ID="txtPropertyPrice" runat="server" TextMode="Number" />
+                    <asp:TextBox ID="txtPropertyPrice" runat="server" TextMode="SingleLine" />
                     <asp:RequiredFieldValidator
                         ID="rfvPropertyPrice"
                         runat="server"
@@ -108,10 +108,10 @@
                         ID="rvPropertyPrice"
                         runat="server"
                         ControlToValidate="txtPropertyPrice"
-                        Type="Integer"
-                        MinimumValue="1"
+                        Type="Double"
+                        MinimumValue="1.00"
                         MaximumValue="99999"
-                        ErrorMessage="Property Price must be greater than 0"
+                        ErrorMessage="Invalid Property Price"
                         ForeColor="Red"
                         Display="Dynamic" />
                 </div>
@@ -177,7 +177,7 @@
                 Type="Integer"
                 MinimumValue="1"
                 MaximumValue="10"
-                ErrorMessage="Total Bedrooms must be greater than 0 and not more than 10"
+                ErrorMessage="Invalid Value"
                 ForeColor="Red"
                 Display="Dynamic" />
         </div>
@@ -199,7 +199,7 @@
                 Type="Integer"
                 MinimumValue="1"
                 MaximumValue="10"
-                ErrorMessage="Total Bathrooms must be greater than 0 and not more than 10"
+                ErrorMessage="Invalid Value"
                 ForeColor="Red"
                 Display="Dynamic" />
         </div>
