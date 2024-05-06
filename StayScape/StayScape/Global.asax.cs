@@ -1,6 +1,7 @@
 ﻿using dotenv.net;
 using System;
 using System.IO;
+using System.Web.Security;
 
 namespace StayScape
 {
@@ -9,6 +10,8 @@ namespace StayScape
 
         protected void Application_Start(object sender, EventArgs e)
         {
+
+
             string envFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ".env");
 
             if (File.Exists(envFilePath))
@@ -23,7 +26,7 @@ namespace StayScape
 
         protected void Session_Start(object sender, EventArgs e)
         {
-
+            FormsAuthentication.SignOut();
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)

@@ -101,20 +101,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CancellationPolicy.aspx" />
-    <Content Include="CancelReservation.aspx" />
-    <Content Include="AddVoucher.aspx" />
-    <Content Include="BulkImportVoucher.aspx" />
-    <Content Include="Checkout.aspx" />
-    <Content Include="checkout.css" />
-    <Content Include="checkout.js" />
+    <Content Include="Customer\CancellationPolicy.aspx" />
+    <Content Include="Customer\CancelReservation.aspx" />
+    <Content Include="Host\AddVoucher.aspx" />
+    <Content Include="Host\BulkImportVoucher.aspx" />
+    <Content Include="Customer\Checkout.aspx" />
+    <Content Include="Customer\checkout.css" />
+    <Content Include="Customer\checkout.js" />
     <Content Include="errors\404.aspx" />
     <Content Include="Global.asax" />
     <Content Include="HostRegister.aspx" />
     <Content Include="Images\newuser.jpg" />
     <Content Include="Images\WorldviewGrandHotel.jpg" />
     <Content Include="Login.aspx" />
-    <Content Include="OrderHistory.aspx" />
+    <Content Include="Customer\OrderHistory.aspx" />
     <Content Include="Profile.aspx" />
     <Content Include="PropertyImg\1.jpg" />
     <Content Include="PropertyImg\2.jpg" />
@@ -124,19 +124,19 @@
     <Content Include="PropertyImg\6.jpg" />
     <Content Include="PropertyImg\7.jpg" />
     <Content Include="PropertyImg\8.jpg" />
-    <Content Include="HostReservationDetails.aspx" />
+    <Content Include="Host\HostReservationDetails.aspx" />
     <Content Include="Images\house2-transparent.png" />
     <Content Include="Images\house2.png" />
     <Content Include="Images\testing.jpg" />
-    <Content Include="PaymentFailed.aspx" />
-    <Content Include="PaymentProcessing.aspx" />
-    <Content Include="PaymentSuccessful.aspx" />
+    <Content Include="Customer\PaymentFailed.aspx" />
+    <Content Include="Customer\PaymentProcessing.aspx" />
+    <Content Include="Customer\PaymentSuccessful.aspx" />
     <Content Include="property_details.aspx" />
-    <Content Include="property_host.aspx" />
-    <Content Include="property_host_delete.aspx" />
-    <Content Include="property_host_disp.aspx" />
-    <Content Include="property_host_insert.aspx" />
-    <Content Include="property_host_modify.aspx" />
+    <Content Include="Host\property_host.aspx" />
+    <Content Include="Host\property_host_delete.aspx" />
+    <Content Include="Host\property_host_disp.aspx" />
+    <Content Include="Host\property_host_insert.aspx" />
+    <Content Include="Host\property_host_modify.aspx" />
     <Content Include="property_list.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -154,13 +154,9 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
-    <Content Include="rating.js" />
-    <Content Include="ratings.aspx" />
-    <Content Include="ratingsCSS.css" />
     <Content Include="Register.aspx" />
-    <Content Include="ReviewClient.aspx" />
-    <Content Include="ReviewForm.aspx" />
-    <Content Include="Analytic.aspx" />
+    <Content Include="Customer\ReviewForm.aspx" />
+    <Content Include="Host\Analytic.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -174,54 +170,54 @@
     <Content Include="Dashboard.aspx" />
     <Content Include="Images\house-transparent.png" />
     <Content Include="Images\house.png" />
-    <Content Include="Review.aspx" />
-    <Content Include="Voucher.aspx" />
-    <Content Include="VoucherDetails.aspx" />
+    <Content Include="Host\Review.aspx" />
+    <Content Include="Host\Voucher.aspx" />
+    <Content Include="Host\VoucherDetails.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CancellationPolicy.aspx.cs">
+    <Compile Include="Customer\CancellationPolicy.aspx.cs">
       <DependentUpon>CancellationPolicy.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="CancellationPolicy.aspx.designer.cs">
+    <Compile Include="Customer\CancellationPolicy.aspx.designer.cs">
       <DependentUpon>CancellationPolicy.aspx</DependentUpon>
     </Compile>
-    <Compile Include="CancelReservation.aspx.cs">
+    <Compile Include="Customer\CancelReservation.aspx.cs">
       <DependentUpon>CancelReservation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="CancelReservation.aspx.designer.cs">
+    <Compile Include="Customer\CancelReservation.aspx.designer.cs">
       <DependentUpon>CancelReservation.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AddVoucher.aspx.cs">
+    <Compile Include="Host\AddVoucher.aspx.cs">
       <DependentUpon>AddVoucher.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AddVoucher.aspx.designer.cs">
+    <Compile Include="Host\AddVoucher.aspx.designer.cs">
       <DependentUpon>AddVoucher.aspx</DependentUpon>
     </Compile>
-    <Compile Include="BulkImportVoucher.aspx.cs">
+    <Compile Include="Host\BulkImportVoucher.aspx.cs">
       <DependentUpon>BulkImportVoucher.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="BulkImportVoucher.aspx.designer.cs">
+    <Compile Include="Host\BulkImportVoucher.aspx.designer.cs">
       <DependentUpon>BulkImportVoucher.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Checkout.aspx.cs">
+    <Compile Include="Customer\Checkout.aspx.cs">
       <DependentUpon>Checkout.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Checkout.aspx.designer.cs">
+    <Compile Include="Customer\Checkout.aspx.designer.cs">
       <DependentUpon>Checkout.aspx</DependentUpon>
     </Compile>
-    <Compile Include="CheckPaymentStatus.ashx.cs">
+    <Compile Include="Customer\CheckPaymentStatus.ashx.cs">
       <DependentUpon>CheckPaymentStatus.ashx</DependentUpon>
     </Compile>
-    <Compile Include="CreatePaymentIntent.ashx.cs">
+    <Compile Include="Customer\CreatePaymentIntent.ashx.cs">
       <DependentUpon>CreatePaymentIntent.ashx</DependentUpon>
     </Compile>
-    <Compile Include="CSVReader.cs" />
+    <Compile Include="Host\CSVReader.cs" />
     <Compile Include="Customer.Master.cs">
       <DependentUpon>Customer.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -244,7 +240,7 @@
     <Compile Include="errors\404.aspx.designer.cs">
       <DependentUpon>404.aspx</DependentUpon>
     </Compile>
-    <Compile Include="GenerateVoucher.cs" />
+    <Compile Include="Host\GenerateVoucher.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -255,11 +251,11 @@
     <Compile Include="HostRegister.aspx.designer.cs">
       <DependentUpon>HostRegister.aspx</DependentUpon>
     </Compile>
-    <Compile Include="HostReservationDetails.aspx.cs">
+    <Compile Include="Host\HostReservationDetails.aspx.cs">
       <DependentUpon>HostReservationDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="HostReservationDetails.aspx.designer.cs">
+    <Compile Include="Host\HostReservationDetails.aspx.designer.cs">
       <DependentUpon>HostReservationDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
@@ -269,39 +265,39 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Main.Master.cs">
+    <Compile Include="Host\Main.Master.cs">
       <DependentUpon>Main.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Main.Master.designer.cs">
+    <Compile Include="Host\Main.Master.designer.cs">
       <DependentUpon>Main.Master</DependentUpon>
     </Compile>
-    <Compile Include="OrderHistory.aspx.cs">
+    <Compile Include="Customer\OrderHistory.aspx.cs">
       <DependentUpon>OrderHistory.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="OrderHistory.aspx.designer.cs">
+    <Compile Include="Customer\OrderHistory.aspx.designer.cs">
       <DependentUpon>OrderHistory.aspx</DependentUpon>
     </Compile>
-    <Compile Include="PaymentFailed.aspx.cs">
+    <Compile Include="Customer\PaymentFailed.aspx.cs">
       <DependentUpon>PaymentFailed.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="PaymentFailed.aspx.designer.cs">
+    <Compile Include="Customer\PaymentFailed.aspx.designer.cs">
       <DependentUpon>PaymentFailed.aspx</DependentUpon>
     </Compile>
-    <Compile Include="PaymentProcessing.aspx.cs">
+    <Compile Include="Customer\PaymentProcessing.aspx.cs">
       <DependentUpon>PaymentProcessing.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="PaymentProcessing.aspx.designer.cs">
+    <Compile Include="Customer\PaymentProcessing.aspx.designer.cs">
       <DependentUpon>PaymentProcessing.aspx</DependentUpon>
     </Compile>
-    <Compile Include="PaymentSuccessful.aspx.cs">
+    <Compile Include="Customer\PaymentSuccessful.aspx.cs">
       <DependentUpon>PaymentSuccessful.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="PaymentSuccessful.aspx.designer.cs">
+    <Compile Include="Customer\PaymentSuccessful.aspx.designer.cs">
       <DependentUpon>PaymentSuccessful.aspx</DependentUpon>
     </Compile>
     <Compile Include="Profile.aspx.cs">
@@ -319,39 +315,39 @@
     <Compile Include="property_details.aspx.designer.cs">
       <DependentUpon>property_details.aspx</DependentUpon>
     </Compile>
-    <Compile Include="property_host.aspx.cs">
+    <Compile Include="Host\property_host.aspx.cs">
       <DependentUpon>property_host.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="property_host.aspx.designer.cs">
+    <Compile Include="Host\property_host.aspx.designer.cs">
       <DependentUpon>property_host.aspx</DependentUpon>
     </Compile>
-    <Compile Include="property_host_delete.aspx.cs">
+    <Compile Include="Host\property_host_delete.aspx.cs">
       <DependentUpon>property_host_delete.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="property_host_delete.aspx.designer.cs">
+    <Compile Include="Host\property_host_delete.aspx.designer.cs">
       <DependentUpon>property_host_delete.aspx</DependentUpon>
     </Compile>
-    <Compile Include="property_host_disp.aspx.cs">
+    <Compile Include="Host\property_host_disp.aspx.cs">
       <DependentUpon>property_host_disp.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="property_host_disp.aspx.designer.cs">
+    <Compile Include="Host\property_host_disp.aspx.designer.cs">
       <DependentUpon>property_host_disp.aspx</DependentUpon>
     </Compile>
-    <Compile Include="property_host_insert.aspx.cs">
+    <Compile Include="Host\property_host_insert.aspx.cs">
       <DependentUpon>property_host_insert.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="property_host_insert.aspx.designer.cs">
+    <Compile Include="Host\property_host_insert.aspx.designer.cs">
       <DependentUpon>property_host_insert.aspx</DependentUpon>
     </Compile>
-    <Compile Include="property_host_modify.aspx.cs">
+    <Compile Include="Host\property_host_modify.aspx.cs">
       <DependentUpon>property_host_modify.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="property_host_modify.aspx.designer.cs">
+    <Compile Include="Host\property_host_modify.aspx.designer.cs">
       <DependentUpon>property_host_modify.aspx</DependentUpon>
     </Compile>
     <Compile Include="property_list.aspx.cs">
@@ -361,13 +357,6 @@
     <Compile Include="property_list.aspx.designer.cs">
       <DependentUpon>property_list.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ratings.aspx.cs">
-      <DependentUpon>ratings.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ratings.aspx.designer.cs">
-      <DependentUpon>ratings.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -375,11 +364,11 @@
     <Compile Include="Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
-    <Compile Include="VoucherDetails.aspx.cs">
+    <Compile Include="Host\VoucherDetails.aspx.cs">
       <DependentUpon>VoucherDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="VoucherDetails.aspx.designer.cs">
+    <Compile Include="Host\VoucherDetails.aspx.designer.cs">
       <DependentUpon>VoucherDetails.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -400,46 +389,39 @@
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.rtl.css.map" />
     <Content Include="Content\bootstrap.rtl.min.css.map" />
-    <Compile Include="Analytic.aspx.cs">
+    <Compile Include="Host\Analytic.aspx.cs">
       <DependentUpon>Analytic.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Analytic.aspx.designer.cs">
+    <Compile Include="Host\Analytic.aspx.designer.cs">
       <DependentUpon>Analytic.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Review.aspx.cs">
+    <Compile Include="Host\Review.aspx.cs">
       <DependentUpon>Review.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Review.aspx.designer.cs">
+    <Compile Include="Host\Review.aspx.designer.cs">
       <DependentUpon>Review.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ReviewClient.aspx.cs">
-      <DependentUpon>ReviewClient.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ReviewClient.aspx.designer.cs">
-      <DependentUpon>ReviewClient.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ReviewForm.aspx.cs">
+    <Compile Include="Customer\ReviewForm.aspx.cs">
       <DependentUpon>ReviewForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ReviewForm.aspx.designer.cs">
+    <Compile Include="Customer\ReviewForm.aspx.designer.cs">
       <DependentUpon>ReviewForm.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Voucher.aspx.cs">
+    <Compile Include="Host\Voucher.aspx.cs">
       <DependentUpon>Voucher.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Voucher.aspx.designer.cs">
+    <Compile Include="Host\Voucher.aspx.designer.cs">
       <DependentUpon>Voucher.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Main.Master" />
-    <Content Include="CreatePaymentIntent.ashx" />
-    <Content Include="CheckPaymentStatus.ashx" />
+    <Content Include="Host\Main.Master" />
+    <Content Include="Customer\CreatePaymentIntent.ashx" />
+    <Content Include="Customer\CheckPaymentStatus.ashx" />
     <Content Include="CustomerPage.sitemap" />
     <Content Include="Customer.Master" />
     <None Include="packages.config" />
@@ -455,7 +437,7 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-    <Content Include="Web.sitemap" />
+    <Content Include="Host\Web.sitemap" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Uploads\" />

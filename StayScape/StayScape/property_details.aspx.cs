@@ -5,7 +5,6 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 using System.Web.UI.WebControls;
-using System.Web;
 
 namespace StayScape.PPT
 {
@@ -130,7 +129,10 @@ namespace StayScape.PPT
                 c.custProfilePic,
                 rs.reservationID,
                 p.propertyName,
-                p.propertyAddress
+                p.propertyAddress,
+                reply.replyID,
+                reply.replyText,
+                reply.repliedAt
             FROM 
                 Review r
             INNER JOIN 
@@ -139,6 +141,8 @@ namespace StayScape.PPT
                 Customer c ON r.custID = c.custID
             INNER JOIN 
                 Property p ON rs.propertyID = p.propertyID
+            LEFT JOIN
+                Reply reply ON reply.reviewID = r.reviewID
             WHERE 
                 p.propertyID = @propertyID
             ORDER BY 
@@ -189,6 +193,20 @@ namespace StayScape.PPT
                 {
                     // Set a default image if no image data is available
                     imgCustomer.ImageUrl = "/Images/default-customer.jpg"; // Path to default image
+                }
+
+                // Show the reply if it exists
+                var replyText = dataItem["replyText"] != DBNull.Value
+                    ? dataItem["replyText"].ToString()
+                    : null;
+
+                if (!string.IsNullOrEmpty(replyText))
+                {
+                    var replyContainer = (Panel)e.Item.FindControl("replyContainer");
+                    var replyLabel = (Label)e.Item.FindControl("lblReply");
+
+                    replyContainer.Visible = true;
+                    replyLabel.Text = $"Host's Response at {Convert.ToDateTime(dataItem["repliedAt"]).ToString("yyyy-MM-dd HH:mm")}: <br> {replyText}";
                 }
             }
         }
@@ -279,7 +297,7 @@ namespace StayScape.PPT
             Session["CheckIn"] = DateTime.Now;
             Session["CheckOut"] = DateTime.Now.AddDays(1);
 
-            Response.Redirect("Checkout.aspx");
+            Response.Redirect("Customer/Checkout.aspx");
         }
 
         protected void btnBack_Click(object sender, EventArgs e)

@@ -51,7 +51,34 @@
             </dd>
         </div>
     </dl>
-    <h3 class="text-lg leading-6 font-medium text-gray-900 mt-8">Recent Reservation</h3>
+    <h3 class="text-lg leading-6 font-medium text-gray-900 mt-8 mb-4">Recent Reservation</h3>
+    <!-- Search -->
+    <div class="sm:col-span-1">
+        <label for="txtSearch" class="sr-only">Search</label>
+        <div class="relative">
+            <asp:TextBox runat="server" placeholder="Search reservation id" ID="txtSearch"
+                AutoPostBack="true" OnTextChanged="txtSearch_TextChanged"
+                class="py-2 px-3 ps-11 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
+            </asp:TextBox>
+            <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none ps-4">
+                <svg class="h-4 w-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                </svg>
+            </div>
+        </div>
+    </div>
+    <!-- End Search -->
+    <div class="sm:col-span-2 md:grow mt-4">
+        <div class="flex justify-end gap-x-2">
+            <asp:DropDownList runat="server" ID="ddlIsExpired" OnSelectedIndexChanged="ddlIsExpired_SelectedIndexChanged"
+                class="py-2 pr-10 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
+                AutoPostBack="True">
+                <asp:ListItem Value="">All</asp:ListItem>
+                <asp:ListItem Value="paid">Paid</asp:ListItem>
+                <asp:ListItem Value="failed">Failed</asp:ListItem>
+            </asp:DropDownList>
+        </div>
+    </div>
     <div class="mx-8">
         <asp:ListView ID="ListView1" runat="server" DataKeyNames="reservationID" DataSourceID="SqlDataSource1">
             <EmptyDataTemplate>
@@ -63,9 +90,15 @@
             </EmptyDataTemplate>
             <ItemTemplate>
                 <tr class="border-y border-gray-200 hover:bg-gray-50 cursor-pointer" onclick='<%# Eval("reservationID", "window.location.href = \"HostReservationDetails.aspx?reservationID={0}\";") %>'>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                    <td data-reservation-id='<%# Eval("reservationID") %>' class="clipboard-icon flex  whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                         <asp:Label ID="reservationIDLabel" runat="server" Text='<%# Eval("reservationID") %>' />
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.666 3.888A2.25 2.25 0 0 0 13.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 0 1-.75.75H9a.75.75 0 0 1-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 0 1-2.25 2.25H6.75A2.25 2.25 0 0 1 4.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 0 1 1.927-.184" />
+                        </svg>
                     </td>
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                        <asp:Label ID="customerName" runat="server" Text='<%# Eval("customerName") %>' />
+                    </td>          
                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                         <asp:Label ID="reservationTotalLabel" runat="server" Text='<%# "RM" + Eval("reservationTotal") %>' />
                     </td>
@@ -91,6 +124,7 @@
                                             <table id="itemPlaceholderContainer" runat="server" class="min-w-full divide-y divide-gray-500">
                                                 <tr runat="server" class="bg-gray-50">
                                                     <th runat="server" scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Reservation ID</th>
+                                                    <th runat="server" scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Customer Name</th>
                                                     <th runat="server" scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Reservation Total</th>
                                                     <th runat="server" scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Check-In Date</th>
                                                     <th runat="server" scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Check-Out Date</th>
@@ -110,15 +144,71 @@
                     </div>
                 </div>
             </LayoutTemplate>
-        </asp:ListView> 
+        </asp:ListView>
+        <!-- Footer -->
+        <div class="px-6 py-4 flex justify-end items-center">
+            <div class="inline-flex gap-x-2">
+                <asp:DataPager ID="DataPager2" runat="server" PagedControlID="ListView1" PageSize="10">
+                    <Fields>
+                        <asp:NextPreviousPagerField
+                            ButtonCssClass="cursor-pointer min-h-[38px] min-w-[38px] py-2 px-2.5 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none"
+                            ButtonType="Button"
+                            ShowFirstPageButton="True"
+                            ShowPreviousPageButton="True"
+                            ShowNextPageButton="False"
+                            ShowLastPageButton="False"
+                            RenderNonBreakingSpacesBetweenControls="false" />
+                        <asp:NumericPagerField
+                            NumericButtonCssClass="cursor-pointer min-h-[38px] min-w-[38px] text-gray-800 hover:bg-gray-100 py-2 px-3 text-sm rounded-lg focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none"
+                            ButtonType="Button"
+                            CurrentPageLabelCssClass="text-center inline-block min-h-[38px] min-w-[38px] bg-gray-200 text-gray-800 py-2 px-3 text-sm rounded-lg focus:outline-none focus:bg-gray-300 disabled:opacity-50 disabled:pointer-events-none"
+                            ButtonCount="10" />
+                        <asp:NextPreviousPagerField
+                            ButtonCssClass="cursor-pointer  min-h-[38px] min-w-[38px] py-2 px-2.5 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none"
+                            ButtonType="Button"
+                            ShowFirstPageButton="False"
+                            ShowPreviousPageButton="False"
+                            ShowNextPageButton="True"
+                            ShowLastPageButton="True" />
+                    </Fields>
+                </asp:DataPager>
+            </div>
+        </div>
+        <!-- End Footer -->
     </div>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:LocalSqlServer %>" SelectCommand="SELECT r.reservationID, r.reservationTotal, r.checkInDate, r.checkOutDate, r.reservationStatus
-FROM Reservation r
-JOIN Property p ON r.propertyID = p.propertyID
-JOIN Host h ON p.hostID = h.hostID
-WHERE h.hostID = @hostID;">
-        <SelectParameters>
-            <asp:SessionParameter Name="hostID" SessionField="hostID" />
-        </SelectParameters>
-    </asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:LocalSqlServer %>" 
+    SelectCommand="SELECT r.reservationID, r.reservationTotal, r.checkInDate, r.checkOutDate, r.reservationStatus, c.customerName
+                   FROM Reservation r
+                   JOIN Property p ON r.propertyID = p.propertyID
+                   JOIN Host h ON p.hostID = h.hostID
+                   JOIN Customer c ON r.custID = c.custID
+                   WHERE h.hostID = @hostID;">
+    <SelectParameters>
+        <asp:SessionParameter Name="hostID" SessionField="hostID" />
+    </SelectParameters>
+</asp:SqlDataSource>
+    <script>
+        const clipboardIcons = document.querySelectorAll(".clipboard-icon");
+
+        function handleClick(event) {
+            event.stopPropagation();
+
+            const reservationID = event.currentTarget.getAttribute("data-reservation-id");
+            const textToCopy = reservationID;
+
+            navigator.clipboard.writeText(textToCopy)
+                .then(() => {
+                    console.log("Text copied to clipboard:", textToCopy);
+                    alert("Text copied to clipboard!"); // TODO: Replace with Toast notification
+                })
+                .catch(err => {
+                    console.error("Error copying text to clipboard:", err);
+                    alert("Failed to copy text to clipboard. Please try again."); // TODO: Replace with Toast notification
+                });
+        }
+
+        clipboardIcons.forEach(icon => {
+            icon.addEventListener("click", handleClick);
+        });
+    </script>
 </asp:Content>

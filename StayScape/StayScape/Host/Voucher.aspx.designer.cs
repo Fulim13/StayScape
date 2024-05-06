@@ -11,35 +11,44 @@ namespace StayScape
 {
 
 
-    public partial class Dashboard
+    public partial class Voucher
     {
 
         /// <summary>
-        /// lblTotalRevenue control.
+        /// newVoucherSection control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTotalRevenue;
+        protected global::System.Web.UI.WebControls.Panel newVoucherSection;
 
         /// <summary>
-        /// lblTotalReservation control.
+        /// AddVoucherLink control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTotalReservation;
+        protected global::System.Web.UI.WebControls.HyperLink AddVoucherLink;
 
         /// <summary>
-        /// lblAvgReservation control.
+        /// HyperLink1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAvgReservation;
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
+
+        /// <summary>
+        /// vouchersTable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel vouchersTable;
 
         /// <summary>
         /// txtSearch control.
@@ -58,6 +67,24 @@ namespace StayScape
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlIsExpired;
+
+        /// <summary>
+        /// HyperLink3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink3;
+
+        /// <summary>
+        /// HyperLink2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink2;
 
         /// <summary>
         /// ListView1 control.

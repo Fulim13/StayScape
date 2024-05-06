@@ -11,133 +11,115 @@ namespace StayScape
 {
 
 
-    public partial class Profile
+    public partial class OrderHistory
     {
 
         /// <summary>
-        /// nameText control.
+        /// btnFilterAll control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox nameText;
+        protected global::System.Web.UI.WebControls.Button btnFilterAll;
 
         /// <summary>
-        /// btnName control.
+        /// btnFilterPaid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnName;
+        protected global::System.Web.UI.WebControls.Button btnFilterPaid;
 
         /// <summary>
-        /// roleLabel control.
+        /// btnFilterPending control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label roleLabel;
+        protected global::System.Web.UI.WebControls.Button btnFilterPending;
 
         /// <summary>
-        /// emailLabel control.
+        /// btnFilterFailed control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label emailLabel;
+        protected global::System.Web.UI.WebControls.Button btnFilterFailed;
 
         /// <summary>
-        /// phoneText control.
+        /// btnFilterCancelled control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox phoneText;
+        protected global::System.Web.UI.WebControls.Button btnFilterCancelled;
 
         /// <summary>
-        /// btnPhone control.
+        /// ReservationListView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnPhone;
+        protected global::System.Web.UI.WebControls.ListView ReservationListView;
 
         /// <summary>
-        /// genderEditDropdown control.
+        /// ReviewModal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList genderEditDropdown;
+        protected global::System.Web.UI.WebControls.Panel ReviewModal;
 
         /// <summary>
-        /// genderLabel control.
+        /// litStarRating control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label genderLabel;
+        protected global::System.Web.UI.WebControls.Literal litStarRating;
 
         /// <summary>
-        /// btnGender control.
+        /// lblCreatedAt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGender;
+        protected global::System.Web.UI.WebControls.Label lblCreatedAt;
 
         /// <summary>
-        /// bDateText control.
+        /// txtReviewDesc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox bDateText;
+        protected global::System.Web.UI.WebControls.TextBox txtReviewDesc;
 
         /// <summary>
-        /// btn_bDate control.
+        /// btnSubmitEditReview control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_bDate;
+        protected global::System.Web.UI.WebControls.Button btnSubmitEditReview;
 
         /// <summary>
-        /// aDateLabel control.
+        /// btnCloseModal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label aDateLabel;
-
-        /// <summary>
-        /// pfpUpload control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload pfpUpload;
-
-        /// <summary>
-        /// pfpChange control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button pfpChange;
+        protected global::System.Web.UI.WebControls.Button btnCloseModal;
     }
 }

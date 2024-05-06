@@ -11,133 +11,133 @@ namespace StayScape
 {
 
 
-    public partial class Profile
+    public partial class Main
     {
 
         /// <summary>
-        /// nameText control.
+        /// head control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox nameText;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
 
         /// <summary>
-        /// btnName control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnName;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// roleLabel control.
+        /// dashboardLink control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label roleLabel;
+        protected global::System.Web.UI.WebControls.HyperLink dashboardLink;
 
         /// <summary>
-        /// emailLabel control.
+        /// propertyLink control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label emailLabel;
+        protected global::System.Web.UI.WebControls.HyperLink propertyLink;
 
         /// <summary>
-        /// phoneText control.
+        /// voucherLink control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox phoneText;
+        protected global::System.Web.UI.WebControls.HyperLink voucherLink;
 
         /// <summary>
-        /// btnPhone control.
+        /// reviewLink control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnPhone;
+        protected global::System.Web.UI.WebControls.HyperLink reviewLink;
 
         /// <summary>
-        /// genderEditDropdown control.
+        /// analyticLink control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList genderEditDropdown;
+        protected global::System.Web.UI.WebControls.HyperLink analyticLink;
 
         /// <summary>
-        /// genderLabel control.
+        /// SiteMapPath1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label genderLabel;
+        protected global::System.Web.UI.WebControls.SiteMapPath SiteMapPath1;
 
         /// <summary>
-        /// btnGender control.
+        /// SiteMapDataSource1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGender;
+        protected global::System.Web.UI.WebControls.SiteMapDataSource SiteMapDataSource1;
 
         /// <summary>
-        /// bDateText control.
+        /// imgProfilePicture control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox bDateText;
+        protected global::System.Web.UI.WebControls.Image imgProfilePicture;
 
         /// <summary>
-        /// btn_bDate control.
+        /// btnProfile control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_bDate;
+        protected global::System.Web.UI.WebControls.HyperLink btnProfile;
 
         /// <summary>
-        /// aDateLabel control.
+        /// btnSignout control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label aDateLabel;
+        protected global::System.Web.UI.WebControls.Button btnSignout;
 
         /// <summary>
-        /// pfpUpload control.
+        /// HyperLink1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload pfpUpload;
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
 
         /// <summary>
-        /// pfpChange control.
+        /// ContentPlaceHolder1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button pfpChange;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
     }
 }

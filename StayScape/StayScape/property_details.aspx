@@ -275,6 +275,11 @@
                                 <asp:Label ID="reviewDesc" runat="server" Text='<%# Eval("reviewDesc") %>' />
                                 <%--<p>Very cozy place and enjoy green landscape. Host is very kind and helpful.</p>--%>
                             </div>
+                            <asp:Panel ID="replyContainer" runat="server" Visible="False">
+                                <div class="bg-gray-50 px-4 py-6 sm:rounded-lg">
+                                    <asp:Label ID="lblReply" runat="server" CssClass="text-gray-600" Text="No reply" />
+                                </div>
+                            </asp:Panel>
                         </div>
                     </ItemTemplate>
 

@@ -24,7 +24,7 @@ namespace StayScape.DesmondsPage
         {
             Page.Validate("Registration");
             if (Page.IsValid)
-            {
+            { 
                 // Create a new user
                 MembershipCreateStatus status;
                 MembershipUser newUser = null;

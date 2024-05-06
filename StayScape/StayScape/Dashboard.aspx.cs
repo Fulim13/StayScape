@@ -1,15 +1,99 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 
 namespace StayScape
 {
     public partial class Dashboard : System.Web.UI.Page
     {
+
+
+        string baseQuery;
+        protected override void OnPreRender(EventArgs e)
+        {
+            base.OnPreRender(e);
+
+            if (IsPostBack)
+            {
+                try
+                {
+                    if (Session["hostID"] != null)
+                    {
+                        string hostID = Session["hostID"].ToString();
+                        baseQuery = "SELECT r.reservationID, r.reservationTotal, r.checkInDate, r.checkOutDate, r.reservationStatus, c.customerName " +
+                                    "FROM Reservation r " +
+                                    "JOIN Property p ON r.propertyID = p.propertyID " +
+                                    "JOIN Host h ON p.hostID = h.hostID " +
+                                    "JOIN Customer c ON r.custID = c.custID " +
+                                    "WHERE h.hostID = @hostID"; // Using parameterized query
+
+                        SqlDataSource1.SelectCommand = baseQuery;
+                        SqlDataSource1.SelectParameters.Clear();
+                        SqlDataSource1.SelectParameters.Add("hostID", hostID); // Adding hostID as parameter
+
+                        List<string> conditions = new List<string>();
+
+                        if (!string.IsNullOrEmpty(txtSearch.Text))
+                        {
+                            conditions.Add("r.reservationID LIKE @reservationID");
+                            SqlDataSource1.SelectParameters.Add("reservationID", "%" + txtSearch.Text + "%");
+                        }
+
+                        if (ddlIsExpired.SelectedIndex != 0)
+                        {
+                            if (ddlIsExpired.SelectedValue == "paid")
+                            {
+                                conditions.Add("r.reservationStatus = 'Paid'");
+                            }
+                            else if (ddlIsExpired.SelectedValue == "failed")
+                            {
+                                conditions.Add("r.reservationStatus = 'Failed'");
+                            }
+                            else
+                            {
+                                //conditions.Add("r.checkOutDate < @today");
+                            }
+                            //SqlDataSource1.SelectParameters.Add("today", DbType.DateTime, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                        }
+
+                        if (conditions.Count > 0)
+                        {
+                            SqlDataSource1.SelectCommand += " AND " + string.Join(" AND ", conditions);
+                        }
+
+                        ListView1.DataBind();
+                    }
+                    else
+                    {
+                        // Handle the case where hostID session variable is null
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.Message + "\n" + baseQuery + "\n" + SqlDataSource1.SelectCommand);
+                }
+            }
+        }
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            //string hostID = Session["hostID"].ToString();
+            //Debug.WriteLine(Session["hostID"]);
+            //var a = Session["hostID"];
             //Create host session
-            Session["hostID"] = 1;
+            //Session["hostID"] = 1;
             FetchData();
+        }
+
+        protected void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void ddlIsExpired_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
         protected string GetStatusLabelCss(string status)
@@ -57,7 +141,8 @@ namespace StayScape
             db.closeConnection();
 
             // Fetch Average Reservation Made
-            decimal avgReservation = Convert.ToDecimal(totalRevenue) / Convert.ToInt32(totalReservation);
+            //decimal avgReservation = Convert.ToDecimal(totalRevenue) / Convert.ToInt32(totalReservation);
+            decimal avgReservation = 0;
             avgReservation = Math.Round(avgReservation, 2);
 
 
