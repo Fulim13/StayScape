@@ -78,6 +78,12 @@
                                 placeholder="Enter voucher name"
                                 CssClass="py-2 px-3 block w-full border-gray-300 shadow-sm text-md rounded-lg focus:border-indigo-500 focus:ring-indigo-500">
                             </asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1"
+                                ValidationGroup="VoucherValidation"
+                                class="text-sm italic" runat="server"
+                                ControlToValidate="txtVoucherName"
+                                ErrorMessage="Please enter a voucher name."
+                                Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
                         </div>
                     </div>
 
@@ -95,6 +101,22 @@
                                 placeholder="Enter Total Voucher"
                                 CssClass="py-2 px-3 block w-full border-gray-300 shadow-sm text-md rounded-lg focus:border-indigo-500 focus:ring-indigo-500">
                             </asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2"
+                                ValidationGroup="VoucherValidation"
+                                class="text-sm italic" runat="server"
+                                ControlToValidate="txtTotalVoucher"
+                                ErrorMessage="Total Voucher cannot be blank"
+                                Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
+                            <asp:RangeValidator ID="RangeValidator1"
+                                ValidationGroup="VoucherValidation"
+                                class="text-sm italic"
+                                runat="server"
+                                ControlToValidate="txtTotalVoucher"
+                                Type="Integer"
+                                MinimumValue="1"
+                                MaximumValue="1000000"
+                                ErrorMessage="Total Voucher must be a valid integer and cannot be less than 1"
+                                Display="Dynamic" ForeColor="Red"></asp:RangeValidator>
                         </div>
                     </div>
 
@@ -110,6 +132,22 @@
                                 placeholder="Enter Redeem limit"
                                 CssClass="py-2 px-3 block w-full border-gray-300 shadow-sm text-md rounded-lg focus:border-indigo-500 focus:ring-indigo-500">
                             </asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3"
+                                ValidationGroup="VoucherValidation"
+                                class="text-sm italic" runat="server"
+                                ControlToValidate="txtRedeemLimit"
+                                ErrorMessage="Redeem Limit Per Customer cannot be blank"
+                                Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
+                            <asp:RangeValidator ID="RangeValidator2"
+                                ValidationGroup="VoucherValidation"
+                                class="text-sm italic"
+                                runat="server"
+                                ControlToValidate="txtRedeemLimit"
+                                Type="Integer"
+                                MinimumValue="1"
+                                MaximumValue="1000000"
+                                ErrorMessage="Redeem Limit must be a valid integer and cannot be less than 1"
+                                Display="Dynamic" ForeColor="Red"></asp:RangeValidator>
                         </div>
                     </div>
 
@@ -252,7 +290,7 @@
             <%-- Update and Deactivate Button --%>
             <div class="pt-5">
                 <div class="flex justify-end">
-                    <asp:Button ID="btnCancel" OnClick="btnUpdate_Click" runat="server" Text="Update" CssClass="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" />
+                    <asp:Button ID="btnCancel" OnClick="btnUpdate_Click" runat="server" Text="Update" ValidationGroup="VoucherValidation" CssClass="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" />
                     <asp:Button ID="btnSubmit" OnClick="btnDeactivate_Click" runat="server" Text="Deactivate" CssClass="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" />
                 </div>
             </div>
