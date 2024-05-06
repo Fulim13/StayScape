@@ -27,8 +27,8 @@ namespace StayScape
 
                     if (txtSearch.Text != "")
                     {
-                        conditions.Add("r.reservationID = @reservationID");
-                        SqlDataSource1.SelectParameters.Add("reservationID", txtSearch.Text);
+                        conditions.Add("r.reservationID LIKE @reservationID");
+                        SqlDataSource1.SelectParameters.Add("reservationID", "%" + txtSearch.Text + "%");
                     }
 
                     if (ddlIsExpired.SelectedIndex != 0)

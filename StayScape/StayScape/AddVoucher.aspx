@@ -15,8 +15,13 @@
             const capAt = document.querySelector('#cap-at');
             const hdnDiscountType = document.getElementById("<%= hdnDiscountType.ClientID %>");
 
+            const valueValidator = document.getElementById("<%= RequiredFieldValidator5.ClientID %>");
+            const rateValidator = document.getElementById("<%= rfvDisRate.ClientID %>");
+            const capAtValidator = document.getElementById("<%= RequiredFieldValidator4.ClientID %>");
+
             // Check if svgValueCheckCircle is visible
             const isVisible = !svgValueCheckCircle.classList.contains('invisible');
+
 
             // Toggle visibility of labels
             if (isVisible) {
@@ -40,6 +45,16 @@
                 //document.getElementById('RequiredFieldValidator5').ValidationGroup = '';
                 //document.getElementById('rfvDisRate').ValidationGroup = 'VoucherValidation';
                 //document.getElementById('RequiredFieldValidator4').ValidationGroup = 'VoucherValidation';
+
+                //ValidatorEnable(valueValidator, false);
+                //ValidatorEnable(rateValidator, true);
+                //ValidatorEnable(capAtValidator, true);
+
+                valueValidator.validationGroup = '';
+                rateValidator.validationGroup = 'VoucherValidation';
+                capAtValidator.validationGroup = 'VoucherValidation';
+
+
                 
 
             } else {
@@ -63,8 +78,16 @@
                 //document.getElementById('RequiredFieldValidator5').ValidationGroup = 'VoucherValidation';
                 //document.getElementById('rfvDisRate').ValidationGroup = '';
                 //document.getElementById('RequiredFieldValidator4').ValidationGroup = '';
+                //ValidatorEnable(valueValidator, true);
+                //ValidatorEnable(rateValidator, false);
+                //ValidatorEnable(capAtValidator, false);
+
+                valueValidator.validationGroup = 'VoucherValidation';
+                rateValidator.validationGroup = '';
+                capAtValidator.validationGroup = '';
             }
         }
+        toggleLabels()
 
     </script>
     <div class="lg:mx-24 xl:mx-48 py-2">
@@ -280,7 +303,7 @@
                                 CssClass="py-2 px-3 block w-full border border-gray-300 shadow-sm text-md rounded-lg focus:outline-none focus:border-indigo-500 focus:ring-indigo-500">
                             </asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfvDisRate" class="text-sm italic hidden"
-                                ValidationGroup=""
+                                ValidationGroup="VoucherValidation"
                                 runat="server" ControlToValidate="txtDiscountRate"
                                 ErrorMessage="Please enter a discount rate." Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
                         </div>
@@ -297,7 +320,7 @@
                                 CssClass="py-2 px-3 block w-full border border-gray-300 shadow-sm text-md rounded-lg focus:outline-none focus:border-indigo-500 focus:ring-indigo-500">
                             </asp:TextBox>
                          <asp:RequiredFieldValidator ID="RequiredFieldValidator4" class="text-sm italic"
-                                ValidationGroup=""
+                                ValidationGroup="VoucherValidation"
                                 runat="server" ControlToValidate="txtCapAt"
                                 ErrorMessage="Please enter a cap at value."
                                 Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
