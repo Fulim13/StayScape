@@ -70,24 +70,26 @@ namespace StayScape
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
-            DBManager db = new DBManager();
-
-            string sqlCommand = "UPDATE Voucher SET" +
-                " voucherName = @voucherName," +
-                " totalVoucher = @totalVoucher," +
-                " redeemLimitPerCustomer = @redeemLimitPerCustomer," +
-                " discountType = @discountType," +
-                " minSpend = @minSpend," +
-                " discountRate = @discountRate," +
-                " discountPrice = @discountPrice," +
-                " capAt = @capAt " +
-                " WHERE voucherID = @voucherID";
-            SqlParameter[] parameters;
-
-            if (hdnDiscountType.Value == "Money Value Off")
+            if (Page.IsValid)
             {
-                parameters = new SqlParameter[]
+                DBManager db = new DBManager();
+
+                string sqlCommand = "UPDATE Voucher SET" +
+                    " voucherName = @voucherName," +
+                    " totalVoucher = @totalVoucher," +
+                    " redeemLimitPerCustomer = @redeemLimitPerCustomer," +
+                    " discountType = @discountType," +
+                    " minSpend = @minSpend," +
+                    " discountRate = @discountRate," +
+                    " discountPrice = @discountPrice," +
+                    " capAt = @capAt " +
+                    " WHERE voucherID = @voucherID";
+                SqlParameter[] parameters;
+
+                if (hdnDiscountType.Value == "Money Value Off")
                 {
+                    parameters = new SqlParameter[]
+                    {
                     new SqlParameter("@voucherName", txtVoucherName.Text),
                     new SqlParameter("@totalVoucher", Convert.ToInt32(txtTotalVoucher.Text)),
                     new SqlParameter("@redeemLimitPerCustomer", Convert.ToInt32(txtRedeemLimit.Text)),
@@ -97,13 +99,13 @@ namespace StayScape
                     new SqlParameter("@discountPrice", Convert.ToDouble(txtDiscountValue.Text)),
                     new SqlParameter("@discountRate", DBNull.Value),
                     new SqlParameter("@capAt", DBNull.Value)
-                };
+                    };
 
-            }
-            else
-            {
-                parameters = new SqlParameter[]
+                }
+                else
                 {
+                    parameters = new SqlParameter[]
+                    {
                     new SqlParameter("@voucherName", txtVoucherName.Text),
                     new SqlParameter("@totalVoucher", Convert.ToInt32(txtTotalVoucher.Text)),
                     new SqlParameter("@redeemLimitPerCustomer", Convert.ToInt32(txtRedeemLimit.Text)),
@@ -113,37 +115,64 @@ namespace StayScape
                     new SqlParameter("@discountPrice", DBNull.Value),
                     new SqlParameter("@discountRate", Convert.ToDouble(txtDiscountRate.Text)),
                     new SqlParameter("@capAt", Convert.ToDouble(txtCapAt.Text))
-                };
-            }
+                    };
+                }
 
-            db.createConnection();
-            bool valid = db.ExecuteNonQuery(sqlCommand, parameters);
-            db.closeConnection();
-            if (valid)
-            {
-                Response.Redirect("~/Voucher.aspx");
+                db.createConnection();
+                bool valid = db.ExecuteNonQuery(sqlCommand, parameters);
+                db.closeConnection();
+                if (valid)
+                {
+                    Response.Redirect("~/Voucher.aspx");
+                }
             }
         }
 
         protected void btnDeactivate_Click(object sender, EventArgs e)
         {
-            DBManager db = new DBManager();
 
-            string sqlCommand = "UPDATE Voucher SET" +
-                " activeStatus = 0 WHERE voucherID = @voucherID";
-
-            SqlParameter[] parameters =
+            //Check if the voucher is active or not
+            if (btnSubmit.Text == "Activate")
             {
+                DBManager db = new DBManager();
+
+                string sqlCommand = "UPDATE Voucher SET" +
+                    " activeStatus = 1 WHERE voucherID = @voucherID";
+
+                SqlParameter[] parameters =
+                {
+                    new SqlParameter("@voucherID", Request.QueryString["voucherID"]),
+                };
+
+                db.createConnection();
+                bool valid = db.ExecuteNonQuery(sqlCommand, parameters);
+                db.closeConnection();
+                if (valid)
+                {
+                    Response.Redirect("~/Voucher.aspx");
+                }
+            }
+            else
+            {
+                DBManager db = new DBManager();
+
+                string sqlCommand = "UPDATE Voucher SET" +
+                    " activeStatus = 0 WHERE voucherID = @voucherID";
+
+                SqlParameter[] parameters =
+                {
                 new SqlParameter("@voucherID", Request.QueryString["voucherID"]),
             };
 
-            db.createConnection();
-            bool valid = db.ExecuteNonQuery(sqlCommand, parameters);
-            db.closeConnection();
-            if (valid)
-            {
-                Response.Redirect("~/Voucher.aspx");
+                db.createConnection();
+                bool valid = db.ExecuteNonQuery(sqlCommand, parameters);
+                db.closeConnection();
+                if (valid)
+                {
+                    Response.Redirect("~/Voucher.aspx");
+                }
             }
+
         }
 
 
@@ -167,6 +196,7 @@ namespace StayScape
                 txtTotalVoucher.Text = voucherDetails["totalVoucher"].ToString();
                 txtRedeemLimit.Text = voucherDetails["redeemLimitPerCustomer"].ToString();
                 txtMinSpend.Text = voucherDetails["minSpend"].ToString();
+                btnSubmit.Text = voucherDetails["activeStatus"].ToString() == "True" ? "Deactivate" : "Activate";
 
                 // Populate start and end dates
                 txtStartDate.Text = Convert.ToDateTime(voucherDetails["startDate"]).ToString("yyyy-MM-ddTHH:mm");
@@ -191,8 +221,8 @@ namespace StayScape
                 if (discountType == "Value Off")
                 {
                     hdnDiscountType.Value = "Money Value Off";
-                    string script = "<script>toggleLabels();</script>";
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "CallToggleLabels", script);
+                    //string script = "<script>toggleLabels();</script>";
+                    //Page.ClientScript.RegisterStartupScript(this.GetType(), "CallToggleLabels", script);
                     txtDiscountValue.Text = voucherDetails["discountPrice"].ToString();
                 }
                 else if (discountType == "Discount Off")
