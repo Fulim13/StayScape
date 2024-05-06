@@ -82,6 +82,12 @@ namespace StayScape
             {
                 string strError = "Please select a cancellation reason!";
                 lblError.Text = strError;
+                // Re-load reservation details to prevent data loss after error
+                if (!string.IsNullOrEmpty(reservationID))
+                {
+                    LoadReservationDetails(reservationID);
+                }
+
                 return;
             }
 
@@ -104,7 +110,8 @@ namespace StayScape
                 string sqlCommand = @"
                 SELECT 
                     r.reservationTotal,
-                    r.checkInDate
+                    r.checkInDate,
+                    r.createdAt
                 FROM 
                     Reservation r
                 WHERE 
@@ -120,43 +127,51 @@ namespace StayScape
                 {
                     reservationTotal = Convert.ToDecimal(reader["reservationTotal"]);
                     checkInDate = Convert.ToDateTime(reader["checkInDate"]);
+                    DateTime reservationCreatedAt = Convert.ToDateTime(reader["createdAt"]);
+
+                    decimal refundAmount = CalculateRefund(reservationTotal, checkInDate, reservationCreatedAt);
+
+                    using (SqlConnection conn2 = new SqlConnection(connectionString))
+                    {
+                        string sqlCommand2 = @"
+                        INSERT INTO Cancellation (reason, cancellationDate, refundAmount, reservationID)
+                        VALUES (@reason,@cancellationDate,@refundAmount, @reservationID);
+
+                        UPDATE Reservation
+                        SET 
+                            reservationStatus = 'Cancelled'
+                        WHERE
+                            reservationID = @reservationID";
+
+                        SqlCommand cmd2 = new SqlCommand(sqlCommand2, conn2);
+                        cmd2.Parameters.AddWithValue("@reason", selectedReason);
+                        cmd2.Parameters.AddWithValue("@cancellationDate", DateTime.Now);
+                        cmd2.Parameters.AddWithValue("@refundAmount", refundAmount);
+                        cmd2.Parameters.AddWithValue("@reservationID", reservationID);
+
+                        conn2.Open();
+                        cmd2.ExecuteNonQuery();
+                    }
+
+                    //successCancelModal.CssClass = successCancelModal.CssClass.Replace("hidden", "");
+                    ShowSuccessModal(refundAmount);
                 }
 
                 conn.Close();
             }
-
-            decimal refundAmount = CalculateRefund(reservationTotal, checkInDate);
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                string sqlCommand = @"
-                INSERT INTO Cancellation (reason, cancellationDate, refundAmount, reservationID)
-                VALUES (@reason,@cancellationDate,@refundAmount, @reservationID);
-
-                UPDATE Reservation
-                SET 
-                    reservationStatus = 'Cancelled'
-                WHERE
-                    reservationID = @reservationID";
-
-                SqlCommand cmd = new SqlCommand(sqlCommand, conn);
-                cmd.Parameters.AddWithValue("@reason", selectedReason);
-                cmd.Parameters.AddWithValue("@cancellationDate", DateTime.Now);
-                cmd.Parameters.AddWithValue("@refundAmount", refundAmount);
-                cmd.Parameters.AddWithValue("@reservationID", reservationID);
-
-                conn.Open();
-                cmd.ExecuteNonQuery();
-            }
-
-            //successCancelModal.CssClass = successCancelModal.CssClass.Replace("hidden", "");
-            ShowSuccessModal(refundAmount);
+            
         }
 
-        private decimal CalculateRefund(decimal reservationTotal, DateTime checkInDate)
+        private decimal CalculateRefund(decimal reservationTotal, DateTime checkInDate, DateTime reservationCreatedAt)
         {
+            TimeSpan timeSinceBooking = DateTime.Now - reservationCreatedAt;
             TimeSpan timeUntilCheckIn = checkInDate - DateTime.Now;
 
+            // If cancelled within 24 hours of booking, full refund
+            if (timeSinceBooking.TotalHours < 24)
+            {
+                return reservationTotal;
+            }
             if (timeUntilCheckIn.TotalDays >= 7)
             {
                 return reservationTotal; // Full refund

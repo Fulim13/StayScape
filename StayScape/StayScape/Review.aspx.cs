@@ -69,9 +69,41 @@ namespace StayScape
             FROM Review r
             INNER JOIN Reservation rs ON r.reservationID = rs.reservationID
             INNER JOIN Property p ON rs.propertyID = p.propertyID
-            WHERE p.hostID = @hostID
-            GROUP BY r.rating
-            ORDER BY r.rating DESC"; // DESC to get 5 to 1
+            INNER JOIN Customer c ON r.custID = c.custID
+            WHERE p.hostID = @hostID"; // DESC to get 5 to 1
+
+            // List to hold SQL conditions
+            List<string> conditions = new List<string>();
+
+            // Add conditions based on current filters
+            if (!string.IsNullOrEmpty(propertyNameTextBox.Text))
+            {
+                conditions.Add("p.propertyName LIKE @propertyName");
+            }
+
+            if (!string.IsNullOrEmpty(custNameTextBox.Text))
+            {
+                conditions.Add("c.customerName LIKE @customerName");
+            }
+
+            if (!string.IsNullOrEmpty(txtDate.Text))
+            {
+                conditions.Add("CAST(r.createdAt AS DATE) = @createdAt");
+            }
+
+            if (selectedStarRating > 0)
+            {
+                conditions.Add("r.rating = @selectedStarRating");
+            }
+
+            // Append conditions to the base query
+            if (conditions.Count > 0)
+            {
+                query += " AND " + string.Join(" AND ", conditions);
+            }
+
+            // Append grouping and sorting
+            query += " GROUP BY r.rating ORDER BY r.rating DESC";
 
             // Dictionary to store the counts of each rating
             Dictionary<int, int> ratingCounts = new Dictionary<int, int>
@@ -88,25 +120,37 @@ namespace StayScape
                 conn.Open();
                 SqlCommand cmd = new SqlCommand(query, conn);
 
-                // Set hostID as a parameter
-                cmd.Parameters.AddWithValue("@hostID", GetHostID()); // Function to get the host ID
+                // Set the base parameter
+                cmd.Parameters.AddWithValue("@hostID", GetHostID());
+
+                // Add parameter values for applied filters
+                if (!string.IsNullOrEmpty(propertyNameTextBox.Text))
+                {
+                    cmd.Parameters.AddWithValue("@propertyName", "%" + propertyNameTextBox.Text + "%");
+                }
+
+                if (!string.IsNullOrEmpty(custNameTextBox.Text))
+                {
+                    cmd.Parameters.AddWithValue("@customerName", "%" + custNameTextBox.Text + "%");
+                }
+
+                if (!string.IsNullOrEmpty(txtDate.Text))
+                {
+                    cmd.Parameters.AddWithValue("@createdAt", txtDate.Text);
+                }
+
+                if (selectedStarRating > 0)
+                {
+                    cmd.Parameters.AddWithValue("@selectedStarRating", selectedStarRating);
+                }
 
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    if (!reader.IsDBNull(0))
-                    {
-                        // Retrieve as decimal, then convert/round to integer
-                        decimal decimalRating = reader.GetDecimal(0);
-
-                        // Convert to integer by rounding (e.g., for star ratings)
-                        int rating = Convert.ToInt32(Math.Round(decimalRating));
-
-                        int count = reader.GetInt32(1); // Get count for the rating
-
-                        ratingCounts[rating] = count; // Update the dictionary
-                    }
+                    int rating = Convert.ToInt32(reader.GetDecimal(0));
+                    int count = reader.GetInt32(1);
+                    ratingCounts[rating] = count;
                 }
             }
 
@@ -122,7 +166,7 @@ namespace StayScape
         private int GetHostID()
         {
             // Placeholder for actual host ID retrieval logic (from session, user context, etc.)
-            return 1; // Default host ID
+            return Convert.ToInt32(Session["hostID"]); // Default host ID
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
@@ -135,7 +179,7 @@ namespace StayScape
             // Create SQL query dynamically based on search criteria
             string query = @"
                 SELECT 
-                    r.reviewID, 
+                    r.reviewID,
                     r.reviewDesc, 
                     r.rating, 
                     r.createdAt, 
@@ -215,7 +259,7 @@ namespace StayScape
 
             // Set the new query
             SqlDataSource1.SelectCommand = query;
-
+            UpdateRatingButtonCounts();
             // Rebind data
             ListView1.DataBind();
         }
@@ -271,7 +315,7 @@ namespace StayScape
             }
 
             // TODO: Replace session host id
-            int hostID = 1;
+            int hostID = GetHostID();
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -288,9 +332,9 @@ namespace StayScape
                 {
                     // If a reply exists, update it
                     string updateReplyQuery = @"
-            UPDATE Reply 
-            SET replyText = @replyText, repliedAt = @repliedAt 
-            WHERE replyID = @replyID";
+                        UPDATE Reply 
+                        SET replyText = @replyText, repliedAt = @repliedAt 
+                        WHERE replyID = @replyID";
 
                     SqlCommand updateCmd = new SqlCommand(updateReplyQuery, conn);
                     updateCmd.Parameters.AddWithValue("@replyText", replyText);
@@ -303,8 +347,8 @@ namespace StayScape
                 {
                     // If no reply exists, insert a new reply
                     string insertReplyQuery = @"
-            INSERT INTO Reply (replyID, replyText, repliedAt, repliedBy, reviewID)
-            VALUES (@replyID, @replyText, @repliedAt, @repliedBy, @reviewID)";
+                        INSERT INTO Reply (replyID, replyText, repliedAt, repliedBy, reviewID)
+                        VALUES (@replyID, @replyText, @repliedAt, @repliedBy, @reviewID)";
 
                     // Generate new reply ID
                     string newReplyID = GenerateNewReplyID(conn);
@@ -388,9 +432,9 @@ namespace StayScape
         }
 
             protected void ShowReplyModal()
-        {
-            replyModal.CssClass = replyModal.CssClass.Replace("hidden", "").Trim(); // Make modal visible
-        }
+            {
+                replyModal.CssClass = replyModal.CssClass.Replace("hidden", "").Trim(); // Make modal visible
+            }
 
         protected void ModalCloseButton_Click(object sender, EventArgs e)
         {
@@ -422,6 +466,8 @@ namespace StayScape
                     btnCancel.Visible = false; // Hide the cancel button
                 }
             }
+
+            BindListView();
         }
 
         //protected void btnReply_Click(object sender, EventArgs e)
