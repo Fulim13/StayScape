@@ -19,27 +19,21 @@ namespace StayScape.DesmondsPage
             // Validate the user using email
             if (Membership.ValidateUser(email, password))
             {
-                MembershipUser user = Membership.GetUser(email);
-                Guid userId = (Guid)user.ProviderUserKey;
-
-                //Session["hostID"] = userId;
-
-
-                // Debug.WriteLine(userId);
-
                 if (Roles.IsUserInRole(email, "Host"))
                 {
+                    // Set authentication cookie with expiration set to "Session"
                     FormsAuthentication.SetAuthCookie(email, false);
-                    //Debug.WriteLine(userId);
-                    Session["hostID"] = userId.ToString().ToUpper();
-                    Debug.WriteLine(Session["hostID"]);
+
+                    // Redirect to the dashboard or host page
                     Response.Redirect("Dashboard.aspx"); //<-- replace this with actual host page
                 }
                 else
                 {
+                    // Set authentication cookie with expiration set to "Session"
+                    FormsAuthentication.SetAuthCookie(email, false);
+
+                    // Redirect to the default page or the requested page
                     FormsAuthentication.RedirectFromLoginPage(email, false);
-                    Session["custID"] = userId.ToString().ToUpper();
-                    // Response.Redirect("Profile.aspx");
                 }
             }
             else
