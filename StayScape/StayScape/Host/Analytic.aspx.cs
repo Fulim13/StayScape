@@ -23,11 +23,13 @@ namespace StayScape
         {
             decimal[] arr = new decimal[12];
             DBManager db = new DBManager();
-            string query = @"SELECT MONTH(createdAt) AS month, SUM(reservationTotal) AS monthly_order_total 
-                     FROM [Reservation] 
-                     WHERE YEAR(createdAt) = @year AND reservationStatus = 'Paid' AND hostID = @hostID
-                     GROUP BY MONTH(createdAt) 
-                     ORDER BY month;";
+            string query = @"SELECT MONTH(r.createdAt) AS month, SUM(r.reservationTotal) AS monthly_order_total 
+                     FROM [Reservation] r 
+                     INNER JOIN [Property] p ON r.propertyId = p.propertyId 
+                     INNER JOIN [Host] h ON p.hostID = h.hostID
+                     WHERE YEAR(r.createdAt) = @year AND r.reservationStatus = 'Paid' AND h.hostID = @hostID
+                     GROUP BY MONTH(r.createdAt) 
+                     ORDER BY MONTH(r.createdAt);";
             SqlParameter[] sqlParameters = new SqlParameter[]
             {
         new SqlParameter("@year", DateTime.Now.Year),
@@ -54,8 +56,9 @@ namespace StayScape
             string query = @"SELECT TOP 5 p.propertyName, SUM(r.reservationTotal) AS total 
                      FROM [Reservation] r 
                      INNER JOIN [Property] p ON r.propertyId = p.propertyId 
-                     WHERE YEAR(r.createdAt) = @year AND reservationStatus = 'Paid' AND r.hostID = @hostID
-                     GROUP BY r.propertyId, p.propertyName 
+                     INNER JOIN [Host] h ON p.hostID = h.hostID
+                     WHERE YEAR(r.createdAt) = @year AND r.reservationStatus = 'Paid' AND h.hostID = @hostID
+                     GROUP BY p.propertyName 
                      ORDER BY total DESC;";
             SqlParameter[] sqlParameters = new SqlParameter[]
             {
@@ -84,8 +87,10 @@ namespace StayScape
             string query = @"SELECT TOP 5 c.customerName, SUM(r.reservationTotal) AS total 
                      FROM [Reservation] r 
                      INNER JOIN [Customer] c ON r.custID = c.custID 
-                     WHERE YEAR(r.createdAt) = @year AND reservationStatus = 'Paid' AND r.hostID = @hostID
-                     GROUP BY r.custID, c.customerName 
+                     INNER JOIN [Property] p ON r.propertyId = p.propertyId 
+                     INNER JOIN [Host] h ON p.hostID = h.hostID
+                     WHERE YEAR(r.createdAt) = @year AND r.reservationStatus = 'Paid' AND h.hostID = @hostID
+                     GROUP BY c.customerName 
                      ORDER BY total DESC;";
             SqlParameter[] sqlParameters = new SqlParameter[]
             {
@@ -106,6 +111,7 @@ namespace StayScape
             string values = ser.Serialize(salesByCustomer);
             return values;
         }
+
 
 
     }

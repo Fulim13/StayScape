@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="property_host.aspx.cs" Inherits="StayScape.property_host" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="/Host/Main.Master" AutoEventWireup="true" CodeBehind="property_host.aspx.cs" Inherits="StayScape.property_host" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
