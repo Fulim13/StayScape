@@ -203,12 +203,12 @@ namespace StayScape
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/OrderHistory.aspx");
+            Response.Redirect("OrderHistory.aspx");
         }
 
         protected void ModalCloseButton_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/OrderHistory.aspx");
+            Response.Redirect("OrderHistory.aspx");
         }
     }
 }

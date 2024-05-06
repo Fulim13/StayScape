@@ -186,42 +186,42 @@
                 <div class="flex flex-col items-center justify-center border-l border-gray">
                     <p class="font-medium text-xl leading-8 text-gray-900 text-center">Cleanliness</p>
                     <asp:Label ID="lblCleanliness" runat="server" Text="-" class="py-4 font-medium text-lg text-black" />
-                    <asp:Image ID="imgCleanliness" runat="server" ImageUrl="~/Images/water.svg" CssClass="w-10 h-10"/>
+                    <asp:Image ID="imgCleanliness" runat="server" ImageUrl="Images/water.svg" CssClass="w-10 h-10"/>
                     <%--<p class="py-4 font-medium text-lg text-black">4.9</p>
                     <img src="Images/water.svg" alt="Cleanliness" class="w-10 h-10"/>--%>
                 </div>
                 <div class="flex flex-col items-center justify-center border-l border-gray">
                     <p class="font-medium text-xl leading-8 text-gray-900 text-center">Service</p>
                     <asp:Label ID="lblService" runat="server" Text="-" class="py-4 font-medium text-lg text-black" />
-                    <asp:Image ID="imgService" runat="server" ImageUrl="~/Images/nut.svg" CssClass="w-10 h-10"/>
+                    <asp:Image ID="imgService" runat="server" ImageUrl="Images/nut.svg" CssClass="w-10 h-10"/>
                     <%--<p class="py-4 font-medium text-lg text-black">4.9</p>
                     <img src="Images/nut.svg" alt="Service" class="w-10 h-10"/>--%>
                 </div>
                 <div class="flex flex-col items-center justify-center border-l border-gray">
                     <p class="font-medium text-xl leading-8 text-gray-900 text-center">Comfort</p>
                     <asp:Label ID="lblComfort" runat="server" Text="-" class="py-4 font-medium text-lg text-black" />
-                    <asp:Image ID="imgComfort" runat="server" ImageUrl="~/Images/sun.svg" CssClass="w-10 h-10"/>
+                    <asp:Image ID="imgComfort" runat="server" ImageUrl="Images/sun.svg" CssClass="w-10 h-10"/>
                     <%--<p class="py-4 font-medium text-lg text-black">4.9</p>
                     <img src="Images/sun.svg" alt="Comfort" class="w-10 h-10"/>--%>
                 </div>
                 <div class="flex flex-col items-center justify-center border-l border-gray">
                     <p class="font-medium text-xl leading-8 text-gray-900 text-center">Condition</p>
                     <asp:Label ID="lblCondition" runat="server" Text="-" class="py-4 font-medium text-lg text-black" />
-                    <asp:Image ID="imgCondition" runat="server" ImageUrl="~/Images/lamp.svg" CssClass="w-10 h-10"/>
+                    <asp:Image ID="imgCondition" runat="server" ImageUrl="Images/lamp.svg" CssClass="w-10 h-10"/>
                     <%--<p class="py-4 font-medium text-lg text-black">4.9</p>
                     <img src="Images/lamp.svg" alt="Condition" class="w-10 h-10"/>--%>
                 </div>
                 <div class="flex flex-col items-center justify-center border-l border-gray">
                     <p class="font-medium text-xl leading-8 text-gray-900 text-center">Amenities</p>
                     <asp:Label ID="lblAmenities" runat="server" Text="-" class="py-4 font-medium text-lg text-black" />
-                    <asp:Image ID="imgAmenities" runat="server" ImageUrl="~/Images/tv.svg" CssClass="w-10 h-10"/>
+                    <asp:Image ID="imgAmenities" runat="server" ImageUrl="Images/tv.svg" CssClass="w-10 h-10"/>
                     <%--<p class="py-4 font-medium text-lg text-black">4.9</p>
                     <img src="Images/tv.svg" alt="Amenities" class="w-10 h-10"/>--%>
                 </div>
                 <div class="flex flex-col items-center justify-center border-l border-gray">
                     <p class="font-medium text-xl leading-8 text-gray-900 text-center">Location</p>
                     <asp:Label ID="lblLocation" runat="server" Text="-" class="py-4 font-medium text-lg text-black" />
-                    <asp:Image ID="imgLocation" runat="server" ImageUrl="~/Images/location.svg" CssClass="w-10 h-10"/>
+                    <asp:Image ID="imgLocation" runat="server" ImageUrl="Images/location.svg" CssClass="w-10 h-10"/>
                     <%--<p class="py-4 font-medium text-lg text-black">4.9</p>
                     <img src="Images/location.svg" alt="Location" class="w-10 h-10"/>--%>
                 </div>
