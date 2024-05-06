@@ -73,7 +73,7 @@
                     <div class="flex flex-col flex-grow pt-5 bg-indigo-700 overflow-y-auto">
                         <!-- Logo and Company Name -->
                         <div class="flex items-center flex-shrink-0 px-4">
-                            <img class="h-16 w-auto" src="Images/house-transparent.png" alt="StayScape">
+                            <img class="h-16 w-auto" src="../Images/house-transparent.png" alt="StayScape">
                             <div class="text-2xl font-bold text-white">Stay Scape</div>
                         </div>
                         <!-- Sidebar component -->
