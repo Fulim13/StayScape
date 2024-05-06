@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="property_host.aspx.cs" Inherits="StayScape.property_host" %>
+<%@ Page Title="" Language="C#" MasterPageFile="Main.Master" AutoEventWireup="true" CodeBehind="property_host.aspx.cs" Inherits="StayScape.property_host" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -13,7 +13,7 @@
         <link href="./dist/output.css" rel="stylesheet" />
         <style>
             body {
-                font-family: Arial, sans-serif;
+                /*font-family: Arial, sans-serif;*/
                 background-color: #f2f2f2;
             }
 
