@@ -8,7 +8,7 @@ namespace StayScape.DesmondsPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
         protected void BtnSignIn_Click(object sender, EventArgs e)
         {
@@ -32,6 +32,13 @@ namespace StayScape.DesmondsPage
                 }
                 else
                 {
+                    // Check if the user was previously authenticated as a host
+                    if (Roles.IsUserInRole(email, "Host"))
+                    {
+                        // If so, remove the host-specific session variable
+                        Session.Remove("hostID");
+                    }
+
                     // Set authentication cookie with expiration set to "Session"
                     FormsAuthentication.SetAuthCookie(email, false);
                     Session["custID"] = userId.ToString().ToUpper();
