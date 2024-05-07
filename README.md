@@ -32,8 +32,7 @@ Testing data for host 1
 Email:Host@gmail.com
 Password:W123.90a
 
-Testing data for host 12
-```
+Testing data for host 2
 Email:Host2@gmail.com
 Password:W123.90a
 
