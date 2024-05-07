@@ -86,7 +86,7 @@ namespace StayScape
         protected void btnSignout_Click(object sender, EventArgs e)
         {
             FormsAuthentication.SignOut(); // Sign the user out
-            Response.Redirect("Login.aspx"); // Redirect to the login page
+            Response.Redirect("../Login.aspx"); // Redirect to the login page
         }
 
         public string ProfilePictureUrl
