@@ -231,14 +231,15 @@
     <script>
         function validateForm() {
             var propertyName = document.getElementById('<%= txtPropertyName.ClientID %>').value;
-            var propertyPrice = document.getElementById('<%= txtPropertyPrice.ClientID %>').value;
-            var propertyDesc = document.getElementById('<%= txtPropertyDesc.ClientID %>').value;
-            var propertyAddress = document.getElementById('<%= txtPropertyAddress.ClientID %>').value;
-            var city = document.getElementById('<%= txtCity.ClientID %>').value;
-            var state = document.getElementById('<%= txtState.ClientID %>').value;
-            var totalBedrooms = document.getElementById('<%= txtTotalBedrooms.ClientID %>').value;
-            var totalBathrooms = document.getElementById('<%= txtTotalBathrooms.ClientID %>').value;
-            var propertyImage = document.getElementById('<%= fuPropertyImage.ClientID %>').files;
+        var propertyPrice = document.getElementById('<%= txtPropertyPrice.ClientID %>').value;
+        var propertyDesc = document.getElementById('<%= txtPropertyDesc.ClientID %>').value;
+        var propertyAddress = document.getElementById('<%= txtPropertyAddress.ClientID %>').value;
+        var city = document.getElementById('<%= txtCity.ClientID %>').value;
+        var state = document.getElementById('<%= txtState.ClientID %>').value;
+        var totalBedrooms = document.getElementById('<%= txtTotalBedrooms.ClientID %>').value;
+        var totalBathrooms = document.getElementById('<%= txtTotalBathrooms.ClientID %>').value;
+        var propertyImage = document.getElementById('<%= fuPropertyImage.ClientID %>').files;
+            var validImageTypes = /(\.jpg|\.jpeg|\.png)$/i;
 
             if (propertyName.trim() === '' ||
                 propertyPrice.trim() === '' ||
@@ -252,8 +253,18 @@
                 alert('Please fill in all required fields.');
                 return false;
             }
+
+            for (var i = 0; i < propertyImage.length; i++) {
+                var file = propertyImage[i];
+                if (!validImageTypes.test(file.name)) {
+                    alert('Only image files (jpg, jpeg, png) are allowed.');
+                    return false;
+                }
+            }
+
             return true;
         }
-    </script>
+
+</script>
 
 </asp:Content>
