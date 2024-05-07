@@ -59,14 +59,12 @@ namespace StayScape
             // Enable all buttons
             btnFilterAll.Enabled = true;
             btnFilterPaid.Enabled = true;
-            btnFilterPending.Enabled = true;
             btnFilterFailed.Enabled = true;
             btnFilterCancelled.Enabled = true;
 
             // Remove 'selected' class from all buttons
             btnFilterAll.CssClass = btnFilterAll.CssClass.Replace("selected", "").Trim();
             btnFilterPaid.CssClass = btnFilterPaid.CssClass.Replace("selected", "").Trim();
-            btnFilterPending.CssClass = btnFilterPending.CssClass.Replace("selected", "").Trim();
             btnFilterFailed.CssClass = btnFilterFailed.CssClass.Replace("selected", "").Trim();
             btnFilterCancelled.CssClass = btnFilterCancelled.CssClass.Replace("selected", "").Trim();
 
@@ -80,10 +78,6 @@ namespace StayScape
             else if (clickedButton.ID == "btnFilterPaid")
             {
                 ViewState["ReservationFilter"] = "Paid";
-            }
-            else if (clickedButton.ID == "btnFilterPending")
-            {
-                ViewState["ReservationFilter"] = "Pending";
             }
             else if (clickedButton.ID == "btnFilterFailed")
             {

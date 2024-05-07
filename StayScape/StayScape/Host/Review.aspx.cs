@@ -69,6 +69,21 @@ namespace StayScape
             INNER JOIN Customer c ON r.custID = c.custID
             WHERE p.hostID = @hostID"; // DESC to get 5 to 1
 
+            // Get the host ID
+            string hostID = GetHostID();
+
+            // Ensure the parameter is added or updated
+            if (SqlDataSource1.SelectParameters["hostID"] == null)
+            {
+                // If the parameter doesn't exist, add it
+                SqlDataSource1.SelectParameters.Add("hostID", hostID);
+            }
+            else
+            {
+                // If it exists, update its value
+                SqlDataSource1.SelectParameters["hostID"].DefaultValue = hostID;
+            }
+
             // List to hold SQL conditions
             List<string> conditions = new List<string>();
 
@@ -197,10 +212,24 @@ namespace StayScape
                     Customer c ON r.custID = c.custID
                 LEFT JOIN 
                     Reply rep ON r.reviewID = rep.reviewID 
+                WHERE
+                    p.hostID = @hostID
                 "; // Use LEFT JOIN to check for related replies
 
-            // Start with a flag to indicate if a condition has been added
-            bool hasCondition = false;
+            // Ensure proper parameterization for hostID
+            string hostID = GetHostID();
+
+            // Add or update the hostID parameter
+            if (SqlDataSource1.SelectParameters["hostID"] == null)
+            {
+                SqlDataSource1.SelectParameters.Add("hostID", hostID);
+            }
+            else
+            {
+                SqlDataSource1.SelectParameters["hostID"].DefaultValue = hostID;
+            }
+
+            bool hasCondition = true;
 
             // Utility function to escape single quotes to prevent SQL injection
             string EscapeSingleQuotes(string input)
@@ -211,33 +240,29 @@ namespace StayScape
             // Property name filter
             if (!string.IsNullOrEmpty(propertyNameTextBox.Text))
             {
-                query += hasCondition ? " AND" : " WHERE"; // Correct use of WHERE/AND
+                query += " AND"; // Correct use of AND since there's already a WHERE clause
                 query += $" p.propertyName LIKE '%{EscapeSingleQuotes(propertyNameTextBox.Text)}%' ";
-                hasCondition = true; // Update flag to indicate a condition has been added
             }
 
             // Customer name filter
             if (!string.IsNullOrEmpty(custNameTextBox.Text))
             {
-                query += hasCondition ? " AND" : " WHERE"; // Correct use of WHERE/AND
+                query += " AND"; // Correct use of AND
                 query += $" c.customerName LIKE '%{EscapeSingleQuotes(custNameTextBox.Text)}%' ";
-                hasCondition = true; // Update flag
             }
 
             // Date filter
             if (!string.IsNullOrEmpty(txtDate.Text))
             {
-                query += hasCondition ? " AND" : " WHERE"; // Correct use of WHERE/AND
-                query += $" CAST(r.createdAt AS DATE) = '{txtDate.Text}'"; // Correct SQL date format
-                hasCondition = true; // Update flag
+                query += " AND"; // Correct use of AND
+                query += $" CAST(r.createdAt AS DATE) = '{txtDate.Text}'";
             }
 
             // Star rating filter
-            if (selectedStarRating > 0) // If it's greater than 0, apply the filter
+            if (selectedStarRating > 0)
             {
-                query += hasCondition ? " AND" : " WHERE"; // Correct use of WHERE/AND
-                query += $" r.rating = {selectedStarRating}"; // Filter by star rating
-                hasCondition = true; // Update flag
+                query += " AND"; // Correct use of AND
+                query += $" r.rating = {selectedStarRating}";
             }
 
             // Reply-based filter
@@ -245,18 +270,18 @@ namespace StayScape
 
             if (selectedFilter == "to-reply")
             {
-                query += hasCondition ? " AND" : " WHERE"; // Correct use of WHERE/AND
-                query += " rep.replyID IS NULL"; // Reviews without a reply
+                query += " AND"; // Correct use of AND
+                query += " rep.replyID IS NULL";
             }
             else if (selectedFilter == "replied")
             {
-                query += hasCondition ? " AND" : " WHERE"; // Correct use of WHERE/AND
-                query += " rep.replyID IS NOT NULL"; // Reviews with at least one reply
+                query += " AND"; // Correct use of AND
+                query += " rep.replyID IS NOT NULL";
             }
 
             // Set the new query
             SqlDataSource1.SelectCommand = query;
-            UpdateRatingButtonCounts();
+
             // Rebind data
             ListView1.DataBind();
         }

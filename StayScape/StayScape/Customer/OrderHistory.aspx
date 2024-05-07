@@ -28,13 +28,6 @@
                     OnClick="FilterStatus_Click" 
                 />
                 <asp:Button 
-                    ID="btnFilterPending" 
-                    runat="server" 
-                    Text="Pending" 
-                    CssClass="status-button py-2 px-4 mr-4 border border-slate-300 rounded-lg text-slate-500 cursor-pointer" 
-                    OnClick="FilterStatus_Click" 
-                />
-                <asp:Button 
                     ID="btnFilterFailed" 
                     runat="server" 
                     Text="Failed" 
