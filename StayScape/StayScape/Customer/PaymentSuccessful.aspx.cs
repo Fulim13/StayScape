@@ -7,6 +7,22 @@ namespace StayScape
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            DBManager db = new DBManager();
+            db.createConnection();
+            if (Session["redemptionID"] != null)
+            {
+                //Update Redemption ID - redemptionStatus to "Used"
+                string sqlCommand3 = "UPDATE Redemption SET redemptionStatus = @redemptionStatus WHERE redemptionID = @redemptionID";
+                SqlParameter[] parameters3 =
+                {
+                    new SqlParameter("@redemptionStatus", "Used"),
+                    new SqlParameter("@redemptionID", Session["redemptionID"])
+                    };
+
+                db.createConnection();
+                bool isBool2 = db.ExecuteNonQuery(sqlCommand3, parameters3);
+                db.closeConnection();
+            }
             ////only first time page load
             //if (IsPostBack)
             //{
@@ -17,7 +33,7 @@ namespace StayScape
             string reservationID = Session["reservationID"].ToString();
 
             // Get Property name from reservation ID
-            DBManager db = new DBManager();
+            //DBManager db = new DBManager();
             db.createConnection();
             string sqlCommand = "SELECT Property.propertyName FROM Reservation INNER JOIN Property ON Reservation.propertyID = Property.propertyID WHERE reservationID = @reservationID";
             SqlParameter[] parameters =

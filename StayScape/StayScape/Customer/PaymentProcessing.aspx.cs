@@ -62,20 +62,20 @@ namespace StayScape
                 db.closeConnection();
 
 
-                if (Session["redemptionID"] != null)
-                {
-                    //Update Redemption ID - redemptionStatus to "Used"
-                    string sqlCommand3 = "UPDATE Redemption SET redemptionStatus = @redemptionStatus WHERE redemptionID = @redemptionID";
-                    SqlParameter[] parameters3 =
-                    {
-                    new SqlParameter("@redemptionStatus", "Used"),
-                    new SqlParameter("@redemptionID", Session["redemptionID"])
-                    };
+                //if (Session["redemptionID"] != null)
+                //{
+                //    //Update Redemption ID - redemptionStatus to "Used"
+                //    string sqlCommand3 = "UPDATE Redemption SET redemptionStatus = @redemptionStatus WHERE redemptionID = @redemptionID";
+                //    SqlParameter[] parameters3 =
+                //    {
+                //    new SqlParameter("@redemptionStatus", "Used"),
+                //    new SqlParameter("@redemptionID", Session["redemptionID"])
+                //    };
 
-                    db.createConnection();
-                    bool isBool2 = db.ExecuteNonQuery(sqlCommand3, parameters3);
-                    db.closeConnection();
-                }
+                //    db.createConnection();
+                //    bool isBool2 = db.ExecuteNonQuery(sqlCommand3, parameters3);
+                //    db.closeConnection();
+                //}
 
             }
 
