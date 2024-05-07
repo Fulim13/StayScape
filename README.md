@@ -14,7 +14,7 @@ Update-Package Microsoft.CodeDom.Providers.DotNetCompilerPlatform -r
 
 Testing data for customer
 ```
-dongweijie@gmail.com
+Customer@gmail.com
 W123.90a
 ```
 
@@ -27,10 +27,16 @@ Testing data for card payment
 
 7. After Complete Customer side, go to Dashboard.aspx for Host side
 
-Testing data for host
+Testing data for host 1
 ```
-des@gmail.com
-W123.90a
+Email:Host@gmail.com
+Password:W123.90a
+
+Testing data for host 12
+```
+Email:Host2@gmail.com
+Password:W123.90a
+
 ```
 
 
