@@ -195,7 +195,7 @@
                             //update ContentPlaceHolder2_lblVoucherCode
                             document.getElementById("ContentPlaceHolder2_lblVoucherCode").innerText = discountCode;
                         } else if (discountAmount == -1) {
-                            toastr["error"]("This code is not for this property or this host");
+                            toastr["error"]("This code is not for this property");
                         } else if (discountAmount == -2) {
                             toastr["error"]("This code is inactive");
                         }else if (discountAmount == -3) {
