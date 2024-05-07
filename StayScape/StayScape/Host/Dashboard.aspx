@@ -177,12 +177,12 @@
         <!-- End Footer -->
     </div>
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:LocalSqlServer %>" 
-    SelectCommand="SELECT r.reservationID, r.reservationTotal, r.checkInDate, r.checkOutDate, r.reservationStatus, r.createdAt, c.customerName
+    SelectCommand="SELECT r.reservationID, r.reservationTotal, r.checkInDate, r.checkOutDate, r.reservationStatus, c.customerName
                    FROM Reservation r
                    JOIN Property p ON r.propertyID = p.propertyID
                    JOIN Host h ON p.hostID = h.hostID
                    JOIN Customer c ON r.custID = c.custID
-                   WHERE h.hostID = @hostID ORDER BY r.createdAt DESC;">
+                   WHERE h.hostID = @hostID;">
     <SelectParameters>
         <asp:SessionParameter Name="hostID" SessionField="hostID" />
     </SelectParameters>

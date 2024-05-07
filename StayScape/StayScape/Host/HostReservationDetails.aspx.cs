@@ -93,8 +93,23 @@ namespace StayScape
             command = db.ExecuteQuery(sqlCommand, parametersPaymentDetails);
             reader = command.ExecuteReader();
             reader.Read();
-            string paymentMethod = reader["paymentMethod"].ToString();
-            string paymentMethodDetail = reader["paymentMethodDetail"].ToString();
+            string paymentMethod = "";
+            string paymentMethodDetail = "Payment Failed";
+
+            if (reader.HasRows)
+            {
+                int paymentMethodIndex = reader.GetOrdinal("paymentMethod");
+                if (!reader.IsDBNull(paymentMethodIndex))
+                {
+                    paymentMethod = reader.GetString(paymentMethodIndex);
+                }
+
+                int paymentMethodDetailIndex = reader.GetOrdinal("paymentMethodDetail");
+                if (!reader.IsDBNull(paymentMethodDetailIndex))
+                {
+                    paymentMethodDetail = reader.GetString(paymentMethodDetailIndex);
+                }
+            }
             db.closeConnection();
 
 

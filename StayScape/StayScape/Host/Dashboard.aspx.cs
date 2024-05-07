@@ -20,13 +20,13 @@ namespace StayScape
                     if (Session["hostID"] != null)
                     {
                         string hostID = Session["hostID"].ToString();
-                        baseQuery = "SELECT r.reservationID, r.reservationTotal, r.checkInDate, r.checkOutDate, r.reservationStatus, r.createdAt, c.customerName " +
+                        baseQuery = "SELECT r.reservationID, r.reservationTotal, r.checkInDate, r.checkOutDate, r.reservationStatus, c.customerName " +
                                     "FROM Reservation r " +
                                     "JOIN Property p ON r.propertyID = p.propertyID " +
                                     "JOIN Host h ON p.hostID = h.hostID " +
                                     "JOIN Customer c ON r.custID = c.custID " +
-                                    "WHERE h.hostID = @hostID" +
-                                    "ORDER BY r.createdAt DESC";
+                                    "WHERE h.hostID = @hostID";
+                        //"ORDER BY r.createdAt DESC";
 
                         SqlDataSource1.SelectCommand = baseQuery;
                         SqlDataSource1.SelectParameters.Clear();
