@@ -22,7 +22,8 @@ namespace StayScape
             string connectionString = ConfigurationManager.ConnectionStrings["LocalSqlServer"].ConnectionString;
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand("SELECT propertyID, propertyName FROM Property", conn);
+                SqlCommand cmd = new SqlCommand("SELECT propertyID, propertyName FROM Property WHERE hostID = @hostID", conn);
+                cmd.Parameters.AddWithValue("@hostID", Session["hostID"].ToString());
                 conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
                 ddlProperty.DataSource = reader;
