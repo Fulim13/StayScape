@@ -214,6 +214,14 @@
                 ErrorMessage="Image is required"
                 ForeColor="Red"
                 Display="Dynamic" />
+            <asp:RegularExpressionValidator
+                ID="revPropertyImage"
+                runat="server"
+                ControlToValidate="fuPropertyImage"
+                ErrorMessage="Only image files (jpg, jpeg, png) are allowed"
+                ValidationExpression="^.*\.(jpg|JPG|jpeg|JPEG|png|PNG)$"
+                ForeColor="Red"
+                Display="Dynamic" />
         </div>
         <asp:Button ID="btnSubmit" runat="server" Text="Add Property" CssClass="button" OnClientClick="return validateForm();" OnClick="UploadProperty" />
         </asp:Panel>

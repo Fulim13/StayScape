@@ -267,8 +267,32 @@ namespace StayScape
                         return discountPrice;
 
                     }
-                    else if (discountType == "Percentage Off")
+                    else if (discountType == "Discount Off")
                     {
+                        //if (Convert.ToDecimal(HttpContext.Current.Session["reservationAmount"]) < minSpend)
+                        //{
+                        //    return -6;
+                        //}
+
+
+                        ////store redemption ID in session
+                        //sqlCommand = "SELECT redemptionID FROM Redemption WHERE custID = @custID AND voucherID = @voucherID";
+                        //SqlParameter[] parameters6 =
+                        //{
+                        //    new SqlParameter("@custID", HttpContext.Current.Session["custID"].ToString()),
+                        //    new SqlParameter("@voucherID", voucherID)
+                        //};
+                        //command = db.ExecuteQuery(sqlCommand, parameters6);
+                        //reader = command.ExecuteReader();
+                        //reader.Read();
+                        //int redemptionID = Convert.ToInt32(reader["redemptionID"]);
+                        //HttpContext.Current.Session["redemptionID"] = redemptionID;
+
+
+
+                        //// store the discount amount in session
+                        //HttpContext.Current.Session["discountAmount"] = discountAmount;
+                        //return discountAmount;
                         if (Convert.ToDecimal(HttpContext.Current.Session["reservationAmount"]) < minSpend)
                         {
                             return -6;
@@ -279,8 +303,24 @@ namespace StayScape
                         {
                             discountAmount = capAt;
                         }
-                        //store redemption ID in session
-                        sqlCommand = "SELECT redemptionID FROM Redemption WHERE custID = @custID AND voucherID = @voucherID";
+
+                        // store the discount amount in session
+                        HttpContext.Current.Session["discountAmount"] = discountAmount;
+
+                        //insert redemption to database
+                        db.createConnection();
+                        sqlCommand = "INSERT INTO Redemption (custID, voucherID, redemptionDate, redemptionStatus) VALUES (@custID, @voucherID, @redemptionDate, @redemptionStatus)";
+                        SqlParameter[] parameters5 =
+                        {
+                            new SqlParameter("@custID", HttpContext.Current.Session["custID"].ToString()),
+                            new SqlParameter("@voucherID", voucherID),
+                            new SqlParameter("@redemptionDate", DateTime.Now),
+                            new SqlParameter("@redemptionStatus", "Pending")
+                        };
+                        db.ExecuteNonQuery(sqlCommand, parameters5);
+
+                        //store order by largest redemption ID in session
+                        sqlCommand = "SELECT MAX(redemptionID) AS redemptionID FROM Redemption WHERE custID = @custID AND voucherID = @voucherID";
                         SqlParameter[] parameters6 =
                         {
                             new SqlParameter("@custID", HttpContext.Current.Session["custID"].ToString()),
@@ -294,8 +334,12 @@ namespace StayScape
 
 
 
-                        // store the discount amount in session
-                        HttpContext.Current.Session["discountAmount"] = discountAmount;
+
+
+
+
+
+
                         return discountAmount;
                     }
                     else
