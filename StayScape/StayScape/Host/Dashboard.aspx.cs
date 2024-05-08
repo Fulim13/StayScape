@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace StayScape
@@ -20,24 +21,20 @@ namespace StayScape
                     if (Session["hostID"] != null)
                     {
                         string hostID = Session["hostID"].ToString();
-                        baseQuery = "SELECT r.reservationID, r.reservationTotal, r.checkInDate, r.checkOutDate, r.reservationStatus, c.customerName " +
-                                    "FROM Reservation r " +
-                                    "JOIN Property p ON r.propertyID = p.propertyID " +
-                                    "JOIN Host h ON p.hostID = h.hostID " +
-                                    "JOIN Customer c ON r.custID = c.custID " +
-                                    "WHERE h.hostID = @hostID";
-                        //"ORDER BY r.createdAt DESC";
-
-                        SqlDataSource1.SelectCommand = baseQuery;
-                        SqlDataSource1.SelectParameters.Clear();
-                        SqlDataSource1.SelectParameters.Add("hostID", hostID); // Adding hostID as parameter
+                        string baseQuery = "SELECT r.reservationID, r.reservationTotal, r.checkInDate, r.checkOutDate, r.reservationStatus, c.customerName " +
+                                           "FROM Reservation r " +
+                                           "JOIN Property p ON r.propertyID = p.propertyID " +
+                                           "JOIN Host h ON p.hostID = h.hostID " +
+                                           "JOIN Customer c ON r.custID = c.custID " +
+                                           "WHERE h.hostID = @hostID";
 
                         List<string> conditions = new List<string>();
+                        List<string> parameters = new List<string>();
 
                         if (!string.IsNullOrEmpty(txtSearch.Text))
                         {
                             conditions.Add("r.reservationID LIKE @reservationID");
-                            SqlDataSource1.SelectParameters.Add("reservationID", "%" + txtSearch.Text + "%");
+                            parameters.Add("%" + txtSearch.Text + "%");
                         }
 
                         if (ddlIsExpired.SelectedIndex != 0)
@@ -54,16 +51,22 @@ namespace StayScape
                             {
                                 conditions.Add("r.reservationStatus = 'Cancelled'");
                             }
-                            else
-                            {
-
-                            }
-                            //SqlDataSource1.SelectParameters.Add("today", DbType.DateTime, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                         }
 
                         if (conditions.Count > 0)
                         {
-                            SqlDataSource1.SelectCommand += " AND " + string.Join(" AND ", conditions);
+                            baseQuery += " AND " + string.Join(" AND ", conditions);
+                        }
+
+                        baseQuery += " ORDER BY r.createdAt DESC";
+
+                        SqlDataSource1.SelectCommand = baseQuery;
+                        SqlDataSource1.SelectParameters.Clear();
+                        SqlDataSource1.SelectParameters.Add("hostID", hostID); // Adding hostID as parameter
+
+                        if (!string.IsNullOrEmpty(txtSearch.Text))
+                        {
+                            SqlDataSource1.SelectParameters.Add("reservationID", DbType.String, parameters[0]);
                         }
 
                         ListView1.DataBind();

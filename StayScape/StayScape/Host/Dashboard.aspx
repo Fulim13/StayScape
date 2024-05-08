@@ -183,7 +183,8 @@
                    JOIN Property p ON r.propertyID = p.propertyID
                    JOIN Host h ON p.hostID = h.hostID
                    JOIN Customer c ON r.custID = c.custID
-                   WHERE h.hostID = @hostID;">
+                   WHERE h.hostID = @hostID
+                    ORDER BY r.createdAt DESC">
     <SelectParameters>
         <asp:SessionParameter Name="hostID" SessionField="hostID" />
     </SelectParameters>
