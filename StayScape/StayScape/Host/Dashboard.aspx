@@ -76,6 +76,7 @@
                 <asp:ListItem Value="">All</asp:ListItem>
                 <asp:ListItem Value="paid">Paid</asp:ListItem>
                 <asp:ListItem Value="failed">Failed</asp:ListItem>
+                <asp:ListItem Value="cancelled">Cancelled</asp:ListItem>
             </asp:DropDownList>
         </div>
     </div>

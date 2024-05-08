@@ -50,9 +50,13 @@ namespace StayScape
                             {
                                 conditions.Add("r.reservationStatus = 'Failed'");
                             }
+                            else if (ddlIsExpired.SelectedValue == "cancelled")
+                            {
+                                conditions.Add("r.reservationStatus = 'Cancelled'");
+                            }
                             else
                             {
-                                //conditions.Add("r.checkOutDate < @today");
+
                             }
                             //SqlDataSource1.SelectParameters.Add("today", DbType.DateTime, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                         }
