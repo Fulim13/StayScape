@@ -67,6 +67,7 @@ namespace StayScape
             INNER JOIN Reservation rs ON r.reservationID = rs.reservationID
             INNER JOIN Property p ON rs.propertyID = p.propertyID
             INNER JOIN Customer c ON r.custID = c.custID
+            LEFT JOIN Reply rep ON r.reviewID = rep.reviewID 
             WHERE p.hostID = @hostID"; // DESC to get 5 to 1
 
             // Get the host ID
@@ -106,6 +107,17 @@ namespace StayScape
             if (selectedStarRating > 0)
             {
                 conditions.Add("r.rating = @selectedStarRating");
+            }
+
+            string selectedFilter = FilterRadioButtonList.SelectedValue;
+
+            if (selectedFilter == "to-reply")
+            {
+                conditions.Add("rep.replyID IS NULL");
+            }
+            else if (selectedFilter == "replied")
+            {
+                conditions.Add("rep.replyID IS NOT NULL");
             }
 
             // Append conditions to the base query
@@ -183,6 +195,7 @@ namespace StayScape
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
+            UpdateRatingButtonCounts();
             BindListView(); // Re-bind data based on search criteria
         }
 
@@ -521,6 +534,7 @@ namespace StayScape
 
         protected void RadioButtonList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            UpdateRatingButtonCounts();
             BindListView();
         }
 

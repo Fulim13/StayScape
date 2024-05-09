@@ -16,7 +16,6 @@
 			<siteMapNode url="/Host/VoucherDetails.aspx" title="Voucher Details" description="" />
 		</siteMapNode>
 		<siteMapNode url="/Host/Review.aspx" title="Review" description="" />
-		<siteMapNode url="/Host/ReviewClient.aspx" title="ReviewClient" description="" />
 		<siteMapNode url="/Host/Analytic.aspx" title="Analytic" description="" />
 	</siteMapNode>
 </siteMap>
