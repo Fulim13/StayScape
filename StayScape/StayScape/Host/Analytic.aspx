@@ -132,7 +132,7 @@
             const data2 = {
                 labels: [],
                 datasets: [{
-                    label: 'Customer Sales',
+                    label: 'Sales',
                     data: arrPropertySales[0],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
