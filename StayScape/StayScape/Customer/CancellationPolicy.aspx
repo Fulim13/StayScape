@@ -12,7 +12,7 @@
                     <h2 class="text-lg font-semibold mb-4">Cancellation Timeframe and Charges
                     </h2>
                     <ul class="list-disc pl-5">
-                        <li>Cancellation within 24 hours of Booking: If you cancel your booking within 48 hours of making the reservation, you will receive a full refund.</li>
+                        <li>Cancellation within 24 hours of Booking: If you cancel your booking within 24 hours of making the reservation, you will receive a full refund.</li>
                         <li class="mt-2">Cancellation before Check-in Date:</li>
                         <ul class="list-disc pl-5">
                             <li>Cancellation made 7 or more days prior to the scheduled check-in date: No cancellation charges.</li>
