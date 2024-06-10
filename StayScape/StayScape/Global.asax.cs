@@ -17,6 +17,7 @@ namespace StayScape
             if (File.Exists(envFilePath))
             {
                 DotEnv.Load(options: new DotEnvOptions(envFilePaths: new[] { envFilePath }));
+                Application["StripePublishableKey"] = Environment.GetEnvironmentVariable("STRIPE_PUBLISHABLE_KEY");
             }
             else
             {

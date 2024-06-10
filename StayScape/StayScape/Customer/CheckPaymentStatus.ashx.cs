@@ -32,9 +32,10 @@ namespace StayScape
             {
                 //Get Payment Method from the paymentIntent object
                 string paymentMethod = paymentIntent.payment_method;
-                // Initialize Stripe with your secret key
-                //string stripeSecretKey = Environment.GetEnvironmentVariable("STRIPE_SECRET_KEY");
-                StripeConfiguration.ApiKey = "sk_test_51OzyRiLGo9hdPl3qRJQk7tVvWK8tgJmqoax5JaIKMpWc3pkFVE2aW0KlS0yAZRz1CJsMsiJzQMyf7d1OrNH5qhZO00hdQmzwOE";
+
+
+                string stripeSecretKey = Environment.GetEnvironmentVariable("STRIPE_SECRET_KEY");
+                StripeConfiguration.ApiKey = stripeSecretKey;
 
                 // Retrieve the payment intent object
                 var service = new PaymentMethodService();

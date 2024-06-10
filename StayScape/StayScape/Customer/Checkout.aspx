@@ -85,7 +85,8 @@
             }
         </script>
         <script>
-            const stripe = Stripe("pk_test_51OzyRiLGo9hdPl3qZ6587wCFjVaBePXtzGkecdW0llSKBnmD6QaHRVFhQQ4Uh1uCb0fiiP8OIctEqAZmrHokG9fX00rbuIh65w");
+            const stripePublicKey = '<%= Application["StripePublishableKey"] %>';
+            const stripe = Stripe(stripePublicKey);
 
 
             initialize(parseInt(parseFloat('<%= Session["reservationAmount"] %>') * 100));
