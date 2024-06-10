@@ -4,8 +4,8 @@ StayScape is a comprehensive property renting website designed to offer a seamle
 Technologies Used
 ASP.NET (C#), Tailwind CSS, MS SQL Server, Stripe API
 
-# Documentation
-[Documentation](Documentation.pdf)
+# Demo
+[Demo](Demo.pdf)
 
 # Prerequisite
 1. Node Installed https://nodejs.org/en/download/current
