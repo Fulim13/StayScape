@@ -75,6 +75,9 @@ For more information: https://docs.stripe.com/testing
 <br />
 
 # Deployment Information
+[Documentation](https://learn.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-dotnet-sqldatabase)
+
+[Video](https://www.youtube.com/watch?v=TcghUb1NPCw)
 
 # Extra Note on Tailwind CSS
 CSS Builder
