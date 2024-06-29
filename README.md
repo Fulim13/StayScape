@@ -1,8 +1,13 @@
 # StayScape
 StayScape is a comprehensive property renting website designed to offer a seamless experience for both customers and hosts. Customers can browse through a wide variety of properties with detailed descriptions and high-quality images, get in-depth information about each property including amenities, location, and pricing, easily make reservations directly from the property details page, and enjoy a streamlined checkout process with support for voucher redemption. Additionally, customers can view a comprehensive history of their past reservations and share their experiences by leaving reviews on properties they have stayed at. For hosts, StayScape provides tools to access a detailed history of all reservations made on their properties, add, update, and delete property listings, create, update, and delete vouchers for customer redemption during checkout, engage with guests by replying to their reviews, and monitor all reviews left by guests. Hosts can also view a statistics page that offers an overview of their revenue, top customers, and top-performing properties.
 
-Technologies Used
-ASP.NET (C#), Tailwind CSS, MS SQL Server, Stripe API
+Technologies Used: 
+![C# Badge](https://img.shields.io/badge/C%23-512BD4?logo=csharp&logoColor=fff&style=for-the-badge)
+![.NET Badge](https://img.shields.io/badge/.NET-512BD4?logo=dotnet&logoColor=fff&style=for-the-badge)
+![Tailwind CSS Badge](https://img.shields.io/badge/Tailwind%20CSS-06B6D4?logo=tailwindcss&logoColor=fff&style=for-the-badge)
+![Microsoft SQL Server Badge](https://img.shields.io/badge/Microsoft%20SQL%20Server-CC2927?logo=microsoftsqlserver&logoColor=fff&style=for-the-badge)
+![Stripe Badge](https://img.shields.io/badge/Stripe-008CDD?logo=stripe&logoColor=fff&style=for-the-badge)
+
 
 # Demo
 [Demo](Demo.pdf)
