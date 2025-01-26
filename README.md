@@ -1,9 +1,4 @@
 # StayScape
-- StayScape is a  property renting website designed for both customers and hosts. 
-- Customers can browse through properties with descriptions and images, get in-depth information about each property including amenities, location, and pricing, easily make reservations directly from the property details page, and enjoy a streamlined checkout process with support for voucher redemption.
-- Customers also can view a comprehensive history of their past reservations and share their experiences by leaving reviews on properties they have stayed at.
-- For hosts, StayScape provides tools to access a detailed history of all reservations made on their properties, add, update, and delete property listings, create, update, and delete vouchers for customer redemption during checkout, engage with guests by replying to their reviews, and monitor all reviews left by guests.
-- Hosts can also view a statistics page that offers an overview of their revenue, top customers, and top-performing properties.
 
 Technologies Used: 
 ![C# Badge](https://img.shields.io/badge/C%23-512BD4?logo=csharp&logoColor=fff&style=for-the-badge)
